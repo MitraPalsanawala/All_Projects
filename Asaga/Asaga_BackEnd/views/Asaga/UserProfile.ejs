@@ -1,0 +1,1267 @@
+<%- include('../partial/head.ejs') %>
+    <style id='lacomete-edge-woo-inline-css' type='text/css'>
+        .edgtf-position-right-inner {
+            font-family: 'Source Serif Pro",serif';
+            font-weight: 400;
+        }
+
+        .btnSet {
+            width: 136px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 53px;
+            background-color: white;
+            color: black;
+            border: 2px solid #555555;
+        }
+
+        .btnSet:hover {
+            background-color: #555555;
+            color: white;
+        }
+
+        /* .btnCancle {
+            height: 55px;
+            width: 127px;
+            padding-bottom: 5px;
+            background-color: white;
+            color: black;
+            border: 2px solid #555555;
+        }
+
+        .btnCancle:hover {
+            background-color: #555555;
+            color: white;
+        } */
+
+        .editBtn {
+            width: 130px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40px;
+            background-color: white;
+            color: black;
+            border: 2px solid #555555;
+        }
+
+        .editBtn:hover {
+            background-color: #555555;
+            color: white;
+        }
+
+        .form-row {
+            display: block !important;
+        }
+
+        @media only screen and (max-width: 1024px) {}
+
+        .postid-3629 .edgtf-top-bar {
+            background-image: none;
+        }
+
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-container>.edgtf-container-inner,
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-full-width>.edgtf-full-width-inner {
+            padding: 130px 0 122px 0;
+        }
+
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-container>.edgtf-container-inner,
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-full-width>.edgtf-full-width-inner {
+            padding: 130px 0 122px 0;
+        }
+
+        /* @media only screen and (min-width: 769px) {
+            .edgtf-woo-single-page.edgtf-woo-single-thumb-on-left-side .edgtf-single-product-content .images.woocommerce-product-gallery--with-images .woocommerce-product-gallery__image:first-child {
+                height: 850px !important;
+            }
+        } */
+
+        @media only screen and (min-width: 769px) {
+            .edgtf-woo-single-page .edgtf-single-product-content .images {
+                width: 56% !important;
+            }
+        }
+
+        .edgtf-woo-single-page .edgtf-single-product-content .images figure a img.edgtf-fake-featured-image {
+            height: 100% !important;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            /* position: fixed; */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            /* width: 80%; */
+            width: 60%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        /* The Close Button */
+        .close {
+            color: black;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            padding: 13px;
+            color: black;
+            text-align: center;
+            border-bottom: 1px solid #000;
+        }
+
+        .modal-body {
+            padding: 15px;
+        }
+
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        .modal-title-header {
+            color: #333;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 17px;
+            font-family: inherit !important;
+        }
+
+        .modal-title-sub-header {
+            color: #333;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 12px;
+            font-family: inherit !important;
+        }
+
+        .ks-table {
+            border-style: solid;
+            border-width: 1px;
+            border-color: #e8e9eb;
+        }
+
+        .ks-table-header-cell {
+            font-weight: 700 !important;
+            font-style: normal;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .ks-table-cell {
+            border: 1px solid #deddda;
+        }
+
+        .trcss1 {
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .thcsss {
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .edgtf-woocommerce-page.woocommerce-order-received .woocommerce table.shop_table td,
+        .edgtf-woocommerce-page.woocommerce-order-received .woocommerce table.shop_table th {
+            padding: 12px !important;
+        }
+
+        .select2-container {
+            width: 100% !important;
+        }
+
+        .btnCancle {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            width: auto;
+            margin: 0;
+            font-family: Montserrat, sans-serif;
+            font-size: 11px;
+            letter-spacing: .22em;
+            line-height: 2em;
+            font-weight: 500;
+            text-transform: uppercase;
+            outline: 0;
+            border-radius: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+            -o-transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+            transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+            padding: 14px 39px 14px 40px;
+            color: #2e2e2d;
+            background-color: white;
+            border: 1px solid #2e2e2d;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        @media only screen and (max-width: 680px) {
+
+            .edgtf-container-inner,
+            .edgtf-grid,
+            .edgtf-row-grid-section {
+                width: 380px !important;
+            }
+
+            .edgtf-position-right-inner {
+                font-size: 10px;
+            }
+
+        }
+
+        /* .edgtf-title-holder,
+        .edgtf-page-header,
+        .single_add_to_cart_button {
+            z-index: 0 !important;
+        } */
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Start Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2KXJ0J054"></script>
+    <script> window.dataLayer = window.dataLayer || []; function
+            gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config',
+                'G-P2KXJ0J054'); 
+    </script>
+    <!-- End Google tag (gtag.js) -->
+
+    <%- include('../partial/pagetracker.ejs') %>
+
+        <%- include('../partial/header.ejs') %>
+            <%- include('../partial/pageheader.ejs') %>
+                <link rel='stylesheet' id='lacomete-edge-woo-css'
+                    href='https://lacomete.qodeinteractive.com/wp-content/themes/lacomete/assets/css/woocommerce.min.css?ver=6.0.3'
+                    type='text/css' media='all' />
+                <link rel='stylesheet' id='ppress-select2-css'
+                    href='https://lacomete.qodeinteractive.com/wp-content/plugins/wp-user-avatar/assets/select2/select2.min.css?ver=6.0.3'
+                    type='text/css' media='all' />
+                <script type='text/javascript'
+                    src='https://lacomete.qodeinteractive.com/wp-content/plugins/wp-user-avatar/assets/select2/select2.min.js?ver=4.3.0'
+                    id='ppress-select2-js'></script>
+                <div class="edgtf-content">
+                    <div class="edgtf-content-inner">
+                        <div class="edgtf-container edgtf-default-page-template">
+                            <div class="edgtf-container-inner clearfix" style="
+                                padding-top: 50px;
+                                padding-bottom: 50px;">
+                                <div class="edgtf-grid-row ">
+                                    <div class="edgtf-page-content-holder edgtf-grid-col-12">
+                                        <div class="woocommerce">
+                                            <!-- <div class="woocommerce-notices-wrapper"></div> -->
+                                            <div class="woocommerce-notices-wrapper"></div>
+                                            <h3 style="text-align: center;padding-bottom: 23px;color: #701f1a;">
+                                                ADDRESSES
+                                            </h3>
+                                            <!-- <button id="btn">ADD ADDRESS</button> -->
+                                            <button type="button" class="btnSet" name="woocommerce_checkout_place_order"
+                                                id="btnAddAddress" value="Place order" data-value="Place order">ADD
+                                                ADDRESS
+                                            </button>
+                                            <!-- <div class="row"> -->
+
+                                            <div id="divViewUserDetail" class="col-md-12" style="padding-top: 50px;">
+                                                <div style="overflow-x:auto;">
+                                                    <table id="tblViewUser"
+                                                        class="shop_table woocommerce-checkout-review-order-table">
+                                                        <tr class="table-bordered trcss1">
+                                                            <th class="thcsss">Name</th>
+                                                            <th class="thcsss" style="width: 60%;">Address</th>
+                                                            <th class="thcsss">Change Address</th>
+                                                        </tr>
+                                                        <% if (UserAddressData) { %>
+                                                            <% for(var i=0; i < UserAddressData.length; i++) {%>
+                                                                <tr class="table-bordered">
+                                                                    <td>
+                                                                        <%- UserAddressData[i].FirstName %>
+                                                                            <%- UserAddressData[i].MiddleName %>
+                                                                                <%- UserAddressData[i].LastName %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= UserAddressData[i].Address1 %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a style="text-decoration:none"
+                                                                            onclick="editUserData('<%= UserAddressData[i].UserAddressID %>')"
+                                                                            href="javascript:void(0)"><button
+                                                                                class="editBtn">Edit
+                                                                                Address</button></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <% } %>
+                                                                    <% } else { %>
+                                                                        <tr>
+                                                                            <td colspan="3">Address Not
+                                                                                Available</td>
+                                                                        </tr>
+                                                                        <% } %>
+                                                    </table>
+                                                </div>
+                                                <!-- </div> -->
+                                            </div>
+
+                                            <div class="col-md-12" style="padding-top: 40px;">
+                                                <% if(!FetchData){ %>
+                                                    <form name="checkout" id="frmAddUser" method="post"
+                                                        class="checkout woocommerce-checkout" action="/UserProfile"
+                                                        enctype="" novalidate="novalidate" style="display: none;">
+                                                        <div class="col2-set" id="customer_details">
+                                                            <div class="woocommerce-billing-fields">
+                                                                <div class="woocommerce-billing-fields__field-wrapper">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="row">
+                                                                                <!-- firstname -->
+                                                                                <div class="col-md-6">
+                                                                                    <p class="form-row-first validate-required"
+                                                                                        id="billing_first_name_field"
+                                                                                        data-priority="10"
+                                                                                        style="width: 100%;">
+                                                                                        <label>First Name:<span
+                                                                                                style="color: red;">*</span></label><span
+                                                                                            class="woocommerce-input-wrapper"><input
+                                                                                                type="text"
+                                                                                                class="form-group"
+                                                                                                name="FirstName"
+                                                                                                id="FirstName"
+                                                                                                placeholder="" value=""
+                                                                                                autocomplete="given-name"
+                                                                                                tabindex="1"
+                                                                                                required></span>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <!-- middlename -->
+                                                                                <div class="col-md-6">
+                                                                                    <p class="form-row-first validate-required"
+                                                                                        id="billing_first_name_field"
+                                                                                        data-priority="10"
+                                                                                        style="width: 100%;">
+                                                                                        <label>Middle Name:<span
+                                                                                                style="color: red;">*</span></label><span
+                                                                                            class="woocommerce-input-wrapper"><input
+                                                                                                type="text"
+                                                                                                class="input-text "
+                                                                                                name="MiddleName"
+                                                                                                id="MiddleName"
+                                                                                                placeholder="" value=""
+                                                                                                autocomplete="given-name"
+                                                                                                tabindex="2"
+                                                                                                required></span>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <!-- lastname -->
+                                                                                <div class="col-md-6">
+                                                                                    <p class="form-row-first validate-required"
+                                                                                        id="billing_first_name_field"
+                                                                                        data-priority="10"
+                                                                                        style="width: 100%;">
+                                                                                        <label>Last Name:<span
+                                                                                                style="color: red;">*</span></label><span
+                                                                                            class="woocommerce-input-wrapper"><input
+                                                                                                type="text"
+                                                                                                class="input-text "
+                                                                                                name="LastName"
+                                                                                                id="LastName"
+                                                                                                placeholder="" value=""
+                                                                                                autocomplete="given-name"
+                                                                                                tabindex="3"
+                                                                                                required></span>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <!-- mobileno -->
+                                                                                <div class="col-md-6">
+                                                                                    <p class="form-row-first validate-required"
+                                                                                        id="billing_first_name_field"
+                                                                                        data-priority="10"
+                                                                                        style="width: 100%;">
+                                                                                        <label>MobileNo :<span
+                                                                                                style="color: red;">*</span></label><span
+                                                                                            class="woocommerce-input-wrapper"><input
+                                                                                                type="tel"
+                                                                                                class="input-text AllowNumberKey"
+                                                                                                maxlength="10"
+                                                                                                name="MobileNo"
+                                                                                                id="MobileNo"
+                                                                                                placeholder="" value=""
+                                                                                                autocomplete="given-name"
+                                                                                                tabindex="4"
+                                                                                                required></span>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <!-- emailID -->
+                                                                                <div class="col-md-6">
+                                                                                    <p class="form-row-first validate-required"
+                                                                                        id="billing_first_name_field"
+                                                                                        data-priority="10"
+                                                                                        style="width: 100%;">
+                                                                                        <label>EmailID:<span
+                                                                                                style="color: red;">*</span>
+                                                                                        </label><span
+                                                                                            class="woocommerce-input-wrapper"><input
+                                                                                                type="email"
+                                                                                                class="input-text "
+                                                                                                name="EmailID"
+                                                                                                id="EmailID"
+                                                                                                placeholder="" value=""
+                                                                                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                                                                                autocomplete="given-name"
+                                                                                                tabindex="5"
+                                                                                                required></span>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <!-- company -->
+                                                                                <div class="col-md-6">
+                                                                                    <p class="form-row-first validate-required"
+                                                                                        id="billing_first_name_field"
+                                                                                        data-priority="10"
+                                                                                        style="width: 100%;">
+                                                                                        <label>Company:<span
+                                                                                                style="color: red;">*</span></label><span
+                                                                                            class="woocommerce-input-wrapper"><input
+                                                                                                type="text"
+                                                                                                class="form-group"
+                                                                                                name="Company"
+                                                                                                id="Company"
+                                                                                                placeholder="" value=""
+                                                                                                autocomplete="given-name"
+                                                                                                tabindex="6"
+                                                                                                required></span>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <!-- Address1 -->
+                                                                                <div class="col-md-6">
+                                                                                    <p class="form-row-first validate-required"
+                                                                                        id="billing_first_name_field"
+                                                                                        data-priority="10"
+                                                                                        style="width: 100%;">
+                                                                                        <label>Address:<span
+                                                                                                style="color: red;">*</span>
+                                                                                        </label><span
+                                                                                            class="woocommerce-input-wrapper">
+
+                                                                                            <textarea id=""
+                                                                                                name="Address1"
+                                                                                                id="Address1"
+                                                                                                class="textarea"
+                                                                                                placeholder="House number and street name"
+                                                                                                style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"
+                                                                                                tabindex="7"></textarea>
+                                                                                        </span>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <p class="form-row-first validate-required"
+                                                                                        id="billing_first_name_field"
+                                                                                        data-priority="10"
+                                                                                        style="width: 100%;">
+                                                                                        <label>Address :
+                                                                                        </label>
+                                                                                        <span
+                                                                                            class="woocommerce-input-wrapper">
+
+                                                                                            <textarea id=""
+                                                                                                name="Address2"
+                                                                                                id="Address2"
+                                                                                                class="textarea"
+                                                                                                placeholder="Apartment,suite, unit,etc."
+                                                                                                style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"
+                                                                                                tabindex="8"
+                                                                                                required></textarea>
+                                                                                        </span>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <!-- country -->
+                                                                                <div class="col-md-6">
+                                                                                    <p class="form-row-first validate-required"
+                                                                                        id="billing_first_name_field"
+                                                                                        data-priority="10"
+                                                                                        style="width: 100%;">
+                                                                                        <label>Country:<span
+                                                                                                style="color: red;">*</span>
+                                                                                        </label><span
+                                                                                            class="woocommerce-input-wrapper">
+                                                                                            <input type="text"
+                                                                                                class="input-text"
+                                                                                                name="txtCountryName"
+                                                                                                id="txtCountryName"
+                                                                                                placeholder="Country"
+                                                                                                value="India"
+                                                                                                readonly="readonly"
+                                                                                                tabindex="9"
+                                                                                                autocomplete="address-line2">
+                                                                                        </span>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <p class="form-row-first validate-required"
+                                                                                        id="billing_first_name_field"
+                                                                                        data-priority="10"
+                                                                                        style="width: 100%;">
+                                                                                        <label>State:<span
+                                                                                                style="color: red;">*</span>
+                                                                                        </label>
+                                                                                        <span
+                                                                                            class="woocommerce-input-wrapper"
+                                                                                            style="display: block;">
+                                                                                            <select
+                                                                                                class="input-text select2 select2dropdown dropdowncss"
+                                                                                                id="ddlState"
+                                                                                                name="ddlState"
+                                                                                                tabindex="10"
+                                                                                                onchange="bindCity(this)">
+                                                                                                <option value="">
+                                                                                                    ----------Select
+                                                                                                    State----------
+                                                                                                </option>
+                                                                                                <%for(var i=0; i <
+                                                                                                    StateData.length;
+                                                                                                    i++){%>
+                                                                                                    <option
+                                                                                                        value="<%= StateData[i].name %>">
+                                                                                                        <%= StateData[i].name
+                                                                                                            %>
+                                                                                                    </option>
+                                                                                                    <%}%>
+                                                                                            </select>
+                                                                                            <span></span>
+                                                                                        </span>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <!-- state -->
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <!-- city -->
+                                                                                <div class="col-md-6">
+                                                                                    <p class="form-row-first validate-required"
+                                                                                        id="billing_first_name_field"
+                                                                                        data-priority="10"
+                                                                                        style="width: 100%;">
+                                                                                        <label>City:<span
+                                                                                                style="color: red;">*</span>
+                                                                                        </label><span
+                                                                                            class="woocommerce-input-wrapper">
+                                                                                            <select
+                                                                                                class="input-text select2 select2dropdown dropdowncss"
+                                                                                                id="ddlCity"
+                                                                                                name="ddlCity"
+                                                                                                tabindex="11">
+                                                                                                <option value="">
+                                                                                                    ----------Select
+                                                                                                    City----------
+                                                                                                </option>
+                                                                                            </select>
+                                                                                        </span>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <!-- pincode -->
+                                                                                <div class="col-md-6">
+                                                                                    <p class="form-row-first validate-required"
+                                                                                        id="billing_first_name_field"
+                                                                                        data-priority="10"
+                                                                                        style="width: 100%;">
+                                                                                        <label>Pincode:<span
+                                                                                                style="color: red;">*</span></label><span
+                                                                                            class="woocommerce-input-wrapper"><input
+                                                                                                type="text"
+                                                                                                class="input-text AllowNumberKey"
+                                                                                                name="Pincode "
+                                                                                                id="Pincode"
+                                                                                                placeholder="" value=""
+                                                                                                autocomplete="given-name"
+                                                                                                maxlength="6"
+                                                                                                tabindex="12"
+                                                                                                required></span>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit" class="button alt"
+                                                            name="woocommerce_checkout_place_order" id="place_order"
+                                                            value="Place order" data-value="Place order"
+                                                            tabindex="13">Submit
+                                                        </button>
+                                                        <button type="button" class="btnCancle"
+                                                            name="woocommerce_checkout_place_order" id="btnCancle"
+                                                            value="Place order" data-value="Place order"
+                                                            tabindex="13">Cancel
+                                                        </button>
+                                                        <!-- <button type="button" class="btnCancle"
+                                                        name="woocommerce_checkout_place_order" id="btnCancle"
+                                                        value="Place order" data-value="Place order" style="font-family: Montserrat,sans-serif;
+                                                        font-size: 11px;
+                                                        letter-spacing: .22em;margin-top: 20px;" tabindex="14">CANCEL
+                                                    </button> -->
+
+                                                    </form>
+                                                    <%}else{%>
+                                                        <form name="checkout" id="frmAddUser" method="post"
+                                                            class="checkout woocommerce-checkout" action="/UserProfile"
+                                                            enctype="" novalidate="novalidate">
+                                                            <div class="col2-set" id="customer_details">
+                                                                <div class="woocommerce-billing-fields">
+                                                                    <div
+                                                                        class="woocommerce-billing-fields__field-wrapper">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div class="row">
+                                                                                    <input type="text"
+                                                                                        id="UserAddressID"
+                                                                                        name="UserAddressID"
+                                                                                        style="display: none;"
+                                                                                        value="<%-FetchData[0].UserAddressID%>">
+                                                                                    <!-- firstname -->
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-row-first validate-required"
+                                                                                            id="billing_first_name_field"
+                                                                                            data-priority="10"
+                                                                                            style="width: 100%;">
+                                                                                            <label>First Name:<span
+                                                                                                    style="color: red;">*</span></label><span
+                                                                                                class="woocommerce-input-wrapper"><input
+                                                                                                    type="text"
+                                                                                                    class="form-group"
+                                                                                                    name="FirstName"
+                                                                                                    id="FirstName"
+                                                                                                    placeholder=""
+                                                                                                    value="<%-FetchData[0].FirstName%>"
+                                                                                                    autocomplete="given-name"
+                                                                                                    tabindex="1"
+                                                                                                    required></span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                    <!-- middlename -->
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-row-first validate-required"
+                                                                                            id="billing_first_name_field"
+                                                                                            data-priority="10"
+                                                                                            style="width: 100%;">
+                                                                                            <label>Middle Name:<span
+                                                                                                    style="color: red;">*</span></label><span
+                                                                                                class="woocommerce-input-wrapper"><input
+                                                                                                    type="text"
+                                                                                                    class="input-text "
+                                                                                                    name="MiddleName"
+                                                                                                    id="MiddleName"
+                                                                                                    placeholder=""
+                                                                                                    value="<%-FetchData[0].MiddleName%>"
+                                                                                                    autocomplete="given-name"
+                                                                                                    tabindex="2"
+                                                                                                    required></span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <!-- lastname -->
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-row-first validate-required"
+                                                                                            id="billing_first_name_field"
+                                                                                            data-priority="10"
+                                                                                            style="width: 100%;">
+                                                                                            <label>Last Name:<span
+                                                                                                    style="color: red;">*</span></label><span
+                                                                                                class="woocommerce-input-wrapper"><input
+                                                                                                    type="text"
+                                                                                                    class="input-text"
+                                                                                                    name="LastName"
+                                                                                                    id="LastName"
+                                                                                                    placeholder=""
+                                                                                                    value="<%-FetchData[0].LastName%>"
+                                                                                                    autocomplete="given-name"
+                                                                                                    tabindex="3"
+                                                                                                    required></span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                    <!-- mobileno -->
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-row-first validate-required"
+                                                                                            id="billing_first_name_field"
+                                                                                            data-priority="10"
+                                                                                            style="width: 100%;">
+                                                                                            <label>MobileNo :<span
+                                                                                                    style="color: red;">*</span></label><span
+                                                                                                class="woocommerce-input-wrapper"><input
+                                                                                                    type="tel"
+                                                                                                    class="input-text AllowNumberKey"
+                                                                                                    maxlength="10"
+                                                                                                    name="MobileNo"
+                                                                                                    id="MobileNo"
+                                                                                                    placeholder=""
+                                                                                                    value="<%-FetchData[0].MobileNo%>"
+                                                                                                    autocomplete="given-name"
+                                                                                                    tabindex="4"
+                                                                                                    required></span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <!-- emailID -->
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-row-first validate-required"
+                                                                                            id="billing_first_name_field"
+                                                                                            data-priority="10"
+                                                                                            style="width: 100%;">
+                                                                                            <label>EmailID:<span
+                                                                                                    style="color: red;">*</span>
+                                                                                            </label><span
+                                                                                                class="woocommerce-input-wrapper"><input
+                                                                                                    type="email"
+                                                                                                    class="input-text "
+                                                                                                    name="EmailID"
+                                                                                                    id="EmailID"
+                                                                                                    placeholder=""
+                                                                                                    value="<%-FetchData[0].EmailID%>"
+                                                                                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                                                                                    autocomplete="given-name"
+                                                                                                    tabindex="5"
+                                                                                                    required></span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                    <!-- company -->
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-row-first validate-required"
+                                                                                            id="billing_first_name_field"
+                                                                                            data-priority="10"
+                                                                                            style="width: 100%;">
+                                                                                            <label>Company:<span
+                                                                                                    style="color: red;">*</span></label><span
+                                                                                                class="woocommerce-input-wrapper"><input
+                                                                                                    type="text"
+                                                                                                    class="form-group"
+                                                                                                    name="Company"
+                                                                                                    id="Company"
+                                                                                                    placeholder=""
+                                                                                                    value="<%-FetchData[0].Company%>"
+                                                                                                    autocomplete="given-name"
+                                                                                                    tabindex="6"
+                                                                                                    required></span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <!-- Address1 -->
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-row-first validate-required"
+                                                                                            id="billing_first_name_field"
+                                                                                            data-priority="10"
+                                                                                            style="width: 100%;">
+                                                                                            <label>Address1:<span
+                                                                                                    style="color: red;">*</span>
+                                                                                            </label><span
+                                                                                                class="woocommerce-input-wrapper">
+
+                                                                                                <textarea id=""
+                                                                                                    name="Address1"
+                                                                                                    id="Address1"
+                                                                                                    class="textarea"
+                                                                                                    placeholder="House number and street name"
+                                                                                                    tabindex="7"
+                                                                                                    style="width: 100%; height: 150px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><%= FetchData[0].Address1 %></textarea>
+                                                                                            </span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-row-first validate-required"
+                                                                                            id="billing_first_name_field"
+                                                                                            data-priority="10"
+                                                                                            style="width: 100%;">
+                                                                                            <label>Address :
+                                                                                            </label><span
+                                                                                                class="woocommerce-input-wrapper">
+
+                                                                                                <textarea id=""
+                                                                                                    name="Address2"
+                                                                                                    id="Address2"
+                                                                                                    class="textarea"
+                                                                                                    placeholder="Apartment, suite, unit, etc."
+                                                                                                    tabindex="8"
+                                                                                                    style="width: 100%; height: 150px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><%= FetchData[0].Address2 %></textarea>
+                                                                                            </span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <!-- country -->
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-row-first validate-required"
+                                                                                            id="billing_first_name_field"
+                                                                                            data-priority="10"
+                                                                                            style="width: 100%;">
+                                                                                            <label>Country:<span
+                                                                                                    style="color: red;">*</span>
+                                                                                            </label><span
+                                                                                                class="woocommerce-input-wrapper">
+                                                                                                <input type="text"
+                                                                                                    class="input-text"
+                                                                                                    name="txtCountryName"
+                                                                                                    id="txtCountryName"
+                                                                                                    placeholder="Country"
+                                                                                                    value="India"
+                                                                                                    readonly="readonly"
+                                                                                                    tabindex="9"
+                                                                                                    autocomplete="address-line2">
+                                                                                            </span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                    <!-- state -->
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-row-first validate-required"
+                                                                                            id="billing_first_name_field"
+                                                                                            data-priority="10"
+                                                                                            style="width: 100%;">
+                                                                                            <label>State:<span
+                                                                                                    style="color: red;">*</span>
+                                                                                            </label><span
+                                                                                                class="woocommerce-input-wrapper">
+                                                                                                <select
+                                                                                                    class="input-text select2 select2dropdown dropdowncss"
+                                                                                                    id="ddlState"
+                                                                                                    name="ddlState"
+                                                                                                    tabindex="10"
+                                                                                                    onchange="bindCity(this)">
+                                                                                                    <option value="">
+                                                                                                        ----------Select
+                                                                                                        State------------
+                                                                                                    </option>
+                                                                                                    <%for(var i=0; i <
+                                                                                                        StateData.length;
+                                                                                                        i++){%>
+
+                                                                                                        <% if(FetchData[0].StateName==StateData[i].name){
+                                                                                                            %>
+                                                                                                            <option
+                                                                                                                selected="selected"
+                                                                                                                value="<%= StateData[i].name %>">
+                                                                                                                <%= StateData[i].name
+                                                                                                                    %>
+                                                                                                            </option>
+                                                                                                            <% }else{ %>
+                                                                                                                <option
+                                                                                                                    value="<%= StateData[i].name %>">
+                                                                                                                    <%= StateData[i].name
+                                                                                                                        %>
+                                                                                                                </option>
+                                                                                                                <% }%>
+                                                                                                                    <%}%>
+                                                                                                </select>
+                                                                                            </span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <!-- city -->
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-row-first validate-required"
+                                                                                            id="billing_first_name_field"
+                                                                                            data-priority="10"
+                                                                                            style="width: 100%;">
+                                                                                            <label>City:<span
+                                                                                                    style="color: red;">*</span>
+                                                                                            </label><span
+                                                                                                class="woocommerce-input-wrapper">
+                                                                                                <select
+                                                                                                    class="input-text select2 select2dropdown dropdowncss"
+                                                                                                    id="ddlCity"
+                                                                                                    name="ddlCity"
+                                                                                                    tabindex="11"
+                                                                                                    onchange="bindCity()">
+                                                                                                    <!-- <option value="">
+                                                                                                        ----------Select
+                                                                                                        City------------
+                                                                                                    </option> -->
+                                                                                                    <% console.log('test',FetchData[0].CityName)
+                                                                                                        %>
+                                                                                                        <% if(FetchData[0].CityName){
+                                                                                                            %>
+                                                                                                            <option
+                                                                                                                selected="selected"
+                                                                                                                value="<%= FetchData[0].CityName %>">
+                                                                                                                <%= FetchData[0].CityName
+                                                                                                                    %>
+                                                                                                            </option>
+                                                                                                            <% }else{ %>
+                                                                                                                <option
+                                                                                                                    value="">
+                                                                                                                </option>
+                                                                                                                <% } %>
+                                                                                                </select>
+                                                                                            </span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                    <!-- pincode -->
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-row-first validate-required"
+                                                                                            id="billing_first_name_field"
+                                                                                            data-priority="10"
+                                                                                            style="width: 100%;">
+                                                                                            <label>Pincode:<span
+                                                                                                    style="color: red;">*</span></label><span
+                                                                                                class="woocommerce-input-wrapper"><input
+                                                                                                    type="text"
+                                                                                                    class="input-text AllowNumberKey"
+                                                                                                    name="Pincode"
+                                                                                                    id="Pincode"
+                                                                                                    placeholder=""
+                                                                                                    value="<%-FetchData[0].Pincode%>"
+                                                                                                    autocomplete="given-name"
+                                                                                                    tabindex="12"
+                                                                                                    required></span>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" class="button alt"
+                                                                name="woocommerce_checkout_place_order" id="place_order"
+                                                                value="Place order" data-value="Place order"
+                                                                tabindex="13">Submit
+                                                            </button>
+                                                            <button type="button" class="btnCancle"
+                                                                name="woocommerce_checkout_place_order" id="btnCancle"
+                                                                value="Place order" data-value="Place order"
+                                                                tabindex="13">Cancel
+                                                            </button>
+                                                            <!-- <button type="button" class="btnCancle"
+                                                            name="woocommerce_checkout_place_order" id="btnCancle"
+                                                            value="Place order" data-value="Place order" style="font-family: Montserrat,sans-serif;
+                                                            font-size: 11px;
+                                                            letter-spacing: .22em;margin-top: 20px;"
+                                                            tabindex="14">CANCEL
+                                                        </button> -->
+                                                        </form>
+                                                        <%}%>
+                                            </div>
+                                            <!-- </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <%- include('../partial/footer.ejs') %>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    <script src="../../javascripts/sweetalert/sweetalert2@11.js"></script>
+                    <script type='text/javascript'
+                        src='https://lacomete.qodeinteractive.com/wp-content/plugins/woocommerce/assets/js/select2/select2.full.min.js?ver=4.0.3-wc.7.0.0'
+                        id='select2-js'></script>
+                    <script src="../../javascripts/jquery.validate.js"></script>
+                    <script src="../../javascripts/inputvalidation.js"></script>
+                    <script type="text/javascript">
+
+                        const url = window.location.href;
+                        const id = url.substring(url.lastIndexOf("/") + 1);
+                        console.log(id); // output: 20012
+
+                        if (id == "UserProfile") {
+                            const divViewUserDetail = document.getElementById('divViewUserDetail');
+                            const btnAddAddress = document.getElementById('btnAddAddress');
+                            divViewUserDetail.style.display = "block";
+                            btnAddAddress.style.display = "block";
+                        } else {
+                            const divViewUserDetail = document.getElementById('divViewUserDetail');
+                            const btnAddAddress = document.getElementById('btnAddAddress');
+                            divViewUserDetail.style.display = "none";
+                            btnAddAddress.style.display = "none";
+                        }
+
+                        $(".select2dropdown").each(function () {
+                            $(this).select2();
+                            $(".select2dropdown").select2();
+                        });
+
+                        $('document').ready(function () {
+                            $('textarea').each(function () {
+                                $(this).val($(this).val().trim());
+                            }
+                            );
+                        });
+
+                        const btn = document.getElementById('btnAddAddress');
+                        btn.addEventListener('click', () => {
+                            debugger;
+                            const form = document.getElementById('frmAddUser');
+                            const table = document.getElementById('tblViewUser');
+                            if (form.style.display == 'block') {
+                                form.style.display = 'none';
+                                table.style.display = 'block';
+                            } else {
+                                form.style.display = 'block';
+                                table.style.display = 'none';
+                            }
+                            // } else {
+                            //     table.style.display = 'block'
+                            // }
+                        });
+
+                        const btnCancle = document.getElementById('btnCancle');
+                        btnCancle.addEventListener('click', () => {
+                            const form = document.getElementById('frmAddUser');
+                            const table = document.getElementById('tblViewUser');
+                            if (form.style.display === 'block') {
+                                form.style.display = 'none';
+                                table.style.display = 'block';
+                            } else if (table.style.display === 'block') {
+                                form.style.display = 'block';
+                                table.style.display = 'none';
+                                window.location.href = "/UserProfile"
+                            } else {
+                                table.style.display = 'block'
+                                window.location.href = "/UserProfile"
+                            }
+                        });
+
+                        function bindCity(stateDetail) {
+                            let stateName = $("#ddlState").val();
+                            $.ajax({
+                                async: false,
+                                url: '/bindCityData/' + stateName, success: function (res) {
+                                    if (res.CityData.length > 0) {
+                                        $("#ddlCity").empty();
+                                        $("#ddlCity").append($("<option></option>").val("").html('----------Select City----------'));
+                                        $.each(res.CityData, function (data, value) {
+                                            $("#ddlCity").append($("<option></option>").val(value).html(value));
+                                        });
+
+                                        //$('#ddlCity').trigger("change");
+                                        //$('#divDesignation').css("display", "block");
+                                    } else {
+                                        $("#ddlCity").empty();
+                                        $("#ddlCity").append($("<option></option>").val("").html('----------Select City----------'));
+                                    }
+                                }
+                            });
+                        }
+
+                        $("#frmAddUser").validate({
+                            debug: false,
+                            errorElement: 'span',
+                            invalidHandler: function (event, validator) {
+                                //debugger;
+                                if (validator.numberOfInvalids() > 0) {
+                                    event.preventDefault();
+                                }
+                            },
+                            onkeyup: false,
+                            messages: {
+                                FirstName: {
+                                    required: "Please Enter First Name"
+                                },
+                                MiddleName: {
+                                    required: "Please Enter Middle Name"
+                                },
+                                LastName: {
+                                    required: "Please Enter Last Name"
+                                },
+                                // UserName: {
+                                //     required: "Please Enter User Name"
+                                // },
+                                Address1: {
+                                    required: "Please Enter Address1"
+                                },
+                                MobileNo: {
+                                    required: "Please Enter MobileNo"
+                                },
+                                EmailID: {
+                                    required: "Please Enter EmailID"
+                                },
+                                txtCountryName: {
+                                    required: "Please Select Country"
+                                },
+                                ddlState: {
+                                    required: "Please Select State"
+                                },
+                                ddlCity: {
+                                    required: "Please Select City"
+                                },
+                                Pincode: {
+                                    required: "Please Enter Pincode"
+                                },
+                                Company: {
+                                    required: "Please Enter Company Name"
+                                },
+                            },
+                            rules: {
+                                FirstName: {
+                                    required: true
+                                },
+                                MiddleName: {
+                                    required: true
+                                },
+                                LastName: {
+                                    required: true
+                                },
+                                // UserName: {
+                                //     required: true
+                                // },
+                                Address1: {
+                                    required: true
+                                },
+
+                                txtCountryName: {
+                                    required: true
+                                },
+                                ddlState: {
+                                    required: true
+                                },
+                                ddlCity: {
+                                    required: true
+                                },
+                                Pincode: {
+                                    required: true,
+                                    minlength: 6,
+                                    maxlength: 6,
+                                    number: true
+                                },
+                                MobileNo: {
+                                    required: true,
+                                    minlength: 10,
+                                    maxlength: 10,
+                                    number: true
+                                },
+                                Company: {
+                                    required: true
+                                },
+                                Address2: {
+                                    required: false
+                                },
+
+                                EmailID: {
+                                    required: true,
+                                    email: true                       
+                                }
+                            },
+                            errorPlacement: function (error, element) {
+                                if (element.parent('.input-group').length) {
+                                    error.insertAfter(element.parent());
+                                } else if (element.hasClass('select2')) {
+                                    error.insertAfter(element.next('span'));
+                                } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                                    error.insertAfter($(element).parent());
+                                } else {
+                                    error.insertAfter(element);
+                                }
+                            },
+                            submitHandler: function (form, event) {
+                                // event.preventDefault();
+                                SaveVisitorDetailData();
+                            }
+                        });
+
+                        var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                        var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                        var errortype;
+                        if (error) {
+                            if (error == "Invalid") {
+                                errortype = 'warning'
+                            } else if (error == "Success") {
+                                errortype = 'success'
+                            } else if (error == "Delete") {
+                                errortype = 'success'
+                            }
+                            Swal.fire({
+                                //title: error,
+                                text: error1,
+                                icon: errortype,
+                                // icon: 'error',
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                                // toast: false,
+                                // modal: true,
+                                //position: 'relative',
+                                timer: 3000
+                            }).then(function () {
+                                if (error == "Success") { window.location.replace(window.location.origin + '/UserProfile') }
+                                else if (error == "Invalid" && ID != '') {
+                                    window.location.replace(window.location.origin + '/UserProfile/' + ID)
+                                }
+                            });
+                        }
+
+
+                        function editUserData(UserAddressID) {
+                            window.location.href = "UserProfile/" + UserAddressID;
+                        }
+                    </script>

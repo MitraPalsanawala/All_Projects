@@ -1,0 +1,278 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divSearch" style="display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search Stall Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <form id="frmPlant" class="form" action="/StallView" method="post"
+                                                autocomplete="off">
+                                                <div class="card-body">
+                                                    <div id="divSearch" class="">
+                                                        <div class="row" style="margin-bottom: -38px;">
+
+                                                            <div class="col-md-3 col-lg-3"
+                                                                style="padding-left: 0; margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Station : </label>
+                                                                    <select ID="station_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="station_id">
+                                                                        <option Value="">--Select Station--</option>
+                                                                        <% if(StationData && StationData.data &&
+                                                                            StationData.data.length> 0){ %>
+                                                                            <%for(var i=0; i < StationData.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= StationData.data[i].id %>">
+                                                                                    <%= StationData.data[i].station_name
+                                                                                        %> (
+                                                                                        <%= StationData.data[i].station_code
+                                                                                            %>)
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="col-md-3 col-lg-3"
+                                                                style="padding-top: 26px;margin-left: 54px; margin-bottom: 20px">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="" class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="la la-check-square-o"
+                                                                            style="color: white;"></i>
+                                                                        Search</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                    <!-- <button id="btnExcel" name="btnExcel" type="submit"
+                                                                        class="btn btn-success"
+                                                                        formaction="/ViewPlantExcel" formmethod="post"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-file-excel"
+                                                                            style="color: white;"></i>Excel</button> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">View Stall Detail
+                                            </div>
+                                            <div class="card-title">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divhideShowFilterDetail(this)" style="margin: 5px;"
+                                                    onclick=""><i class='fa fa-filter'></i>Filter &nbsp;<i
+                                                        class="fa fa-plus"></i></button>
+                                                <div></div>
+                                            </div>
+                                        </div>
+
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <table class="table table-bordered" id="tblplant">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="tdcss" width="2%">Sr. No.</th>
+                                                        <th class="tdcss" width="15%">Stall Name</th>
+                                                        <th class="tdcss" width="10%">Stall Code</th>
+                                                        <th class="tdcss" width="10%">GST No</th>
+                                                        <th class="tdcss" width="15%">Station</th>
+                                                        <th class="tdcss" width="15%">Customer
+                                                        </th>
+                                                        <th class="tdcss" width="1%">Edit</th>
+                                                        <th class="tdcss" width="1%">Delete</th>
+                                                        <th class="tdcss" width="5%">User Assign</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblbody">
+                                                    <% if(StallData && StallData.data && StallData.data.length>
+                                                        0 ){ %>
+                                                        <% for(var i=0; i < StallData.data.length; i++) {%>
+                                                            <tr>
+                                                                <td class="tdcss">
+                                                                    <span class="tdfont">
+                                                                        <%= i+1 %>
+                                                                    </span>
+                                                                </td>
+
+
+                                                                <td>
+                                                                    <%- StallData.data[i].name %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- StallData.data[i].code %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- StallData.data[i].gstnumber %>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(StallData.data[i].station &&
+                                                                        StallData.data[i].station.length>
+                                                                        0 ){ %>
+                                                                        <%- StallData.data[i].station[0].station_name %>
+                                                                            (<%- StallData.data[i].station[0].station_code
+                                                                                %>)
+                                                                                <%} %>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(StallData.data[i].customer_organizarion &&
+                                                                        StallData.data[i].customer_organizarion.length>
+                                                                        0 ){ %>
+                                                                        <%- StallData.data[i].customer_organizarion[0].customer_name
+                                                                            %> (<%-
+                                                                                StallData.data[i].customer_organizarion[0].customer_no
+                                                                                %>)
+                                                                                <%} %>
+                                                                </td>
+                                                                <td>
+                                                                    <a
+                                                                        href="/StallfindbyId/<%- StallData.data[i].id %>"><i
+                                                                            class="la la-pencil-square-o"
+                                                                            style="font-size:24px;color: #03449e;"></i></a>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="/deleteStall/<%- StallData.data[i].id %>"><i
+                                                                            class="la la-trash-o"
+                                                                            onclick="return confirm('Are you sure you want to Delete?')"
+                                                                            style="font-size:24px;color:#03449e;"></i></a>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="/StallUser/<%- StallData.data[i].id %>"><i
+                                                                            class="la la-user-edit"
+                                                                            style="font-size:24px;color: #03449e;"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <%} %>
+                                                                <%} %>
+                                                </tbody>
+                                            </table>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+        <%- include('../partials/footer.ejs') %>
+
+            <script type="text/javascript">
+                $(".select2dropdown").select2();
+
+                function CancelFunction() {
+                    window.location.href = "/StallView";
+                }
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                if (SearchData) {
+                    // $("#plant_name").val(SearchData.plant_name);
+                    $("#station_id").val(SearchData.station_id).change();
+                    // $("#cust_org_id").val(SearchData.cust_org_id).change();
+                } else {
+                    // $("#plant_name").val();
+                    $("#station_id").val();
+                    // $("#cust_org_id").val();
+                }
+
+                var FilterData = JSON.parse('<%- JSON.stringify(FilterData) %>');
+                searchStatus = FilterData;
+                if (searchStatus == true) {
+                    $("#divSearch").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+
+
+                function divhideShowFilterDetail() {
+                    $("#divSearch").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/StallView') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/StallView/' + ID)
+                        }
+                    });
+                }
+
+                $("#tblplant").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+            </script>

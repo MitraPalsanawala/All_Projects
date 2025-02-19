@@ -1,0 +1,215 @@
+<%- include('../partials/head.ejs') %>
+
+    <%- include('../partials/header.ejs') %>
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card card-custom example example-compact"
+                                style="margin-top: 5px; border: 1px solid #ced5da;">
+                                <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Assign User Role Detail
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <form id="frmProduct" class="form" action="/PlantAdd" method="post" autocomplete="off">
+                                    <div class="card-body">
+                                        <div id="divSearch" class="container-fluid">
+                                            <div class="row" style="margin-left: 0">
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>Product Name : <span
+                                                                class="text-danger ml-1">*</span></label>
+                                                        <input type="text" id="product_name" placeholder="Product Name"
+                                                            autocomplete="off" class="form-control" name="product_name">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>Price : </label>
+                                                        <input type="text" id="base_price" placeholder="Price"
+                                                            autocomplete="off" class="form-control AllowNumberKey"
+                                                            name="base_price">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>GST : <span class="text-danger ml-1">*</span></label>
+                                                        <input type="text" id="gst" placeholder="GST" autocomplete="off"
+                                                            class="form-control" name="gst">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>CSIMID : </label>
+                                                        <input type="text" id="CSIMID" placeholder="CSIMID"
+                                                            autocomplete="off" class="form-control" name="CSIMID">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>Assign Roles : </label><br>
+                                                        <input type="checkbox" id="is_controller" name="is_controller"
+                                                            value="is_controller">
+                                                        <label for="is_controller">is_controller</label><br>
+
+                                                        <input type="checkbox" id="is_supplier" name="is_supplier"
+                                                            value="is_supplier">
+                                                        <label for="is_supplier">is_supplier</label><br>
+
+                                                        <input type="checkbox" id="is_collection" name="is_collection"
+                                                            value="is_collection">
+                                                        <label for="is_collection">is_collection</label><br><br>
+
+
+                                                        <!-- <input type="text" id="CSIMID" placeholder="CSIMID"
+                                                            autocomplete="off" class="form-control" name="CSIMID"> -->
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>Description : </label>
+                                                        <!-- <select ID="CheckPost" class="form-control select2dropdown"
+                                                            name="CheckPost">
+                                                        </select> -->
+                                                        <textarea class="form-control" name="product_description"
+                                                            placeholder="Description" id="product_description" rows="3"
+                                                            cols="66" wrap="virtual" tabindex="4">
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-12" style="text-align: right;">
+                                                    <div class="form-group formgroupbuttoncss" style="margin-top: 0">
+                                                        <button type="submit" id="" class="btn btn-primary"
+                                                            style="margin-bottom: 10px;">
+                                                            <i class="la la-check-square-o" style="color: white;"></i>
+                                                            Submit</button>
+                                                        <button type="reset" value="reset" id="btnCancel"
+                                                            class="btn btn-danger" style="margin-bottom: 10px;"
+                                                            onclick="CancelFunction()">
+                                                            <i class="fa-window-close fas"></i>Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Entry-->
+        </div>
+
+
+        <%- include('../partials/footer.ejs') %>
+            <script type="text/javascript">
+                $('document').ready(function () {
+                    $('textarea').each(function () {
+                        $(this).val($(this).val().trim());
+                    }
+                    );
+                });
+                function CancelFunction() {
+                    window.location.href = "/ProductAdd";
+                }
+
+                $(".select2dropdown").select2();
+
+                $("#frmProduct").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        gst: {
+                            required: "Please Enter GST"
+                        },
+                        product_name: {
+                            required: "Please Enter Product Name"
+                        },
+
+                    },
+                    rules: {
+                        gst: {
+                            required: true,
+                        },
+                        product_name: {
+                            required: true,
+
+                        },
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/UserRoleMapping') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/UserRoleMapping/' + ID)
+                        }
+                    });
+                }
+            </script>

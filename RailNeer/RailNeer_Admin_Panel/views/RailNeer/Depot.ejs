@@ -1,0 +1,1023 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+
+        .dataTables_wrapper .dataTable td,
+        .dataTables_wrapper .dataTable thead th {
+            white-space: nowrap !important;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divAddDepot"
+                                style="margin-top: 5px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Add Depot Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <% if(!FetchData){ %>
+                                                <form id="frmAddDepot" class="form form-horizontal" autocomplete="off"
+                                                    method="post" action="/AddDepot">
+                                                    <div class="card card-custom gutter-b example example-compact">
+                                                        <div class="card-body" id="divAddDepot">
+                                                            <div class="card card-custom example example-compact">
+
+                                                                <div class="row mt-2" style="margin-left: 0">
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>CFA Organization : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select id="cfa_org_id"
+                                                                                onchange="bindBlock(this)"
+                                                                                class="form-control select2 select2dropdown"
+                                                                                name="cfa_org_id" tabindex="1">
+                                                                                <option Value="">--Select CFA
+                                                                                    Organization--
+                                                                                </option>
+                                                                                <%if(cfaOrg && cfaOrg.data &&
+                                                                                    cfaOrg.data.length>
+                                                                                    0){ %>
+                                                                                    <%for(var i=0; i <
+                                                                                        cfaOrg.data.length; i++){%>
+                                                                                        <option
+                                                                                            value="<%= cfaOrg.data[i].id %>">
+                                                                                            <%= cfaOrg.data[i].org_name
+                                                                                                %>
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Block : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select id="block_id"
+                                                                                class="form-control select2 select2dropdown"
+                                                                                name="block_id" tabindex="2">
+                                                                                <option Value="">--Select Block--
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Depot Name : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="depot_name"
+                                                                                placeholder="Depot Name"
+                                                                                autocomplete="off"
+                                                                                class="form-control AllowAlphabetAndNumber"
+                                                                                name="depot_name" tabindex="3"
+                                                                                maxlength="50">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Depot Code : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="depot_code"
+                                                                                placeholder="Depot Code"
+                                                                                autocomplete="off"
+                                                                                class="form-control AllowAlphabetAndNumber"
+                                                                                name="depot_code" tabindex="4"
+                                                                                maxlength="50">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>GST No : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="gst_no"
+                                                                                placeholder="GST No" autocomplete="off"
+                                                                                class="form-control AllowAlphabetAndNumber"
+                                                                                name="gst_no" tabindex="5"
+                                                                                maxlength="15">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="card-header" style="border-bottom: none;">
+                                                                    <div class="card-title">
+                                                                        <h3 class="card-label h3css">Address Detail
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="row mt-2" style="margin-left: 0">
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Address 1 : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <textarea type="text" id="address1" rows="4"
+                                                                                placeholder="Address 1"
+                                                                                autocomplete="off" class="form-control"
+                                                                                name="address1" tabindex="9"
+                                                                                maxlength="100"></textarea>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Address 2 : </label>
+                                                                            <textarea type="text" id="address2" rows="4"
+                                                                                placeholder="Address 2"
+                                                                                autocomplete="off" class="form-control"
+                                                                                name="address2" tabindex="10"
+                                                                                maxlength="50"></textarea>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Address 3 : </label>
+                                                                            <textarea type="text" id="address3" rows="4"
+                                                                                placeholder="Address 3"
+                                                                                autocomplete="off" class="form-control"
+                                                                                name="address3" tabindex="11"
+                                                                                maxlength="50"></textarea>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>State : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select id="state_id"
+                                                                                class="form-control select2 select2dropdown"
+                                                                                name="state_id" tabindex="6">
+                                                                                <option Value="">--Select State--
+                                                                                </option>
+                                                                                <%if(stateDetail && stateDetail.data &&
+                                                                                    stateDetail.data.length>
+                                                                                    0){ %>
+                                                                                    <%for(var i=0; i <
+                                                                                        stateDetail.data.length; i++){%>
+                                                                                        <option
+                                                                                            value="<%= stateDetail.data[i].state_id %>">
+                                                                                            <%= stateDetail.data[i].state_name
+                                                                                                %>
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>City : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="city"
+                                                                                placeholder="City" autocomplete="off"
+                                                                                class="form-control AllowAlphabetSpaceKey"
+                                                                                name="city" tabindex="7" maxlength="50">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Pincode : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="pincode"
+                                                                                placeholder="Pincode" autocomplete="off"
+                                                                                class="form-control AllowNumberKey"
+                                                                                name="pincode" tabindex="8"
+                                                                                maxlength="6">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="display: flex; align-items: center">
+                                                                        <div class="form-group formgroupbuttoncss"
+                                                                            style="margin-top: 0">
+                                                                            <button type="submit" id="btnSubmit"
+                                                                                class="btn btn-primary"
+                                                                                style="margin-bottom: 10px;">Submit</button>
+                                                                            <button type="reset" value="reset"
+                                                                                id="btnCancel" class="btn btn-danger"
+                                                                                style="margin-bottom: 10px;"
+                                                                                onclick="CancelFunction()">Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <% }else{ %>
+                                                    <form id="frmAddDepot" class="form form-horizontal"
+                                                        autocomplete="off" method="post" action="/AddDepot">
+                                                        <div class="card card-custom gutter-b example example-compact">
+                                                            <div class="card-body" id="divAddDepot">
+                                                                <div class="card card-custom example example-compact">
+                                                                    <div class="row mt-2" style="margin-left: 0">
+
+                                                                        <input type="hidden" id="depot_id"
+                                                                            name="depot_id"
+                                                                            value="<%= FetchData.data[0].id  %>">
+
+                                                                        <div class="col-md-3 col-lg-3"
+                                                                            style="margin-bottom: 10px">
+                                                                            <div class="form-group formgroupcss">
+                                                                                <label>CFA Organization : <span
+                                                                                        class="text-danger ml-1">*</span></label>
+                                                                                <select id="cfa_org_id"
+                                                                                    onchange="bindBlock(this)"
+                                                                                    class="form-control select2 select2dropdown"
+                                                                                    name="cfa_org_id" tabindex="1">
+                                                                                    <option Value="">--Select CFA
+                                                                                        Organization--
+                                                                                    </option>
+                                                                                    <% if(cfaOrg && cfaOrg.data &&
+                                                                                        cfaOrg.data.length>
+                                                                                        0){%>
+                                                                                        <%for(var i=0; i <
+                                                                                            cfaOrg.data.length; i++){%>
+                                                                                            <%if(cfaOrg.data[i].id.toString()==FetchData.data[0].cfa_org_id.toString()){%>
+                                                                                                <option
+                                                                                                    value="<%= cfaOrg.data[i].id %>"
+                                                                                                    selected="selected">
+                                                                                                    <%= cfaOrg.data[i].org_name
+                                                                                                        %>
+                                                                                                </option>
+                                                                                                <%}else{%>
+                                                                                                    <option
+                                                                                                        value="<%= cfaOrg.data[i].id %>">
+                                                                                                        <%= cfaOrg.data[i].org_name
+                                                                                                            %>
+                                                                                                    </option>
+                                                                                                    <%}%>
+                                                                                                        <%}%>
+                                                                                                            <%} else {
+                                                                                                                %>
+                                                                                                                <%for(var
+                                                                                                                    i=0;
+                                                                                                                    i <
+                                                                                                                    cfaOrg.data.length;
+                                                                                                                    i++){%>
+                                                                                                                    <option
+                                                                                                                        value="<%= cfaOrg.data[i].id %>">
+                                                                                                                        <%= cfaOrg.data[i].org_name
+                                                                                                                            %>
+                                                                                                                    </option>
+                                                                                                                    <%}%>
+                                                                                                                        <%}%>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-lg-3"
+                                                                            style="margin-bottom: 10px">
+                                                                            <div class="form-group formgroupcss">
+                                                                                <label>Block : <span
+                                                                                        class="text-danger ml-1">*</span></label>
+                                                                                <select id="block_id"
+                                                                                    class="form-control select2 select2dropdown"
+                                                                                    name="block_id" tabindex="2">
+                                                                                    <option Value="">--Select Block--
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-lg-3"
+                                                                            style="margin-bottom: 10px">
+                                                                            <div class="form-group formgroupcss">
+                                                                                <label>Depot Name : <span
+                                                                                        class="text-danger ml-1">*</span></label>
+                                                                                <input type="text" id="depot_name"
+                                                                                    placeholder="Depot Name"
+                                                                                    autocomplete="off"
+                                                                                    class="form-control AllowAlphabetAndNumber"
+                                                                                    name="depot_name"
+                                                                                    value="<%= FetchData.data[0].depot_name  %>"
+                                                                                    tabindex="3" maxlength="50">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-lg-3"
+                                                                            style="margin-bottom: 10px">
+                                                                            <div class="form-group formgroupcss">
+                                                                                <label>Depot Code : <span
+                                                                                        class="text-danger ml-1">*</span></label>
+                                                                                <input type="text" id="depot_code"
+                                                                                    placeholder="Depot Code"
+                                                                                    autocomplete="off"
+                                                                                    class="form-control AllowAlphabetAndNumber"
+                                                                                    name="depot_code"
+                                                                                    value="<%=  FetchData.data[0].depot_code  %>"
+                                                                                    tabindex="4" maxlength="50">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-lg-3"
+                                                                            style="margin-bottom: 10px;">
+                                                                            <div class="form-group formgroupcss">
+                                                                                <label>GST No : <span
+                                                                                        class="text-danger ml-1">*</span></label>
+                                                                                <input type="text" id="gst_no"
+                                                                                    placeholder="GST No"
+                                                                                    autocomplete="off"
+                                                                                    class="form-control" name="gst_no"
+                                                                                    tabindex="5" maxlength="15"
+                                                                                    value="<%=  FetchData.data[0].gstin  %>">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="card-header"
+                                                                        style="border-bottom: none;">
+                                                                        <div class="card-title">
+                                                                            <h3 class="card-label h3css">Address Detail
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-2" style="margin-left: 0">
+
+                                                                        <div class="col-md-3 col-lg-3"
+                                                                            style="margin-bottom: 10px;">
+                                                                            <div class="form-group formgroupcss">
+                                                                                <label>Address 1 : <span
+                                                                                        class="text-danger ml-1">*</span></label>
+                                                                                <textarea type="text" id="address1"
+                                                                                    rows="4" placeholder="Address 1"
+                                                                                    autocomplete="off"
+                                                                                    class="form-control" name="address1"
+                                                                                    tabindex="9"
+                                                                                    maxlength="50"><%=  FetchData.data[0].address1 %></textarea>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-lg-3"
+                                                                            style="margin-bottom: 10px;">
+                                                                            <div class="form-group formgroupcss">
+                                                                                <label>Address 2 : </label>
+                                                                                <textarea type="text" id="address2"
+                                                                                    rows="4" placeholder="Address 2"
+                                                                                    autocomplete="off"
+                                                                                    class="form-control" name="address2"
+                                                                                    tabindex="10"
+                                                                                    maxlength="50"><%=  FetchData.data[0].address2  %></textarea>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-lg-3"
+                                                                            style="margin-bottom: 10px;">
+                                                                            <div class="form-group formgroupcss">
+                                                                                <label>Address 3 : </label>
+                                                                                <textarea type="text" id="address3"
+                                                                                    rows="4" placeholder="Address 3"
+                                                                                    autocomplete="off"
+                                                                                    class="form-control" name="address3"
+                                                                                    tabindex="11"
+                                                                                    maxlength="50"><%=  FetchData.data[0].address3  %></textarea>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-lg-3"
+                                                                            style="margin-bottom: 10px">
+                                                                            <div class="form-group formgroupcss">
+                                                                                <label>State : <span
+                                                                                        class="text-danger ml-1">*</span></label>
+                                                                                <select id="state_id"
+                                                                                    class="form-control select2 select2dropdown"
+                                                                                    name="state_id" tabindex="6">
+                                                                                    <option Value="">--Select State--
+                                                                                    </option>
+                                                                                    <% if(stateDetail &&
+                                                                                        stateDetail.data &&
+                                                                                        stateDetail.data.length>
+                                                                                        0){%>
+                                                                                        <%for(var i=0; i <
+                                                                                            stateDetail.data.length;
+                                                                                            i++){%>
+                                                                                            <%if(stateDetail.data[i].state_id.toString()==FetchData.data[0].state_id.toString()){%>
+                                                                                                <option
+                                                                                                    value="<%= stateDetail.data[i].state_id %>"
+                                                                                                    selected="selected">
+                                                                                                    <%= stateDetail.data[i].state_name
+                                                                                                        %>
+                                                                                                </option>
+                                                                                                <%}else{%>
+                                                                                                    <option
+                                                                                                        value="<%= stateDetail.data[i].state_id %>">
+                                                                                                        <%= stateDetail.data[i].state_name
+                                                                                                            %>
+                                                                                                    </option>
+                                                                                                    <%}%>
+                                                                                                        <%}%>
+                                                                                                            <%} else {
+                                                                                                                %>
+                                                                                                                <%for(var
+                                                                                                                    i=0;
+                                                                                                                    i <
+                                                                                                                    stateDetail.data.length;
+                                                                                                                    i++){%>
+                                                                                                                    <option
+                                                                                                                        value="<%= stateDetail.data[i].state_id %>">
+                                                                                                                        <%= stateDetail.data[i].state_name
+                                                                                                                            %>
+                                                                                                                    </option>
+                                                                                                                    <%}%>
+                                                                                                                        <%}%>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-lg-3"
+                                                                            style="margin-bottom: 10px;">
+                                                                            <div class="form-group formgroupcss">
+                                                                                <label>City : <span
+                                                                                        class="text-danger ml-1">*</span></label>
+                                                                                <input type="text" id="city"
+                                                                                    placeholder="City"
+                                                                                    autocomplete="off"
+                                                                                    class="form-control AllowAlphabetSpaceKey"
+                                                                                    name="city" tabindex="7"
+                                                                                    maxlength="50"
+                                                                                    value="<%=  FetchData.data[0].city %>">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-lg-3"
+                                                                            style="margin-bottom: 10px;">
+                                                                            <div class="form-group formgroupcss">
+                                                                                <label>Pincode : <span
+                                                                                        class="text-danger ml-1">*</span></label>
+                                                                                <input type="text" id="pincode"
+                                                                                    placeholder="Pincode"
+                                                                                    autocomplete="off"
+                                                                                    class="form-control AllowNumberKey"
+                                                                                    name="pincode" tabindex="8"
+                                                                                    maxlength="6"
+                                                                                    value="<%=  FetchData.data[0].pincode %>">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-lg-3"
+                                                                            style="display: flex; align-items: center">
+                                                                            <div class="form-group formgroupbuttoncss"
+                                                                                style="margin-top: 0">
+                                                                                <button type="submit" id="btnSubmit"
+                                                                                    class="btn btn-primary"
+                                                                                    style="margin-bottom: 10px;">Update</button>
+                                                                                <button type="reset" value="reset"
+                                                                                    id="btnCancel"
+                                                                                    class="btn btn-danger"
+                                                                                    style="margin-bottom: 10px;"
+                                                                                    onclick="CancelFunction()">Cancel</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divFilter"
+                                style="margin-top: 5px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search Depot Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <form id="frmCustUser" class="form" action="/Depot" method="post"
+                                                autocomplete="off">
+                                                <input type="text" id="PlantID" name="plant_id" value=""
+                                                    style="display: none;">
+                                                <div class="card-body">
+                                                    <div id="divFilter" class="">
+                                                        <div class="row" style="margin-bottom: -39px;">
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>CFA Organization : </label>
+                                                                    <select id="filter_cfa_org_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="filter_cfa_org_id" tabindex="1">
+                                                                        <option Value="">--Select CFA Organization--
+                                                                        </option>
+                                                                        <%if(cfaOrg && cfaOrg.data &&
+                                                                            cfaOrg.data.length>
+                                                                            0){ %>
+                                                                            <%for(var i=0; i < cfaOrg.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= cfaOrg.data[i].id %>">
+                                                                                    <%= cfaOrg.data[i].org_name %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Block : </label>
+                                                                    <select id="filter_block_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="filter_block_id" tabindex="2">
+                                                                        <option Value="">--Select Block--</option>
+                                                                        <%if(blockDetail && blockDetail.data &&
+                                                                            blockDetail.data.length>
+                                                                            0){ %>
+                                                                            <%for(var i=0; i < blockDetail.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= blockDetail.data[i].id %>">
+                                                                                    <%= blockDetail.data[i].block_name
+                                                                                        %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>State : </label>
+                                                                    <select id="filter_state_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="filter_state_id" tabindex="1">
+                                                                        <option Value="">--Select State--</option>
+                                                                        <%if(stateDetail && stateDetail.data &&
+                                                                            stateDetail.data.length>
+                                                                            0){ %>
+                                                                            <%for(var i=0; i < stateDetail.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= stateDetail.data[i].state_id %>">
+                                                                                    <%= stateDetail.data[i].state_name
+                                                                                        %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-4 col-lg-4"
+                                                                style="padding-top: 26px; margin-bottom: 20px">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="" class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="divShowFilterDetail(this)"
+                                                                        tabindex="2">
+                                                                        <i class="fa fa-search"
+                                                                            style="color: white;"></i>
+                                                                        Search</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()" tabindex="3">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                    <button id="btnExcel" name="btnExcel" type="submit"
+                                                                        class="btn btn-success"
+                                                                        formaction="/ViewBlockExcel" formmethod="post"
+                                                                        style="margin-bottom: 10px;" tabindex="4">
+                                                                        <i class="fa fa-file-excel"
+                                                                            style="color: white;"></i>Excel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact">
+                                <!-- <div class="separator separator-dashed mt-8 mb-5"></div> -->
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">View Depot Detail
+                                            </div>
+                                            <div class="card-title">
+                                                <button id="btnAddblockDetail" type="button" class="btn btn-primary"
+                                                    onclick="divAddDepotDetail(this)" style="margin: 5px;"
+                                                    onclick="">Add Depot &nbsp;<i class="fa fa-plus"></i></button>
+                                                <div></div>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divhideShowFilterDetail(this)"
+                                                    style="margin: 5px;">&nbsp;<i class="fa fa-plus"></i>Filter &nbsp;<i
+                                                        class='fa fa-filter'></i></button>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <table class="table table-bordered" id="tblDepotDetail">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="tdcss" width="5%">
+                                                            Sr. No.</th>
+                                                        <th class="tdcss" width="10%">CFA Organization</th>
+                                                        <th class="tdcss" width="10%">Block</th>
+                                                        <th class="tdcss" width="10%">Depot</th>
+                                                        <th class="tdcss" width="10%">Depot Code</th>
+                                                        <th class="tdcss" width="10%">GST No.</th>
+                                                        <th class="tdcss" width="10%">Pincode</th>
+                                                        <th class="tdcss" width="10%">State</th>
+                                                        <th class="tdcss" width="10%">City</th>
+                                                        <th class="tdcss" width="5%">View</th>
+                                                        <th class="tdcss" width="5%">Edit</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblbody">
+                                                    <% if(depotDetail && depotDetail.data && depotDetail.data.length>
+                                                        0){ %>
+                                                        <% for(var i=0; i < depotDetail.data.length; i++) {%>
+                                                            <tr>
+                                                                <td class="tdcss">
+                                                                    <span class="tdfont">
+                                                                        <%= i+1 %>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <%- depotDetail.data[i].cfa_org_detail.length>
+                                                                        0 ?
+                                                                        depotDetail.data[i].cfa_org_detail[0].org_name
+                                                                        :
+                                                                        '' %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- depotDetail.data[i].block_detail.length>
+                                                                        0 ?
+                                                                        depotDetail.data[i].block_detail[0].block_name
+                                                                        : '' %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- depotDetail.data[i].depot_name %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- depotDetail.data[i].depot_code %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- depotDetail.data[i].gstin %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- depotDetail.data[i].pincode %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- depotDetail.data[i].state_detail.length>
+                                                                        0 ?
+                                                                        depotDetail.data[i].state_detail[0].state_name
+                                                                        :
+                                                                        '' %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- depotDetail.data[i].city %>
+                                                                </td>
+                                                                <td class="iascss">
+                                                                    <div id="imgOtherDetail<%- i %>"
+                                                                        class="imgVisiotrDetail add"
+                                                                        onclick="divhideShowOtherDetail(this)">
+                                                                        <i class="la la-eye"
+                                                                            style="font-size:24px;color: #03449e;text-align: center;"></i>
+                                                                    </div>
+                                                                    <div style="display:none">
+                                                                        <table class="table table-bordered">
+                                                                            <tr class="table-bordered">
+                                                                                <th width="20%">
+                                                                                    Address 1</th>
+                                                                                <th width="20%">
+                                                                                    Address 2</th>
+                                                                                <th width="20%">
+                                                                                    Address 3</th>
+                                                                            </tr>
+                                                                            <tr class="table-bordered">
+                                                                                <td>
+                                                                                    <%- depotDetail.data[i].address1 %>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <%- depotDetail.data[i].address2 %>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <%- depotDetail.data[i].address3 %>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="/editDepot/<%- depotDetail.data[i].id %>"><i
+                                                                            class="la la-pencil-square-o"
+                                                                            style="font-size:24px;color: #03449e;"
+                                                                            onclick="divAddDepotDetail(this)"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <%}%>
+                                                                <%}%>
+
+
+                                                </tbody>
+                                            </table>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+
+        <%- include('../partials/footer.ejs') %>
+
+            <script>
+                $("#frmAddDepot").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        cfa_org_id: {
+                            required: "Please Select CFA Organization"
+                        },
+                        block_id: {
+                            required: "Please Select Block"
+                        },
+                        depot_name: {
+                            required: "Please Enter Depot Name"
+                        },
+                        depot_code: {
+                            required: "Please Enter Depot Code"
+                        },
+                        state_id: {
+                            required: "Please Select State"
+                        },
+                        city: {
+                            required: "Please Enter City"
+                        },
+                        pincode: {
+                            required: "Please Enter Pincode"
+                        },
+                        address1: {
+                            required: "Please Enter Address"
+                        },
+                        gst_no: {
+                            required: "Please Enter GST NO"
+                        }
+                    },
+                    rules: {
+                        cfa_org_id: {
+                            required: true,
+                        },
+                        block_id: {
+                            required: true,
+                        },
+                        depot_name: {
+                            required: true
+                        },
+                        depot_code: {
+                            required: true
+                        },
+                        state_id: {
+                            required: true
+                        },
+                        city: {
+                            required: true
+                        },
+                        pincode: {
+                            required: true
+                        },
+                        address1: {
+                            required: true
+                        },
+                        gst_no: {
+                            required: true
+                        }
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+                var fetchData = JSON.parse('<%- JSON.stringify(FetchData) %>');
+                var ID = JSON.parse('<%- JSON.stringify(ID) %>');
+
+                function bindBlock(cfaOrgDetail) {
+                    var data = JSON.stringify({
+                        "cfa_org_id": cfaOrgDetail.options[cfaOrgDetail.selectedIndex].value
+                    });
+                    $.ajax({
+                        type: "POST",
+                        contentType: 'application/json',
+                        url: '/bindBlockOfCFA',
+                        data: data,
+                        success: function (res) {
+                            if (res.data) {
+                                if (res.data.data.length > 0) {
+                                    $("#block_id").empty();
+                                    $("#block_id").append($("<option></option>").val("").html('--Select Block--'));
+                                    $.each(res.data.data, function (data, value) {
+                                        $("#block_id").append($("<option></option>").val(value.id).html(value.block_name));
+                                        if (fetchData) {
+                                            if (fetchData.data.length > 0) {
+                                                if (fetchData.data[0].block_id == value.id) {
+                                                    document.getElementById("block_id").value = value.id;
+                                                }
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    $("#block_id").empty();
+                                    $("#block_id").append($("<option></option>").val("").html('--Select Block--'));
+                                }
+                            }
+
+                        }
+                    });
+                }
+
+                function CancelFunction() {
+                    window.location.href = "/Depot";
+                }
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divFilter").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divFilter").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+                function divAddDepotDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divAddDepot").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divAddDepot").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+
+                function divhideShowOtherDetail(data) {
+                    if ($(data).find('.la-eye').length > 0) {
+                        $(data).closest("tr").after("<tr><td></td><td colspan = '999'>" + $(data).next().html() + "</td></tr>");
+                        $(data).find('.la-eye').addClass('la-eye-slash')
+                        $(data).find('.la-eye').removeClass('la-eye')
+                    }
+                    else {
+                        $(data).closest("tr").next().remove();
+                        $(data).find('.la-eye-slash').addClass('la-eye')
+                        $(data).find('.la-eye-slash').removeClass('la-eye-slash')
+                    }
+                }
+
+                if (fetchData) {
+                    bindBlock(document.getElementById("cfa_org_id"))
+                    let div = document.getElementById("divAddDepot");
+                    $("#divAddDepot").css("display", "block");
+                    $(div).find('.fa-plus').addClass('fa-minus')
+                    $(div).find('.fa-plus').removeClass('fa-plus')
+                }
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                var SetSearchData = SearchData.split('~');
+
+                if (SetSearchData[0] != 'undefined' && SetSearchData[0] != '') {
+                    $("#filter_cfa_org_id").val(SetSearchData[0]);
+                }
+
+                if (SetSearchData[1] != 'undefined' && SetSearchData[1] != '') {
+                    $("#filter_block_id").val(SetSearchData[1]);
+                }
+
+                if (SetSearchData[2] != 'undefined' && SetSearchData[2] != '') {
+                    $("#filter_state_id").val(SetSearchData[2]);
+                }
+
+                searchStatus = SetSearchData[3];
+
+                if (searchStatus == 'true') {
+                    $("#divSearch").css("display", "block");
+                    $("#btnFilter").find('.fa-plus').addClass('fa-minus')
+                    $("#btnFilter").find('.fa-plus').removeClass('fa-plus')
+                }
+
+                $(".select2dropdown").select2();
+
+                $("#tblDepotDetail").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                // var error1 = '<%- JSON.stringify(alertMessage) %>';
+                var error1 = JSON.parse(`<%- JSON.stringify(alertMessage).replace(/[\n\r\t]/g, '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'") %>`);
+
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        type: errortype,
+                        icon: icon,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        window.location.replace(window.location.origin + '/Depot')
+                    });
+                } 
+            </script>

@@ -1,0 +1,1303 @@
+<%- include('../partial/head.ejs') %>
+    <style id='lacomete-edge-woo-inline-css' type='text/css'>
+        .swal2-popup .swal2-styled:focus {
+            box-shadow: none !important;
+        }
+
+        .swal2-footer {
+            justify-content: center;
+            margin: 1em 0 0;
+            padding: 1em 1em 0;
+            border-top: 1px solid #eee;
+            /* color: #545454; */
+            font-size: 1em
+        }
+
+        /* body {
+            line-height: 0;
+        } */
+
+        /* .swal2-popup {
+            font-size: 12px !important;
+            font-family: Georgia, serif;
+        } */
+
+
+        .single_buy_it_now_button {
+            /* background-color: #333 !important;
+            color: white !important; */
+            background-color: #333 !important;
+            color: white !important;
+            margin-top: 10px !important;
+            width: 356px !important;
+        }
+
+        .single_buy_it_now_button:hover {
+            background-color: transparent !important;
+            color: black !important;
+            margin-top: 10px !important;
+            width: 356px !important;
+        }
+
+        .single_wishlist_button {
+            width: 356px !important;
+        }
+
+        .edgtf-product-overview .edgtf-poi {
+            display: block;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            text-align: center;
+        }
+
+        .smlfnt12 {
+            font-size: 12px !important;
+        }
+
+        .edgtf-product-overview .edgtf-poi .edgtf-poi-title {
+            font-family: 'Cinzel';
+            font-weight: bold;
+        }
+
+        .edgtf-product-overview .edgtf-poi .edgtf-poi-title-holder {
+            width: 100%;
+        }
+
+        .edgtf-normal-space .edgtf-outer-space .edgtf-item-space {
+            margin: 0 0 10px;
+        }
+
+        .radioLabel {
+            font-size: 18px !important;
+        }
+
+        .prodcss {
+            font-weight: bolder;
+            font-family: 'Montserrat';
+            color: black;
+
+        }
+
+        .modal-content {
+            line-height: 22px;
+            letter-spacing: .1em;
+        }
+
+        .btnwishlist {
+            border: none;
+            outline: 0;
+            padding: 2px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 87%;
+            font-size: 15px;
+            padding: 14px 31px;
+        }
+
+        @media only screen and (max-width: 1024px) {}
+
+        .postid-3629 .edgtf-top-bar {
+            background-image: none;
+        }
+
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-container>.edgtf-container-inner,
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-full-width>.edgtf-full-width-inner {
+            padding: 130px 0 122px 0;
+        }
+
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-container>.edgtf-container-inner,
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-full-width>.edgtf-full-width-inner {
+            padding: 130px 0 122px 0;
+        }
+
+        /* @media only screen and (min-width: 769px) {
+            .edgtf-woo-single-page.edgtf-woo-single-thumb-on-left-side .edgtf-single-product-content .images.woocommerce-product-gallery--with-images .woocommerce-product-gallery__image:first-child {
+                height: 850px !important;
+            }
+        } */
+
+        @media only screen and (max-width: 680px) {
+
+            .btnwishlist {
+                width: 322px !important;
+            }
+
+
+            .single_buy_it_now_button {
+                /* background-color: #333 !important;
+                color: white !important;
+                margin-top: 10px !important; */
+                width: 322px !important;
+            }
+
+            .single_wishlist_button {
+                width: 322px !important;
+            }
+
+            .edgtf-position-right-inner {
+                font-size: 11px;
+            }
+
+            .scrollingcss {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                /* padding: 1rem !important; */
+                padding: 0px 0px 20px 10px !important;
+                overflow-x: auto !important;
+                margin-bottom: 10px !important;
+            }
+
+            .scrollingcss-item {
+                padding: 0 !important;
+                margin: 0 !important;
+                padding-right: 15px !important;
+                min-width: 180px !important;
+                text-align: center !important;
+            }
+
+            .itemimgcss {
+                height: 230px !important;
+            }
+
+            .edgtf-poi {
+                display: block !important;
+                text-align: center !important;
+                /* line-height: 1.3; */
+                padding-bottom: 0px !important;
+                padding-top: 10px !important;
+            }
+
+            .edgtf-product-overview .edgtf-poi .edgtf-poi-title-holder {
+                width: 100% !important;
+            }
+
+            .edgtfhover {
+                padding-top: 1px !important;
+            }
+        }
+
+        @media only screen and (min-width: 769px) {
+            .edgtf-woo-single-page .edgtf-single-product-content .images {
+                width: 56% !important;
+            }
+        }
+
+        .edgtf-woo-single-page .edgtf-single-product-content .images figure a img.edgtf-fake-featured-image {
+            height: 100% !important;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            /* position: fixed; */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            /* width: 80%; */
+            width: 60%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        /* The Close Button */
+        .close {
+            color: black;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            padding: 13px;
+            color: black;
+            text-align: center;
+            border-bottom: 1px solid #000;
+            display: block !important;
+        }
+
+        .modal-body {
+            padding: 15px;
+        }
+
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        .modal-title-header {
+            color: #333;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 17px;
+            font-family: inherit !important;
+        }
+
+        .modal-title-sub-header {
+            color: #333;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 12px;
+            font-family: inherit !important;
+        }
+
+        .ks-table {
+            border-style: solid;
+            border-width: 1px;
+            border-color: #e8e9eb;
+        }
+
+        .ks-table-header-cell {
+            font-weight: 700 !important;
+            font-style: normal;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .ks-table-cell {
+            border: 1px solid #deddda;
+        }
+
+        /* .edgtf-title-holder,
+        .edgtf-page-header,
+        .single_add_to_cart_button {
+            z-index: 0 !important;
+        } */
+    </style>
+    <!-- Start Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2KXJ0J054"></script>
+    <script> window.dataLayer = window.dataLayer || []; function
+            gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config',
+                'G-P2KXJ0J054'); </script>
+    <!-- End Google tag (gtag.js) -->
+
+
+    <%- include('../partial/pagetracker.ejs') %>
+
+        <%- include('../partial/header.ejs') %>
+            <!-- Modal -->
+            <div id="exampleModalCenter" class="modal" role="dialog" data-backdrop="true">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+                        <div class="modal-title-header">
+                            <%= ItemDetail.length> 0 ? ItemDetail[0].ItemName : '' %>
+                        </div>
+                        <div class="modal-title-sub-header">Size Charts</div>
+                    </div>
+                    <div class="modal-body">
+                        <div style="overflow: auto;">
+                            <table class="ks-table">
+                                <tbody>
+                                    <tr class="ks-table-row">
+                                        <th class="ks-table-cell ks-table-header-cell">ASAGA</th>
+                                        <th class="ks-table-cell ks-table-header-cell">XS</th>
+                                        <th class="ks-table-cell ks-table-header-cell">S</th>
+                                        <th class="ks-table-cell ks-table-header-cell">M</th>
+                                        <th class="ks-table-cell ks-table-header-cell">L</th>
+                                        <th class="ks-table-cell ks-table-header-cell">XL</th>
+                                        <th class="ks-table-cell ks-table-header-cell">XXL</th>
+                                        <th class="ks-table-cell ks-table-header-cell">3XL</th>
+                                        <th class="ks-table-cell ks-table-header-cell">4XL</th>
+                                        <th class="ks-table-cell ks-table-header-cell">5XL</th>
+                                        <th class="ks-table-cell ks-table-header-cell">6XL</th>
+                                    </tr>
+                                    <% for(var k=0; k < AsagaSizeChart.length; k++) {%>
+                                        <tr class="ks-table-row">
+                                            <td class="ks-table-cell ks-table-header-cell">
+                                                <%= AsagaSizeChart[k].Asaga %>
+                                            </td>
+                                            <td class="ks-table-cell">
+                                                <%= AsagaSizeChart[k].XS %>
+                                            </td>
+                                            <td class="ks-table-cell">
+                                                <%= AsagaSizeChart[k].S %>
+                                            </td>
+                                            <td class="ks-table-cell">
+                                                <%= AsagaSizeChart[k].M %>
+                                            </td>
+                                            <td class="ks-table-cell">
+                                                <%= AsagaSizeChart[k].L %>
+                                            </td>
+                                            <td class="ks-table-cell">
+                                                <%= AsagaSizeChart[k].XL %>
+                                            </td>
+                                            <td class="ks-table-cell">
+                                                <%= AsagaSizeChart[k].XXL %>
+                                            </td>
+                                            <td class="ks-table-cell">
+                                                <%= AsagaSizeChart[k].threeXL %>
+                                            </td>
+                                            <td class="ks-table-cell">
+                                                <%= AsagaSizeChart[k].fourXL %>
+                                            </td>
+                                            <td class="ks-table-cell">
+                                                <%= AsagaSizeChart[k].fiveXL %>
+                                            </td>
+                                            <td class="ks-table-cell">
+                                                <%= AsagaSizeChart[k].sixXL %>
+                                            </td>
+                                        </tr>
+                                        <%}%>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+
+            <%- include('../partial/pageheader.ejs') %>
+                <div class="edgtf-content">
+                    <div class="edgtf-content-inner">
+                        <div class="edgtf-container">
+                            <div class="edgtf-container-inner clearfix">
+                                <div class="woocommerce-notices-wrapper"></div>
+                                <div id="product-3629"
+                                    class="product type-product post-3629 status-publish first instock product_cat-modern product_tag-black product_tag-silver product_tag-woman has-post-thumbnail downloadable shipping-taxable purchasable product-type-simple">
+                                    <div class="edgtf-single-product-content">
+                                        <div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images"
+                                            data-columns="3" style="opacity: 0; transition: opacity .25s ease-in-out;">
+                                            <figure class="woocommerce-product-gallery__wrapper">
+                                                <% var DetailImage=ItemDetail.length> 0 ?
+                                                    ItemDetail[0].DetailImage != null ?
+                                                    ItemDetail[0].DetailImage.split('~')
+                                                    : '' : '' %>
+                                                    <% if(DetailImage.length) { %>
+                                                        <!-- style="height: 800px; -->
+                                                        <div data-thumb="<%= process.env.ItemImagePATH + DetailImage[0] %>"
+                                                            data-thumb-alt="loading"
+                                                            class="woocommerce-product-gallery__image"><a
+                                                                href="<%= process.env.ItemImagePATH + DetailImage[0] %>"><img
+                                                                    width="600" height="550"
+                                                                    src=" <%=process.env.ItemImagePATH + DetailImage[0] %>"
+                                                                    class="wp-post-image" alt="loading" loading="lazy"
+                                                                    title="shop-img-10" data-caption=""
+                                                                    data-src="<%= process.env.ItemImagePATH + DetailImage[0] %>"
+                                                                    data-large_image="<%= process.env.ItemImagePATH +
+                                                                    DetailImage[0] %>" data-large_image_width="800"
+                                                                    data-large_image_height="1060" srcset="<%= process.env.ItemImagePATH +
+                                                                        DetailImage[0] %> 600w, <%=
+                                                                            process.env.ItemImagePATH + DetailImage[0]
+                                                                            %> 226w, <%= process.env.ItemImagePATH +
+                                                                                DetailImage[0] %> 768w, <%=
+                                                                                    process.env.ItemImagePATH +
+                                                                                    DetailImage[0] %> 773w, <%=
+                                                                                        process.env.ItemImagePATH +
+                                                                                        DetailImage[0] %> 800w" sizes="(max-width: 600px) 100vw,
+                                                                                        600px" /></a>
+                                                        </div>
+                                                        <%}%>
+                                                            <% for(var i=0; i < DetailImage.length; i++) {%>
+                                                                <div data-thumb="<%= process.env.ItemImagePATH + DetailImage[i] %>"
+                                                                    data-thumb-alt="loading"
+                                                                    class="woocommerce-product-gallery__image"><a
+                                                                        href="<%= process.env.ItemImagePATH + DetailImage[i] %>"><img
+                                                                            width="300" height="400"
+                                                                            src="<%= process.env.ItemImagePATH + DetailImage[i] %>"
+                                                                            class="" alt="loading" loading="lazy"
+                                                                            title="shop-img-10-gallery-3"
+                                                                            data-caption=""
+                                                                            data-src="<%= process.env.ItemImagePATH + DetailImage[i] %>"
+                                                                            data-large_image="<%= process.env.ItemImagePATH + DetailImage[i] %>"
+                                                                            data-large_image_width="600"
+                                                                            data-large_image_height="795"
+                                                                            srcset="<%= process.env.ItemImagePATH + DetailImage[i] %> 300w, <%= process.env.ItemImagePATH + DetailImage[i] %> 226w"
+                                                                            sizes="(max-width: 300px) 100vw, 300px" /></a>
+                                                                </div>
+                                                                <%}%>
+                                            </figure>
+                                        </div>
+                                        <div class="edgtf-single-product-summary">
+                                            <div class="summary entry-summary">
+                                                <input type="hidden" name="txtItemID" id="txtItemID"
+                                                    value="<%= ItemDetail.length> 0 ? ItemDetail[0].ItemID : '' %>">
+                                                <h2 itemprop="name" class="edgtf-single-product-title">
+                                                    <%= ItemDetail.length> 0 ? ItemDetail[0].ItemName : '' %>
+                                                </h2>
+
+                                                <p class="price" id="oldAMT" style="">
+                                                    <span class="woocommerce-Price-amount amount"><bdi>
+                                                            <span class="woocommerce-Price-currencySymbol"
+                                                                id="total-amount-old">Rs.</span>
+                                                            <%= ItemDetail.length> 0 ? ItemDetail[0].Amount : '' %>
+                                                        </bdi>
+                                                    </span>
+                                                </p>
+
+                                                <p class="price" style="">
+                                                    <span class="woocommerce-Price-amount amount"><bdi>
+                                                            <span class="woocommerce-Price-currencySymbol"
+                                                                id="total-amount-new"></span>
+
+                                                        </bdi>
+                                                    </span>
+                                                </p>
+
+                                                <form class="cart" id="frmCart" action="/addCart" method="post"
+                                                    style="margin-top: 0px;">
+                                                    <div class="product_meta" style="margin-top: 0;">
+                                                        <p class="text-justify"
+                                                            style="height: 100px;overflow: auto;padding-right: 10px;margin-bottom: 20px;padding-top: 10px;line-height: 30px;">
+                                                            <%= ItemDetail[0].Description %>
+                                                        </p>
+                                                        <label class="prodcss">SELECT SIZE | </label>
+                                                        <label class="prodcss"><a href="javascript:void(0)"
+                                                                data-toggle="modal" id="myBtn">
+                                                                SIZE GUIDE
+                                                            </a></label><br>
+
+                                                        <span class="tagged_as"
+                                                            style="margin-top: 3%;font-weight: bolder;font-family: 'Montserrat';color: black;font-size: 14px;">Size:
+                                                            <label id="radiobuttonvalue"
+                                                                name="radiobuttonvalue"></label>
+
+                                                            <!-- <input id="radiobuttonvalue" type="text" name="radiobuttonvalue" value=""> -->
+                                                            <% var ItemSize=ItemDetail.length> 0 ?
+                                                                ItemDetail[0].ItemSizeDetail != null ?
+                                                                ItemDetail[0].ItemSizeDetail.split('~') : '' : '' %>
+                                                                <div class="">
+                                                                    <% for(var i=0; i < ItemSize.length; i++) {%>
+                                                                        <!-- radioooooo -->
+                                                                        <label class="radioLabel">
+                                                                            <input type="radio" name="ItemSize"
+                                                                                class="radiocss" id="ItemSizeID"
+                                                                                value="<%=ItemSize[i]%>"><span>
+                                                                                <%=ItemSize[i]%>
+                                                                            </span>
+                                                                        </label>
+                                                                        <%}%>
+                                                                </div>
+                                                        </span>
+                                                    </div>
+                                                    <div class="woocommerce-product-details__short-description">
+                                                        <% for(var i=0; i < ItemDetail.length; i++) {%>
+                                                            <hr style="max-width: 100%;" />
+                                                            <label class="prodcss">PRODUCT DETAILS</label>
+                                                            <div class="product_meta"
+                                                                style="margin-top: 10px;margin-bottom: 30px;">
+                                                                <span class="sku_wrapper">Color: <span class="sku">
+                                                                        <%= ItemDetail.length> 0 ?
+                                                                            ItemDetail[0].Color : ''
+                                                                            %>
+                                                                    </span></span>
+                                                                <span class="posted_in">Material: <span class="sku">
+                                                                        <%= ItemDetail.length> 0 ?
+                                                                            ItemDetail[0].Material :
+                                                                            '' %>
+                                                                    </span></span>
+                                                            </div>
+
+                                                            <%}%>
+
+                                                    </div>
+
+                                                    <!-- form taggg -->
+
+                                                    <input type="hidden" name="txtItemID" id="txtItemID"
+                                                        value="<%= ItemDetail.length> 0 ? ItemDetail[0].ItemID : '' %>">
+
+                                                    <input type="hidden" name="txtColor" id="txtColor"
+                                                        value="<%= ItemDetail.length> 0 ? ItemDetail[0].Color : '' %>">
+
+                                                    <input type="hidden" name="txtMaterial" id="txtMaterial"
+                                                        value="<%= ItemDetail.length> 0 ? ItemDetail[0].Material : '' %>">
+
+                                                    <input type="hidden" name="txtActualPrice" id="txtActualPrice"
+                                                        value="<%= ItemDetail.length> 0 ? ItemDetail[0].Amount : '' %>">
+
+                                                    <input type="hidden" name="txtItemImage" id="txtItemImage"
+                                                        value="<%= ItemDetail.length> 0 ? ItemDetail[0].ItemImage : '' %>">
+
+                                                    <input type="hidden" name="txtItemName" id="txtItemName"
+                                                        value="<%= ItemDetail.length> 0 ? ItemDetail[0].ItemName : '' %>">
+
+                                                    <div class="edgtf-quantity-buttons quantity" id="Quantity"
+                                                        style="display: none;">
+                                                        <span class="edgtf-quantity-label">Quantity</span>
+                                                        <i id="iconplusquantity" class="fa fa-plus"
+                                                            onclick="addQuantity(this)"></i>
+                                                        <input type="text" id="txtquantity" name="txtquantity"
+                                                            class="input-text qty text edgtf-quantity-input"
+                                                            data-step="1" data-min="1" data-max="1" value="1"
+                                                            title="Qty" size="4" placeholder="" inputmode="numeric">
+                                                        <i id="iconminusquantity" class="fa fa-minus"
+                                                            onclick="minusQuantity(this)"></i>
+
+                                                    </div>
+                                                    <div style="display: none;padding-right: 20px;" id="divOutOfStock">
+                                                        <span style="color: red;font-weight: 600;">Out of
+                                                            Stock</span>
+                                                    </div>
+                                                    <button type="submit" id="add-to-cart"
+                                                        class="single_add_to_cart_button button alt cartbtnMob">Add
+                                                        to
+                                                        cart</button>
+
+                                                    <button type="submit" id="buy-it-now"
+                                                        class="single_buy_it_now_button button alt cartbtnMob">Buy
+                                                        Now</button>
+                                                    <!-- <a href="https://www.w3docs.com/" class="button"
+                                                        id="buy-it-now">Click Here</a> -->
+
+                                                    <!--  -->
+                                                    <!-- onclick="return checkCartData()" -->
+                                                </form>
+                                                <% if(cookieData) { %>
+                                                    <form action="/ItemDetail/<%= ItemDetail[0].ItemID %>"
+                                                        method="post">
+                                                        <% if(AsgaWishList.length> 0) { %>
+                                                            <button type="button" id="add-to-cart" readonly
+                                                                style="margin-top: 10px;" class="btnwishlist"><i
+                                                                    class="fa fa-heart"
+                                                                    style="color: red;padding-right: 6px;"></i>Add To
+                                                                WishList</button>
+
+                                                            <!-- <button type="submit" id="add-to-cart" style="margin-top: 10px;"
+                                                            class="single_wishlist_button"><i
+                                                                class="fa fa-heart"></i><span>Add To
+                                                                WishList</span></button> -->
+                                                            <% }else{ %>
+                                                                <input type="hidden" name="ItemID" id="ItemID"
+                                                                    value="<%= ItemDetail.length> 0 ? ItemDetail[0].ItemID : '' %>">
+                                                                <button type="submit" id="add-to-cart"
+                                                                    style="margin-top: 10px;"
+                                                                    class="single_wishlist_button button alt"><i
+                                                                        class="fa fa-heart"></i><span>Add To
+                                                                        WishList</span></button>
+                                                                <% } %>
+
+                                                    </form>
+                                                    <% }else{ %>
+                                                        <form action="/ItemDetail/<%= ItemDetail[0].ItemID %>"
+                                                            method="post">
+
+
+                                                            <input type="hidden" name="ItemID" id="ItemID"
+                                                                value="<%= ItemDetail.length> 0 ? ItemDetail[0].ItemID : '' %>">
+                                                            <button type="submit" id="add-to-cart"
+                                                                style="margin-top: 10px;"
+                                                                class="single_wishlist_button button alt"><i
+                                                                    class="fa fa-heart"></i><span>Add To
+                                                                    WishList</span></button>
+
+
+                                                        </form>
+                                                        <%}%>
+                                                            <!-- form taggg -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <section class="related products">
+                                        <h2>Customers Who Bought This Item Also Bought</h2>
+                                        <div class="edgtf-row-grid-section-wrapper ">
+                                            <div class="edgtf-row-grid-section">
+                                                <div class="vc_row wpb_row vc_row-fluid">
+                                                    <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                        <div class="vc_column-inner">
+                                                            <div class="wpb_wrapper">
+                                                                <div
+                                                                    class="edgtf-pl-holder edgtf-grid-list edgtf-disable-bottom-space edgtf-standard-layout edgtf-four-columns edgtf-normal-space edgtf-info-on-image-simple-predefined ">
+                                                                    <div
+                                                                        class="edgtf-pl-outer edgtf-outer-space scrollingcss">
+                                                                        <% for(var i=0; i < RelatedData.length; i++) {%>
+                                                                            <div
+                                                                                class="edgtf-pli edgtf-item-space col-md-4 scrollingcss-item">
+                                                                                <div class="edgtf-pli-inner">
+                                                                                    <div class="edgtf-pli-image">
+                                                                                        <!-- height: 510px; -->
+                                                                                        <img style="width: 100%;"
+                                                                                            src="<%= process.env.ItemImagePATH + RelatedData[i].ItemImage %>"
+                                                                                            class="itemimgcss attachment-woocommerce_single size-woocommerce_single wp-post-image"
+                                                                                            alt="loading"
+                                                                                            srcset="<%= process.env.ItemImagePATH + RelatedData[i].ItemImage %> 600w, 
+                                                                                    <%= process.env.ItemImagePATH + RelatedData[i].ItemImage %> 226w, 
+                                                                                    <%= process.env.ItemImagePATH + RelatedData[i].ItemImage %> 768w, 
+                                                                                    <%= process.env.ItemImagePATH + RelatedData[i].ItemImage %> 773w, 
+                                                                                    <%= process.env.ItemImagePATH + RelatedData[i].ItemImage %> 800w"
+                                                                                            sizes="(max-width: 600px) 100vw, 600px" />
+                                                                                        <div
+                                                                                            class="edgtf-product-overview">
+                                                                                            <div class="edgtf-po-text">
+                                                                                                <div
+                                                                                                    class="edgtf-po-text-inner">
+                                                                                                    <p
+                                                                                                        class="edgtf-poi">
+                                                                                                        <span
+                                                                                                            class="edgtf-poi-title-holder">
+                                                                                                            <a class="edgtf-poi-title itemText"
+                                                                                                                itemprop="url"
+                                                                                                                href="/ItemDetail/<%= RelatedData[i].ItemID %>">
+                                                                                                                <%= RelatedData[i].ItemName
+                                                                                                                    %>
+                                                                                                            </a>
+                                                                                                        </span>
+                                                                                                        <span
+                                                                                                            class="itemText2">
+                                                                                                            <a class="smlfnt12"
+                                                                                                                itemprop="url"
+                                                                                                                href="/ItemDetail/<%= RelatedData[i].ItemID %>">
+                                                                                                                <%= (RelatedData[i].Description==null
+                                                                                                                    ||
+                                                                                                                    RelatedData[i].Description=='null'
+                                                                                                                    ? ''
+                                                                                                                    :RelatedData[i].Description)
+                                                                                                                    %>
+                                                                                                            </a>
+                                                                                                        </span>
+                                                                                                        <span
+                                                                                                            class="edgtf-poi-price"><span
+                                                                                                                class="woocommerce-Price-amount amount"><bdi><span
+                                                                                                                        class="woocommerce-Price-currencySymbol">Rs.</span>
+                                                                                                                    <%= RelatedData[i].Amount
+                                                                                                                        %>
+                                                                                                                </bdi></span>
+                                                                                                        </span>
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="edgtf-pli-text"
+                                                                                        style="padding: 0;">
+                                                                                        <div class="edgtf-pli-text-outer"
+                                                                                            style="padding: 0;">
+                                                                                            <% var
+                                                                                                detailImage=RelatedData[i].ItemDetailImage
+                                                                                                ?
+                                                                                                RelatedData[i].ItemDetailImage
+                                                                                                :
+                                                                                                RelatedData[i].ItemImage
+                                                                                                %>
+                                                                                                <!-- height: 510px; -->
+                                                                                                <img style="width: 100%;"
+                                                                                                    src="<%= process.env.ItemImagePATH + detailImage %>"
+                                                                                                    class="itemimgcss attachment-woocommerce_single size-woocommerce_single wp-post-image"
+                                                                                                    alt="loading"
+                                                                                                    srcset="<%= process.env.ItemImagePATH + detailImage %> 600w, 
+                                                                                    <%= process.env.ItemImagePATH + detailImage %> 226w, 
+                                                                                    <%= process.env.ItemImagePATH + detailImage %> 768w, 
+                                                                                    <%= process.env.ItemImagePATH + detailImage %> 773w, 
+                                                                                    <%= process.env.ItemImagePATH + detailImage %> 800w"
+                                                                                                    sizes="(max-width: 600px) 100vw, 600px" />
+                                                                                                <div
+                                                                                                    class="edgtf-product-overview">
+                                                                                                    <div
+                                                                                                        class="edgtf-po-text">
+                                                                                                        <div
+                                                                                                            class="edgtf-po-text-inner">
+                                                                                                            <p
+                                                                                                                class="edgtf-poi edgtfhover">
+                                                                                                                <span
+                                                                                                                    class="edgtf-poi-title-holder">
+                                                                                                                    <a class="edgtf-poi-title itemText"
+                                                                                                                        itemprop="url"
+                                                                                                                        href="/ItemDetail/<%= RelatedData[i].ItemID %>">
+                                                                                                                        <%= RelatedData[i].ItemName
+                                                                                                                            %>
+                                                                                                                    </a>
+                                                                                                                </span>
+                                                                                                                <span
+                                                                                                                    class="itemText2">
+                                                                                                                    <a class="smlfnt12"
+                                                                                                                        itemprop="url"
+                                                                                                                        href="/ItemDetail/<%= RelatedData[i].ItemID %>">
+                                                                                                                        <%= (RelatedData[i].Description==null
+                                                                                                                            ||
+                                                                                                                            RelatedData[i].Description=='null'
+                                                                                                                            ? ''
+                                                                                                                            :RelatedData[i].Description)
+                                                                                                                            %>
+                                                                                                                    </a>
+                                                                                                                </span>
+                                                                                                                <span
+                                                                                                                    class="edgtf-poi-price"><span
+                                                                                                                        class="woocommerce-Price-amount amount"><bdi><span
+                                                                                                                                class="woocommerce-Price-currencySymbol">Rs.</span>
+                                                                                                                            <%= RelatedData[i].Amount
+                                                                                                                                %>
+                                                                                                                        </bdi></span>
+                                                                                                                </span>
+                                                                                                            </p>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <a class="edgtf-pli-link"
+                                                                                        itemprop="url"
+                                                                                        href="/ItemDetail/<%= RelatedData[i].ItemID %>"></a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <%}%>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%- include('../partial/footer.ejs') %>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    <script>
+                        function addQuantity(cartPlus) {
+                            $("#txtquantity").val(parseInt($("#txtquantity").val()) + 1);
+                            var ItemID = $("#txtItemID").val();
+                            var Quantity = $("#txtquantity").val();
+                            var Size = $("#radiobuttonvalue")[0].innerText;
+
+                            var data = JSON.stringify({
+                                'ItemID': ItemID,
+                                'Size': Size,
+                                'Quantity': Quantity,
+                            });
+
+                            $.ajax({
+                                type: "POST",
+                                async: false,
+                                contentType: 'application/json',
+                                url: '/CheckCartData',
+                                data: data,
+                                success: function (res) {
+                                    if (res.status == 1 && res.message == 'Success') {
+                                        $('#divOutOfStock').css("display", "none");
+                                    }
+                                    else if (res.status == 0 && res.message == 'Out of stock') {
+                                        $('#divOutOfStock').css("display", "inline-block");
+                                    }
+                                    else {
+                                        $('#divOutOfStock').css("display", "inline-block");
+                                    }
+                                },
+                                error: function (data) {
+                                    //alert(data);
+                                }
+                            });
+
+                        }
+
+                        function minusQuantity(cartPlus) {
+                            if (parseInt($("#txtquantity").val()) == 1) {
+
+                            }
+                            else {
+                                $("#txtquantity").val(parseInt($("#txtquantity").val()) - 1);
+                            }
+
+                            var ItemID = $("#txtItemID").val();
+                            var Quantity = $("#txtquantity").val();
+                            var Size = $("#radiobuttonvalue")[0].innerText;
+
+                            var data = JSON.stringify({
+                                'ItemID': ItemID,
+                                'Size': Size,
+                                'Quantity': Quantity,
+                            });
+
+                            $.ajax({
+                                type: "POST",
+                                async: false,
+                                contentType: 'application/json',
+                                url: '/CheckCartData',
+                                data: data,
+                                success: function (res) {
+                                    if (res.status == 1 && res.message == 'Success') {
+                                        $('#divOutOfStock').css("display", "none");
+                                    }
+                                    else if (res.status == 0 && res.message == 'Out of stock') {
+                                        $('#divOutOfStock').css("display", "inline-block");
+                                    }
+                                    else {
+                                        $('#divOutOfStock').css("display", "inline-block");
+                                    }
+                                },
+                                error: function (data) {
+                                    //alert(data);
+                                }
+                            });
+
+                        }
+
+                        var cartstatus = false;
+                        function checkCartData() {
+                            debugger;
+                            var ItemID = $("#txtItemID").val();
+                            var Quantity = $("#txtquantity").val();
+                            var Size = $("#radiobuttonvalue")[0].innerText;
+
+
+                            var data = JSON.stringify({
+                                'ItemID': ItemID,
+                                'Size': Size,
+                                'Quantity': Quantity,
+                            });
+
+                            $.ajax({
+                                type: "POST",
+                                async: false,
+                                contentType: 'application/json',
+                                url: '/CheckCartData',
+                                data: data,
+                                success: function (res) {
+                                    if (res.status == 1 && res.message == 'Success') {
+                                        $('#divOutOfStock').css("display", "none");
+                                        cartstatus = true;
+
+                                    }
+                                    else if (res.status == 0 && res.message == 'Out of stock') {
+                                        $('#divOutOfStock').css("display", "inline-block");
+                                        cartstatus = false;
+                                    }
+                                    else {
+                                        $('#divOutOfStock').css("display", "inline-block");
+                                        cartstatus = false;
+                                    }
+                                },
+                                error: function (data) {
+                                    //alert(data);
+                                }
+                            });
+
+                            return cartstatus;
+                        }
+
+                    </script>
+                    <script>
+                        // Get the modal
+                        var modal = document.getElementById("exampleModalCenter");
+                        // Get the button that opens the modal
+                        var btn = document.getElementById("myBtn");
+                        // Get the <span> element that closes the modal
+                        var span = document.getElementsByClassName("close")[0];
+                        // When the user clicks the button, open the modal 
+                        btn.onclick = function () {
+                            modal.style.display = "block";
+                        }
+                        // When the user clicks on <span> (x), close the modal
+                        span.onclick = function () {
+                            modal.style.display = "none";
+                        }
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function (event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                        }
+                        $(document).ready(function () {
+                            debugger;
+                            $('input[type="radio"]').change(function () {
+                                //$('#radiobuttonvalue').val($(this).val());
+                                var selectedSize = $('#radiobuttonvalue')[0].innerHTML = $(this).val();
+                                var selectedAmount = $("#txtActualPrice").val()
+                                var newAmount = $("#txtActualPrice").val()
+
+                                if (selectedSize == '2XL') {
+                                    newAmount = parseFloat(selectedAmount * 10 / 100) + parseFloat(selectedAmount)
+                                }
+                                else if (selectedSize == '3XL') {
+                                    newAmount = parseFloat(selectedAmount * 10 / 100) + parseFloat(selectedAmount)
+                                }
+                                else if (selectedSize == '4XL') {
+                                    newAmount = parseFloat(selectedAmount * 15 / 100) + parseFloat(selectedAmount)
+                                }
+                                else if (selectedSize == '5XL') {
+                                    newAmount = parseFloat(selectedAmount * 15 / 100) + parseFloat(selectedAmount)
+                                }
+                                else if (selectedSize == '6XL') {
+                                    newAmount = parseFloat(selectedAmount * 20 / 100) + parseFloat(selectedAmount)
+                                }
+                                else {
+                                    // newAmount = selectedAmount
+                                    $("#txtActualPrice").val()
+                                }
+
+                                debugger;
+                                $('#total-amount-new').text("Rs." + newAmount);
+                                $('#oldAMT').hide();
+
+                                // console.log("=====overAllData====", overAllData)
+                                // $('#txtActualPrice').text()
+
+                                var data = JSON.stringify({
+                                    'ItemID': $("#txtItemID").val(),
+                                    'Size': $(this).val()
+                                });
+
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: 'application/json',
+                                    url: '/ItemSizeDetail',
+                                    data: data,
+                                    success: function (res) {
+                                        if (res.Data[0].RemainingStock > 0) {
+                                            $('#Quantity').css("display", "inline-block");
+                                            $('#add-to-cart').css("display", "inline-block");
+                                            $('#buy-it-now').css("display", "inline-block");
+                                            $('#divOutOfStock').css("display", "none");
+                                            $("#quantity_63ca12954456f").attr("data-max", res.Data[0].RemainingStock)
+                                            // alert('done')
+                                        } else {
+                                            // $('#Quantity').css("display", "none");
+                                            // $('#add-to-cart').css("display", "none");
+                                            // $('#divOutOfStock').css("display", "inline-block");
+                                            $('#Quantity').css("display", "inline-block");
+                                            $('#add-to-cart').css("display", "inline-block");
+                                            $('#buy-it-now').css("display", "inline-block");
+                                            $('#divOutOfStock').css("display", "inline-block");
+                                            // alert('success')
+                                        }
+                                    },
+                                    error: function (data) {
+                                        //alert(data);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                    <script src="../../javascripts/jquery.validate.js"></script>
+                    <link rel="stylesheet"
+                        href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.min.css">
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.min.js"></script>
+
+                    <script>
+                        var IDBind = JSON.parse('<%- JSON.stringify(ID) %>');
+
+                        $('#add-to-cart').click(function () {
+                            $("#frmCart").validate({
+                                debug: false,
+                                errorElement: 'span',
+                                invalidHandler: function (event, validator) {
+                                    //debugger;
+                                    if (validator.numberOfInvalids() > 0) {
+                                        event.preventDefault();
+                                    }
+                                },
+                                onkeyup: false,
+                                messages: {
+                                    ItemSize: {
+                                        required: "Please Select Size"
+                                    }
+                                },
+                                rules: {
+                                    ItemSize: {
+                                        required: true
+                                    }
+                                },
+                                errorPlacement: function (error, element) {
+                                    if (element.parent('.input-group').length) {
+                                        error.insertAfter(element.parent());
+                                    } else if (element.hasClass('select2')) {
+                                        error.insertAfter(element.next('span'));
+                                    } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                                        error.insertAfter($(element).parent());
+                                    } else if ($(element).parent().hasClass('radioLabel')) {
+                                        error.insertAfter($(element).parent().parent());
+                                    } else {
+                                        error.insertAfter(element);
+                                    }
+                                },
+                                submitHandler: function (form) {
+                                    debugger
+                                    checkCartData();
+                                    if (cartstatus === true) {
+                                        saveItemDetailAddCart()
+                                        // form.preventDefault();
+                                        // form.submit();
+                                        // Swal.fire({
+                                        //     title: 'Product Add To Cart',
+                                        //     icon: 'success',
+                                        //     showCancelButton: false,
+                                        //     showConfirmButton: false,
+                                        //     toast: true,
+                                        //     position: 'top-end',
+                                        //     timer: 2000
+                                        // })
+                                        //     .then(function () {
+                                        //         window.location.replace(window.location.origin + '/ItemDetail/' + IDBind)
+                                        //     });
+                                    } else {
+                                        alert('Data not valid. Please check your cart.');
+                                    }
+                                }
+                            });
+                        });
+
+                        $('#buy-it-now').click(function () {
+                            $("#frmCart").validate({
+                                debug: false,
+                                errorElement: 'span',
+                                invalidHandler: function (event, validator) {
+                                    //debugger;
+                                    if (validator.numberOfInvalids() > 0) {
+                                        event.preventDefault();
+                                    }
+                                },
+                                onkeyup: false,
+                                messages: {
+                                    ItemSize: {
+                                        required: "Please Select Size"
+                                    }
+                                },
+                                rules: {
+                                    ItemSize: {
+                                        required: true
+                                    }
+                                },
+                                errorPlacement: function (error, element) {
+                                    if (element.parent('.input-group').length) {
+                                        error.insertAfter(element.parent());
+                                    } else if (element.hasClass('select2')) {
+                                        error.insertAfter(element.next('span'));
+                                    } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                                        error.insertAfter($(element).parent());
+                                    } else if ($(element).parent().hasClass('radioLabel')) {
+                                        error.insertAfter($(element).parent().parent());
+                                    } else {
+                                        error.insertAfter(element);
+                                    }
+                                },
+                                // submitHandler: function (form, event) {
+                                //     checkCartData();
+                                //     if (cartstatus == true) {
+                                //         event.preventDefault();
+                                //         alert('success')
+                                //     }
+
+                                // }
+                                submitHandler: function (form) {
+                                    debugger
+                                    checkCartData();
+                                    console.log("====cartstatus===", cartstatus)
+                                    console.log("====form===", form)
+                                    if (cartstatus === true) {
+                                        debugger
+                                        saveItemDataShopNow()
+                                    } else {
+                                        // If cartstatus is not true, display an alert.
+                                        alert('Data not valid. Please check your cart.');
+                                    }
+                                }
+                            });
+                        });
+
+                        function saveItemDataShopNow() {
+                            debugger;
+                            var BindAmount = $("#txtActualPrice").val()
+                            var BindSize = $("#radiobuttonvalue")[0].innerText
+                            var OverAllAmount;
+                            if (BindSize == '2XL') {
+                                OverAllAmount = parseFloat(BindAmount * 10 / 100) + parseFloat(BindAmount)
+                            } else if (BindSize == '3XL') {
+                                OverAllAmount = parseFloat(BindAmount * 10 / 100) + parseFloat(BindAmount)
+                            } else if (BindSize == '4XL') {
+                                OverAllAmount = parseFloat(BindAmount * 15 / 100) + parseFloat(BindAmount)
+                            } else if (BindSize == '5XL') {
+                                OverAllAmount = parseFloat(BindAmount * 15 / 100) + parseFloat(BindAmount)
+                            } else if (BindSize == '6XL') {
+                                OverAllAmount = parseFloat(BindAmount * 20 / 100) + parseFloat(BindAmount)
+                            } else {
+                                OverAllAmount = BindAmount
+                            }
+                            var data = JSON.stringify({
+                                'txtItemID': $("#txtItemID").val(),
+                                'txtColor': $("#txtColor").val(),
+                                'txtMaterial': $("#txtMaterial").val(),
+                                'txtActualPrice': OverAllAmount,
+                                'txtItemImage': $("#txtItemImage").val(),
+                                'txtItemName': $("#txtItemName").val(),
+                                'txtquantity': $("#txtquantity").val(),
+                                'ItemSize': $("#ItemSizeID").val(),
+                                'ItemSize': $("#radiobuttonvalue")[0].innerText
+                            });
+                            console.log("====data=====", data)
+                            debugger;
+                            $.ajax({
+                                async: false,
+                                url: '/addCart',
+                                contentType: 'application/json',
+                                type: 'POST',
+                                data: data,
+                                success: function (res) {
+                                    debugger;
+                                    // alert('success')
+                                    if (res.message == 'Success') {
+                                        window.location.href = '/PlaceOrder'
+                                    } else {
+                                        alert('Something Went Wrong');
+                                    }
+                                },
+                            })
+                        }
+
+                        function saveItemDetailAddCart() {
+                            debugger;
+                            var BindAmount = $("#txtActualPrice").val()
+                            var BindSize = $("#radiobuttonvalue")[0].innerText
+                            var OverAllAmount;
+                            if (BindSize == '2XL') {
+                                OverAllAmount = parseFloat(BindAmount * 10 / 100) + parseFloat(BindAmount)
+                            } else if (BindSize == '3XL') {
+                                OverAllAmount = parseFloat(BindAmount * 10 / 100) + parseFloat(BindAmount)
+                            } else if (BindSize == '4XL') {
+                                OverAllAmount = parseFloat(BindAmount * 15 / 100) + parseFloat(BindAmount)
+                            } else if (BindSize == '5XL') {
+                                OverAllAmount = parseFloat(BindAmount * 15 / 100) + parseFloat(BindAmount)
+                            } else if (BindSize == '6XL') {
+                                OverAllAmount = parseFloat(BindAmount * 20 / 100) + parseFloat(BindAmount)
+                            } else {
+                                OverAllAmount = BindAmount
+                            }
+                            var data = JSON.stringify({
+                                'txtItemID': $("#txtItemID").val(),
+                                'txtColor': $("#txtColor").val(),
+                                'txtMaterial': $("#txtMaterial").val(),
+                                'txtActualPrice': OverAllAmount,
+                                'txtItemImage': $("#txtItemImage").val(),
+                                'txtItemName': $("#txtItemName").val(),
+                                'txtquantity': $("#txtquantity").val(),
+                                // 'ItemSize': $("#ItemSizeID").val(),
+                                'ItemSize': $("#radiobuttonvalue")[0].innerText
+                                // 'txtMaterial': $("#txtMaterial").val(),
+                                // 'txtActualPrice': $("# txtActualPrice").val(),
+                                // 'lblAmount': $("#lblAmount").val(),
+                                // 'lblFinalPrice': $("#lblFinalPrice").val(),
+                            });
+
+                            debugger;
+                            $.ajax({
+                                async: false,
+                                url: '/addCart',
+                                contentType: 'application/json',
+                                type: 'POST',
+                                data: data,
+                                success: function (res) {
+                                    debugger;
+                                    // alert('success')
+                                    if (res.message == 'Success') {
+                                        debugger;
+                                        Swal.fire({
+                                            title: 'Product Add To Cart',
+                                            icon: 'success',
+                                            showCancelButton: false,
+                                            showConfirmButton: false,
+                                            toast: true,
+                                            position: 'top-end',
+                                            timer: 2000
+                                        })
+                                            .then(function () {
+                                                window.location.replace(window.location.origin + '/ItemDetail/' + IDBind)
+                                            });
+                                    } else {
+                                        alert('Something Went Wrong');
+                                    }
+                                },
+                            })
+                        }
+
+                        var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                        var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                        var ID1 = JSON.parse('<%- JSON.stringify(ID) %>');
+
+                        if (error == "Please login to save your wishlist across devices.") {
+                            Swal.fire({
+                                title: error,
+                                confirmButtonText: '<a style="color:white;overflow: hidden;" href="/UserLogIn">LogIn</a>',
+                                showCloseButton: true,
+                                confirmButtonColor: '#967844', // Set the background color #333333
+                                showClass: {
+                                    popup: 'animate__animated animate__fadeInDown'
+                                },
+                                hideClass: {
+                                    popup: 'animate__animated animate__fadeOutUp'
+                                }
+                            });
+                        } else if (error == "Product Add To Wishlist") {
+                            Swal.fire({
+                                title: error,
+                                icon: 'success',
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                                toast: true,
+                                position: 'top-end',
+                                timer: 3000
+                            }).then(function () {
+                                window.location.replace(window.location.origin + '/ItemDetail/' + ID1)
+                            });
+                        } else {
+                            // window.location.replace(window.location.origin + '/ItemDetail/' + ID1)
+                        }
+                    </script>

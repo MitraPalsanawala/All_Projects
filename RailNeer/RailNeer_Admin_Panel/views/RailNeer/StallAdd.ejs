@@ -1,0 +1,419 @@
+<%- include('../partials/head.ejs') %>
+
+    <%- include('../partials/header.ejs') %>
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card card-custom example example-compact"
+                                style="margin-top: 5px; border: 1px solid #ced5da;">
+                                <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Add Stall Detail
+                                        </h3>
+                                    </div>
+                                </div>
+                                <% if(!FetchData){ %>
+                                    <form id="frmStall" class="form" action="/StallAdd" method="post"
+                                        autocomplete="off">
+                                        <div class="card-body">
+                                            <div id="divSearch" class="container-fluid">
+                                                <div class="row" style="margin-left: 0">
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>Station : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <select ID="station_id"
+                                                                class="form-control select2 select2dropdown"
+                                                                name="station_id" tabindex="1">
+                                                                <option Value="">--Select Station--</option>
+                                                                <% if(StationData && StationData.data &&
+                                                                    StationData.data.length>0){ %>
+                                                                    <%for(var i=0; i < StationData.data.length; i++){%>
+                                                                        <option value="<%= StationData.data[i].id %>">
+                                                                            <%= StationData.data[i].station_name %>
+                                                                                (
+                                                                                <%= StationData.data[i].station_code %>)
+                                                                        </option>
+                                                                        <%}%>
+                                                                            <%}%>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>Customer : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <select ID="cust_org_id"
+                                                                class="form-control select2 select2dropdown"
+                                                                name="cust_org_id" tabindex="2">
+                                                                <option Value="">--Select Customer--</option>
+                                                                <% if(CustOrgData && CustOrgData.data &&
+                                                                    CustOrgData.data.length>
+                                                                    0 ){ %>
+                                                                    <%for(var i=0; i < CustOrgData.data.length; i++){%>
+                                                                        <option value="<%= CustOrgData.data[i].id %>">
+                                                                            <%= CustOrgData.data[i].customer_name %>
+                                                                                (<%= CustOrgData.data[i].customer_no %>)
+                                                                        </option>
+                                                                        <%}%>
+                                                                            <%}%>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>Stall Name : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <input type="text" id="name" placeholder="Stall Name"
+                                                                autocomplete="off" class="form-control" name="name"
+                                                                onchange="" maxlength="100" tabindex="3">
+                                                            <!-- <span id="spanPlantNameAlreadyExist" class="error"
+                                                style="display:none;">Plant Name Already Exist</span> -->
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>Stall Code : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <input type="text" id="code" placeholder="Stall Code"
+                                                                autocomplete="off" class="form-control" name="code"
+                                                                maxlength="50" tabindex="4">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>GST No : </label>
+                                                            <input type="text" id="gstnumber" placeholder="GST No"
+                                                                autocomplete="off" class="form-control" name="gstnumber"
+                                                                tabindex="5">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 col-lg-12" style="text-align: right;">
+                                                        <div class="form-group formgroupbuttoncss"
+                                                            style="margin-top: 0">
+                                                            <button type="submit" id="" class="btn btn-primary"
+                                                                style="margin-bottom: 10px;" onclick="" tabindex="6">
+                                                                <i class="la la-check-square-o"
+                                                                    style="color: white;"></i>
+                                                                Submit</button>
+                                                            <button type="reset" value="reset" id="btnCancel"
+                                                                class="btn btn-danger" style="margin-bottom: 10px;"
+                                                                onclick="CancelFunction()" tabindex="7">
+                                                                <i class="fa-window-close fas"></i>Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <% }else{ %>
+                                        <form id="frmStall" class="form" action="/StallUpdate" method="post"
+                                            autocomplete="off">
+                                            <input type="hidden" name="id" id="id" value="<%= FetchData.data[0].id %>">
+                                            <div class="card-body">
+                                                <div id="divSearch" class="container-fluid">
+                                                    <div class="row" style="margin-left: 0">
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Station : </label>
+                                                                <select ID="station_id"
+                                                                    class="form-control select2 select2dropdown"
+                                                                    name="station_id" tabindex="1">
+                                                                    <option Value="">--Select Station--</option>
+                                                                    <% if(StationData && StationData.data &&
+                                                                        StationData.data.length> 0){ %>
+                                                                        <%for(var i=0; i < StationData.data.length;
+                                                                            i++){%>
+                                                                            <% if(StationData.data[i].id.toString()==FetchData.data[0].station_id){
+                                                                                %>
+                                                                                <option
+                                                                                    value="<%= StationData.data[i].id %>"
+                                                                                    selected="selected">
+                                                                                    <%= StationData.data[i].station_name
+                                                                                        %> (
+                                                                                        <%= StationData.data[i].station_code
+                                                                                            %>)
+                                                                                </option>
+                                                                                <% }else{ %>
+                                                                                    <option
+                                                                                        value="<%= StationData.data[i].id %>">
+                                                                                        <%= StationData.data[i].station_name
+                                                                                            %> (
+                                                                                            <%= StationData.data[i].station_code
+                                                                                                %>)
+                                                                                    </option>
+                                                                                    <% } %>
+                                                                                        <%}%>
+                                                                                            <%}%>
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Customer : </label>
+                                                                <select ID="cust_org_id"
+                                                                    class="form-control select2 select2dropdown"
+                                                                    name="cust_org_id" tabindex="2">
+                                                                    <option Value="">--Select Customer--</option>
+                                                                    <% if(CustOrgData && CustOrgData.data &&
+                                                                        CustOrgData.data.length>
+                                                                        0){ %>
+                                                                        <%for(var i=0; i < CustOrgData.data.length;
+                                                                            i++){%>
+                                                                            <% if(CustOrgData.data[i].id.toString()===FetchData.data[0].cust_org_id){
+                                                                                %>
+                                                                                <option
+                                                                                    value="<%= CustOrgData.data[i].id %>"
+                                                                                    selected="selected">
+                                                                                    <%= CustOrgData.data[i].customer_name
+                                                                                        %>
+                                                                                        (<%= CustOrgData.data[i].customer_no
+                                                                                            %>)
+                                                                                </option>
+                                                                                <% }else{ %>
+                                                                                    <option
+                                                                                        value="<%= CustOrgData.data[i].id %>">
+                                                                                        <%= CustOrgData.data[i].customer_name
+                                                                                            %>
+                                                                                            (<%= CustOrgData.data[i].customer_no
+                                                                                                %>)
+                                                                                    </option>
+                                                                                    <% } %>
+
+                                                                                        <%}%>
+                                                                                            <%}%>
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Stall Name : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="name" placeholder="Stall Name"
+                                                                    autocomplete="off" class="form-control" name="name"
+                                                                    onchange="" value="<%= FetchData.data[0].name %>"
+                                                                    tabindex="3" maxlength="100">
+                                                                <!-- <span id="spanPlantNameAlreadyExist" class="error"
+                                                    style="display:none;">Plant Name Already Exist</span> -->
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Stall Code : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="code" placeholder="Stall Code"
+                                                                    autocomplete="off" class="form-control" name="code"
+                                                                    value="<%= FetchData.data[0].code %>" tabindex="4"
+                                                                    maxlength="50">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>GST No : </label>
+                                                                <input type="text" id="gstnumber" placeholder="GST No"
+                                                                    autocomplete="off" class="form-control"
+                                                                    name="gstnumber"
+                                                                    value="<%= FetchData.data[0].gstnumber %>"
+                                                                    tabindex="5">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12 col-lg-12" style="text-align: right;">
+                                                            <div class="form-group formgroupbuttoncss"
+                                                                style="margin-top: 0">
+                                                                <button type="submit" id="" class="btn btn-primary"
+                                                                    style="margin-bottom: 10px;" onclick=""
+                                                                    tabindex="6">
+                                                                    <i class="la la-check-square-o"
+                                                                        style="color: white;"></i>
+                                                                    Submit</button>
+                                                                <button type="reset" value="reset" id="btnCancel"
+                                                                    class="btn btn-danger" style="margin-bottom: 10px;"
+                                                                    onclick="CancelFunction()" tabindex="7">
+                                                                    <i class="fa-window-close fas"></i>Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <% } %>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Entry-->
+        </div>
+
+
+        <%- include('../partials/footer.ejs') %>
+            <script type="text/javascript">
+                $('document').ready(function () {
+                    $('textarea').each(function () {
+                        $(this).val($(this).val().trim());
+                    }
+                    );
+                });
+
+                function CancelFunction() {
+                    window.location.href = "/StallAdd";
+                }
+
+                $(".select2dropdown").select2();
+
+                $("#frmStall").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        station_id: {
+                            required: "Please Select Station"
+                        },
+                        cust_org_id: {
+                            required: "Please Select Customer"
+                        },
+                        name: {
+                            required: "Please Enter Stall Name"
+                        },
+                        code: {
+                            required: "Please Enter Stall Code"
+                        }
+
+                    },
+                    rules: {
+                        station_id: {
+                            required: true,
+                        },
+                        cust_org_id: {
+                            required: true,
+                        },
+                        name: {
+                            required: true,
+                        },
+                        code: {
+                            required: true
+                        }
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+                function ValidateCustomData() {
+                    if (ValidatePlantName()) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+
+                function ValidatePlantName() {
+                    var data = JSON.stringify({
+                        'plant_name': $("#plant_name").val(),
+                        'plant_id': $("#plant_id").val(),
+                    });
+                    $.ajax({
+                        accepts: "application/json",
+                        async: false,
+                        type: "POST",
+                        contentType: 'application/json',
+                        url: "/CheckPlantName",
+                        data: data,
+                        success: function (res) {
+                            if (res.Message == "true") {
+                                returndata = true;
+                                $("#spanPlantNameAlreadyExist").css("display", "none");
+                            }
+                            else {
+                                returndata = false;
+                                $("#spanPlantNameAlreadyExist").css("display", "block");
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            return false;
+                            $("#spanPlantNameAlreadyExist").css("display", "block");
+                        }
+                    });
+
+                    return returndata;
+                }
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/StallAdd') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/StallAdd/' + ID)
+                        }
+                    });
+                }
+            </script>

@@ -1,0 +1,264 @@
+<%- include('../partials/head.ejs') %>
+    <%- include('../partials/header.ejs') %>
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card card-custom example example-compact" style="margin-top: 5px;">
+                                <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Add Ticket Detail
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <form id="frmTicket" class="form" action="/AddTicket" method="post" autocomplete="off"
+                                    enctype="multipart/form-data">
+                                    <div class="card-body">
+                                        <div id="divSearch" class="container-fluid">
+                                            <div class="row" style="margin-left: 0">
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>Subject : <span class="text-danger ml-1">*</span></label>
+                                                        <input type="text" id="subject" placeholder="subject"
+                                                            autocomplete="off" class="form-control" name="subject">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 col-lg-3">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>Attachment 1 </label>
+                                                        <input type="file" id="UploadFile1" name="Attechments"
+                                                            class="form-control" />
+                                                        <span class="error"></span>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-3 col-lg-3">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>Attachment 2 </label>
+                                                        <input type="file" id="UploadFile2" name="Attechments"
+                                                            class="form-control" />
+                                                        <span class="error"></span>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-3 col-lg-3">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>Attachment 3 </label>
+                                                        <input type="file" id="UploadFile3" name="Attechments"
+                                                            class="form-control" />
+                                                        <span class="error"></span>
+                                                    </div><br>
+                                                </div>
+
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>Description : <span
+                                                                class="text-danger ml-1">*</span></label>
+                                                        <textarea class="form-control" name="description"
+                                                            placeholder="Description" id="description" rows="3" cols="5"
+                                                            wrap="virtual" tabindex="4">
+                                                    </textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupbuttoncss" style="
+                                                            margin-top: 48px;">
+                                                        <button type="submit" id="" class="btn btn-primary"
+                                                            style="margin-bottom: 10px;"
+                                                            onclick="return ValidateCustomData()">
+                                                            <i class="la la-check-square-o" style="color: white;"></i>
+                                                            Submit</button>
+                                                        <button type="reset" value="reset" id="btnCancel"
+                                                            class="btn btn-danger" style="margin-bottom: 10px;"
+                                                            onclick="CancelFunction()">
+                                                            <i class="fa-window-close fas"></i>Cancel</button>
+                                                        <!-- <button type="reset" value="reset" id="btnCancel"
+                                                                class="btn btn-success" style="margin-bottom: 10px;"
+                                                                onclick="">
+                                                                <i class="fa-upload fas"></i>Upload Excel</button> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                        <!-- code table -->
+                    </div>
+                </div>
+
+            </div>
+            <!--end::Entry-->
+        </div>
+
+        <%- include('../partials/footer.ejs') %>
+
+            <script type="text/javascript">
+
+                $('document').ready(function () {
+                    $('textarea').each(function () {
+                        $(this).val($(this).val().trim());
+                    }
+                    );
+                });
+
+                function CancelFunction() {
+                    window.location.href = "/AddTicket";
+                }
+
+                $(".select2dropdown").select2();
+
+                $("#frmTicket").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        subject: {
+                            required: "Please Enter Subject"
+                        },
+                        description: {
+                            required: "Please Enter Description"
+                        }
+                    },
+                    rules: {
+                        subject: {
+                            required: true,
+                        },
+                        description: {
+                            required: true
+                        }
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+
+                $("body").on("change", "#UploadFile1", function (e) {
+                    var file;
+                    if (this.files.length > 0) {
+                        for (var i = 0; i < this.files.length; i++) {
+                            var FileMIMEType = this.files[i].type;
+                            file = this.files[0];
+                            if ((FileMIMEType == "image/jpg" || FileMIMEType == "image/jpeg" || FileMIMEType == "image/png")) {
+                                $(this).next().css("display", "none");
+                                IsFalg = true;
+                            } else {
+                                $(this).addClass("error");
+                                $(this).val("");
+                                this.focus();
+                                $(this).next().html("");
+                                $(this).next().css("display", "block");
+                                $(this).next().html("Only JPG, JPEG, PNG, File Is Allowed");
+                                IsFalg = false;
+                            }
+                        }
+                    }
+                });
+
+                $("body").on("change", "#UploadFile2", function (e) {
+                    var file;
+                    if (this.files.length > 0) {
+                        for (var i = 0; i < this.files.length; i++) {
+                            var FileMIMEType = this.files[i].type;
+                            file = this.files[0];
+                            if ((FileMIMEType == "image/jpg" || FileMIMEType == "image/jpeg" || FileMIMEType == "image/png")) {
+                                $(this).next().css("display", "none");
+                                IsFalg = true;
+                            } else {
+                                $(this).addClass("error");
+                                $(this).val("");
+                                this.focus();
+                                $(this).next().html("");
+                                $(this).next().css("display", "block");
+                                $(this).next().html("Only JPG, JPEG, PNG, File Is Allowed");
+                                IsFalg = false;
+                            }
+                        }
+                    }
+                });
+
+                $("body").on("change", "#UploadFile3", function (e) {
+                    var file;
+                    if (this.files.length > 0) {
+                        for (var i = 0; i < this.files.length; i++) {
+                            var FileMIMEType = this.files[i].type;
+                            file = this.files[0];
+                            if ((FileMIMEType == "image/jpg" || FileMIMEType == "image/jpeg" || FileMIMEType == "image/png")) {
+                                $(this).next().css("display", "none");
+                                IsFalg = true;
+                            } else {
+                                $(this).addClass("error");
+                                $(this).val("");
+                                this.focus();
+                                $(this).next().html("");
+                                $(this).next().css("display", "block");
+                                $(this).next().html("Only JPG, JPEG, PNG, File Is Allowed");
+                                IsFalg = false;
+                            }
+                        }
+                    }
+                });
+
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/AddTicket') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/AddTicket/' + ID)
+                        }
+                    });
+                }
+            </script>

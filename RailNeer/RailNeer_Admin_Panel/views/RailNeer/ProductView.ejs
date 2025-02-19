@@ -1,0 +1,859 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 600;
+            color: #181C32;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card card-custom example example-compact"
+                                style="margin-top: 5px; border: 1px solid #ced5da;">
+                                <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                    <div class="card-title">
+                                        <h3 class="card-label">
+                                        </h3>
+                                    </div>
+                                    <div class="card-toolbar"
+                                        style="text-align: left; display: block; width: 80%; padding-top: 10px">
+                                        <button id="btnFilter" type="button" onclick="divhideShowFilterDetail(this)"
+                                            style="margin-right: 1%; float: right;"
+                                            class="btn btn-primary mr-2 filtercss">
+                                            <i class="fa fa-filter"></i> Filter &nbsp; <i class="fa fa-plus"></i>
+                                        </button>
+                                        <button id="btnAddProductDetail" type="button"
+                                            onclick="divhideShowAddProductDetail(this)"
+                                            style="margin-right: 1%; float: right;"
+                                            class="btn btn-primary mr-2 filtercss"><i class="fa fa-plus"></i> Map
+                                            Product</button>
+                                    </div>
+                                </div>
+
+                                <% if(!FetchData){%>
+                                    <form id="frmAddProductDetail" class="form form-horizontal" autocomplete="off"
+                                        method="post" action="/AddProduct">
+                                        <div class="card card-custom gutter-b example example-compact">
+                                            <div class="card-body" id="divAddProduct" style="display: none;">
+                                                <div class="card card-custom example example-compact">
+                                                    <div class="card-header">
+                                                        <div class="card-title">
+                                                            <h3 class="card-label h3css">Map Product
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2" style="margin-left: 0">
+                                                        <input type="hidden" id="plant_id" name="plant_id"
+                                                            value="<%= plantDetail.data.length > 0 ? plantDetail.data[0].plant_id : '' %>">
+                                                        <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Plant Name : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="plant_name"
+                                                                    placeholder="Plant Name" autocomplete="off"
+                                                                    class="form-control" name="plant_name"
+                                                                    value="<%= plantDetail.data.length > 0 ? plantDetail.data[0].plant_name : '' %>"
+                                                                    readonly>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Plant Code : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="plant_code"
+                                                                    placeholder="Plant Code" autocomplete="off"
+                                                                    class="form-control AllowNumberKey"
+                                                                    name="plant_code"
+                                                                    value="<%= plantDetail.data.length > 0 ? plantDetail.data[0].plant_code : ''%>"
+                                                                    readonly>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Product : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <select id="product_id"
+                                                                    class="form-control select2 select2dropdown"
+                                                                    name="product_id" tabindex="1"
+                                                                    onchange="return bindPrice()">
+                                                                    <option Value="">--Select Product--</option>
+                                                                    <% if(productList && productList.data &&
+                                                                        productList.data.length> 0){%>
+                                                                        <%for(var i=0; i < productList.data.length;
+                                                                            i++){%>
+                                                                            <option
+                                                                                value="<%= productList.data[i].id %>">
+                                                                                <%= productList.data[i].product_name %>
+                                                                                    (Price-
+                                                                                    <%= productList.data[i].base_price
+                                                                                        %>)
+                                                                            </option>
+                                                                            <%}%>
+                                                                                <%}%>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Cost Category : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <select id="cost_category_id"
+                                                                    class="form-control select2 select2dropdown"
+                                                                    name="cost_category_id" tabindex="2">
+                                                                    <option Value="">--Select Cost Category--</option>
+                                                                    <% if(costCategoryList && costCategoryList.data &&
+                                                                        costCategoryList.data.length> 0){%>
+                                                                        <%for(var i=0; i < costCategoryList.data.length;
+                                                                            i++){%>
+                                                                            <option
+                                                                                value="<%= costCategoryList.data[i].cost_category_id %>">
+                                                                                <%= costCategoryList.data[i].cost_category
+                                                                                    %>
+                                                                            </option>
+                                                                            <%}%>
+                                                                                <%}%>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Qty Per Carton : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="QtyPerCarton"
+                                                                    placeholder="Qty Per Carton" autocomplete="off"
+                                                                    class="form-control AllowDecimalNumberKey"
+                                                                    name="QtyPerCarton" tabindex="3" maxlength="5"
+                                                                    onkeyup="sum();">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Total Price: <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="TotalPrice"
+                                                                    placeholder="Total Price" autocomplete="off"
+                                                                    class="form-control AllowNumberKey"
+                                                                    name="TotalPrice" tabindex="3" maxlength="10"
+                                                                    readonly="readonly">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Cost Category Extra Charges: </label>
+                                                                <input type="text" id="CostCategoryExtraCharge"
+                                                                    placeholder="Cost Category Extra Charge"
+                                                                    autocomplete="off"
+                                                                    class="form-control AllowDecimalNumberKey"
+                                                                    name="CostCategoryExtraCharge" tabindex="3"
+                                                                    maxlength="7" onkeyup="sum();">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>GST (In %) : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="GST" placeholder="GST (In %)"
+                                                                    autocomplete="off" value="18"
+                                                                    class="form-control AllowNumberKey" name="GST"
+                                                                    maxlength="5" tabindex="4">
+                                                            </div>
+                                                        </div>
+
+                                                        <input type="hidden" id="txtPrice" name="txtPrice" value=""
+                                                            onkeyup="sum();">
+
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="display: flex; align-items: center">
+                                                            <div class="form-group formgroupbuttoncss"
+                                                                style="margin-top: 0">
+                                                                <button type="submit" id="btnSubmit"
+                                                                    class="btn btn-primary"
+                                                                    style="margin-bottom: 10px;">Submit</button>
+                                                                <button type="reset" value="reset" id="btnCancel"
+                                                                    class="btn btn-danger" style="margin-bottom: 10px;"
+                                                                    onclick="CancelFunction()">Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <%} else {%>
+                                        <form id="frmAddProductDetail" class="form form-horizontal" autocomplete="off"
+                                            method="post" action="/AddProduct">
+                                            <div class="card card-custom gutter-b example example-compact">
+                                                <div class="card-body" id="divAddProduct" style="display: none;">
+                                                    <div class="card card-custom example example-compact">
+                                                        <div class="card-header">
+                                                            <div class="card-title">
+                                                                <h3 class="card-label h3css">Map Product
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-2" style="margin-left: 0">
+                                                            <input type="hidden" id="plant_id" name="plant_id"
+                                                                value="<%= plantDetail.data.length > 0 ? plantDetail.data[0].plant_id : '' %>">
+                                                            <input type="hidden" id="product_plant_mapping_id"
+                                                                name="product_plant_mapping_id"
+                                                                value="<%= FetchData.data.length > 0 ? FetchData.data[0].product_plant_mapping_id : '' %>">
+                                                            <input type="hidden" id="unit_cost_id" name="unit_cost_id"
+                                                                value="<%= FetchData.data.length > 0 ? FetchData.data[0].id : '' %>">
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Plant Name : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <input type="text" id="plant_name"
+                                                                        placeholder="Plant Name" autocomplete="off"
+                                                                        class="form-control" name="plant_name"
+                                                                        value="<%= plantDetail.data.length > 0 ? plantDetail.data[0].plant_name : '' %>"
+                                                                        readonly>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Plant Code : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <input type="text" id="plant_code"
+                                                                        placeholder="Plant Code" autocomplete="off"
+                                                                        class="form-control AllowNumberKey"
+                                                                        name="plant_code"
+                                                                        value="<%= plantDetail.data.length > 0 ? plantDetail.data[0].plant_code : ''%>"
+                                                                        readonly>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Product : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <select id="product_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="product_id" tabindex="1"
+                                                                        onchange="return bindPrice()" disabled>
+                                                                        <option Value="">--Select Product--</option>
+                                                                        <% if(productList && productList.data &&
+                                                                            productList.data.length> 0){ %>
+                                                                            <%for(var i=0; i < productList.data.length;
+                                                                                i++){%>
+                                                                                <%if(productList.data[i].id.toString()==FetchData.data[0].ProductMappingDetail[0].product_id.toString()){%>
+                                                                                    <option
+                                                                                        value="<%= productList.data[i].id %>"
+                                                                                        selected="selected">
+                                                                                        <%= productList.data[i].product_name
+                                                                                            %>(Price-
+                                                                                            <%= productList.data[i].base_price
+                                                                                                %>)
+                                                                                    </option>
+                                                                                    <%}else{%>
+                                                                                        <option
+                                                                                            value="<%= productList.data[i].id %>">
+                                                                                            <%= productList.data[i].product_name
+                                                                                                %>(Price-
+                                                                                                <%= productList.data[i].base_price
+                                                                                                    %>)
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                                                <%} else {%>
+                                                                                                    <%for(var i=0; i <
+                                                                                                        productList.data.length;
+                                                                                                        i++){%>
+                                                                                                        <option
+                                                                                                            value="<%= productList.data[i].id %>">
+                                                                                                            <%= productList.data[i].product_name
+                                                                                                                %>
+                                                                                                                (Price-
+                                                                                                                <%= productList.data[i].base_price
+                                                                                                                    %>)
+                                                                                                        </option>
+                                                                                                        <%}%>
+                                                                                                            <%}%>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <input type="hidden" id="txtPrice" name="txtPrice" value="<%= FetchData.data.length > 0 ?  FetchData.data[0].ProductMappingDetail[0].Product_Detail[0].base_price
+                                                                : '' %>" onkeyup="sum();">
+
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Cost Category : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <select id="cost_category_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="cost_category_id" tabindex="2" disabled>
+                                                                        <option Value="">--Select Cost Category--
+                                                                        </option>
+                                                                        <% if(costCategoryList && costCategoryList.data
+                                                                            && costCategoryList.data.length> 0){%>
+                                                                            <%for(var i=0; i <
+                                                                                costCategoryList.data.length; i++){%>
+                                                                                <%if(costCategoryList.data[i].cost_category_id.toString()==FetchData.data[0].cost_category.toString()){%>
+                                                                                    <option
+                                                                                        value="<%= costCategoryList.data[i].cost_category_id %>"
+                                                                                        selected="selected">
+                                                                                        <%= costCategoryList.data[i].cost_category
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}else{%>
+                                                                                        <option
+                                                                                            value="<%= costCategoryList.data[i].cost_category_id %>">
+                                                                                            <%= costCategoryList.data[i].cost_category
+                                                                                                %>
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                                                <%} else { %>
+                                                                                                    <%for(var i=0; i <
+                                                                                                        costCategoryList.data.length;
+                                                                                                        i++){%>
+                                                                                                        <option
+                                                                                                            value="<%= costCategoryList.data[i].cost_category_id %>">
+                                                                                                            <%= costCategoryList.data[i].cost_category
+                                                                                                                %>
+                                                                                                        </option>
+                                                                                                        <%}%>
+                                                                                                            <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Qty Per Carton : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <input type="text" id="QtyPerCarton"
+                                                                        placeholder="Qty Per Carton" autocomplete="off"
+                                                                        class="form-control AllowDecimalNumberKey"
+                                                                        name="QtyPerCarton" tabindex="3" maxlength="5"
+                                                                        value="<%= FetchData.data[0].ProductMappingDetail.length > 0 ? FetchData.data[0].ProductMappingDetail[0].qty_per_carton : '' %>"
+                                                                        onkeyup="sum();">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Total Price: <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <input type="text" id="TotalPrice"
+                                                                        placeholder="Total Price" autocomplete="off"
+                                                                        class="form-control AllowNumberKey"
+                                                                        name="TotalPrice" tabindex="3" maxlength="10"
+                                                                        value="<%= FetchData.data.length > 0 ? FetchData.data[0].cost : '' %>"
+                                                                        readonly="readonly">
+                                                                </div>
+                                                            </div>
+                                                            <% var BindCategory=0 %>
+                                                                <% var CostCategory=0 %>
+                                                                    <% BindCategory=parseFloat(FetchData.data[0].ProductMappingDetail[0].Product_Detail[0].base_price)
+                                                                        *
+                                                                        parseFloat(FetchData.data[0].ProductMappingDetail[0].qty_per_carton)
+                                                                        %>
+                                                                        <% if(FetchData.data[0].cost < BindCategory){ %>
+                                                                            <% CostCategory= 0 %>
+                                                                            <%}else{%>
+                                                                                <% CostCategory=parseFloat(FetchData.data[0].cost)-parseFloat(BindCategory)
+                                                                                    %>
+                                                                                    <%}%>
+                                                                                        <div class="col-md-3 col-lg-3"
+                                                                                            style="margin-bottom: 10px">
+                                                                                            <div
+                                                                                                class="form-group formgroupcss">
+                                                                                                <label>Cost Category
+                                                                                                    Extra
+                                                                                                    Charges:
+                                                                                                </label>
+                                                                                                <input type="text"
+                                                                                                    id="CostCategoryExtraCharge"
+                                                                                                    placeholder="Cost Category Extra Charge"
+                                                                                                    autocomplete="off"
+                                                                                                    class="form-control AllowDecimalNumberKey"
+                                                                                                    name="CostCategoryExtraCharge"
+                                                                                                    tabindex="3"
+                                                                                                    maxlength="7"
+                                                                                                    value="<%- CostCategory.toFixed(2) %>"
+                                                                                                    onkeyup="sum();">
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-md-3 col-lg-3"
+                                                                                            style="margin-bottom: 10px">
+                                                                                            <div
+                                                                                                class="form-group formgroupcss">
+                                                                                                <label>GST (In %) :
+                                                                                                    <span
+                                                                                                        class="text-danger ml-1">*</span></label>
+                                                                                                <input type="text"
+                                                                                                    id="GST"
+                                                                                                    placeholder="GST (In %)"
+                                                                                                    autocomplete="off"
+                                                                                                    class="form-control AllowNumberKey"
+                                                                                                    name="GST"
+                                                                                                    maxlength="5"
+                                                                                                    tabindex="4"
+                                                                                                    value="<%= FetchData.data.length > 0 ? FetchData.data[0].gst : '' %>">
+                                                                                            </div>
+                                                                                        </div>
+
+
+                                                                                        <div class="col-md-3 col-lg-3"
+                                                                                            style="display: flex; align-items: center">
+                                                                                            <div class="form-group formgroupbuttoncss"
+                                                                                                style="margin-top: 0">
+                                                                                                <button type="submit"
+                                                                                                    id="btnSubmit"
+                                                                                                    class="btn btn-primary"
+                                                                                                    style="margin-bottom: 10px;">Update</button>
+                                                                                                <button type="reset"
+                                                                                                    value="reset"
+                                                                                                    id="btnCancel"
+                                                                                                    class="btn btn-danger"
+                                                                                                    style="margin-bottom: 10px;"
+                                                                                                    onclick="CancelFunction()">Cancel</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <%}%>
+                                            <form id="frmFilterProductDetail" class="form form-horizontal"
+                                                autocomplete="off" action="/ProductView" method="post">
+                                                <div class="card card-custom gutter-b example example-compact">
+                                                    <div class="card-body" id="divSearch" style="display: none;">
+                                                        <div class="card card-custom example example-compact">
+                                                            <div class="card-header">
+                                                                <div class="card-title">
+                                                                    <h3 class="card-label h3css">Filter
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-2" style="margin-left: 0">
+                                                                <input type="hidden" id="plant_id" name="plant_id"
+                                                                    value="<%= plantDetail.data.length > 0 ? plantDetail.data[0].plant_id : '' %>">
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Product : </label>
+                                                                        <select id="filter_product_id"
+                                                                            class="form-control select2 select2dropdown"
+                                                                            name="filter_product_id" tabindex="1">
+                                                                            <option Value="">--Select Product--</option>
+                                                                            <%if(productList && productList.data &&
+                                                                                productList.data.length> 0 ){%>
+                                                                                <%for(var i=0; i <
+                                                                                    productList.data.length; i++){%>
+                                                                                    <option
+                                                                                        value="<%= productList.data[i].id %>">
+                                                                                        <%= productList.data[i].product_name
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <% }%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Cost Category : </label>
+                                                                        <select id="filter_cost_category_id"
+                                                                            class="form-control select2 select2dropdown"
+                                                                            name="filter_cost_category_id" tabindex="2">
+                                                                            <option Value="">--Select Cost Category--
+                                                                            </option>
+                                                                            <%if(costCategoryList &&
+                                                                                costCategoryList.data &&
+                                                                                costCategoryList.data.length> 0){%>
+                                                                                <%for(var i=0; i <
+                                                                                    costCategoryList.data.length;
+                                                                                    i++){%>
+                                                                                    <option
+                                                                                        value="<%= costCategoryList.data[i].cost_category_id %>">
+                                                                                        <%= costCategoryList.data[i].cost_category
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="display: flex; align-items: center">
+                                                                    <div class="form-group formgroupbuttoncss"
+                                                                        style="margin-top: 0">
+                                                                        <button type="submit" id="btnSearch"
+                                                                            class="btn btn-primary"
+                                                                            style="margin-bottom: 10px;">Search</button>
+                                                                        <button type="reset" value="reset"
+                                                                            id="btnCancel" class="btn btn-danger"
+                                                                            style="margin-bottom: 10px;"
+                                                                            onclick="CancelFunction()">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card-body">
+                                                        <div class="card card-custom gutter-b example example-compact">
+                                                            <div class="card-header">
+                                                                <div class="card-title">
+                                                                    <h3 class="card-label h3css">View Map Product Detail
+                                                                    </h3>
+                                                                    <h3 class="card-label h3css">
+                                                                        <% if(plantDetail && plantDetail.data &&
+                                                                            plantDetail.data.length> 0){ %>
+                                                                            <span style="font-weight: bold;">
+                                                                                (<%= plantDetail.data[0].plant_name %> -
+                                                                                    <%= plantDetail.data[0].plant_code
+                                                                                        %>)
+                                                                            </span>
+                                                                            <%}%>
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                            <div id="datatable-container" class="card-body cardbodycss"
+                                                                style="overflow: auto;position:relative">
+                                                                <!--begin: Datatable-->
+                                                                <table class="table table-bordered"
+                                                                    id="tblProductMappingDetail">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="tdcss" width="5%">
+                                                                                Sr.
+                                                                                No.</th>
+                                                                            <th class="tdcss" width="10%">
+                                                                                Product
+                                                                            </th>
+                                                                            <th class="tdcss" width="10%">
+                                                                                Cost
+                                                                                Category</th>
+                                                                            <th class="tdcss" width="5%">
+                                                                                GST</th>
+                                                                            <th class="tdcss" width="10%">
+                                                                                Cost
+                                                                            </th>
+                                                                            <th class="tdcss" width="10%">
+                                                                                Qty Per
+                                                                                Carton</th>
+                                                                            <!-- <th class="tdcss" width="10%">
+                                                                                Entry
+                                                                                Date</th> -->
+                                                                            <th class="tdcss" width="5%">
+                                                                                Edit</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tblbody">
+                                                                        <%if(productMappingData &&
+                                                                            productMappingData.data &&
+                                                                            productMappingData.data.length> 0){%>
+                                                                            <% for(var i=0; i <
+                                                                                productMappingData.data.length; i++) {%>
+                                                                                <tr>
+                                                                                    <td class="tdcss">
+                                                                                        <span class="tdfont">
+                                                                                            <%= i+1 %>
+                                                                                        </span>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%- productMappingData.data[i].ProductMappingDetail
+                                                                                            ?
+                                                                                            productMappingData.data[i].ProductMappingDetail[0].Product_Detail
+                                                                                            ?
+                                                                                            productMappingData.data[i].ProductMappingDetail[0].Product_Detail[0].product_name
+                                                                                            : '' : '' %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%- productMappingData.data[i].cost_category_detail
+                                                                                            ?
+                                                                                            productMappingData.data[i].cost_category_detail[0].cost_category
+                                                                                            : '' %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%- productMappingData.data[i].gst
+                                                                                            %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%- productMappingData.data[i].cost
+                                                                                            %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%- productMappingData.data[i].ProductMappingDetail
+                                                                                            ?
+                                                                                            productMappingData.data[i].ProductMappingDetail[0].qty_per_carton
+                                                                                            : '' %>
+                                                                                    </td>
+                                                                                    <!-- <td>
+                                                                                        <%- productMappingData.data[i].created_at
+                                                                                            %>
+                                                                                    </td> -->
+                                                                                    <td>
+                                                                                        <a
+                                                                                            href="/editProductMapping/<%-  productMappingData.data[i].ProductMappingDetail[0].plant_id%>/<%- productMappingData.data[i].id %>">
+                                                                                            <i class="la la-pencil-square-o"
+                                                                                                style="font-size:24px;color: #03449e;"></i></a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <%}%>
+                                                                                    <% }%>
+
+
+                                                                    </tbody>
+                                                                </table>
+                                                                <!--end: Datatable-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+        <%- include('../partials/footer.ejs') %>
+            <script>
+
+                $("#frmAddProductDetail").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        plant_name: {
+                            required: "Please Enter Plant Name"
+                        },
+                        plant_code: {
+                            required: "Please Enter Plant Code"
+                        },
+                        product_id: {
+                            required: "Please Select Product"
+                        },
+                        cost_category_id: {
+                            required: "Please Select Cost Category"
+                        },
+                        QtyPerCarton: {
+                            required: "Please Enter Qty Per Carton"
+                        },
+                        GST: {
+                            required: "Please Enter GST"
+                        },
+                        // CartonCost: {
+                        //     required: "Please Enter Cost"
+                        // }
+                    },
+                    rules: {
+                        plant_name: {
+                            required: true,
+                        },
+                        plant_code: {
+                            required: true,
+                        },
+                        product_id: {
+                            required: true
+                        },
+                        cost_category_id: {
+                            required: true
+                        },
+                        QtyPerCarton: {
+                            required: true
+                        },
+                        GST: {
+                            required: true
+                        },
+                        // CartonCost: {
+                        //     required: true
+                        // }
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+                var ID = JSON.parse('<%- JSON.stringify(ID) %>');
+
+                function CancelFunction() {
+                    window.location.href = "/ProductView/" + ID;
+                }
+
+                function divhideShowAddProductDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divAddProduct").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divAddProduct").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+
+                    $(".select2dropdown").select2();
+                }
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divSearch").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divSearch").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+
+                    $(".select2dropdown").select2();
+                }
+
+                var fetchData = JSON.parse(`<%- JSON.stringify(FetchData).replace(/[\n\r\t]/g, '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'") %>`);
+
+                if (fetchData) {
+                    let div = document.getElementById("divAddProduct");
+                    $("#divAddProduct").css("display", "block");
+                    $(div).find('.fa-plus').addClass('fa-minus')
+                    $(div).find('.fa-plus').removeClass('fa-plus')
+                }
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                var SetSearchData = SearchData.split('~');
+
+                if (SetSearchData[0] != 'undefined' && SetSearchData[0] != '') {
+                    $("#filter_product_id").val(SetSearchData[0]);
+                }
+
+                if (SetSearchData[1] != 'undefined' && SetSearchData[1] != '') {
+                    $("#filter_cost_category_id").val(SetSearchData[1]);
+                }
+
+                searchStatus = SetSearchData[2];
+
+                if (searchStatus == 'true') {
+                    $("#divSearch").css("display", "block");
+                    $("#btnFilter").find('.fa-plus').addClass('fa-minus')
+                    $("#btnFilter").find('.fa-plus').removeClass('fa-plus')
+                }
+
+                $(".select2dropdown").select2();
+
+                $("#tblProductMappingDetail").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+                function bindPrice() {
+                    var bindprice;
+                    var data = JSON.stringify({
+                        'id': $("#product_id").val(),
+                    });
+                    $.ajax({
+                        accepts: "application/json",
+                        async: false,
+                        type: "POST",
+                        contentType: 'application/json',
+                        url: "/BindProdutPrice",
+                        data: data,
+                        success: function (res) {
+                            if (res.data && res.data.data && res.data.data.length > 0) {
+                                $("#txtPrice").val(res.data.data[0].base_price);
+                                var txtFirstNumberValue = document.getElementById('txtPrice').value;
+                                var txtSecondNumberValue = document.getElementById('QtyPerCarton').value;
+                                var txtThirdNumberValue = document.getElementById('CostCategoryExtraCharge').value;
+                                var result = parseFloat(txtFirstNumberValue) * parseFloat(txtSecondNumberValue);
+                                var Total = result + parseFloat(txtThirdNumberValue)
+                                if (!isNaN(result)) {
+                                    document.getElementById('TotalPrice').value = result;
+                                }
+                                if (!isNaN(Total)) {
+                                    document.getElementById('TotalPrice').value = Total;
+                                }
+                            }
+                        },
+                    });
+                }
+
+                function sum() {
+                    var txtFirstNumberValue = document.getElementById('txtPrice').value;
+                    var txtSecondNumberValue = document.getElementById('QtyPerCarton').value;
+                    var txtThirdNumberValue = document.getElementById('CostCategoryExtraCharge').value;
+                    var result = parseFloat(txtFirstNumberValue) * parseFloat(txtSecondNumberValue);
+                    var Total = result + parseFloat(txtThirdNumberValue)
+                    if (!isNaN(result)) {
+                        document.getElementById('TotalPrice').value = result;
+                    }
+                    if (!isNaN(Total)) {
+                        document.getElementById('TotalPrice').value = Total;
+                    }
+                }
+
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                // var error1 = '<%- JSON.stringify(alertMessage) %>';
+                var error1 = JSON.parse(`<%- JSON.stringify(alertMessage).replace(/[\n\r\t]/g, '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'") %>`);
+
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        type: errortype,
+                        icon: icon,
+                        iconColor: '#03449e',
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        window.location.replace(window.location.origin + '/ProductView/' + ID)
+                    });
+                } 
+            </script>

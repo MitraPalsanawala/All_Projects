@@ -1,0 +1,773 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+
+        .dataTables_wrapper .dataTable td,
+        .dataTables_wrapper .dataTable thead th {
+            white-space: nowrap !important;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divAddCustOrg" style="display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Add Customer Organization Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <% if(!FetchData){ %>
+                                                <form id="frmCustOrg" class="form" action="/setCustOrgDetail"
+                                                    method="post" autocomplete="off">
+                                                    <div class="card-body">
+                                                        <div id="divSearch" class="">
+                                                            <div class="row" style="margin-bottom: -28px;">
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Cust Org Name : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <input type="text" id="customer_name"
+                                                                            placeholder="Cust Org Name"
+                                                                            autocomplete="off"
+                                                                            class="form-control AllowAlphabetSpaceKey"
+                                                                            name="customer_name" onchange=""
+                                                                            tabindex="1" maxlength="50">
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Cust Org MobileNo : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <input type="text" id="customer_no"
+                                                                            placeholder="Cust Org Number"
+                                                                            autocomplete="off"
+                                                                            class="form-control AllowNumberKey"
+                                                                            name="customer_no" onchange=""
+                                                                            maxlength="10" tabindex="2">
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Licensee Type : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <select ID="customer_type"
+                                                                            class="form-control select2dropdown select2"
+                                                                            name="customer_type" tabindex="3">
+                                                                            <option Value="">--Select Licensee
+                                                                                Type--
+                                                                            </option>
+                                                                            <% if(CustTypeData && CustTypeData.data &&
+                                                                                CustTypeData.data.length> 0){ %>
+                                                                                <%for(var i=0; i <
+                                                                                    CustTypeData.data.length; i++){%>
+                                                                                    <option
+                                                                                        value="<%= CustTypeData.data[i].customer_type_id %>">
+                                                                                        <%= CustTypeData.data[i].customer_type
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>State : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <select ID="state_id"
+                                                                            class="form-control select2dropdown select2"
+                                                                            name="state_id" tabindex="4">
+                                                                            <option Value="">--Select State--</option>
+                                                                            <% if(StateData && StateData.data &&
+                                                                                StateData.data.length> 0){ %>
+                                                                                <%for(var i=0; i <
+                                                                                    StateData.data.length; i++){%>
+                                                                                    <option
+                                                                                        value="<%= StateData.data[i].state_id %>">
+                                                                                        <%= StateData.data[i].state_name
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>City : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <input type="text" id="city" placeholder="City"
+                                                                            autocomplete="off"
+                                                                            class="form-control AllowAlphabetSpaceKey"
+                                                                            name="city" value="" tabindex="5"
+                                                                            maxlength="50">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Pincode : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <input type="text" id="pincode"
+                                                                            placeholder="Pincode" autocomplete="off"
+                                                                            class="form-control AllowNumberKey"
+                                                                            name="pincode" maxlength="6" value=""
+                                                                            tabindex="6">
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>GST No : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <input type="text" id="gstno"
+                                                                            placeholder="Enter GST No"
+                                                                            autocomplete="off" class="form-control"
+                                                                            onkeyup="" name="gstno" value=""
+                                                                            tabindex="7" maxlength="15">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Address : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <textarea class="form-control" name="address"
+                                                                            placeholder="Address" id="address" rows="3"
+                                                                            cols="66" wrap="virtual" tabindex="8"
+                                                                            maxlength="100">
+                                                                    </textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="padding-top: 26px; margin-bottom: 20px">
+                                                                    <div class="form-group formgroupbuttoncss">
+                                                                        <button type="submit" id=""
+                                                                            class="btn btn-primary"
+                                                                            style="margin-bottom: 10px;" tabindex="9">
+                                                                            <i class="la la-check-square-o"
+                                                                                style="color: white;"></i>
+                                                                            Submit</button>
+                                                                        <button type="reset" value="reset"
+                                                                            id="btnCancel" class="btn btn-danger"
+                                                                            style="margin-bottom: 10px;"
+                                                                            onclick="CancelFunction()" tabindex="10">
+                                                                            <i
+                                                                                class="fa-window-close fas"></i>Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <% }else{ %>
+                                                    <form id="frmCustOrg" class="form" action="/updateCustOrgDetail"
+                                                        method="post" autocomplete="off">
+                                                        <input type="text" id="id" name="id"
+                                                            value="<%= FetchData.data[0].id %>" style="display: none;">
+                                                        <div class="card-body">
+                                                            <div id="divSearch" class="">
+                                                                <div class="row" style="margin-bottom: -28px;">
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Cust Org Name : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="customer_name"
+                                                                                placeholder="Cust Org Name"
+                                                                                autocomplete="off"
+                                                                                class="form-control AllowAlphabetSpaceKey"
+                                                                                name="customer_name"
+                                                                                value="<%= FetchData.data[0].customer_name %>"
+                                                                                onchange="" tabindex="1">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Cust Org MobileNo : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="customer_no"
+                                                                                placeholder="Cust Org Number"
+                                                                                autocomplete="off"
+                                                                                class="form-control AllowNumberKey"
+                                                                                name="customer_no"
+                                                                                value="<%= FetchData.data[0].customer_no %>"
+                                                                                onchange="" maxlength="10" tabindex="2">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Licensee Type : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select ID="customer_type"
+                                                                                class="form-control select2dropdown select2"
+                                                                                name="customer_type" tabindex="3">
+                                                                                <option Value="">--Select Licensee
+                                                                                    Type--
+                                                                                </option>
+
+                                                                                <% if(CustTypeData && CustTypeData.data
+                                                                                    && CustTypeData.data.length> 0){ %>
+                                                                                    <%for(var i=0; i <
+                                                                                        CustTypeData.data.length;
+                                                                                        i++){%>
+                                                                                        <%if(CustTypeData.data[i].customer_type==FetchData.data[0].customer_type_name){%>
+                                                                                            <option
+                                                                                                value="<%= CustTypeData.data[i].customer_type_id %>"
+                                                                                                selected="selected">
+                                                                                                <%= CustTypeData.data[i].customer_type
+                                                                                                    %>
+                                                                                            </option>
+                                                                                            <%} else {%>
+                                                                                                <option
+                                                                                                    value="<%= CustTypeData.data[i].customer_type_id %>">
+                                                                                                    <%= CustTypeData.data[i].customer_type
+                                                                                                        %>
+                                                                                                </option>
+                                                                                                <%}%>
+                                                                                                    <%}%>
+                                                                                                        <%}%>
+
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>State : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select ID="state_id"
+                                                                                class="form-control select2dropdown select2"
+                                                                                name="state_id" tabindex="4">
+                                                                                <option Value="">--Select State--
+                                                                                </option>
+                                                                                <% if(StateData && StateData.data &&
+                                                                                    StateData.data.length> 0){ %>
+                                                                                    <%for(var i=0; i <
+                                                                                        StateData.data.length; i++){%>
+                                                                                        <%if(StateData.data[i].state_name==FetchData.data[0].state_name){%>
+                                                                                            <option
+                                                                                                value="<%= StateData.data[i].state_id %>"
+                                                                                                selected="selected">
+                                                                                                <%= StateData.data[i].state_name
+                                                                                                    %>
+                                                                                            </option>
+                                                                                            <%} else {%>
+                                                                                                <option
+                                                                                                    value="<%= StateData.data[i].state_id %>">
+                                                                                                    <%= StateData.data[i].state_name
+                                                                                                        %>
+                                                                                                </option>
+                                                                                                <%}%>
+                                                                                                    <%}%>
+                                                                                                        <%}%>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>City : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="city"
+                                                                                placeholder="City" autocomplete="off"
+                                                                                class="form-control AllowAlphabetSpaceKey"
+                                                                                name="city"
+                                                                                value="<%= FetchData.data[0].city %>"
+                                                                                tabindex="5" maxlength="50">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Pincode : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="pincode"
+                                                                                placeholder="Pincode" autocomplete="off"
+                                                                                class="form-control AllowNumberKey"
+                                                                                name="pincode" maxlength="6"
+                                                                                value="<%= FetchData.data[0].pincode %>"
+                                                                                tabindex="6">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>GST No : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="gstno"
+                                                                                placeholder="GST No" autocomplete="off"
+                                                                                class="form-control" name="gstno"
+                                                                                value="<%= FetchData.data[0].gstno %>"
+                                                                                tabindex="7" maxlength="15">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Address : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <textarea class="form-control"
+                                                                                name="address" placeholder="Address"
+                                                                                id="address" rows="3" cols="66"
+                                                                                wrap="virtual" tabindex="8"
+                                                                                maxlength="100"><%= FetchData.data[0].address %>
+                                                                    </textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="padding-top: 26px; margin-bottom: 20px">
+                                                                        <div class="form-group formgroupbuttoncss">
+                                                                            <button type="submit" id=""
+                                                                                class="btn btn-primary"
+                                                                                style="margin-bottom: 10px;"
+                                                                                tabindex="9">
+                                                                                <i class="la la-check-square-o"
+                                                                                    style="color: white;"></i>
+                                                                                Update</button>
+                                                                            <button type="reset" value="reset"
+                                                                                id="btnCancel" class="btn btn-danger"
+                                                                                style="margin-bottom: 10px;"
+                                                                                onclick="CancelFunction()"
+                                                                                tabindex="10">
+                                                                                <i
+                                                                                    class="fa-window-close fas"></i>Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divFilter"
+                                style="margin-top: 5px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search Customer Organization Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <form id="frmCustOrg" class="form" action="/CustomerOrganization"
+                                                method="post" autocomplete="off">
+                                                <input type="text" id="PlantID" name="plant_id" value=""
+                                                    style="display: none;">
+                                                <div class="card-body">
+                                                    <div id="divFilter" class="">
+                                                        <div class="row" style="margin-bottom: -39px;">
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Customer Type : </label>
+                                                                    <select ID="typeid"
+                                                                        class="form-control select2dropdown select2"
+                                                                        name="customer_type">
+                                                                        <option Value="">--Select Customer Type--
+                                                                        </option>
+                                                                        <% if(CustTypeData && CustTypeData.data &&
+                                                                            CustTypeData.data.length> 0){ %>
+                                                                            <%for(var i=0; i < CustTypeData.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= CustTypeData.data[i].customer_type_id %>">
+                                                                                    <%= CustTypeData.data[i].customer_type
+                                                                                        %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <% } %>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3"
+                                                                style="padding-top: 26px; margin-bottom: 20px">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="" class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="divShowFilterDetail(this)">
+                                                                        <i class="fa fa-search"
+                                                                            style="color: white;"></i>
+                                                                        Search</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class=" card-custom example example-compact">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">View Customer Organization Detail
+                                            </div>
+                                            <div class="card-title">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divAddCustOrgDetail(this)" style="margin: 5px;"
+                                                    onclick="">Add Organization &nbsp;<i
+                                                        class="fa fa-plus"></i></button>
+                                                <div></div>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divhideShowFilterDetail(this)"
+                                                    style="margin: 5px;">&nbsp;<i class="fa fa-plus"></i>Filter &nbsp;<i
+                                                        class='fa fa-filter'></i></button>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <table class="table table-bordered" id="tblproduct">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="tdcss" width="5%">Sr. No.</th>
+                                                        <th class="tdcss" width="15%">Cust Org Name</th>
+                                                        <th class="tdcss" width="5%">Cust Org MobileNo</th>
+                                                        <th class="tdcss" width="5%">Licensee Type</th>
+                                                        <th class="tdcss" width="12%">State</th>
+                                                        <th class="tdcss" width="12%">City</th>
+                                                        <th class="tdcss" width="5%">Pincode</th>
+                                                        <!-- <th class="tdcss" width="18%">Address</th> -->
+                                                        <th class="tdcss" width="8%">GST No</th>
+                                                        <!-- <th class="tdcss" width="10%">Entry Date</th> -->
+                                                        <!-- <th class="tdcss" width="10%">Add</th> -->
+                                                        <th class="tdcss" width="4%">Edit</th>
+                                                        <th class="tdcss" width="4%">Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblbody">
+                                                    <% if(CustOrgData && CustOrgData.data && CustOrgData.data.length>
+                                                        0){ %>
+                                                        <% for(var i=0; i < CustOrgData.data.length; i++) {%>
+                                                            <tr>
+                                                                <td class="tdcss">
+                                                                    <span class="tdfont">
+                                                                        <%= i+1 %>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <%- CustOrgData.data[i].customer_name %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- CustOrgData.data[i].customer_no %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- CustOrgData.data[i].customer_type_name %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- CustOrgData.data[i].state_name %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- CustOrgData.data[i].city %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- CustOrgData.data[i].pincode %>
+                                                                </td>
+                                                                <!-- <td>
+                                                                    <%- CustOrgData.data[i].address %>
+                                                                </td> -->
+                                                                <td>
+                                                                    <%- CustOrgData.data[i].gstno %>
+                                                                </td>
+                                                                <!-- <td>
+                                                                    <%- CustOrgData.data[i].created_at %>
+                                                                </td> -->
+                                                                <!-- <td>
+
+                                                                </td> -->
+                                                                <td>
+                                                                    <a
+                                                                        href="/findByIDCustOrgDetail/<%- CustOrgData.data[i].id %>"><i
+                                                                            class="la la-pencil-square-o"
+                                                                            style="font-size:24px;color: #03449e;"
+                                                                            onclick="divAddCfaOrgDetail(this)"></i></a>
+                                                                </td>
+                                                                <td>
+                                                                    <a
+                                                                        href="/deleteCustOrgDetail/<%- CustOrgData.data[i].id %>"><i
+                                                                            class="la la-trash-o"
+                                                                            onclick="return confirm('Are you sure you want to Delete?')"
+                                                                            style="font-size:24px;color:#03449e;"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <%}%>
+                                                                <%}%>
+
+                                                </tbody>
+                                            </table>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end::Entry-->
+        </div>
+
+        <%- include('../partials/footer.ejs') %>
+
+            <script type="text/javascript">
+
+                $(document).ready(function () {
+                    $(":input").inputmask();
+                });
+
+                $(".select2dropdown").select2();
+
+                $('document').ready(function () {
+                    $('textarea').each(function () {
+                        $(this).val($(this).val().trim());
+                    }
+                    );
+                });
+
+                function CancelFunction() {
+                    window.location.href = "/CustomerOrganization";
+                }
+
+                function chkGSTNo() {
+                    var name = $('#gstno');
+                    $('#gstno').val(name.val().replaceAll("-", ""));
+                }
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divFilter").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divFilter").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+                function divAddCustOrgDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divAddCustOrg").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divAddCustOrg").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                if (SearchData) {
+                    $("#typeid").val(SearchData.customer_type).change();
+                }
+                else {
+                    $("#typeid").val();
+                }
+                var FilterData = JSON.parse('<%- JSON.stringify(FilterData) %>');
+                searchStatus = FilterData;
+                if (searchStatus == true) {
+                    $("#divFilter").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+
+                var FetchData = JSON.parse(`<%- JSON.stringify(FetchData).replace(/[\n\r\t]/g, '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'") %>`);
+                if (FetchData) {
+                    $("#divAddCustOrg").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+                $("#DropDownPlantID").change(function () {
+                    // alert($('option:selected', this).text());
+                    $("#PlantID").val($("#DropDownPlantID").val())
+                });
+                $("#tblproduct").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+                $.validator.addMethod(
+                    "regex",
+                    function (value, element, regexp) {
+                        return this.optional(element) || regexp.test(value);
+                    },
+                    "Please Enter Valid GSTIN Number."
+                );
+
+                $("#frmCustOrg").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        customer_name: {
+                            required: "Please Enter Customer Name"
+                        },
+                        customer_no: {
+                            required: "Please Enter Customer No"
+                        },
+                        customer_type: {
+                            required: "Please Select Customer Type"
+                        },
+                        state_id: {
+                            required: "Please Select State"
+                        },
+                        city: {
+                            required: "Please Enter City Name"
+                        },
+                        pincode: {
+                            required: "Please Enter Pincode"
+                        },
+                        address: {
+                            required: "Please Enter Address"
+                        },
+                        gstno: {
+                            required: "Please Enter GST No"
+                        }
+
+                    },
+                    rules: {
+                        customer_name: {
+                            required: true,
+                        },
+                        customer_no: {
+                            required: true,
+                            minlength: 10,
+                            maxlength: 10,
+                            number: true
+                        },
+                        customer_type: {
+                            required: true,
+                        },
+                        state_id: {
+                            required: true,
+                        },
+                        city: {
+                            required: true
+                        },
+                        pincode: {
+                            minlength: 6,
+                            maxlength: 6,
+                            number: true,
+                            required: true
+                        },
+                        address: {
+                            required: true
+                        },
+                        gstno: {
+                            required: true,
+                            regex: /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/
+                        }
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/CustomerOrganization') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/CustomerOrganization/' + ID)
+                        }
+                    });
+                }
+
+            </script>

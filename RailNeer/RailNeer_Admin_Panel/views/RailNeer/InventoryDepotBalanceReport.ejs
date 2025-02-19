@@ -1,0 +1,373 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divFilter"
+                                style="margin-top: 5px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search Inventory Depot Balance Report
+                                                    Details
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <form id="frmPlantUser" class="form" action="/InventoryDepotBalanceReport"
+                                                method="post" autocomplete="off">
+                                                <div class="card-body">
+                                                    <div id="divFilter" class="">
+                                                        <div class="row" style="margin-bottom: -20px;">
+                                                            <div class="col-md-2 col-lg-2">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Depot : </label>
+                                                                    <select id="depot_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="depot_id" tabindex="6">
+                                                                        <option Value="">--Select Depot--</option>
+                                                                        <% if(DepotData && DepotData.data &&
+                                                                            DepotData.data.length> 0){ %>
+                                                                            <%for(var i=0; i < DepotData.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= DepotData.data[i].id %>">
+                                                                                    <%= DepotData.data[i].depot_name %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <% } %>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 col-lg-2">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Product : </label>
+                                                                    <select id="product_id"
+                                                                        class="form-control select2dropdown"
+                                                                        name="product_id">
+                                                                        <option Value="">--Select Product--
+                                                                        </option>
+                                                                        <% if(ProductData && ProductData.data &&
+                                                                            ProductData.data.length> 0){ %>
+                                                                            <%for(var i=0; i < ProductData.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= ProductData.data[i].id %>">
+                                                                                    <%= ProductData.data[i].product_name
+                                                                                        %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 col-lg-2">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Start Date : </label>
+                                                                    <input type="text" id="startdate"
+                                                                        placeholder="Start Date"
+                                                                        class="form-control pickDate" value=""
+                                                                        name="startdate" data-date-format="dd-mm-yyyy"
+                                                                        readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 col-lg-2">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>End Date : </label>
+                                                                    <input type="text" id="enddate"
+                                                                        placeholder="End Date"
+                                                                        class="form-control pickDate" name="enddate"
+                                                                        data-date-format="dd-mm-yyyy" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-lg-4"
+                                                                style="padding-top: 10px;margin-bottom: 10px">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="btnSearchSubmit"
+                                                                        class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-search"
+                                                                            style="color: white;"></i>
+                                                                        Search</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                    <button id="btnExcel" name="btnExcel" type="submit"
+                                                                        class="btn btn-success"
+                                                                        formaction="/ViewInventoryDepotBalanceExcel"
+                                                                        formmethod="post" style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-file-excel"
+                                                                            style="color: white;"></i>Excel</button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact">
+                                <!-- <div class="separator separator-dashed mt-8 mb-5"></div> -->
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Inventory Depot Balance Report List
+                                            </div>
+                                            <div class="card-title">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divhideShowFilterDetail(this)" style="margin: 5px;"
+                                                    onclick="">&nbsp;<i class="fa fa-plus"></i>Filter &nbsp;<i
+                                                        class='fa fa-filter'></i></button>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <table class="table table-bordered" id="tblReport">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="5%">Sr. No.</th>
+                                                        <th width="10%">Date</th>
+                                                        <th width="15%">Depot Name</th>
+                                                        <th width="15%">Product Name</th>
+                                                        <th width="10%">Opening Balance</th>
+                                                        <th width="8%">In Transit</th>
+                                                        <th width="5%">Received</th>
+                                                        <th width="5%">Damages</th>
+                                                        <th width="5%">Transfer</th>
+                                                        <th width="5%">Sales</th>
+                                                        <th width="10%">Closing Balance</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblbody">
+
+                                                    <% if(InventoryDepotBalanceData && InventoryDepotBalanceData.data &&
+                                                        InventoryDepotBalanceData.data.length> 0){ %>
+
+                                                        <% for(var i=0; i < InventoryDepotBalanceData.data.length; i++)
+                                                            {%>
+                                                            <% let DepotBalanceData=InventoryDepotBalanceData.data[0] %>
+                                                                <% let TotalAmountData=InventoryDepotBalanceData.data[1]
+                                                                    %>
+
+                                                                    <%for(var i=0; i < DepotBalanceData.length; i++){%>
+                                                                        <tr>
+                                                                            <td class="tdcss">
+                                                                                <span class="tdfont">
+                                                                                    <%= i+1 %>
+                                                                                </span>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- DepotBalanceData[i].date %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- DepotBalanceData[i].depot_name %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- DepotBalanceData[i].product_name %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- DepotBalanceData[i].begining_bal %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- DepotBalanceData[i].in_transit %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- DepotBalanceData[i].received %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- DepotBalanceData[i].damages %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- DepotBalanceData[i].transfer %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- DepotBalanceData[i].sales %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- DepotBalanceData[i].closing_bal %>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <%}%>
+
+                                                                            <%for(var i=0; i < TotalAmountData.length;
+                                                                                i++){%>
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <td colspan="4">
+                                                                                            Total
+                                                                                            Amount
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            -
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%- TotalAmountData[i].in_transit
+                                                                                                %>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%- TotalAmountData[i].received
+                                                                                                %>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%- TotalAmountData[i].damages
+                                                                                                %>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%- TotalAmountData[i].transfer
+                                                                                                %>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%- TotalAmountData[i].sales
+                                                                                                %>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            -
+                                                                                        </td>
+
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                                        <%}%>
+
+                                                </tbody>
+                                            </table>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+
+        <%- include('../partials/footer.ejs') %>
+
+            <script type="text/javascript">
+
+                $(".select2dropdown").select2();
+
+                function CancelFunction() {
+                    window.location.href = "/InventoryDepotBalanceReport";
+                }
+
+                // $("#startdate").datepicker("setDate", new Date());
+
+                $("#startdate").datepicker({
+                    clearBtn: true,
+                    todayHighlight: true,
+                    endDate: new Date(),
+                    orientation: "bottom"
+                }).datepicker("setDate", 'now').on('changeDate', function (e) {
+                    $(this).datepicker('hide');
+                    var selectedDate = new Date(e.date);
+                    $("#enddate").datepicker("setStartDate", selectedDate);
+                    $("#enddate").datepicker("setDate", selectedDate);
+                });
+
+                $("#enddate").datepicker({
+                    clearBtn: true,
+                    todayHighlight: true,
+                    startDate: new Date(),
+                    endDate: new Date(),
+                    orientation: "bottom"
+                }).datepicker("setDate", 'now').on('changeDate', function (e) {
+                    $(this).datepicker('hide');
+                });
+
+                $("#tblReport").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [10, 20, 30],
+                });
+
+                $('#btnSearchSubmit').on('click', function () {
+                    var stdt = $("#startdate").val().toString().split('-');
+                    var endt = $("#enddate").val().toString().split('-');
+                    var startDate = new Date(stdt[2] + "-" + stdt[1] + "-" + stdt[0]);
+                    var endDate = new Date(endt[2] + "-" + endt[1] + "-" + endt[0]);
+                    var diff = new Date(endDate - startDate);
+
+                    var days = diff / 1000 / 60 / 60 / 24;
+
+                    if (days <= 31) {
+                        $('#btnSearchSubmit').submit();
+                    } else {
+                        Swal.fire({
+                            title: '',
+                            text: 'Difference between dates should be less than 31',
+                            type: 'error',
+                            icon: 'error',
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            iconColor: '#03449e',
+                            timer: 3000
+                        })
+                        return false;
+                    }
+                });
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divFilter").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divFilter").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                if (SearchData) {
+                    $("#depot_id").val(SearchData.depot_id).change();
+                    $("#product_id").val(SearchData.product_id).change();
+                    $("#startdate").val(SearchData.startdate).change();
+                    $("#enddate").datepicker("setStartDate", SearchData.startdate);
+                    $("#enddate").val(SearchData.enddate).change();
+                } else {
+                    $("#depot_id").val();
+                    $("#product_id").val();
+                    $("#startdate").val();
+                    $("#enddate").val();
+                }
+
+                var FilterData = JSON.parse('<%- JSON.stringify(FilterData) %>');
+                searchStatus = FilterData;
+                if (searchStatus == true) {
+                    $("#divFilter").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+            </script>

@@ -1,0 +1,1238 @@
+<style>
+    .select2-container--default.select2-container--disabled .select2-selection--multiple,
+    .select2-container--default.select2-container--disabled .select2-selection--single {
+        opacity: 1.5 !important
+    }
+</style>
+
+
+<body id="kt_body" class="header-fixed header-mobile-fixed header-bottom-enabled page-loading">
+    <div>
+        <div id="kt_header_mobile" class="header-mobile bg-primary header-mobile-fixed">
+            <!--begin::Logo-->
+            <a href="#">
+                <span>Rail Neer</span>
+            </a>
+            <!--end::Logo-->
+            <!--begin::Toolbar-->
+            <div class="d-flex align-items-center">
+                <button class="btn p-0 burger-icon burger-icon-left ml-4" id="kt_header_mobile_toggle">
+                    <span></span>
+                </button>
+                <button class="btn p-0 ml-2" id="kt_header_mobile_topbar_toggle">
+                    <span class="svg-icon svg-icon-xl">
+                        <!--begin::Svg Icon | path:/metronic/theme/html/demo7/dist/assets/media/svg/icons/General/User.svg-->
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                            height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <polygon points="0 0 24 0 24 24 0 24" />
+                                <path
+                                    d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                                    fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                <path
+                                    d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                                    fill="#000000" fill-rule="nonzero" />
+                            </g>
+                        </svg>
+                        <!--end::Svg Icon-->
+                    </span>
+                </button>
+            </div>
+            <!--end::Toolbar-->
+        </div>
+        <!--end::Header Mobile-->
+        <div class="d-flex flex-column flex-root">
+            <!--begin::Page-->
+            <div class="d-flex flex-row flex-column-fluid page">
+                <!--begin::Wrapper-->
+                <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+                    <!--begin::Header-->
+                    <div id="kt_header" class="header flex-column header-fixed">
+                        <!--begin::Top-->
+                        <div class="header-top">
+                            <!--begin::Container-->
+                            <div class="container-fluid">
+                                <!--begin::Left-->
+                                <div class="d-none d-lg-flex align-items-center mr-3">
+                                    <!--begin::Logo-->
+                                    <a href="#" style="vertical-align: bottom; align-items: end; display: flex;">
+                                        <img alt="Logo" src="../../images/railneer_logo_bg_white.jpg"
+                                            class="max-h-45px" />
+                                        <!-- <span
+                                            style="color: white; font-size: 20px; font-weight: bold; padding-left: 20px; padding-bottom: 5px;">Rail
+                                            Neer</span> -->
+                                    </a>
+                                    <!--end::Logo-->
+                                    <!--begin::Tab Navs(for desktop mode)-->
+                                    <!--begin::Tab Navs-->
+                                </div>
+                                <!--end::Left-->
+                                <!--begin::Topbar-->
+                                <!-- <div class="row"> -->
+                                <% if(cookieData[0].user_role_name=='plant' ){%>
+                                    <div class="col-md-2">
+                                        <% if(locals.plantNameData) { %>
+                                            <% if(locals.plantNameData.length) { %>
+                                                <% let PlantData=locals.plantNameData %>
+                                                    <div class="form-group">
+                                                        <label></label>
+                                                        <select ID="DropDownPlantID" onchange="updatePlantDetail(this)"
+                                                            class="form-control select2dropdown" name="plant_id"
+                                                            disabled>
+                                                            <%for(var i=0; i < PlantData.length; i++){%>
+                                                                <%
+                                                                    if(cookieData[0].plant_id.toString()==PlantData[i].plant_id.toString()){%>
+                                                                    <option selected="selected"
+                                                                        value="<%= PlantData[i].plant_id %>">
+                                                                        <%= PlantData[i].plant_name %>
+                                                                    </option>
+                                                                    <%}else{%>
+                                                                        <option value="<%= PlantData[i].plant_id %>">
+                                                                            <%= PlantData[i].plant_name %>
+                                                                        </option>
+                                                                        <% }%>
+                                                                            <%}%>
+                                                        </select>
+                                                    </div>
+                                                    <%}%>
+                                                        <%}%>
+                                    </div>
+                                    <%}else{%>
+                                        <div class="col-md-2">
+                                            <% if(locals.plantNameData) { %>
+                                                <% if(locals.plantNameData.length) { %>
+                                                    <% let PlantData=locals.plantNameData %>
+                                                        <div class="form-group">
+                                                            <label></label>
+                                                            <select ID="DropDownPlantID"
+                                                                onchange="updatePlantDetail(this)"
+                                                                class="form-control select2dropdown" name="plant_id">
+                                                                <%for(var i=0; i < PlantData.length; i++){%>
+                                                                    <%
+                                                                        if(cookieData[0].plant_id.toString()==PlantData[i].plant_id.toString()){%>
+                                                                        <option selected="selected"
+                                                                            value="<%= PlantData[i].plant_id %>">
+                                                                            <%= PlantData[i].plant_name %>
+                                                                        </option>
+                                                                        <%}else{%>
+                                                                            <option
+                                                                                value="<%= PlantData[i].plant_id %>">
+                                                                                <%= PlantData[i].plant_name %>
+                                                                            </option>
+                                                                            <% }%>
+                                                                                <%}%>
+                                                            </select>
+                                                        </div>
+                                                        <%}%>
+                                                            <%}%>
+                                        </div>
+                                        <% }%>
+                                            <!-- </div> -->
+                                            <div class="topbar bg-primary">
+                                                <!--begin::User-->
+                                                <div class="topbar-item">
+                                                    <div class="btn btn-icon btn-hover-transparent-white w-sm-auto d-flex align-items-center btn-lg px-2"
+                                                        id="kt_quick_user_toggle">
+                                                        <div class="d-flex flex-column text-right pr-sm-3">
+                                                            <span
+                                                                class="text-white opacity-50 font-weight-bold font-size-sm d-none d-sm-inline">
+                                                            </span>
+                                                            <span
+                                                                class="text-white font-weight-bolder font-size-sm d-none d-sm-inline">
+                                                                <asp:Label ID="lblRole" runat="server">
+                                                                </asp:Label>
+
+                                                            </span>
+                                                        </div>
+                                                        <span class="symbol symbol-35">
+                                                            <%= cookieData[0].username %>
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+                                                <!--end::User-->
+                                            </div>
+                                            <!--end::Topbar-->
+
+
+
+                            </div>
+                            <!--end::Container-->
+                        </div>
+                        <!--end::Top-->
+                        <!--begin::Bottom-->
+                        <div class="header-bottom">
+                            <!--begin::Container-->
+                            <div class="container-fluid">
+                                <!--begin::Header Menu Wrapper-->
+                                <div class="header-navs header-navs-left" id="kt_header_navs">
+                                    <!--begin::Tab Navs(for tablet and mobile modes)-->
+
+                                    <!--begin::Tab Navs-->
+                                    <!--begin::Tab Content-->
+                                    <div class="tab-content">
+                                        <!--begin::Tab Pane-->
+                                        <div class="tab-pane py-5 p-lg-0 show active" id="kt_header_tab_1">
+                                            <!--begin::Menu-->
+                                            <div id="kt_header_menu"
+                                                class="header-menu header-menu-mobile header-menu-layout-default">
+                                                <!--begin::Nav-->
+                                                <ul class="menu-nav">
+                                                    <% if(cookieData[0].user_role_name==="admin" ||
+                                                        cookieData[0].user_role_name==="plant" ) { %>
+                                                        <li class="menu-item <%= title === 'OrderView' ? 'menu-item-active' : ''%>"
+                                                            aria-haspopup="true">
+                                                            <a href="/OrderView" class="menu-link">
+                                                                <span class="menu-text">Order Detail</span>
+                                                                <span class="menu-desc"></span>
+                                                            </a>
+                                                        </li>
+                                                        <%}%>
+                                                            <!-- Reports Admin, PlantAdmin -->
+                                                            <% if(cookieData[0].user_role_name==="admin" ||
+                                                                cookieData[0].user_role_name==="plant" ) { %>
+                                                                <li class="menu-item menu-item-open menu-item-submenu menu-item-rel menu-item-open
+                                                    <%= title === 'ExceptionReport' || title === 'InventoryProductionBalanceReport' || title === 'InventoryDepotBalanceReport' || 
+                                                    title === 'SalesReport' || title === 'PlantWiseOrderReport' || title === 'VarianceReport' || 
+                                                    title === 'VarianceMobileUnitReport' || title === 'PlantImportReport' || title === 'PlantExportReport' || 
+                                                    title === 'ChallanReport' || title === 'INRReport' || title === 'INRCorrectionReport' ? 'menu-item-here' : ''%>"
+                                                                    data-menu-toggle="click" aria-haspopup="true">
+                                                                    <a href="javascript:;"
+                                                                        class="menu-link menu-toggle">
+                                                                        <span class="menu-text">Reports<i
+                                                                                class="fa fa-sort-down" style="font-size: 20px;
+                                                                padding-bottom: 9px;
+                                                                padding-left: 2px;"></i></span>
+                                                                        <i class="menu-arrow"></i>
+                                                                    </a>
+                                                                    <div
+                                                                        class="menu-submenu menu-submenu-classic menu-submenu-left">
+                                                                        <ul class="menu-subnav">
+                                                                            <li class="menu-item <%= title === 'ExceptionReport' ? 'menu-item-active' : ''%>"
+                                                                                aria-haspopup="true">
+                                                                                <a href="/ExceptionReport"
+                                                                                    class="menu-link">
+                                                                                    <span class="menu-text">Exception
+                                                                                        Report</span>
+                                                                                    <span class="menu-desc"></span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li class="menu-item menu-item-submenu <%=  title === 'InventoryProductionBalanceReport' 
+                                                                || title === 'InventoryDepotBalanceReport' ? 'menu-item-here' : ''%>"
+                                                                                data-menu-toggle="hover"
+                                                                                aria-haspopup="true">
+                                                                                <a href="javascript:;"
+                                                                                    class="menu-link menu-toggle">
+                                                                                    <span class="menu-text">Inventory
+                                                                                        Report</span>
+                                                                                    <i class="menu-arrow"></i>
+                                                                                </a>
+                                                                                <div
+                                                                                    class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                    <ul class="menu-subnav">
+                                                                                        <li class="menu-item <%= title === 'InventoryProductionBalanceReport' ? 'menu-item-active' : ''%>"
+                                                                                            aria-haspopup="true">
+                                                                                            <a href="/InventoryProductionBalanceReport"
+                                                                                                class="menu-link">
+                                                                                                <span class="menu-text">
+                                                                                                    Production
+                                                                                                    Balance
+                                                                                                    Report</span>
+                                                                                                <span
+                                                                                                    class="menu-desc"></span>
+                                                                                            </a>
+
+                                                                                        </li>
+                                                                                        <li class="menu-item <%= title === 'InventoryDepotBalanceReport' ? 'menu-item-active' : ''%>"
+                                                                                            aria-haspopup="true">
+                                                                                            <a href="/InventoryDepotBalanceReport"
+                                                                                                class="menu-link">
+                                                                                                <span class="menu-text">
+                                                                                                    Depot Balance
+                                                                                                    Report
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="menu-desc"></span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li class="menu-item menu-item-submenu <%=  title === 'VarianceReport' 
+                                                                || title === 'VarianceMobileUnitReport' ? 'menu-item-here' : ''%>"
+                                                                                data-menu-toggle="hover"
+                                                                                aria-haspopup="true">
+                                                                                <a href="javascript:;"
+                                                                                    class="menu-link menu-toggle">
+                                                                                    <span class="menu-text">Variance
+                                                                                        Report</span>
+                                                                                    <i class="menu-arrow"></i>
+                                                                                </a>
+                                                                                <div
+                                                                                    class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                    <ul class="menu-subnav">
+                                                                                        <li class="menu-item <%= title === 'VarianceReport' ? 'menu-item-active' : ''%>"
+                                                                                            aria-haspopup="true">
+                                                                                            <a href="/VarianceReport"
+                                                                                                class="menu-link">
+                                                                                                <span
+                                                                                                    class="menu-text">Static
+                                                                                                    Unit
+                                                                                                    Report
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="menu-desc"></span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li class="menu-item <%= title === 'VarianceMobileUnitReport' ? 'menu-item-active' : ''%>"
+                                                                                            aria-haspopup="true">
+                                                                                            <a href="/VarianceMobileUnitReport"
+                                                                                                class="menu-link">
+                                                                                                <span
+                                                                                                    class="menu-text">Mobile
+                                                                                                    Unit
+                                                                                                    Report
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="menu-desc"></span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li class="menu-item menu-item-submenu <%=  title === 'PlantImportReport' 
+                                                                || title === 'PlantExportReport' ? 'menu-item-here' : ''%>"
+                                                                                data-menu-toggle="hover"
+                                                                                aria-haspopup="true">
+                                                                                <a href="javascript:;"
+                                                                                    class="menu-link menu-toggle">
+                                                                                    <span class="menu-text">Plant To
+                                                                                        Plant
+                                                                                        Transaction</span>
+                                                                                    <i class="menu-arrow"></i>
+                                                                                </a>
+                                                                                <div
+                                                                                    class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                    <ul class="menu-subnav">
+                                                                                        <li class="menu-item <%= title === 'PlantImportReport' ? 'menu-item-active' : ''%>"
+                                                                                            aria-haspopup="true">
+                                                                                            <a href="/PlantImportReport"
+                                                                                                class="menu-link">
+                                                                                                <span
+                                                                                                    class="menu-text">Product
+                                                                                                    Received Report
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="menu-desc"></span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li class="menu-item <%= title === 'PlantExportReport' ? 'menu-item-active' : ''%>"
+                                                                                            aria-haspopup="true">
+                                                                                            <a href="/PlantExportReport"
+                                                                                                class="menu-link">
+                                                                                                <span
+                                                                                                    class="menu-text">Product
+                                                                                                    Send
+                                                                                                    Report
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="menu-desc"></span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li class="menu-item <%= title === 'ChallanReport' ? 'menu-item-active' : ''%>"
+                                                                                aria-haspopup="true">
+                                                                                <a href="/ChallanReport"
+                                                                                    class="menu-link">
+                                                                                    <span class="menu-text">Challan
+                                                                                        Report</span>
+                                                                                    <span class="menu-desc"></span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li class="menu-item menu-item-submenu <%=  title === 'INRReport' 
+                                                                || title === 'INRCorrectionReport' ? 'menu-item-here' : ''%>"
+                                                                                data-menu-toggle="hover"
+                                                                                aria-haspopup="true">
+                                                                                <a href="javascript:;"
+                                                                                    class="menu-link menu-toggle">
+                                                                                    <span class="menu-text">IRN
+                                                                                        Report</span>
+                                                                                    <i class="menu-arrow"></i>
+                                                                                </a>
+                                                                                <div
+                                                                                    class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                    <ul class="menu-subnav">
+                                                                                        <li class="menu-item <%= title === 'INRReport' ? 'menu-item-active' : ''%>"
+                                                                                            aria-haspopup="true">
+                                                                                            <a href="/INRReport"
+                                                                                                class="menu-link">
+                                                                                                <span class="menu-text">
+                                                                                                    IRN Generated
+                                                                                                    Report</span>
+                                                                                                <span
+                                                                                                    class="menu-desc"></span>
+                                                                                            </a>
+
+                                                                                        </li>
+                                                                                        <li class="menu-item <%= title === 'INRCorrectionReport' ? 'menu-item-active' : ''%>"
+                                                                                            aria-haspopup="true">
+                                                                                            <a href="/INRCorrectionReport"
+                                                                                                class="menu-link">
+                                                                                                <span class="menu-text">
+                                                                                                    IRN Correction
+                                                                                                    Report
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="menu-desc"></span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li class="menu-item menu-item-submenu <%=  title === 'SalesReport' 
+                                                                || title === 'PlantWiseOrderReport' ? 'menu-item-here' : ''%>"
+                                                                                data-menu-toggle="hover"
+                                                                                aria-haspopup="true">
+                                                                                <a href="javascript:;"
+                                                                                    class="menu-link menu-toggle">
+                                                                                    <span
+                                                                                        class="menu-text">Others</span>
+                                                                                    <i class="menu-arrow"></i>
+                                                                                </a>
+                                                                                <div
+                                                                                    class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                    <ul class="menu-subnav">
+                                                                                        <li class="menu-item <%= title === 'SalesReport' ? 'menu-item-active' : ''%>"
+                                                                                            aria-haspopup="true">
+                                                                                            <a href="/SalesReport"
+                                                                                                class="menu-link">
+                                                                                                <span
+                                                                                                    class="menu-text">Sales
+                                                                                                    Report</span>
+                                                                                                <span
+                                                                                                    class="menu-desc"></span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li class="menu-item <%= title === 'PlantWiseOrderReport' ? 'menu-item-active' : ''%>"
+                                                                                            aria-haspopup="true">
+                                                                                            <a href="/PlantWiseOrderReport"
+                                                                                                class="menu-link">
+                                                                                                <span
+                                                                                                    class="menu-text">Plant
+                                                                                                    Wise
+                                                                                                    Order Report</span>
+                                                                                                <span
+                                                                                                    class="menu-desc"></span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </li>
+                                                                <%}%>
+                                                                    <!-- User Detail -->
+                                                                    <% if(cookieData[0].user_role_name==="admin" ||
+                                                                        cookieData[0].user_role_name==="plant" ) { %>
+                                                                        <li class="menu-item <%= title === 'UserView' ? 'menu-item-active' : ''%>"
+                                                                            aria-haspopup="true">
+                                                                            <a href="/UserView" class="menu-link">
+                                                                                <span class="menu-text">Create
+                                                                                    User</span>
+                                                                                <span class="menu-desc"></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <%}%>
+                                                                            <!-- UserRole Assign -->
+                                                                            <% if(cookieData[0].user_role_name==="admin"
+                                                                                ||
+                                                                                cookieData[0].user_role_name==="plant" )
+                                                                                { %>
+                                                                                <li class="menu-item menu-item-open menu-item-submenu menu-item-rel menu-item-open
+                                                                                <%= title === 'PlantUser' || title === 'CFAUser' || title === 'CustomerUser' ? 'menu-item-here' : ''%>"
+                                                                                    data-menu-toggle="click"
+                                                                                    aria-haspopup="true">
+                                                                                    <a href="javascript:;"
+                                                                                        class="menu-link menu-toggle">
+                                                                                        <span class="menu-text">User
+                                                                                            Role
+                                                                                            Assign<i
+                                                                                                class="fa fa-sort-down"
+                                                                                                style="font-size: 20px;
+                                                                                                        padding-bottom: 9px;
+                                                                                                        padding-left: 2px;"></i></span>
+                                                                                        <i class="menu-arrow"></i>
+                                                                                    </a>
+                                                                                    <div
+                                                                                        class="menu-submenu menu-submenu-classic menu-submenu-left">
+                                                                                        <ul class="menu-subnav">
+                                                                                            <li class="menu-item <%= title === 'PlantUser' ? 'menu-item-active' : ''%>"
+                                                                                                aria-haspopup="true">
+                                                                                                <a href="/PlantUser"
+                                                                                                    class="menu-link">
+                                                                                                    <span
+                                                                                                        class="menu-text">Plant
+                                                                                                        User</span>
+                                                                                                    <span
+                                                                                                        class="menu-desc"></span>
+                                                                                                </a>
+                                                                                            </li>
+
+                                                                                            <li class="menu-item <%= title === 'CFAUser' ? 'menu-item-active' : ''%>"
+                                                                                                aria-haspopup="true">
+                                                                                                <a href="/CFAUser"
+                                                                                                    class="menu-link">
+                                                                                                    <span
+                                                                                                        class="menu-text">CFA
+                                                                                                        User</span>
+                                                                                                    <span
+                                                                                                        class="menu-desc"></span>
+                                                                                                </a>
+                                                                                            </li>
+
+                                                                                            <li class="menu-item <%= title === 'CustomerUser' ? 'menu-item-active' : ''%>"
+                                                                                                aria-haspopup="true">
+                                                                                                <a href="/CustomerUser"
+                                                                                                    class="menu-link">
+                                                                                                    <span
+                                                                                                        class="menu-text">Customer</span>
+                                                                                                    <span
+                                                                                                        class="menu-desc"></span>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </li>
+                                                                                <%}%>
+                                                                                    <% if(cookieData[0].user_role_name==="admin"
+                                                                                        ) { %>
+                                                                                        <li class="menu-item menu-item-open menu-item-submenu menu-item-rel menu-item-open
+                                                                                        <%= title === 'PlantAdd' || title === 'PlantView' ||  title === 'Block' || title === 'TrainMaster' || title === 'Train' || title === 'Product' || title === 'StationMaster' || title === 'Station'
+                                                                                        || title === 'Depot' || title === 'CfaOrg' || title === 'StallAdd' || title === 'StallView' ? 'menu-item-here' : ''%>"
+                                                                                            data-menu-toggle="click"
+                                                                                            aria-haspopup="true">
+                                                                                            <a href="javascript:;"
+                                                                                                class="menu-link menu-toggle">
+                                                                                                <span
+                                                                                                    class="menu-text">Master
+                                                                                                    Management<i
+                                                                                                        class="fa fa-sort-down"
+                                                                                                        style="font-size: 20px;
+                                                                                                                padding-bottom: 9px;
+                                                                                                                padding-left: 2px;"></i></span>
+                                                                                                <i
+                                                                                                    class="menu-arrow"></i>
+                                                                                            </a>
+                                                                                            <div
+                                                                                                class="menu-submenu menu-submenu-classic menu-submenu-left">
+                                                                                                <ul class="menu-subnav">
+
+                                                                                                    <li class="menu-item menu-item-submenu <%= title === 'PlantAdd' || title === 'PlantView' 
+                                                                                                            ? 'menu-item-here' : ''%>"
+                                                                                                        data-menu-toggle="hover"
+                                                                                                        aria-haspopup="true">
+                                                                                                        <a href="javascript:;"
+                                                                                                            class="menu-link menu-toggle">
+                                                                                                            <span
+                                                                                                                class="menu-text">Plant</span>
+                                                                                                            <i
+                                                                                                                class="menu-arrow"></i>
+                                                                                                        </a>
+                                                                                                        <div
+                                                                                                            class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                                            <ul
+                                                                                                                class="menu-subnav">
+                                                                                                                <li class="menu-item <%= title === 'PlantAdd' ? 'menu-item-active' : ''%>"
+                                                                                                                    aria-haspopup="true">
+                                                                                                                    <a href="/PlantAdd"
+                                                                                                                        class="menu-link">
+                                                                                                                        <span
+                                                                                                                            class="menu-text">
+                                                                                                                            Add
+                                                                                                                            Plant</span>
+                                                                                                                        <span
+                                                                                                                            class="menu-desc"></span>
+                                                                                                                    </a>
+                                                                                                                </li>
+                                                                                                                <li class="menu-item <%= title === 'PlantView' ? 'menu-item-active' : ''%>"
+                                                                                                                    aria-haspopup="true">
+                                                                                                                    <a href="/PlantView"
+                                                                                                                        class="menu-link">
+                                                                                                                        <span
+                                                                                                                            class="menu-text">
+                                                                                                                            Assign
+                                                                                                                            Plant
+                                                                                                                            Product
+                                                                                                                        </span>
+                                                                                                                        <span
+                                                                                                                            class="menu-desc"></span>
+                                                                                                                    </a>
+                                                                                                                </li>
+                                                                                                            </ul>
+                                                                                                        </div>
+                                                                                                    </li>
+
+                                                                                                    <li class="menu-item <%= title == 'CfaOrg' ? 'menu-item-active' : ''%>"
+                                                                                                        aria-haspopup="true">
+                                                                                                        <a href="/CfaOrg"
+                                                                                                            class="menu-link">
+                                                                                                            <span
+                                                                                                                class="menu-text">CFA
+                                                                                                                Organization</span>
+                                                                                                            <span
+                                                                                                                class="menu-desc"></span>
+                                                                                                        </a>
+                                                                                                    </li>
+
+
+                                                                                                    <li class="menu-item <%= title === 'Block' ? 'menu-item-active' : ''%>"
+                                                                                                        aria-haspopup="true">
+                                                                                                        <a href="/Block"
+                                                                                                            class="menu-link">
+                                                                                                            <span
+                                                                                                                class="menu-text">Block</span>
+                                                                                                            <span
+                                                                                                                class="menu-desc"></span>
+                                                                                                        </a>
+                                                                                                    </li>
+
+                                                                                                    <li class="menu-item <%= title == 'Depot' ? 'menu-item-active' : ''%>"
+                                                                                                        aria-haspopup="true">
+                                                                                                        <a href="/Depot"
+                                                                                                            class="menu-link">
+                                                                                                            <span
+                                                                                                                class="menu-text">Depot</span>
+                                                                                                            <span
+                                                                                                                class="menu-desc"></span>
+                                                                                                        </a>
+                                                                                                    </li>
+
+                                                                                                    <li class="menu-item menu-item-submenu <%= title === 'StationMaster' || title === 'Station' 
+                                                                    ? 'menu-item-here' : ''%>" data-menu-toggle="hover"
+                                                                                                        aria-haspopup="true">
+                                                                                                        <a href="javascript:;"
+                                                                                                            class="menu-link menu-toggle">
+                                                                                                            <span
+                                                                                                                class="menu-text">Station</span>
+                                                                                                            <i
+                                                                                                                class="menu-arrow"></i>
+                                                                                                        </a>
+                                                                                                        <div
+                                                                                                            class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                                            <ul
+                                                                                                                class="menu-subnav">
+                                                                                                                <li class="menu-item <%= title === 'StationMaster' ? 'menu-item-active' : ''%>"
+                                                                                                                    aria-haspopup="true">
+                                                                                                                    <a href="/StationMaster"
+                                                                                                                        class="menu-link">
+                                                                                                                        <span
+                                                                                                                            class="menu-text">
+                                                                                                                            Add
+                                                                                                                            Station</span>
+                                                                                                                        <span
+                                                                                                                            class="menu-desc"></span>
+                                                                                                                    </a>
+                                                                                                                </li>
+                                                                                                                <li class="menu-item <%= title === 'Station' ? 'menu-item-active' : ''%>"
+                                                                                                                    aria-haspopup="true">
+                                                                                                                    <a href="/Station"
+                                                                                                                        class="menu-link">
+                                                                                                                        <span
+                                                                                                                            class="menu-text">
+                                                                                                                            Assign
+                                                                                                                            Station
+                                                                                                                            CFA
+                                                                                                                        </span>
+                                                                                                                        <span
+                                                                                                                            class="menu-desc"></span>
+                                                                                                                    </a>
+                                                                                                                </li>
+                                                                                                            </ul>
+                                                                                                        </div>
+                                                                                                    </li>
+                                                                                                    <li class="menu-item <%= title == 'CustomerOrganization' ? 'menu-item-active' : ''%>"
+                                                                                                        aria-haspopup="true">
+                                                                                                        <a href="/CustomerOrganization"
+                                                                                                            class="menu-link">
+                                                                                                            <span
+                                                                                                                class="menu-text">Customer
+                                                                                                                Organization
+                                                                                                            </span>
+                                                                                                            <span
+                                                                                                                class="menu-desc"></span>
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    <li class="menu-item menu-item-submenu <%= title === 'TrainMaster' || title === 'Train' 
+                                                                    ? 'menu-item-here' : ''%>" data-menu-toggle="hover"
+                                                                                                        aria-haspopup="true">
+                                                                                                        <a href="javascript:;"
+                                                                                                            class="menu-link menu-toggle">
+                                                                                                            <span
+                                                                                                                class="menu-text">Train</span>
+                                                                                                            <i
+                                                                                                                class="menu-arrow"></i>
+                                                                                                        </a>
+                                                                                                        <div
+                                                                                                            class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                                            <ul
+                                                                                                                class="menu-subnav">
+                                                                                                                <li class="menu-item <%= title === 'TrainMaster' ? 'menu-item-active' : ''%>"
+                                                                                                                    aria-haspopup="true">
+                                                                                                                    <a href="/TrainMaster"
+                                                                                                                        class="menu-link">
+                                                                                                                        <span
+                                                                                                                            class="menu-text">
+                                                                                                                            Add
+                                                                                                                            Train</span>
+                                                                                                                        <span
+                                                                                                                            class="menu-desc"></span>
+                                                                                                                    </a>
+
+                                                                                                                </li>
+                                                                                                                <li class="menu-item <%= title === 'Train' ? 'menu-item-active' : ''%>"
+                                                                                                                    aria-haspopup="true">
+                                                                                                                    <a href="/Train"
+                                                                                                                        class="menu-link">
+                                                                                                                        <span
+                                                                                                                            class="menu-text">
+                                                                                                                            Train
+                                                                                                                            Station
+                                                                                                                            Mapping
+                                                                                                                        </span>
+                                                                                                                        <span
+                                                                                                                            class="menu-desc"></span>
+                                                                                                                    </a>
+                                                                                                                </li>
+                                                                                                            </ul>
+                                                                                                        </div>
+                                                                                                    </li>
+                                                                                                    <li class="menu-item <%= title === 'Product' ? 'menu-item-active' : ''%>"
+                                                                                                        aria-haspopup="true">
+                                                                                                        <a href="/Product"
+                                                                                                            class="menu-link">
+                                                                                                            <span
+                                                                                                                class="menu-text">Product</span>
+                                                                                                            <span
+                                                                                                                class="menu-desc"></span>
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    <li class="menu-item menu-item-submenu <%= title === 'StallAdd' || title === 'StallView' 
+                                                                    ? 'menu-item-here' : ''%>" data-menu-toggle="hover"
+                                                                                                        aria-haspopup="true">
+                                                                                                        <a href="javascript:;"
+                                                                                                            class="menu-link menu-toggle">
+                                                                                                            <span
+                                                                                                                class="menu-text">Stall</span>
+                                                                                                            <i
+                                                                                                                class="menu-arrow"></i>
+                                                                                                        </a>
+                                                                                                        <div
+                                                                                                            class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                                            <ul
+                                                                                                                class="menu-subnav">
+                                                                                                                <li class="menu-item <%= title === 'StallAdd' ? 'menu-item-active' : ''%>"
+                                                                                                                    aria-haspopup="true">
+                                                                                                                    <a href="/StallAdd"
+                                                                                                                        class="menu-link">
+                                                                                                                        <span
+                                                                                                                            class="menu-text">
+                                                                                                                            Add
+                                                                                                                            Stall</span>
+                                                                                                                        <span
+                                                                                                                            class="menu-desc"></span>
+                                                                                                                    </a>
+                                                                                                                </li>
+                                                                                                                <li class="menu-item <%= title === 'StallView' ? 'menu-item-active' : ''%>"
+                                                                                                                    aria-haspopup="true">
+                                                                                                                    <a href="/StallView"
+                                                                                                                        class="menu-link">
+                                                                                                                        <span
+                                                                                                                            class="menu-text">
+                                                                                                                            View
+                                                                                                                            Stall
+                                                                                                                        </span>
+                                                                                                                        <span
+                                                                                                                            class="menu-desc"></span>
+                                                                                                                    </a>
+                                                                                                                </li>
+                                                                                                            </ul>
+                                                                                                        </div>
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </li>
+                                                                                        <%}%>
+                                                                                            <% if(cookieData[0].user_role_name==="plant"
+                                                                                                ) { %>
+                                                                                                <li class="menu-item menu-item-open menu-item-submenu menu-item-rel menu-item-open
+                                                                <%=  title === 'PlantView' ||  title === 'Block' || title === 'TrainMaster' || title === 'Train' ||  title === 'StationMaster' || title === 'Station'
+                                                                || title === 'Depot' || title === 'CfaOrg' || title === 'StallAdd' || title === 'StallView' ? 'menu-item-here' : ''%>"
+                                                                                                    data-menu-toggle="click"
+                                                                                                    aria-haspopup="true">
+                                                                                                    <a href="javascript:;"
+                                                                                                        class="menu-link menu-toggle">
+                                                                                                        <span
+                                                                                                            class="menu-text">Master
+                                                                                                            Management<i
+                                                                                                                class="fa fa-sort-down"
+                                                                                                                style="font-size: 20px;
+                                                                                padding-bottom: 9px;
+                                                                                padding-left: 2px;"></i></span>
+                                                                                                        <i
+                                                                                                            class="menu-arrow"></i>
+                                                                                                    </a>
+                                                                                                    <div
+                                                                                                        class="menu-submenu menu-submenu-classic menu-submenu-left">
+                                                                                                        <ul
+                                                                                                            class="menu-subnav">
+
+                                                                                                            <li class="menu-item <%= title === 'PlantView' ? 'menu-item-active' : ''%>"
+                                                                                                                aria-haspopup="true">
+                                                                                                                <a href="/PlantView"
+                                                                                                                    class="menu-link">
+                                                                                                                    <span
+                                                                                                                        class="menu-text">
+                                                                                                                        Assign
+                                                                                                                        Plant
+                                                                                                                        Product
+                                                                                                                    </span>
+                                                                                                                    <span
+                                                                                                                        class="menu-desc"></span>
+                                                                                                                </a>
+                                                                                                            </li>
+
+                                                                                                            <li class="menu-item <%= title == 'CfaOrg' ? 'menu-item-active' : ''%>"
+                                                                                                                aria-haspopup="true">
+                                                                                                                <a href="/CfaOrg"
+                                                                                                                    class="menu-link">
+                                                                                                                    <span
+                                                                                                                        class="menu-text">CFA
+                                                                                                                        Organization</span>
+                                                                                                                    <span
+                                                                                                                        class="menu-desc"></span>
+                                                                                                                </a>
+                                                                                                            </li>
+
+                                                                                                            <li class="menu-item <%= title === 'Block' ? 'menu-item-active' : ''%>"
+                                                                                                                aria-haspopup="true">
+                                                                                                                <a href="/Block"
+                                                                                                                    class="menu-link">
+                                                                                                                    <span
+                                                                                                                        class="menu-text">Block</span>
+                                                                                                                    <span
+                                                                                                                        class="menu-desc"></span>
+                                                                                                                </a>
+                                                                                                            </li>
+
+                                                                                                            <li class="menu-item <%= title == 'Depot' ? 'menu-item-active' : ''%>"
+                                                                                                                aria-haspopup="true">
+                                                                                                                <a href="/Depot"
+                                                                                                                    class="menu-link">
+                                                                                                                    <span
+                                                                                                                        class="menu-text">Depot</span>
+                                                                                                                    <span
+                                                                                                                        class="menu-desc"></span>
+                                                                                                                </a>
+                                                                                                            </li>
+
+                                                                                                            <li class="menu-item <%= title === 'Station' ? 'menu-item-active' : ''%>"
+                                                                                                                aria-haspopup="true">
+                                                                                                                <a href="/Station"
+                                                                                                                    class="menu-link">
+                                                                                                                    <span
+                                                                                                                        class="menu-text">
+                                                                                                                        Assign
+                                                                                                                        Station
+                                                                                                                        CFA
+                                                                                                                    </span>
+                                                                                                                    <span
+                                                                                                                        class="menu-desc"></span>
+                                                                                                                </a>
+                                                                                                            </li>
+
+                                                                                                            <li class="menu-item <%= title == 'CustomerOrganization' ? 'menu-item-active' : ''%>"
+                                                                                                                aria-haspopup="true">
+                                                                                                                <a href="/CustomerOrganization"
+                                                                                                                    class="menu-link">
+                                                                                                                    <span
+                                                                                                                        class="menu-text">Customer
+                                                                                                                        Organization
+                                                                                                                    </span>
+                                                                                                                    <span
+                                                                                                                        class="menu-desc"></span>
+                                                                                                                </a>
+                                                                                                            </li>
+                                                                                                            <li class="menu-item <%= title === 'Train' ? 'menu-item-active' : ''%>"
+                                                                                                                aria-haspopup="true">
+                                                                                                                <a href="/Train"
+                                                                                                                    class="menu-link">
+                                                                                                                    <span
+                                                                                                                        class="menu-text">
+                                                                                                                        Train
+                                                                                                                        Station
+                                                                                                                        Mapping
+                                                                                                                    </span>
+                                                                                                                    <span
+                                                                                                                        class="menu-desc"></span>
+                                                                                                                </a>
+                                                                                                            </li>
+                                                                                                            <li class="menu-item menu-item-submenu <%= title === 'StallAdd' || title === 'StallView' 
+                                                                                ? 'menu-item-here' : ''%>" data-menu-toggle="hover"
+                                                                                                                aria-haspopup="true">
+                                                                                                                <a href="javascript:;"
+                                                                                                                    class="menu-link menu-toggle">
+                                                                                                                    <span
+                                                                                                                        class="menu-text">Stall</span>
+                                                                                                                    <i
+                                                                                                                        class="menu-arrow"></i>
+                                                                                                                </a>
+                                                                                                                <div
+                                                                                                                    class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                                                    <ul
+                                                                                                                        class="menu-subnav">
+                                                                                                                        <li class="menu-item <%= title === 'StallAdd' ? 'menu-item-active' : ''%>"
+                                                                                                                            aria-haspopup="true">
+                                                                                                                            <a href="/StallAdd"
+                                                                                                                                class="menu-link">
+                                                                                                                                <span
+                                                                                                                                    class="menu-text">
+                                                                                                                                    Add
+                                                                                                                                    Stall</span>
+                                                                                                                                <span
+                                                                                                                                    class="menu-desc"></span>
+                                                                                                                            </a>
+                                                                                                                        </li>
+                                                                                                                        <li class="menu-item <%= title === 'StallView' ? 'menu-item-active' : ''%>"
+                                                                                                                            aria-haspopup="true">
+                                                                                                                            <a href="/StallView"
+                                                                                                                                class="menu-link">
+                                                                                                                                <span
+                                                                                                                                    class="menu-text">
+                                                                                                                                    View
+                                                                                                                                    Stall
+                                                                                                                                </span>
+                                                                                                                                <span
+                                                                                                                                    class="menu-desc"></span>
+                                                                                                                            </a>
+                                                                                                                        </li>
+                                                                                                                    </ul>
+                                                                                                                </div>
+                                                                                                            </li>
+                                                                                                        </ul>
+                                                                                                    </div>
+                                                                                                </li>
+                                                                                                <%}%>
+                                                                                                    <% if(cookieData[0].user_role_name==="admin"
+                                                                                                        ||
+                                                                                                        cookieData[0].user_role_name==="plant"
+                                                                                                        ) { %>
+                                                                                                        <li class="menu-item <%= title === 'ChangePassword' ? 'menu-item-active' : ''%>"
+                                                                                                            aria-haspopup="true">
+                                                                                                            <a href="/ChangePassword"
+                                                                                                                class="menu-link">
+                                                                                                                <span
+                                                                                                                    class="menu-text">Change
+                                                                                                                    Password</span>
+                                                                                                                <span
+                                                                                                                    class="menu-desc"></span>
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                        <%}%>
+
+                                                                                                            <% if(cookieData[0].user_role_name==="report"
+                                                                                                                ) { %>
+                                                                                                                <li class="menu-item menu-item-open menu-item-submenu menu-item-rel menu-item-open
+                                                                                                                <%= title === 'ExceptionReport' || title === 'InventoryProductionBalanceReport' || title === 'InventoryDepotBalanceReport' || 
+                                                                                                                title === 'SalesReport' || title === 'PlantWiseOrderReport' || title === 'VarianceReport' || 
+                                                                                                                title === 'VarianceMobileUnitReport' || title === 'PlantImportReport' || title === 'PlantExportReport' || 
+                                                                                                                title === 'ChallanReport' || title === 'INRReport' || title === 'INRCorrectionReport' ? 'menu-item-here' : ''%>"
+                                                                                                                    data-menu-toggle="click"
+                                                                                                                    aria-haspopup="true">
+                                                                                                                    <a href="javascript:;"
+                                                                                                                        class="menu-link menu-toggle">
+                                                                                                                        <span
+                                                                                                                            class="menu-text">Reports<i
+                                                                                                                                class="fa fa-sort-down"
+                                                                                                                                style="font-size: 20px;
+                                                                padding-bottom: 9px;
+                                                                padding-left: 2px;"></i></span>
+                                                                                                                        <i
+                                                                                                                            class="menu-arrow"></i>
+                                                                                                                    </a>
+                                                                                                                    <div
+                                                                                                                        class="menu-submenu menu-submenu-classic menu-submenu-left">
+                                                                                                                        <ul
+                                                                                                                            class="menu-subnav">
+                                                                                                                            <li class="menu-item <%= title === 'ExceptionReport' ? 'menu-item-active' : ''%>"
+                                                                                                                                aria-haspopup="true">
+                                                                                                                                <a href="/ExceptionReport"
+                                                                                                                                    class="menu-link">
+                                                                                                                                    <span
+                                                                                                                                        class="menu-text">Exception
+                                                                                                                                        Report</span>
+                                                                                                                                    <span
+                                                                                                                                        class="menu-desc"></span>
+                                                                                                                                </a>
+                                                                                                                            </li>
+                                                                                                                            <li class="menu-item menu-item-submenu <%=  title === 'InventoryProductionBalanceReport' 
+                                                                || title === 'InventoryDepotBalanceReport' ? 'menu-item-here' : ''%>"
+                                                                                                                                data-menu-toggle="hover"
+                                                                                                                                aria-haspopup="true">
+                                                                                                                                <a href="javascript:;"
+                                                                                                                                    class="menu-link menu-toggle">
+                                                                                                                                    <span
+                                                                                                                                        class="menu-text">Inventory
+                                                                                                                                        Report</span>
+                                                                                                                                    <i
+                                                                                                                                        class="menu-arrow"></i>
+                                                                                                                                </a>
+                                                                                                                                <div
+                                                                                                                                    class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                                                                    <ul
+                                                                                                                                        class="menu-subnav">
+                                                                                                                                        <li class="menu-item <%= title === 'InventoryProductionBalanceReport' ? 'menu-item-active' : ''%>"
+                                                                                                                                            aria-haspopup="true">
+                                                                                                                                            <a href="/InventoryProductionBalanceReport"
+                                                                                                                                                class="menu-link">
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-text">
+                                                                                                                                                    Production
+                                                                                                                                                    Balance
+                                                                                                                                                    Report</span>
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-desc"></span>
+                                                                                                                                            </a>
+
+                                                                                                                                        </li>
+                                                                                                                                        <li class="menu-item <%= title === 'InventoryDepotBalanceReport' ? 'menu-item-active' : ''%>"
+                                                                                                                                            aria-haspopup="true">
+                                                                                                                                            <a href="/InventoryDepotBalanceReport"
+                                                                                                                                                class="menu-link">
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-text">
+                                                                                                                                                    Depot
+                                                                                                                                                    Balance
+                                                                                                                                                    Report
+                                                                                                                                                </span>
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-desc"></span>
+                                                                                                                                            </a>
+                                                                                                                                        </li>
+                                                                                                                                    </ul>
+                                                                                                                                </div>
+                                                                                                                            </li>
+                                                                                                                            <li class="menu-item menu-item-submenu <%=  title === 'VarianceReport' 
+                                                                || title === 'VarianceMobileUnitReport' ? 'menu-item-here' : ''%>"
+                                                                                                                                data-menu-toggle="hover"
+                                                                                                                                aria-haspopup="true">
+                                                                                                                                <a href="javascript:;"
+                                                                                                                                    class="menu-link menu-toggle">
+                                                                                                                                    <span
+                                                                                                                                        class="menu-text">Variance
+                                                                                                                                        Report</span>
+                                                                                                                                    <i
+                                                                                                                                        class="menu-arrow"></i>
+                                                                                                                                </a>
+                                                                                                                                <div
+                                                                                                                                    class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                                                                    <ul
+                                                                                                                                        class="menu-subnav">
+                                                                                                                                        <li class="menu-item <%= title === 'VarianceReport' ? 'menu-item-active' : ''%>"
+                                                                                                                                            aria-haspopup="true">
+                                                                                                                                            <a href="/VarianceReport"
+                                                                                                                                                class="menu-link">
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-text">Static
+                                                                                                                                                    Unit
+                                                                                                                                                    Report
+                                                                                                                                                </span>
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-desc"></span>
+                                                                                                                                            </a>
+                                                                                                                                        </li>
+                                                                                                                                        <li class="menu-item <%= title === 'VarianceMobileUnitReport' ? 'menu-item-active' : ''%>"
+                                                                                                                                            aria-haspopup="true">
+                                                                                                                                            <a href="/VarianceMobileUnitReport"
+                                                                                                                                                class="menu-link">
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-text">Mobile
+                                                                                                                                                    Unit
+                                                                                                                                                    Report
+                                                                                                                                                </span>
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-desc"></span>
+                                                                                                                                            </a>
+                                                                                                                                        </li>
+                                                                                                                                    </ul>
+                                                                                                                                </div>
+                                                                                                                            </li>
+                                                                                                                            <li class="menu-item menu-item-submenu <%=  title === 'PlantImportReport' 
+                                                                || title === 'PlantExportReport' ? 'menu-item-here' : ''%>" data-menu-toggle="hover"
+                                                                                                                                aria-haspopup="true">
+                                                                                                                                <a href="javascript:;"
+                                                                                                                                    class="menu-link menu-toggle">
+                                                                                                                                    <span
+                                                                                                                                        class="menu-text">Plant
+                                                                                                                                        To
+                                                                                                                                        Plant
+                                                                                                                                        Transaction</span>
+                                                                                                                                    <i
+                                                                                                                                        class="menu-arrow"></i>
+                                                                                                                                </a>
+                                                                                                                                <div
+                                                                                                                                    class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                                                                    <ul
+                                                                                                                                        class="menu-subnav">
+                                                                                                                                        <li class="menu-item <%= title === 'PlantImportReport' ? 'menu-item-active' : ''%>"
+                                                                                                                                            aria-haspopup="true">
+                                                                                                                                            <a href="/PlantImportReport"
+                                                                                                                                                class="menu-link">
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-text">Product
+                                                                                                                                                    Received
+                                                                                                                                                    Report
+                                                                                                                                                </span>
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-desc"></span>
+                                                                                                                                            </a>
+                                                                                                                                        </li>
+                                                                                                                                        <li class="menu-item <%= title === 'PlantExportReport' ? 'menu-item-active' : ''%>"
+                                                                                                                                            aria-haspopup="true">
+                                                                                                                                            <a href="/PlantExportReport"
+                                                                                                                                                class="menu-link">
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-text">Product
+                                                                                                                                                    Send
+                                                                                                                                                    Report
+                                                                                                                                                </span>
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-desc"></span>
+                                                                                                                                            </a>
+                                                                                                                                        </li>
+                                                                                                                                    </ul>
+                                                                                                                                </div>
+                                                                                                                            </li>
+                                                                                                                            <li class="menu-item <%= title === 'ChallanReport' ? 'menu-item-active' : ''%>"
+                                                                                                                                aria-haspopup="true">
+                                                                                                                                <a href="/ChallanReport"
+                                                                                                                                    class="menu-link">
+                                                                                                                                    <span
+                                                                                                                                        class="menu-text">Challan
+                                                                                                                                        Report</span>
+                                                                                                                                    <span
+                                                                                                                                        class="menu-desc"></span>
+                                                                                                                                </a>
+                                                                                                                            </li>
+                                                                                                                            <li class="menu-item menu-item-submenu <%=  title === 'INRReport' 
+                                                                || title === 'INRCorrectionReport' ? 'menu-item-here' : ''%>" data-menu-toggle="hover"
+                                                                                                                                aria-haspopup="true">
+                                                                                                                                <a href="javascript:;"
+                                                                                                                                    class="menu-link menu-toggle">
+                                                                                                                                    <span
+                                                                                                                                        class="menu-text">IRN
+                                                                                                                                        Report</span>
+                                                                                                                                    <i
+                                                                                                                                        class="menu-arrow"></i>
+                                                                                                                                </a>
+                                                                                                                                <div
+                                                                                                                                    class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                                                                    <ul
+                                                                                                                                        class="menu-subnav">
+                                                                                                                                        <li class="menu-item <%= title === 'INRReport' ? 'menu-item-active' : ''%>"
+                                                                                                                                            aria-haspopup="true">
+                                                                                                                                            <a href="/INRReport"
+                                                                                                                                                class="menu-link">
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-text">
+                                                                                                                                                    IRN
+                                                                                                                                                    Generated
+                                                                                                                                                    Report</span>
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-desc"></span>
+                                                                                                                                            </a>
+
+                                                                                                                                        </li>
+                                                                                                                                        <li class="menu-item <%= title === 'INRCorrectionReport' ? 'menu-item-active' : ''%>"
+                                                                                                                                            aria-haspopup="true">
+                                                                                                                                            <a href="/INRCorrectionReport"
+                                                                                                                                                class="menu-link">
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-text">
+                                                                                                                                                    IRN
+                                                                                                                                                    Correction
+                                                                                                                                                    Report
+                                                                                                                                                </span>
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-desc"></span>
+                                                                                                                                            </a>
+                                                                                                                                        </li>
+                                                                                                                                    </ul>
+                                                                                                                                </div>
+                                                                                                                            </li>
+                                                                                                                            <li class="menu-item menu-item-submenu <%=  title === 'SalesReport' 
+                                                                || title === 'PlantWiseOrderReport' ? 'menu-item-here' : ''%>" data-menu-toggle="hover"
+                                                                                                                                aria-haspopup="true">
+                                                                                                                                <a href="javascript:;"
+                                                                                                                                    class="menu-link menu-toggle">
+                                                                                                                                    <span
+                                                                                                                                        class="menu-text">Others</span>
+                                                                                                                                    <i
+                                                                                                                                        class="menu-arrow"></i>
+                                                                                                                                </a>
+                                                                                                                                <div
+                                                                                                                                    class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                                                                                                                    <ul
+                                                                                                                                        class="menu-subnav">
+                                                                                                                                        <li class="menu-item <%= title === 'SalesReport' ? 'menu-item-active' : ''%>"
+                                                                                                                                            aria-haspopup="true">
+                                                                                                                                            <a href="/SalesReport"
+                                                                                                                                                class="menu-link">
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-text">Sales
+                                                                                                                                                    Report</span>
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-desc"></span>
+                                                                                                                                            </a>
+                                                                                                                                        </li>
+                                                                                                                                        <li class="menu-item <%= title === 'PlantWiseOrderReport' ? 'menu-item-active' : ''%>"
+                                                                                                                                            aria-haspopup="true">
+                                                                                                                                            <a href="/PlantWiseOrderReport"
+                                                                                                                                                class="menu-link">
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-text">Plant
+                                                                                                                                                    Wise
+                                                                                                                                                    Order
+                                                                                                                                                    Report</span>
+                                                                                                                                                <span
+                                                                                                                                                    class="menu-desc"></span>
+                                                                                                                                            </a>
+                                                                                                                                        </li>
+                                                                                                                                    </ul>
+                                                                                                                                </div>
+                                                                                                                            </li>
+                                                                                                                        </ul>
+                                                                                                                    </div>
+                                                                                                                </li>
+                                                                                                                <%}%>
+
+                                                </ul>
+                                                <!--end::Nav-->
+                                                <!--begin::Nav-->
+                                                <!--end::Nav-->
+                                            </div>
+                                            <!--end::Menu-->
+                                        </div>
+                                        <!--begin::Tab Pane-->
+                                    </div>
+                                    <!--end::Tab Content-->
+                                </div>
+                                <!--end::Header Menu Wrapper-->
+                            </div>
+                            <!--end::Container-->
+                        </div>
+                        <!--end::Bottom-->
+                    </div>
+                    <!--end::Header-->

@@ -1,0 +1,447 @@
+<div class="edgtf-top-bar usermenucss">
+    <div class="edgtf-grid">
+        <div class="edgtf-vertical-align-containers">
+            <div class="edgtf-position-left">
+                <div class="edgtf-position-left-inner">
+                    <div id="text-3" class="widget widget_text edgtf-top-bar-widget">
+                        <div class="textwidget">
+                            <% if(cookieData){ %>
+                                <span class="edgtf-search-icon-text"
+                                    style="font-size: 16px;font-family:Source Serif Pro;margin-right: 1px;">
+                                    Welcome, <%= cookieData[0].FirstName %>
+                                </span>
+                              
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="edgtf-position-right">
+                <div class="edgtf-position-right-inner">
+                    <div id="text-9" class="widget widget_text edgtf-top-bar-widget">
+                        <div class="textwidget">
+                            <a class="edgtf-search-opener edgtf-icon-has-hover edgtf-search-opener-icon-pack"
+                                href="/ItemName">
+                                <i class="fa fa-search" style="font-size: 24px;"></i>
+                                <!-- <span class="edgtf-search-opener-wrapper">
+                                    <span class="edgtf-search-icon-text"
+                                        style="font-size: 16px;font-family:Source Serif Pro;margin-right: 9px;margin-top: -5px;">Search</span>
+                                </span> -->
+                            </a>
+                        </div>
+                    </div>
+                    <% if(cookieData){ %>
+                        <div id="text-9" class="widget widget_text edgtf-top-bar-widget">
+                            <div class="textwidget">
+                                <a class="edgtf-top-bar-link" href="/WishList">
+                                    <span class="edgtf-search-opener-wrapper">
+                                        <span class="edgtf-search-icon-text"
+                                            style="font-size: 16px;font-family:Source Serif Pro;margin-right: 18px;">WishList</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- <div id="text-9" class="widget widget_text edgtf-top-bar-widget">
+                            <div class="textwidget">
+                                <p><a class="edgtf-top-bar-link"
+                                        style="margin-right: 35px;font-family: Montserrat,sans-serif"
+                                        href="/OrderHistory">Order History</a></p>
+                            </div>
+                        </div> -->
+                        <div id="text-9" class="widget widget_text edgtf-top-bar-widget">
+                            <div class="textwidget">
+                                <a class="edgtf-top-bar-link" href="/OrderHistory">
+                                    <span class="edgtf-search-opener-wrapper">
+                                        <span class="edgtf-search-icon-text"
+                                            style="font-size: 16px;font-family:Source Serif Pro;margin-right: 18px;">Order
+                                            History</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="text-9" class="widget widget_text edgtf-top-bar-widget">
+                            <div class="textwidget">
+                                <a class="edgtf-top-bar-link" href="/UserProfile">
+                                    <span class="edgtf-search-opener-wrapper">
+                                        <span class="edgtf-search-icon-text"
+                                            style="font-size: 16px;font-family:Source Serif Pro;margin-right: 18px;">User
+                                            Profile</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="text-9" class="widget widget_text edgtf-top-bar-widget">
+                            <div class="textwidget">
+                                <a class="edgtf-top-bar-link" href="/LogOut">
+                                    <span class="edgtf-search-opener-wrapper">
+                                        <i class="fa fa-sign-out" style="font-size: 24px;"></i>
+                                        <!-- <span class="edgtf-search-icon-text"
+                                            style="font-size: 16px;font-family:Source Serif Pro;margin-right: 18px;">LogOut</span> -->
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- <div id="text-9" class="widget widget_text edgtf-top-bar-widget">
+                            <div class="textwidget">
+                                <span class="edgtf-search-opener-wrapper">
+                                    <span class="edgtf-search-icon-text"
+                                        style="font-size: 16px;font-family:Source Serif Pro;margin-right: 18px;">
+                                        <%= cookieData[0].FirstName %>
+                                    </span>
+                                </span>
+                            </div>
+                        </div> -->
+                        <% } else{ %>
+                            <div id="text-9" class="widget widget_text edgtf-top-bar-widget">
+                                <div class="textwidget">
+                                    <!-- <p><a class="edgtf-top-bar-link"
+                                            style="margin-right: 35px;font-family: Montserrat,sans-serif"
+                                            href="/UserLogIn">UserLogIn</a></p> -->
+                                    <a class="edgtf-top-bar-link" href="/UserLogIn">
+                                        <span class="edgtf-search-opener-wrapper">
+                                            <i class="fa fa-user" style="font-size: 24px;"></i>
+                                            <!-- <span class="edgtf-search-icon-text"
+                                                style="font-size: 16px;font-family:Source Serif Pro;margin-right: 18px;">LogIn</span> -->
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% if(locals.DiscountDetail) {%>
+    <% if(locals.DiscountDetail.length> 0) {%>
+        <!-- <div class="edgtf-top-bar discountcodecss" style="background: #112a26;"> -->
+        <div class="edgtf-top-bar discountcodecss" style="background: #112a26;">
+            <div class="edgtf-grid">
+                <div class="edgtf-vertical-align-containers">
+                    <div class="edgtf-position-left">
+                        <div class="edgtf-position-left-inner">
+                            <div id="text-3" class="widget widget_text edgtf-top-bar-widget">
+                                <div class="textwidget">
+                                    <p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="edgtf-position-right couponfontmobile"
+                        style="float: none; text-align: center !important;color: white;">
+                        <div class="edgtf-position-right-inner" style="display: inline-flex;">
+                            ⚡ NOW FLAT <%= locals.DiscountDetail[0].Discount %> % OFF ON YOUR ORDER ⚡ USE CODE : <%=
+                                    locals.DiscountDetail[0].DiscountName %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%}%>
+            <%}%>
+                <div class="edgtf-top-live-preview-search-holder">
+                    <div class="edgtf-top-search-table">
+                        <div class="edgtf-top-search-cell">
+                            <div class="edgtf-top-search-inner">
+                                <form action="/ItemName" class="edgtf-top-search-form" method="post">
+                                    <div class="edgtf-form-holder">
+                                        <div class="edgtf-form-holder-inner">
+                                            <div class="edgtf-field-holder edgtf-tlp-search-field-holder"
+                                                data-post-type="product">
+                                                <input type="text" placeholder="Enter Product Name , Color Name ..."
+                                                    name="SearchItem" class="edgtf-search-field edgtf-search-field1"
+                                                    autocomplete="off" />
+                                                <a class="edgtf-search-close edgtf-search-close-icon-pack"
+                                                    href="javascript:void(0)">
+                                                    <span aria-hidden="true"
+                                                        class="edgtf-icon-linear-icons lnr lnr-cross "></span> </a>
+                                                <i class="edgtf-search-icon fa fa-search" aria-hidden="true"></i>
+                                                <i class="edgtf-search-loading fa fa-spinner fa-spin edgtf-hidden"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                            <div class="edgtf-line"></div>
+                                            <div class="edgtf-tlp-search-results"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <header class="edgtf-page-header">
+                    <div class="edgtf-fixed-wrapper">
+                        <div class="edgtf-menu-area">
+                            <div class="edgtf-grid headermenucsssize">
+                                <div class="edgtf-vertical-align-containers">
+                                    <div class="edgtf-position-left">
+                                        <div class="edgtf-position-left-inner">
+                                            <div class="edgtf-logo-wrapper">
+                                                <a itemprop="url" href="/Splash">
+                                                    <img itemprop="image" class="edgtf-normal-logo"
+                                                        src="../images/Logo.png" style="height: 100px;" alt="logo" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="edgtf-position-right">
+                                        <div class="edgtf-position-right-inner">
+                                            <div class="edgtf-main-menu">
+                                                <nav class="edgtf-main-menu edgtf-drop-down edgtf-default-nav">
+                                                    <ul id="menu-menu" class="clearfix">
+                                                        <li id="nav-menu-item-2266"
+                                                            class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children has_sub narrow <%= Menutitle === 'Home' ? 'edgtf-active-item' : ''%>">
+                                                            <a href="/Splash" class="current">
+                                                                <span class="item_outer">
+                                                                    <span class="item_text">Home</span><i
+                                                                        class="edgtf-menu-arrow lnr lnr-chevron-down"></i>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+
+                                                        <% for(var i=0; i < CategoryData.length; i++) {%>
+                                                            <% var categoryData=CategoryData[i].split('@') %>
+                                                                <% var category=categoryData[0].split('$') %>
+                                                                    <% var subCategoryData=categoryData[1].split('^') %>
+
+                                                                        <li id="nav-menu-item-2266"
+                                                                            class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children has_sub narrow <%= Menutitle === category[0] ? 'edgtf-active-item' : ''%>">
+                                                                            <a href="javascript:void(0)"
+                                                                                class="current">
+                                                                                <span class="item_outer"><span
+                                                                                        class="item_text">
+                                                                                        <%= category[0] %>
+                                                                                    </span><i
+                                                                                        class="edgtf-menu-arrow lnr lnr-chevron-down"></i></span></a>
+                                                                            <div class="second">
+                                                                                <div class="inner">
+                                                                                    <ul>
+                                                                                        <% for(var k=0; k <
+                                                                                            subCategoryData.length; k++)
+                                                                                            {%>
+                                                                                            <% var
+                                                                                                spliSubCategoryData=subCategoryData[k].split('#')
+                                                                                                %>
+                                                                                                <!-- current-menu-item -->
+                                                                                                <!-- file:///D:/1%20Template/Asaga%20Website%20Template/lacomete.qodeinteractive.com/shop/predefined/index.html -->
+                                                                                                <li id="nav-menu-item-2267"
+                                                                                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-17 current_page_item <%= title === spliSubCategoryData[0] ? 'current-menu-item' : '' %>">
+                                                                                                    <a href="/Items/<%= spliSubCategoryData[1] %>"
+                                                                                                        class=""><span
+                                                                                                            class="item_outer"><span
+                                                                                                                class="item_text">
+                                                                                                                <%= spliSubCategoryData[0]
+                                                                                                                    %>
+                                                                                                            </span></span></a>
+                                                                                                </li>
+                                                                                                <%}%>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                        <%}%>
+                                                                            <li id="nav-menu-item-2266"
+                                                                                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children has_sub narrow <%= Menutitle === 'AboutUs' ? 'edgtf-active-item' : ''%>">
+                                                                                <a href="/AboutUs" class="current">
+                                                                                    <span class="item_outer">
+                                                                                        <span
+                                                                                            class="item_text">About</span><i
+                                                                                            class="edgtf-menu-arrow lnr lnr-chevron-down"></i>
+                                                                                    </span>
+                                                                                </a>
+                                                                            </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                            <div class="edgtf-shopping-cart-holder" style="margin: 0px 55px 0px 25px">
+                                                <div class="edgtf-shopping-cart-inner">
+                                                    <a itemprop="url"
+                                                        class="edgtf-header-cart edgtf-header-cart-predefined"
+                                                        href="javascript:void(0)">
+                                                        <span class="edgtf-sc-opener-icon"><span
+                                                                class="edgtf-cart-text">Cart</span></span>
+                                                        <span class="edgtf-sc-opener-count"> (<label id="BinCountInCart"
+                                                                style="margin-bottom: 0;"></label>)
+                                                        </span>
+                                                    </a>
+                                                    <div class="edgtf-sc-dropdown">
+                                                        <div class="edgtf-sc-dropdown-inner" id="emptyCart"
+                                                            style="display: none;">
+                                                            <p class="edgtf-empty-cart">No products in the cart.</p>
+                                                            <a itemprop="url" href="/Splash"
+                                                                class="edgtf-sc-dropdown-button">Continue
+                                                                shopping</a>
+                                                        </div>
+
+                                                        <% if(locals.cartItemData) { %>
+                                                            <% if(locals.cartItemData.length> 0) { %>
+                                                                <% let CartData=locals.cartItemData %>
+                                                                    <% let TotalPrice=0 %>
+                                                                        <div class="edgtf-sc-dropdown-inner"
+                                                                            id="itemWithCart" style="display: none;">
+                                                                            <div class="edgtf-sc-dropdown-items">
+                                                                                <% for(var i=0; i < CartData.length;
+                                                                                    i++) {%>
+                                                                                    <% TotalPrice
+                                                                                        +=CartData[i].FinalPrice %>
+                                                                                        <div
+                                                                                            class="edgtf-sc-dropdown-item">
+                                                                                            <div
+                                                                                                class="edgtf-sc-dropdown-item-image">
+                                                                                                <a
+                                                                                                    href="javascript:void(0)"><img
+                                                                                                        width="300"
+                                                                                                        height="400"
+                                                                                                        src="<%= process.env.ItemImagePATH %><%= CartData[i].Image != undefined && CartData[i].Image != '' ? CartData[i].Image : 'NoImage.png' %>"
+                                                                                                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                                                                        alt="loading"
+                                                                                                        loading="lazy" /></a>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="edgtf-sc-dropdown-item-content">
+                                                                                                <h6 itemprop="name"
+                                                                                                    class="edgtf-sc-dropdown-item-title entry-title">
+                                                                                                    <a class="itemText"
+                                                                                                        style="font-size: 13px;"
+                                                                                                        href="javascript:void(0)">
+                                                                                                        <%= CartData[i].ItemName
+                                                                                                            !=undefined
+                                                                                                            &&
+                                                                                                            CartData[i].ItemName
+                                                                                                            !='' ?
+                                                                                                            CartData[i].ItemName
+                                                                                                            : '' %>
+                                                                                                    </a>
+                                                                                                </h6>
+                                                                                                <div
+                                                                                                    class="edgtf-quantity-buttons quantity">
+                                                                                                    <label
+                                                                                                        class="screen-reader-text"
+                                                                                                        for="quantity_63ca12ed89723"></label>
+                                                                                                    <span
+                                                                                                        class="edgtf-quantity-label">Quantity</span>
+                                                                                                    <a class="carta"
+                                                                                                        href="javascript:void(0)">
+                                                                                                        <%= CartData[i].Qty
+                                                                                                            !=undefined
+                                                                                                            &&
+                                                                                                            CartData[i].Qty
+                                                                                                            !='' ?
+                                                                                                            CartData[i].Qty
+                                                                                                            : '' %>
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <br>
+                                                                                                <div
+                                                                                                    class="edgtf-quantity-buttons quantity">
+                                                                                                    <label
+                                                                                                        class="screen-reader-text"
+                                                                                                        for="quantity_63ca12ed89723"></label>
+                                                                                                    <span
+                                                                                                        class="edgtf-quantity-label">Size</span>
+                                                                                                    <a class="carta"
+                                                                                                        href="javascript:void(0)">
+                                                                                                        <%= CartData[i].Size
+                                                                                                            !=undefined
+                                                                                                            &&
+                                                                                                            CartData[i].Size
+                                                                                                            !='' ?
+                                                                                                            CartData[i].Size
+                                                                                                            : '' %>
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <% if(CartData[i].DiscountPrice)
+                                                                                                    { %>
+                                                                                                    <span
+                                                                                                        class="edgtf-sc-dropdown-item-price"><span
+                                                                                                            class="woocommerce-Price-amount amount">
+                                                                                                            <bdi
+                                                                                                                style="text-decoration: line-through;"><span
+                                                                                                                    class="woocommerce-Price-currencySymbol">Rs.</span>
+                                                                                                                <%= CartData[i].ActualPrice
+                                                                                                                    %>
+                                                                                                            </bdi></span>
+                                                                                                    </span>
+                                                                                                    <br>
+                                                                                                    <span
+                                                                                                        class="edgtf-sc-dropdown-item-price"><span
+                                                                                                            class="woocommerce-Price-amount amount">
+                                                                                                            <bdi><span
+                                                                                                                    class="woocommerce-Price-currencySymbol">Rs.</span>
+                                                                                                                <%= CartData[i].FinalPrice.toFixed(2)
+                                                                                                                    %>
+                                                                                                            </bdi></span>
+                                                                                                    </span>
+                                                                                                    <br>
+
+                                                                                                    <span
+                                                                                                        class="edgtf-sc-dropdown-item-price"><span
+                                                                                                            class="woocommerce-Price-amount amount">
+                                                                                                            <bdi><span
+                                                                                                                    style="font-weight: bold;">
+                                                                                                                    <%= CartData[i].DiscountName
+                                                                                                                        %>
+                                                                                                                        &nbsp;
+                                                                                                                </span><span
+                                                                                                                    class="woocommerce-Price-currencySymbol">(
+                                                                                                                    -Rs.</span>
+                                                                                                                <%= CartData[i].DiscountPrice.toFixed(2)
+                                                                                                                    %>
+                                                                                                                    )
+                                                                                                            </bdi></span>
+                                                                                                    </span>
+                                                                                                    <%}else{%>
+                                                                                                        <span
+                                                                                                            class="edgtf-sc-dropdown-item-price"><span
+                                                                                                                class="woocommerce-Price-amount amount"><bdi><span
+                                                                                                                        class="woocommerce-Price-currencySymbol">Rs.</span>
+                                                                                                                    <%= CartData[i].FinalPrice.toFixed(2)
+                                                                                                                        %>
+                                                                                                                </bdi></span></span>
+                                                                                                        <%}%>
+                                                                                            </div>
+                                                                                            <a href="javascript:void(0)"
+                                                                                                onclick="RemoveDataFromLocalStorage('<%= CartData[i].browserId_ItemID_Size %>')"
+                                                                                                class="carta edgtf-sc-dropdown-item-remove remove"
+                                                                                                title="close"><span
+                                                                                                    aria-hidden="true"
+                                                                                                    class="edgtf-icon-linear-icons lnr lnr lnr-cross"></span></span></a>
+                                                                                        </div>
+                                                                                        <%}%>
+                                                                            </div>
+
+                                                                            <div class="edgtf-sc-dropdown-tac">
+                                                                                <div class="edgtf-sc-dropdown-subtotal">
+                                                                                    <h5 class="edgtf-sc-dropdown-total">
+                                                                                        Total:</h5>
+                                                                                    <span
+                                                                                        class="edgtf-sc-dropdown-total-amount"><span
+                                                                                            class="woocommerce-Price-amount amount"><bdi><span
+                                                                                                    class="woocommerce-Price-currencySymbol">Rs.</span>
+                                                                                                <%= TotalPrice.toFixed(2)
+                                                                                                    %>
+                                                                                            </bdi></span></span>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="edgtf-sc-dropdown-button-holder">
+                                                                                    <a itemprop="url" href="/ViewCart"
+                                                                                        class="edgtf-sc-dropdown-button">Proceed
+                                                                                        to
+                                                                                        checkout</a>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <%}else{%>
+                                                                            <%}%>
+                                                                                <%}%>
+                                                    </div>
+                                                </div>
+                                            </div>                                         
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>

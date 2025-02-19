@@ -1,0 +1,785 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+
+        .toggle-slide {
+            overflow: hidden;
+            cursor: pointer;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            direction: ltr;
+        }
+
+        .toggle-slide .toggle-on,
+        .toggle-slide .toggle-off,
+        .toggle-slide .toggle-blob {
+            float: left;
+        }
+
+        .toggle-slide .toggle-blob {
+            position: relative;
+            z-index: 99;
+            cursor: hand;
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+        }
+
+        .toggle {
+            height: 25px !important;
+        }
+
+        .toggle-off {
+            background-color: #E4E6EF;
+            height: 25px !important;
+            line-height: 25px !important;
+        }
+
+        .toggle-on {
+            background-color: #03449e;
+            color: white;
+            height: 25px !important;
+            line-height: 25px !important;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divAddUser"
+                                style="margin-top: 5px; display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Add CFA User
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <% if(!FetchData){%>
+                                                <form id="frmPlantUser" class="form" action="/AddCFAUser" method="post"
+                                                    autocomplete="off">
+                                                    <input type="text" id="PlantID" name="plant_id" value=""
+                                                        style="display: none;">
+                                                    <div class="card-body">
+                                                        <div id="divSearch" class="">
+                                                            <div class="row" style="margin-bottom: -16px;">
+                                                                <div class="col-md-3 col-lg-3">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>User : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <select ID="user_id"
+                                                                            class="form-control select2dropdown select2"
+                                                                            name="user_id" tabindex="1">
+                                                                            <option Value="">--Select User--
+                                                                            </option>
+                                                                            <% if(UserData && UserData.data &&
+                                                                                UserData.data.length> 0){%>
+                                                                                <%for(var i=0; i < UserData.data.length;
+                                                                                    i++){%>
+                                                                                    <option
+                                                                                        value="<%= UserData.data[i].id %>">
+                                                                                        <%= UserData.data[i].username %>
+                                                                                            (<%= UserData.data[i].UserInformationDetail
+                                                                                                ?
+                                                                                                UserData.data[i].UserInformationDetail[0].name
+                                                                                                : '' %>
+                                                                                                )
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Cfa_Org : </label>
+                                                                        <select ID="cfa_org_id"
+                                                                            class="form-control select2dropdown"
+                                                                            name="cfa_org_id" tabindex="2">
+                                                                            <option Value="">--Select Cfa_Org--
+                                                                            </option>
+                                                                            <% if(CfaOrgData && CfaOrgData.data &&
+                                                                                CfaOrgData.data.length> 0){%>
+                                                                                <%for(var i=0; i <
+                                                                                    CfaOrgData.data.length; i++){%>
+                                                                                    <option
+                                                                                        value="<%= CfaOrgData.data[i].id %>">
+                                                                                        <%= CfaOrgData.data[i].org_name
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2 col-lg-2">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Assign Roles : </label><br>
+                                                                        <input type="checkbox" id="is_controller"
+                                                                            name="is_controller" value="1">
+                                                                        <label
+                                                                            for="is_controller">Controller</label><br>
+
+                                                                        <input type="checkbox" id="is_supplier"
+                                                                            name="is_supplier" value="1">
+                                                                        <label for="is_supplier">Supplier</label><br>
+
+                                                                        <input type="checkbox" id="is_collection"
+                                                                            name="is_collection" value="1">
+                                                                        <label for="is_collection">Collector</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>CFA to Allow Generate Order :
+                                                                        </label><br>
+                                                                        <input type="checkbox"
+                                                                            id="is_allow_generate_order"
+                                                                            name="is_allow_generate_order" value="1"
+                                                                            tabindex="3">
+                                                                        <label for="is_allow_generate_order">Allow
+                                                                            Generate Order</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="padding-top: 26px; margin-bottom: 20px">
+                                                                    <div class="form-group formgroupbuttoncss">
+                                                                        <button type="submit" id=""
+                                                                            class="btn btn-primary"
+                                                                            style="margin-bottom: 10px;">
+                                                                            <i class="la la-check-square-o"
+                                                                                style="color: white;" tabindex="4"></i>
+                                                                            Submit</button>
+                                                                        <button type="reset" value="reset"
+                                                                            id="btnCancel" class="btn btn-danger"
+                                                                            style="margin-bottom: 10px;"
+                                                                            onclick="CancelFunction()" tabindex="5">
+                                                                            <i
+                                                                                class="fa-window-close fas"></i>Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <% }else{ %>
+                                                    <form id="frmPlantUser" class="form" action="/UpdateCFAUser"
+                                                        method="post" autocomplete="off">
+                                                        <input type="text" id="id" name="user_role_mapping_id"
+                                                            value="<%= FetchData.data[0].user_role_mapping_id %>"
+                                                            style="display: none;">
+                                                        <input type="text" id="PlantID" name="plant_id" value=""
+                                                            style="display: none;">
+                                                        <div class="card-body">
+                                                            <div id="divSearch" class="">
+                                                                <div class="row" style="margin-bottom: -16px;">
+                                                                    <div class="col-md-3 col-lg-3">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>User : </label>
+                                                                            <select class="form-control select2dropdown"
+                                                                                id="user_id" name="user_id"
+                                                                                value="<%= FetchData.data[0].user_id %>"
+                                                                                disabled="disabled" tabindex="1">
+                                                                                <option value="">--Select User--
+                                                                                </option>
+                                                                                <% if(UserData && UserData.data &&
+                                                                                    UserData.data.length> 0){%>
+                                                                                    <%for(var i=0; i <
+                                                                                        UserData.data.length; i++){%>
+                                                                                        <%if(UserData.data[i].id.toString()==FetchData.data[0].user_id.toString()){%>
+                                                                                            <option
+                                                                                                value="<%= UserData.data[i].id %>"
+                                                                                                selected="selected">
+                                                                                                <%= UserData.data[i].username
+                                                                                                    %>
+                                                                                                    (<%= UserData.data[i].UserDetail
+                                                                                                        ?
+                                                                                                        UserData.data[i].UserDetail[0].name
+                                                                                                        : '' %>
+                                                                                                        )
+                                                                                            </option>
+                                                                                            <%} else {%>
+                                                                                                <option
+                                                                                                    value="<%= UserData.data[i].id %>">
+                                                                                                    <%= UserData.data[i].username
+                                                                                                        %>
+                                                                                                        (<%= UserData.data[i].UserDetail
+                                                                                                            ?
+                                                                                                            UserData.data[i].UserDetail[0].name
+                                                                                                            : '' %>
+                                                                                                            )
+                                                                                                </option>
+                                                                                                <%}%>
+                                                                                                    <%}%>
+                                                                                                        <%}%>
+                                                                            </select>
+                                                                            <input type="hidden" name="user_id"
+                                                                                value="<%= FetchData.data[0].user_id %>" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Cfa_Org : </label>
+                                                                            <select id="cfa_org_id"
+                                                                                class="form-control select2dropdown"
+                                                                                name="cfa_org_id"
+                                                                                value="<%= FetchData.data[0].cfa_org_id %>"
+                                                                                tabindex="2">
+                                                                                <option value="">--Select
+                                                                                    Cfa_Org--
+                                                                                </option>
+                                                                                <% if(CfaOrgData && CfaOrgData.data &&
+                                                                                    CfaOrgData.data.length> 0){%>
+                                                                                    <%for(var i=0; i <
+                                                                                        CfaOrgData.data.length; i++){%>
+                                                                                        <%if(CfaOrgData.data[i].id.toString()==FetchData.data[0].cfa_org_id.toString()){%>
+                                                                                            <option
+                                                                                                value="<%= CfaOrgData.data[i].id %>"
+                                                                                                selected="selected">
+                                                                                                <%= CfaOrgData.data[i].org_name
+                                                                                                    %>
+                                                                                            </option>
+                                                                                            <%} else {%>
+                                                                                                <option
+                                                                                                    value="<%= CfaOrgData.data[i].id %>">
+                                                                                                    <%= CfaOrgData.data[i].org_name
+                                                                                                        %>
+                                                                                                </option>
+                                                                                                <%}%>
+                                                                                                    <%}%>
+                                                                                                        <%}%>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2 col-lg-2">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Assign Roles : </label><br>
+                                                                            <input type="checkbox" id="is_controller"
+                                                                                class="" name="is_controller" value=""
+                                                                                <%=FetchData.data[0].is_controller=='1'
+                                                                                ? 'checked' :'' %>>
+                                                                            <label
+                                                                                for="is_controller">Controller</label><br>
+                                                                            <input type="checkbox" id="is_supplier"
+                                                                                name="is_supplier" value=""
+                                                                                <%=FetchData.data[0].is_supplier=='1'
+                                                                                ? 'checked' :'' %>>
+                                                                            <label
+                                                                                for="is_supplier">Supplier</label><br>
+
+                                                                            <input type="checkbox" id="is_collection"
+                                                                                name="is_collection" value=""
+                                                                                <%=FetchData.data[0].is_collection=='1'
+                                                                                ? 'checked' :'' %>>
+                                                                            <label for="is_collection">Collector</label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>CFA to Allow Generate Order :
+                                                                            </label><br>
+                                                                            <input type="checkbox"
+                                                                                id="is_allow_generate_order"
+                                                                                name="is_allow_generate_order" value=""
+                                                                                <%=FetchData.data[0].new_order=='1'
+                                                                                ? 'checked' :'' %>>
+                                                                            <label for="is_allow_generate_order">Allow
+                                                                                Generate Order</label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="padding-top: 26px; margin-bottom: 20px">
+                                                                        <div class="form-group formgroupbuttoncss">
+                                                                            <button type="submit" id=""
+                                                                                class="btn btn-primary"
+                                                                                style="margin-bottom: 10px;">
+                                                                                <i class="la la-check-square-o"
+                                                                                    style="color: white;"></i>
+                                                                                Update</button>
+                                                                            <button type="reset" value="reset"
+                                                                                id="btnCancel" class="btn btn-danger"
+                                                                                style="margin-bottom: 10px;"
+                                                                                onclick="CancelFunction()">
+                                                                                <i
+                                                                                    class="fa-window-close fas"></i>Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <%} %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divFilter"
+                                style="margin-top: 5px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search CFA User
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <form id="frmPlantUser" class="form" action="/CFAUser" method="post"
+                                                autocomplete="off">
+                                                <input type="text" id="PlantID" name="plant_id" value=""
+                                                    style="display: none;">
+                                                <div class="card-body">
+                                                    <div id="divFilter" class="">
+                                                        <div class="row" style="margin-bottom: -35px;">
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Cfa_Org : </label>
+                                                                    <select id="cfaorgid"
+                                                                        class="form-control select2dropdown"
+                                                                        name="cfa_org_id">
+                                                                        <option Value="">--Select Cfa_Org--
+                                                                        </option>
+                                                                        <% if(CfaOrgData && CfaOrgData.data &&
+                                                                            CfaOrgData.data.length> 0){%>
+                                                                            <%for(var i=0; i < CfaOrgData.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= CfaOrgData.data[i].id %>">
+                                                                                    <%= CfaOrgData.data[i].org_name %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>MobileNo : </label>
+                                                                    <input type="text" id="number"
+                                                                        placeholder="MobileNo" maxlength="10"
+                                                                        autocomplete="off"
+                                                                        class="form-control AllowNumberKey"
+                                                                        name="number">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3"
+                                                                style="padding-top: 14px; margin-bottom: 28px">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="" class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-search"
+                                                                            style="color: white;"></i>
+                                                                        Search</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                    <button id="btnExcel" name="btnExcel" type="submit"
+                                                                        class="btn btn-success"
+                                                                        formaction="/ViewCFAUserExcel" formmethod="post"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-file-excel"
+                                                                            style="color: white;"></i>Excel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">View CFA User Detail
+                                            </div>
+                                            <div class="card-title">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divAddUserDetail(this)" style="margin: 5px;" onclick="">Add
+                                                    CFA User &nbsp;<i class="fa fa-plus"></i></button>
+                                                <div></div>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divhideShowFilterDetail(this)" style="margin: 5px;"
+                                                    onclick="">&nbsp;<i class="fa fa-plus"></i>Filter &nbsp;<i
+                                                        class='fa fa-filter'></i></button>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <table class="table table-bordered" id="tblCFAUser">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="tdcss" width="5%">Sr. No.</th>
+                                                        <th class="tdcss" width="10%">Name</th>
+                                                        <th class="tdcss" width="10%">User Name</th>
+                                                        <th class="tdcss" width="5%">Mobile No</th>
+                                                        <!-- <th class="tdcss" width="5%">Plant Name</th> -->
+                                                        <th class="tdcss" width="10%">Role</th>
+                                                        <th class="tdcss" width="5%">Cfa Organization</th>
+                                                        <th class="tdcss" width="5%">User Login Status</th>
+                                                        <th class="tdcss" width="5%">Edit</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblbody">
+                                                    <% if(UserRoleMappingData && UserRoleMappingData.data &&
+                                                        UserRoleMappingData.data.length> 0){ %>
+
+                                                        <% for(var i=0; i < UserRoleMappingData.data.length; i++) {%>
+                                                            <tr>
+                                                                <td class="tdcss">
+                                                                    <span class="tdfont">
+                                                                        <%= i+1 %>
+                                                                    </span>
+                                                                </td>
+
+                                                                <td>
+                                                                    <% if(UserRoleMappingData.data[i].UserDetail){ %>
+                                                                        <%- UserRoleMappingData.data[i].UserDetail[0].name
+                                                                            %>
+                                                                            <% }else{ %>
+                                                                                -
+                                                                                <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(UserRoleMappingData.data[i].UserMainDetail){
+                                                                        %>
+                                                                        <%- UserRoleMappingData.data[i].UserMainDetail[0].username
+                                                                            %>
+                                                                            <% }else{ %>
+                                                                                -
+                                                                                <%}%>
+
+
+                                                                </td>
+                                                                <td>
+                                                                    <% if(UserRoleMappingData.data[i].UserDetail){ %>
+                                                                        <%- UserRoleMappingData.data[i].UserDetail[0].number
+                                                                            %>
+                                                                            <% }else{ %>
+                                                                                -
+                                                                                <%}%>
+                                                                </td>
+                                                                <!-- <td>
+                                                                <% if(UserRoleMappingData.data[i].PlantDetail){ %>
+                                                                    <%- UserRoleMappingData.data[i].PlantDetail[0].plant_name
+                                                                        %>
+                                                                        <% }else{ %>
+                                                                            -
+                                                                            <%}%>
+                                                            </td> -->
+                                                                <td>
+                                                                    <% if(UserRoleMappingData.data[i].is_controller==true
+                                                                        && UserRoleMappingData.data[i].is_supplier==true
+                                                                        &&
+                                                                        UserRoleMappingData.data[i].is_collection==true){
+                                                                        %>
+                                                                        <span>
+                                                                            CFA-COL, CFA-SUP, CFA_CNTR
+                                                                        </span>
+                                                                        <% }else
+                                                                            if(UserRoleMappingData.data[i].is_controller==true
+                                                                            &&
+                                                                            UserRoleMappingData.data[i].is_supplier==true
+                                                                            ){ %>
+                                                                            <span>
+                                                                                CFA_CNTR, CFA-SUP
+                                                                            </span>
+                                                                            <% }else
+                                                                                if(UserRoleMappingData.data[i].is_controller==true&&
+                                                                                UserRoleMappingData.data[i].is_collection==true){
+                                                                                %>
+                                                                                <span>
+                                                                                    CFA_CNTR,CFA-COL
+                                                                                </span>
+                                                                                <% }else
+                                                                                    if(UserRoleMappingData.data[i].is_supplier==true==true&&
+                                                                                    UserRoleMappingData.data[i].is_collection==true){
+                                                                                    %>
+                                                                                    <span>
+                                                                                        CFA_SUP,CFA-COL
+                                                                                    </span>
+                                                                                    <% }else
+                                                                                        if(UserRoleMappingData.data[i].is_controller==true){
+                                                                                        %>
+                                                                                        <span>
+                                                                                            CFA_CNTR
+                                                                                        </span>
+                                                                                        <% }else
+                                                                                            if(UserRoleMappingData.data[i].is_supplier==true){
+                                                                                            %>
+                                                                                            <span>
+                                                                                                CFA_SUP
+                                                                                            </span>
+                                                                                            <% }else
+                                                                                                if(UserRoleMappingData.data[i].is_collection==true){
+                                                                                                %>
+                                                                                                <span>
+                                                                                                    CFA_COL
+                                                                                                </span>
+                                                                                                <% }else
+                                                                                                    if(UserRoleMappingData.data[i].is_controller==false
+                                                                                                    &&
+                                                                                                    UserRoleMappingData.data[i].is_supplier==false
+                                                                                                    &&
+                                                                                                    UserRoleMappingData.data[i].is_collection==false){
+                                                                                                    %>
+                                                                                                    <span>
+                                                                                                        -
+                                                                                                    </span>
+                                                                                                    <% }else { %>
+                                                                                                        <span>-</span>
+                                                                                                        <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(UserRoleMappingData.data[i].CFAOrganizationDetail){
+                                                                        %>
+                                                                        <%- UserRoleMappingData.data[i].CFAOrganizationDetail[0].org_name
+                                                                            %>
+                                                                            <% }else{ %>
+                                                                                -
+                                                                                <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <div
+                                                                        class="control-label bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-on bootstrap-switch-animate">
+                                                                        <div class="toggle toggle-primary"
+                                                                            data-toggle-on="<%= UserRoleMappingData.data[i].UserMainDetail[0].status == 1 ? true : false %>"
+                                                                            data-contact-id="<%= UserRoleMappingData.data[i].UserMainDetail[0].id %>">
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <a
+                                                                        href="/CFAUserfindbyId/<%- UserRoleMappingData.data[i].user_role_mapping_id %>"><i
+                                                                            class="la la-pencil-square-o"
+                                                                            style="font-size:24px;color: #03449e;"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <%}%>
+                                                                <%}%>
+                                                </tbody>
+                                            </table>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+
+        <%- include('../partials/footer.ejs') %>
+            <script src="../../javascripts/togglejavascript.js"></script>
+            <script type="text/javascript">
+                $(".select2dropdown").select2();
+
+                function CancelFunction() {
+                    window.location.href = "/CFAUser";
+                }
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divFilter").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divFilter").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+                function divAddUserDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divAddUser").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divAddUser").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                if (SearchData) {
+                    $("#userid").val(SearchData.user_id).change();
+                    $("#cfaorgid").val(SearchData.cfa_org_id).change();
+                    $("#number").val(SearchData.number).change();
+                } else {
+                    $("#userid").val();
+                    $("#cfaorgid").val();
+                    $("#number").val();
+                }
+
+                var FilterData = JSON.parse('<%- JSON.stringify(FilterData) %>');
+                searchStatus = FilterData;
+                if (searchStatus == true) {
+                    $("#divFilter").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+
+                var FetchData = JSON.parse(`<%- JSON.stringify(FetchData).replace(/[\n\r\t]/g, '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'") %>`);
+                if (FetchData) {
+                    $("#divAddUser").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+
+                $("#DropDownPlantID").change(function () {
+                    // alert($('option:selected', this).text());
+                    $("#PlantID").val($("#DropDownPlantID").val())
+                });
+
+
+
+                jQuery('#tblCFAUser').on('draw.dt', function () {
+                    jQuery('.toggle').each(function () {
+                        $(this).toggles({
+                            on: $(this).data('toggle-on')
+                        });
+                    });
+                });
+
+                $('#tblCFAUser').on('click', '.toggle', function () {
+                    var value = $(this).data('toggle-on');
+                    var id = $(this).data('contact-id');
+
+                    console.log($(this).data('toggle-on'));
+                    if ($(this).data('toggle-on') == true) {
+                        $(this).data('toggle-on', false)
+                        console.log('Turning off ' + $(this).data('contact-id'));
+                    } else {
+                        $(this).data('toggle-on', true)
+                        console.log('Turning on ' + $(this).data('contact-id'));
+                    }
+
+                    $.ajax({
+                        url: '/UserStatus/' + value + '/' + id, success: function (res) {
+
+                        }
+                    });
+                });
+
+
+                $("#frmPlantUser").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        user_id: {
+                            required: "Please Select User"
+                        },
+                        // DropDownPlantID: {
+                        //     required: "Please Select Plant"
+                        // },
+
+                    },
+                    rules: {
+                        user_id: {
+                            required: true,
+                        },
+                        // DropDownPlantID: {
+                        //     required: true,
+
+                        // },
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/CFAUser') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/CFAUser/' + ID)
+                        }
+                    });
+                }
+
+                $("#tblCFAUser").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+            </script>

@@ -1,0 +1,289 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+
+        /* .card.card-custom>.card-header {
+            min-height: 38px !important;
+        } */
+    </style>
+    <%- include('../partials/header.ejs') %>
+
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divFilter"
+                                style="margin-top: 0px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search Ticket Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <form id="frmStation" class="form" action="/ViewTicket" method="post"
+                                                autocomplete="off">
+                                                <div class="card-body">
+                                                    <div id="divFilter" class="">
+                                                        <div class="row" style="margin-bottom: -22px;">
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Ticket Number : </label>
+                                                                    <input type="text" id="ticket_number"
+                                                                        placeholder="Ticket Number" autocomplete="off"
+                                                                        class="form-control AllowNumberKey"
+                                                                        name="ticket_number">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2 col-lg-2">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Start Date : </label>
+                                                                    <input type="text" id="start_date" name="start_date"
+                                                                        class="form-control pickDate"
+                                                                        data-date-format="dd-mm-yyyy"
+                                                                        placeholder="Start Date">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 col-lg-2">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>End Date : </label>
+                                                                    <input type="text" id="end_date"
+                                                                        placeholder="End Date "
+                                                                        class="form-control pickDate" name="end_date"
+                                                                        data-date-format="dd-mm-yyyy">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-lg-4"
+                                                                style="padding-top: 12px; margin-bottom: 20px">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="" class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-search"
+                                                                            style="color: white;"></i>
+                                                                        Search</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                    <!-- <button id="btnExcel" name="btnExcel" type="submit"
+                                                                        class="btn btn-success"
+                                                                        formaction="/VarianceReportExcel"
+                                                                        formmethod="post" style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-file-excel"
+                                                                            style="color: white;"></i>Excel</button> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" style="margin-top: 0px;">
+                                <!-- <div class="separator separator-dashed mt-8 mb-5"></div> -->
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">View Ticket Detail
+                                            </div>
+                                            <div class="card-title">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divhideShowFilterDetail(this)" style="margin: 5px;"
+                                                    onclick="">&nbsp;<i class="fa fa-plus"></i>Filter &nbsp;<i
+                                                        class='fa fa-filter'></i></button>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <table class="table table-bordered" id="tblReport">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="5%">Sr. No.</th>
+                                                        <th width="18%">Department</th>
+                                                        <th width="36%">Subject</th>
+                                                        <th width="15%">Status</th>
+                                                        <th width="15%">Last Reply</th>
+                                                        <!-- <th width="15%">Ticket Detail</th> -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody id=" tblbody">
+                                                    <% if(TicketData && TicketData.data && TicketData.data.length> 0){
+                                                        %>
+                                                        <% for(var i=0; i < TicketData.data.length; i++) {%>
+                                                            <tr>
+                                                                <td class="tdcss">
+                                                                    <span class="tdfont">
+                                                                        <%= i+1 %>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    Support
+                                                                </td>
+                                                                <td style="color: green;">
+                                                                    <span>[ Ticket# : <%=
+                                                                            TicketData.data[i].ticket_number %>
+                                                                            ]</span>
+                                                                    <%= TicketData.data[i].subject %>
+                                                                </td>
+                                                                <td>
+                                                                    <%if(TicketData.data[i].status==0){%>
+                                                                        <Span>Open</Span>
+                                                                        <% }else if(TicketData.data[i].status==1){ %>
+                                                                            <span>Work In Progress</span>
+                                                                            <% }else if(TicketData.data[i].status==2){
+                                                                                %>
+                                                                                <span>Close</span>
+                                                                                <%} else{%>
+                                                                                    <span>-</span>
+                                                                                    <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <% var originalDate=new
+                                                                        Date(TicketData.data[i].created_at ) %>
+                                                                        <% var
+                                                                            day=day=originalDate.getDate().toString().padStart(2, '0'
+                                                                            ) %>
+
+                                                                            <% var month=month=(originalDate.getMonth()
+                                                                                + 1).toString().padStart(2, '0' ) %>
+
+                                                                                <% var
+                                                                                    year=year=originalDate.getFullYear()
+                                                                                    %>
+
+                                                                                    <% var
+                                                                                        hours=hours=originalDate.getUTCHours().toString().padStart(2, '0'
+                                                                                        ) %>
+
+                                                                                        <% var
+                                                                                            minutes=minutes=originalDate.getUTCMinutes().toString().padStart(2, '0'
+                                                                                            ) %>
+
+
+                                                                                            <% var
+                                                                                                seconds=seconds=originalDate.getUTCSeconds().toString().padStart(2, '0'
+                                                                                                ) %>
+
+
+                                                                                                <% var
+                                                                                                    formattedDate=`${day}-${month}-${year}
+                                                                                                    ${hours}:${minutes}:${seconds}`
+                                                                                                    %>
+
+                                                                                                    <span>
+                                                                                                        <%= formattedDate
+                                                                                                            %>
+                                                                                                    </span>
+
+                                                                </td>
+                                                                <!-- <td>
+                                                                    <a
+                                                                        href="/TicketConversation/<%- TicketData.data[i].ticket_id %>">
+                                                                        <button id="lnkExcel" runat="server"
+                                                                            class="btn btn-outline-success">Ticket
+                                                                            Detail
+                                                                        </button>
+                                                                    </a>
+                                                                </td> -->
+                                                            </tr>
+                                                            <%} %>
+                                                                <%} %>
+                                                </tbody>
+                                            </table>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+        <%- include('../partials/footer.ejs') %>
+            <script type="text/javascript">
+
+                $(".select2dropdown").select2();
+
+                function CancelFunction() {
+                    window.location.href = "/ViewTicket";
+                }
+
+                $("#start_date").datepicker({
+                    clearBtn: true,
+                    todayHighlight: true
+                }).datepicker("setDate", 'now').on('changeDate', function (e) {
+                    $(this).datepicker('hide');
+                });
+
+
+                $("#end_date").datepicker({
+                    clearBtn: true,
+                    todayHighlight: true
+                }).datepicker("setDate", 'now').on('changeDate', function (e) {
+                    $(this).datepicker('hide');
+                });
+
+
+                $("#tblReport").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divFilter").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divFilter").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                if (SearchData) {
+                    $("#ticket_number").val(SearchData.ticket_number);
+                    $("#start_date").val(SearchData.start_date).change();
+                    $("#end_date").val(SearchData.end_date).change();
+                    // $("#order_status").val(SearchData.order_status).change();
+                } else {
+                    $("#ticket_number").val(SearchData.ticket_number);
+                    $("#start_date").val();
+                    $("#end_date").val();
+                    // $("#order_status").val();
+                }
+
+                var FilterData = JSON.parse('<%- JSON.stringify(FilterData) %>');
+                searchStatus = FilterData;
+                if (searchStatus == true) {
+                    $("#divFilter").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+            </script>

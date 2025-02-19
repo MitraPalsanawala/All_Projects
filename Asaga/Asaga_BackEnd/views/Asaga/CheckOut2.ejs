@@ -1,0 +1,1999 @@
+<%- include('../partial/head.ejs') %>
+    <style id='lacomete-edge-woo-inline-css' type='text/css'>
+        @media only screen and (max-width: 1024px) {}
+
+        .btnSet:hover {
+            background-color: black !important;
+            color: white;
+        }
+
+        .postid-3629 .edgtf-top-bar {
+            background-image: none;
+        }
+
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-container>.edgtf-container-inner,
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-full-width>.edgtf-full-width-inner {
+            padding: 130px 0 122px 0;
+        }
+
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-container>.edgtf-container-inner,
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-full-width>.edgtf-full-width-inner {
+            padding: 130px 0 122px 0;
+        }
+
+        /* @media only screen and (min-width: 769px) {
+            .edgtf-woo-single-page.edgtf-woo-single-thumb-on-left-side .edgtf-single-product-content .images.woocommerce-product-gallery--with-images .woocommerce-product-gallery__image:first-child {
+                height: 850px !important;
+            }
+        } */
+
+        @media only screen and (min-width: 769px) {
+            .edgtf-woo-single-page .edgtf-single-product-content .images {
+                width: 56% !important;
+            }
+
+            button#ccav-btn {
+                margin-top: -62px;
+            }
+
+
+        }
+
+        .edgtf-woo-single-page .edgtf-single-product-content .images figure a img.edgtf-fake-featured-image {
+            height: 100% !important;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            /* position: fixed; */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            /* width: 80%; */
+            width: 60%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        /* The Close Button */
+        .close {
+            color: black;
+            float: right;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            padding: 13px;
+            color: black;
+            text-align: center;
+            border-bottom: 1px solid #000;
+        }
+
+        .modal-body {
+            padding: 15px;
+        }
+
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        .modal-title-header {
+            color: #333;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 17px;
+            font-family: inherit !important;
+        }
+
+        .modal-title-sub-header {
+            color: #333;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 12px;
+            font-family: inherit !important;
+        }
+
+        .ks-table {
+            border-style: solid;
+            border-width: 1px;
+            border-color: #e8e9eb;
+        }
+
+        .ks-table-header-cell {
+            font-weight: 700 !important;
+            font-style: normal;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .ks-table-cell {
+            border: 1px solid #deddda;
+        }
+
+        /* .edgtf-title-holder,
+        .edgtf-page-header,
+        .single_add_to_cart_button {
+            z-index: 0 !important;
+        } */
+
+        table tbody tr,
+        table thead tr {
+            border: none !important;
+        }
+
+        table th,
+        table td {
+            text-align: left !important;
+        }
+
+        .form-row {
+            display: block !important;
+        }
+
+        .buttoncss {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            width: auto;
+            margin: 0;
+            font-family: Montserrat, sans-serif;
+            font-size: 11px;
+            letter-spacing: .22em;
+            line-height: 2em;
+            font-weight: 500;
+            text-transform: uppercase;
+            outline: 0;
+            border-radius: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+            -o-transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+            transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+            padding: 14px 39px 14px 40px;
+            color: #2e2e2d;
+            background-color: transparent;
+            border: 1px solid #2e2e2d;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        #warning-popup {
+            display: block;
+            position: relative;
+            /* top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); */
+            padding: 20px;
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+            border-radius: 5px;
+            z-index: 9999;
+        }
+
+        @media only screen and (max-width: 1024px) {
+            .edgtf-content {
+                margin-bottom: 0 !important;
+                margin-top: 0 !important;
+            }
+        }
+
+        @media only screen and (max-width: 680px) {
+
+            .edgtf-container-inner,
+            .edgtf-grid,
+            .edgtf-row-grid-section {
+                width: 330px !important;
+            }
+
+            /* .edgtf-container-inner.clearfix {
+                width: 330px !important;
+            } */
+
+
+        }
+    </style>
+    <!-- Start Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2KXJ0J054"></script>
+    <script> window.dataLayer = window.dataLayer || []; function
+            gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config',
+                'G-P2KXJ0J054'); 
+    </script>
+    <!-- End Google tag (gtag.js) -->
+
+    <%- include('../partial/pagetracker.ejs') %>
+        <%- include('../partial/header.ejs') %>
+            <%- include('../partial/pageheader.ejs') %>
+                <link rel='stylesheet' id='lacomete-edge-woo-css'
+                    href='https://lacomete.qodeinteractive.com/wp-content/themes/lacomete/assets/css/woocommerce.min.css?ver=6.0.3'
+                    type='text/css' media='all' />
+                <link rel='stylesheet' id='ppress-select2-css'
+                    href='https://lacomete.qodeinteractive.com/wp-content/plugins/wp-user-avatar/assets/select2/select2.min.css?ver=6.0.3'
+                    type='text/css' media='all' />
+                <script type='text/javascript'
+                    src='https://lacomete.qodeinteractive.com/wp-content/plugins/wp-user-avatar/assets/select2/select2.min.js?ver=4.3.0'
+                    id='ppress-select2-js'></script>
+                <link rel='stylesheet'
+                    href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
+                <link rel='stylesheet'
+                    href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css'>
+                <link rel="stylesheet" href="../style.css">
+                <div class="edgtf-content" style="margin-bottom: 434.859px;">
+                    <div class="edgtf-content-inner">
+                        <div class="edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-has-bg-image"
+                            style="height: 240px;background-image:url(../fRntTemplte/wp-content/uploads/2019/04/title-area-background-img.jpg);"
+                            data-height="240">
+                            <div class="edgtf-title-image">
+                                <img itemprop="image"
+                                    src="../fRntTemplte/wp-content/uploads/2019/04/title-area-background-img.jpg"
+                                    alt="p">
+                            </div>
+                            <div class="edgtf-title-wrapper" style="height: 240px">
+                                <div class="edgtf-title-inner">
+                                    <div class="edgtf-grid">
+                                        <h1 class="edgtf-page-title entry-title">Checkout</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="edgtf-container edgtf-default-page-template">
+                            <div class="edgtf-container-inner clearfix">
+                                <form id="frmCheckOut" class="checkout_coupon woocommerce-form-coupon" action=""
+                                    method="" style="display:block">
+                                    <div class="edgtf-grid-row ">
+                                        <div class="edgtf-page-content-holder edgtf-grid-col-5 checkoutorder">
+                                            <div class="woocommerce">
+                                                <div class="woocommerce-notices-wrapper"></div>
+                                                <p style="margin: 0;">Your Order</p>
+                                                <div class="woocommerce-billing-fields" style="padding: 20px 30px;border: 1px solid #e1e1e1;
+                                        border-radius: 2px;">
+
+                                                    <!-- <p id="order_review_heading">Product</p> -->
+                                                    <div id="order_review" class="woocommerce-checkout-review-order">
+                                                        <table id="tblItemDetail"
+                                                            class="shop_table woocommerce-checkout-review-order-table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="product-name">Product</th>
+                                                                    <!-- <th class="product-total">Subtotal</th> -->
+                                                                </tr>
+                                                            </thead>
+
+                                                            <tbody id="tbodyItemDetail">
+                                                                <% if(LocalStorageCartData.length> 0) { %>
+                                                                    <% let localStorageFinalTotal=0 %>
+                                                                        <% for(var i=0; i < LocalStorageCartData.length;
+                                                                            i++) {%>
+                                                                            <% localStorageFinalTotal
+                                                                                +=LocalStorageCartData[i].FinalPrice %>
+                                                                                <input type="hidden" id="lblItemID"
+                                                                                    name="lblItemID"
+                                                                                    value="<%= LocalStorageCartData[i].ItemID %>">
+                                                                                <input type="hidden" id="lblItemName"
+                                                                                    name="lblItemName" value="<%= LocalStorageCartData[i].ItemName
+                                                                                            %>">
+                                                                                <input type="hidden" id="lblQuantity"
+                                                                                    name="lblQuantity" value="<%= LocalStorageCartData[i].Quantity
+                                                                                        %>">
+                                                                                <input type="hidden" id="lblDiscountID"
+                                                                                    name="lblDiscountID"
+                                                                                    value="<%= LocalStorageCartData[i].DiscountID %>">
+                                                                                <input type="hidden"
+                                                                                    id="lblDiscountName"
+                                                                                    name="lblDiscountName" value="<%= LocalStorageCartData[i].DiscountName
+                                                                                        %>">
+                                                                                <input type="hidden"
+                                                                                    id="lblDiscountPrice"
+                                                                                    name="lblDiscountPrice"
+                                                                                    value="<%= LocalStorageCartData[i].DiscountPrice %>">
+                                                                                <input type="hidden" id="lblAmount"
+                                                                                    name="lblAmount"
+                                                                                    value="<%= LocalStorageCartData[i].Amount %>">
+                                                                                <input type="hidden" id="lblFinalPrice"
+                                                                                    name="lblFinalPrice"
+                                                                                    value="<%= LocalStorageCartData[i].FinalPrice %>">
+                                                                                <input type="hidden" id="lblItemSize"
+                                                                                    name="lblItemSize"
+                                                                                    value="<%= LocalStorageCartData[i].ItemSize %>">
+                                                                                <input type="hidden" id="lblItemImage"
+                                                                                    name="lblItemImage"
+                                                                                    value="<%= LocalStorageCartData[i].ItemImage %>">
+                                                                                <input type="hidden"
+                                                                                    id="lblItemDescription"
+                                                                                    name="lblItemDescription"
+                                                                                    value="<%= LocalStorageCartData[i].Description %>">
+
+                                                                                <%
+                                                                                    if(LocalStorageCartData[i].DiscountPrice){%>
+                                                                                    <tr class="cart_item">
+                                                                                        <td class="product-name">
+                                                                                            <%= LocalStorageCartData[i].ItemName
+                                                                                                %>
+                                                                                                &nbsp;
+                                                                                                <strong
+                                                                                                    class="product-quantity">×&nbsp;
+                                                                                                    <%=LocalStorageCartData[i].Quantity
+                                                                                                        %>
+                                                                                                </strong>
+                                                                                                <div>
+                                                                                                    <span
+                                                                                                        class="i8os0m2"><span
+                                                                                                            class="a8x1wu2 _1fragem30 _1fragemz _1fragem9e _1fragem9d a8x1wu5 _1fragem14 a8x1wui">
+                                                                                                            <svg style="height: 20px;"
+                                                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                                                viewBox="0 0 18 18"
+                                                                                                                role="img"
+                                                                                                                class="_1fragem14 _1fragem30 _1fragem9e _1fragem9d"
+                                                                                                                focusable="false"
+                                                                                                                aria-hidden="true">
+                                                                                                                <path
+                                                                                                                    d="M17.78 3.09A1.995 1.995 0 0 0 16 2h-5.165c-.535 0-1.046.214-1.422.593l-6.82 6.89c0 .002 0 .003-.002.003a2.035 2.035 0 0 0-.5.874L.74 8.055a2 2 0 0 1 .712-2.737L9.823.425A1.99 1.99 0 0 1 11.35.22l4.99 1.337a2 2 0 0 1 1.44 1.533z"
+                                                                                                                    fill-opacity="0.55">
+                                                                                                                </path>
+                                                                                                                <path
+                                                                                                                    d="M10.835 2H16a2 2 0 0 1 2 2v5.172c0 .53-.21 1.04-.586 1.414l-6.818 6.818a2 2 0 0 1-2.82.01l-5.166-5.1a2.001 2.001 0 0 1-.02-2.828c.002 0 .003 0 .003-.002l6.82-6.89A2 2 0 0 1 10.835 2zM13.5 8a1.5 1.5 0 1 0-.001-3.001A1.5 1.5 0 0 0 13.5 8z">
+                                                                                                                </path>
+                                                                                                            </svg></span></span>
+                                                                                                    <span>
+                                                                                                        <%= LocalStorageCartData[i].DiscountName
+                                                                                                            %>&nbsp;(
+                                                                                                            -Rs.
+                                                                                                    </span>
+                                                                                                    <%= LocalStorageCartData[i].DiscountPrice
+                                                                                                        %>)</span>
+                                                                                                </div>
+                                                                                        </td>
+                                                                                        <td class="product-total">
+                                                                                            <span
+                                                                                                class="woocommerce-Price-amount amount">
+                                                                                                <bdi
+                                                                                                    style="text-decoration: line-through;">
+                                                                                                    <span
+                                                                                                        class="woocommerce-Price-currencySymbol">RS.</span>
+                                                                                                    <%=LocalStorageCartData[i].Amount
+                                                                                                        %>
+                                                                                                </bdi>
+                                                                                                <br>
+                                                                                                <bdi>
+                                                                                                    <span
+                                                                                                        class="woocommerce-Price-currencySymbol">RS.</span>
+                                                                                                    <%=LocalStorageCartData[i].FinalPrice
+                                                                                                        %>
+                                                                                                </bdi>
+                                                                                            </span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <%}else{%>
+                                                                                        <tr class="cart_item">
+                                                                                            <td class="product-name">
+                                                                                                <%= LocalStorageCartData[i].ItemName
+                                                                                                    %>
+                                                                                                    &nbsp;
+                                                                                                    <strong
+                                                                                                        class="product-quantity">×&nbsp;
+                                                                                                        <%=LocalStorageCartData[i].Quantity
+                                                                                                            %>
+                                                                                                    </strong>
+                                                                                            </td>
+                                                                                            <td class="product-total">
+                                                                                                <span
+                                                                                                    class="woocommerce-Price-amount amount">
+                                                                                                    <bdi>
+                                                                                                        <span
+                                                                                                            class="woocommerce-Price-currencySymbol">RS.</span>
+                                                                                                        <%=LocalStorageCartData[i].FinalPrice
+                                                                                                            %>
+                                                                                                    </bdi>
+                                                                                                </span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                            </tbody>
+                                                        </table>
+                                                        <div class="coupon">
+                                                            <input type="text" name="coupon_code"
+                                                                class="input-text couponcode" id="coupon_code"
+                                                                placeholder="Coupon code" onkeyup="success()">
+
+                                                            <button type="button" class="button buttoncss"
+                                                                id="btnapplycoupon" value="Apply coupon" disabled="true"
+                                                                onclick="checkCouponCodeData(this)">Apply
+                                                                coupon</button>
+
+                                                            <!-- <button type="submit" class="button" id="btnapplycoupon"
+                                                            value="Apply coupon" formaction="/" formmethod="post"
+                                                            disabled="true">Apply
+                                                            coupon</button> -->
+                                                        </div>
+                                                        <label id="lblerrormsg" class="mt-1 redcolor"
+                                                            style="font-weight: bold; display: none;color: #e62c27 !important"></label>
+                                                        <!-- <div id="warning-popup">
+                                                        <h2>Warning!</h2>
+                                                        <p>This is a warning message.</p>
+                                                        <button onclick="hidePopup()">OK</button>
+                                                    </div> -->
+                                                        <div class="warning-popup" id="warningpopup"
+                                                            style="display: none;">
+                                                            <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+                                                                role="alert" data-brk-library="component__alert">
+                                                                <button type="button" class="close font__size-18"
+                                                                    data-dismiss="alert" onclick="hidePopup()">
+                                                                    <span aria-hidden="true">
+                                                                        <i class="fa fa-times warning"></i>
+                                                                    </span>
+                                                                    <span class="sr-only">Close</span>
+                                                                </button>
+                                                                <i
+                                                                    class="start-icon fa fa-exclamation-triangle faa-flash animated"></i>
+                                                                <strong class="font__weight-semibold">Warning!</strong>
+                                                                <label id="lblwarningmsg" class="mt-1"></label>
+                                                            </div>
+                                                        </div>
+                                                        <table
+                                                            class="shop_table woocommerce-checkout-review-order-table">
+                                                            <tfoot style="border-top: 1px solid #e1e1e1;">
+
+                                                                <tr class="cart-subtotal">
+                                                                    <th>Subtotal</th>
+                                                                    <td><span
+                                                                            class="woocommerce-Price-amount amount"><bdi><span
+                                                                                    class="woocommerce-Price-currencySymbol">Rs.</span>
+                                                                                <label id="WithoutShippingAmount"
+                                                                                    name="WithoutShippingAmount">
+                                                                                    <%= localStorageFinalTotal %>
+                                                                                </label>
+                                                                            </bdi></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="cart-subtotal" id="trUserCouponCode"
+                                                                    style="display: none;">
+                                                                    <th>User Coupon Code</th>
+                                                                    <td><span
+                                                                            class="woocommerce-Price-amount amount"><bdi>
+                                                                                <span
+                                                                                    class="woocommerce-Price-currencySymbol">Rs.
+                                                                                </span>
+                                                                                <input type="hidden"
+                                                                                    id="txtUserCouponCode"
+                                                                                    name="txtUserCouponCode">
+                                                                                <input type="hidden"
+                                                                                    id="txtUserCouponCodeID"
+                                                                                    name="txtUserCouponCodeID">
+                                                                                <input type="hidden"
+                                                                                    id="txtFinalActualAmount"
+                                                                                    name="txtFinalActualAmount">
+                                                                                <label id="lblUserCouponCode"
+                                                                                    name="lblUserCouponCode">
+                                                                                </label>
+                                                                            </bdi></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="cart-subtotal">
+                                                                    <th>Shipping</th>
+                                                                    <td><span
+                                                                            class="woocommerce-Price-amount amount"><bdi><span
+                                                                                    class="woocommerce-Price-currencySymbol"></span>Free</bdi></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="order-total">
+                                                                    <th>Total</th>
+                                                                    <td><strong>
+                                                                            <span
+                                                                                class="woocommerce-Price-amount amount"><bdi>
+                                                                                    <span
+                                                                                        class="woocommerce-Price-currencySymbol">Rs.</span>
+                                                                                    <input type="hidden"
+                                                                                        id="txtOverallFinalTotal"
+                                                                                        name="txtOverallFinalTotal"
+                                                                                        value="<%= localStorageFinalTotal %>">
+
+                                                                                    <label id="OverallFinalTotal"
+                                                                                        name="OverallFinalTotal">
+                                                                                        <%= localStorageFinalTotal %>
+                                                                                    </label>
+
+
+                                                                                </bdi></span></strong>
+                                                                    </td>
+                                                                </tr>
+                                                            </tfoot>
+                                                            <%}else { %>
+
+                                                                <%}%>
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class=" edgtf-page-content-holder edgtf-grid-col-7 checkoutform">
+                                            <div class="woocommerce">
+                                                <div class="woocommerce-notices-wrapper">
+                                                </div>
+
+                                                <p>Contact Information</p>
+                                                <% if(UserData.length> 0) { %>
+                                                    <p class="form-row form-row-first">
+                                                        <label for="txtEmailID" class="screen-reader-text">Email
+                                                            ID:</label>
+                                                        <input type="text" name="txtEmailID" class="input-text"
+                                                            placeholder="Enter Email ID" id="txtEmailID"
+                                                            value="<%= UserData[0].EmailID %>" readonly>
+                                                    </p>
+                                                    <p>
+                                                        <input type="checkbox" name="chkConfirmation"
+                                                            id="chkConfirmation">
+                                                        Email me with news and
+                                                        offers
+                                                    </p>
+                                                    <div class="col2-set" id="customer_details">
+                                                        <!-- <div class="col-12"> -->
+                                                        <div class="">
+                                                            <div class="woocommerce-billing-fields">
+                                                                <h3>Shipping
+                                                                    details</h3>
+                                                                <div class="woocommerce-billing-fields__field-wrapper">
+                                                                    <p class="form-row form-row-first validate-required"
+                                                                        id="txtFirstName_field" tabindex="1">
+                                                                        <label for="txtFirstName" class="">First
+                                                                            Name&nbsp;<abbr class="required"
+                                                                                title="required">*</abbr></label><span
+                                                                            class="woocommerce-input-wrapper">
+                                                                            <input type="text" class="input-text"
+                                                                                name="txtFirstName" id="txtFirstName"
+                                                                                placeholder=""
+                                                                                value="<%= UserData[0].FirstName %>"
+                                                                                autocomplete="given-name"></span>
+                                                                    </p>
+
+                                                                    <p class="form-row form-row-last validate-required"
+                                                                        id="txtMiddleName_field" tabindex="2">
+                                                                        <label for="txtMiddleName" class="">Middle
+                                                                            Name</label><span
+                                                                            class="woocommerce-input-wrapper"><input
+                                                                                type="text" class="input-text "
+                                                                                name="txtMiddleName" id="txtMiddleName"
+                                                                                placeholder=""
+                                                                                value="<%= UserData[0].MiddleName %>"
+                                                                                autocomplete="family-name"></span>
+                                                                    </p>
+
+                                                                    <p class="form-row form-row-last validate-required"
+                                                                        id="txtLastName_field" tabindex="3">
+                                                                        <label for="txtLastName" class="">Last
+                                                                            Name&nbsp;<abbr class="required"
+                                                                                title="required">*</abbr></label><span
+                                                                            class="woocommerce-input-wrapper">
+                                                                            <input type="text" class="input-text "
+                                                                                name="txtLastName" id="txtLastName"
+                                                                                placeholder=""
+                                                                                value="<%= UserData[0].LastName %>"
+                                                                                autocomplete="family-name"></span>
+                                                                    </p>
+                                                                    <p class="form-row form-row-wide"
+                                                                        id="txtCompanyName_field" tabindex="4">
+                                                                        <label for="txtCompanyName" class="">Company
+                                                                            Name&nbsp;<span
+                                                                                class="optional"></span></label><span
+                                                                            class="woocommerce-input-wrapper"><input
+                                                                                type="text" class="input-text "
+                                                                                name="txtCompanyName"
+                                                                                id="txtCompanyName" placeholder=""
+                                                                                value="<%= UserData[0].CompanyName %>"
+                                                                                autocomplete="organization"></span>
+                                                                    </p>
+
+                                                                    <p class="form-row form-row-wide address-field validate-required"
+                                                                        id="txtAddress1_field" tabindex="5">
+                                                                        <label for="txtAddress1"
+                                                                            class="">Address&nbsp;<abbr class="required"
+                                                                                title="required">*</abbr></label><span
+                                                                            class="woocommerce-input-wrapper"><input
+                                                                                type="text" class="input-text "
+                                                                                name="txtAddress1" id="txtAddress1"
+                                                                                placeholder="House number and street name"
+                                                                                value="<%= UserData[0].Address1 %>"
+                                                                                autocomplete="address-line1"></span>
+                                                                    </p>
+                                                                    <p class="form-row form-row-wide address-field"
+                                                                        id="txtAddress2_field" tabindex="6">
+                                                                        <label for="txtAddress2"
+                                                                            class="screen-reader-text">Apartment,
+                                                                            suite,
+                                                                            unit,
+                                                                            etc.&nbsp;<span
+                                                                                class="optional"></span></label><span
+                                                                            class="woocommerce-input-wrapper"><input
+                                                                                type="text" class="input-text "
+                                                                                name="txtAddress2" id="txtAddress2"
+                                                                                placeholder="Apartment, suite, unit, etc."
+                                                                                value="<%= UserData[0].Address2 %>"
+                                                                                autocomplete="address-line2"></span>
+                                                                    </p>
+                                                                    <p class="form-row form-row-wide address-field update_totals_on_change validate-required"
+                                                                        id="txtCountryName_field" tabindex="7">
+                                                                        <label for="txtCountryName"
+                                                                            class="">Country&nbsp;<abbr class="required"
+                                                                                title="required">*</abbr></label>
+                                                                        <span class="woocommerce-input-wrapper">
+                                                                            <input type="text" class="input-text"
+                                                                                name="txtCountryName"
+                                                                                id="txtCountryName"
+                                                                                placeholder="Country" value="India"
+                                                                                readonly="readonly"
+                                                                                autocomplete="address-line2">
+                                                                        </span>
+                                                                    </p>
+                                                                    <p class="form-row form-row-wide address-field validate-required"
+                                                                        id="ddlState_field" tabindex="8">
+                                                                        <label for="ddlState" class="">State&nbsp;<abbr
+                                                                                class="required"
+                                                                                title="required">*</abbr></label><span
+                                                                            class="woocommerce-input-wrapper">
+                                                                            <select
+                                                                                class="input-text select2 select2dropdown dropdowncss"
+                                                                                id="ddlState" name="ddlState"
+                                                                                onchange="bindCity(this)">
+                                                                                <option value="">
+                                                                                    --Select
+                                                                                    State--
+                                                                                </option>
+                                                                                <%for(var i=0; i < StateData.length;
+                                                                                    i++){%>
+
+                                                                                    <% if(UserData[0].StateName==StateData[i].name){
+                                                                                        %>
+                                                                                        <option selected="selected"
+                                                                                            value="<%= StateData[i].name %>">
+                                                                                            <%= StateData[i].name %>
+                                                                                        </option>
+                                                                                        <% }else{ %>
+                                                                                            <option
+                                                                                                value="<%= StateData[i].name %>">
+                                                                                                <%= StateData[i].name %>
+                                                                                            </option>
+                                                                                            <% }%>
+                                                                                                <%}%>
+                                                                            </select>
+                                                                    </p>
+                                                                    <p class="form-row form-row-wide address-field validate-required validate-state"
+                                                                        id="ddlCity_field" tabindex="9">
+                                                                        <label for="ddlCity" class="">City&nbsp;<abbr
+                                                                                class="required"
+                                                                                title="required">*</abbr></label>
+                                                                        <select
+                                                                            class="input-text select2 select2dropdown dropdowncss"
+                                                                            id="ddlCity" name="ddlCity">
+
+                                                                            <% if(UserData[0].CityName){ %>
+                                                                                <option selected="selected"
+                                                                                    value="<%= UserData[0].CityName %>">
+                                                                                    <%= UserData[0].CityName %>
+                                                                                </option>
+                                                                                <% }else{ %>
+                                                                                    <option value="">
+                                                                                        --Select
+                                                                                        City--
+                                                                                    </option>
+                                                                                    <% } %>
+
+                                                                        </select>
+                                                                    </p>
+                                                                    <p class="form-row form-row-wide address-field validate-required validate-postcode"
+                                                                        id="txtPinCode_field" tabindex="10">
+                                                                        <label for="txtPinCode"
+                                                                            class="">PinCode&nbsp;<abbr class="required"
+                                                                                title="required">*</abbr></label><span
+                                                                            class="woocommerce-input-wrapper"><input
+                                                                                type="text"
+                                                                                class="input-text AllowNumberKey"
+                                                                                name="txtPinCode" id="txtPinCode"
+                                                                                placeholder=""
+                                                                                value="<%= UserData[0].Pincode %>"
+                                                                                maxlength="6"
+                                                                                autocomplete="postal-code"></span>
+                                                                    </p>
+                                                                    <p class="form-row form-row-wide validate-required validate-phone"
+                                                                        id="txtMobileNo_field" tabindex="11">
+                                                                        <label for="txtMobileNo" class="">Mobile
+                                                                            No&nbsp;<abbr class="required"
+                                                                                title="required">*</abbr></label><span
+                                                                            class="woocommerce-input-wrapper"><input
+                                                                                type="tel"
+                                                                                class="input-text AllowNumberKey"
+                                                                                name="txtMobileNo" id="txtMobileNo"
+                                                                                placeholder=""
+                                                                                value="<%= UserData[0].MobileNo %>"
+                                                                                maxlength="10"
+                                                                                autocomplete="tel"></span>
+                                                                    </p>
+                                                                    <p class="form-row form-row-wide validate-required validate-phone"
+                                                                        id="txtPaymentMode_field" tabindex="11">
+                                                                        <label for="txtPaymentMode" class="">Payment
+                                                                            Mode
+                                                                            &nbsp;<abbr class="required"
+                                                                                title="required">*</abbr></label><br>
+                                                                        <span class="woocommerce-input-wrapper">
+                                                                            <label for="COD">
+                                                                                <input type="radio" id="COD"
+                                                                                    name="PaymentMode" value="COD">
+                                                                                COD</label>
+                                                                            <label for="Online">
+                                                                                <input type="radio" id="Online"
+                                                                                    name="PaymentMode" value="Online">
+                                                                                Online</label>
+                                                                        </span>
+                                                                    </p>
+                                                                    <p style="padding: 10px;">
+                                                                        <input type="checkbox"
+                                                                            name="chkAddressConfirmation"
+                                                                            id="chkAddressConfirmation">
+                                                                        Save
+                                                                        this
+                                                                        information
+                                                                        for next
+                                                                        time
+                                                                    </p>
+                                                                    <button type="submit" class="button alt"
+                                                                        id="btnplaceorder" value="Place order"
+                                                                        data-value="Place order"
+                                                                        formaction="/setPlaceOrder2"
+                                                                        formmethod="post">Place
+                                                                        order</button>
+                                                                    <button id="rzp-button1" type="submit"
+                                                                        class="button alt" value="Place order"
+                                                                        data-value="Place order" style="display:none">
+                                                                        Place
+                                                                        order</button>
+
+                                                                    <button id="ccav-btn" type="submit"
+                                                                        class="button alt" value="Checkout"
+                                                                        data-value="Place order" style="display:none">
+                                                                        Place Order</button>
+
+                                                                    <button id="ccav-btn2" type="button" class=""
+                                                                        style="border: none;
+                                                                                                                padding-left: 0px;
+                                                                                                                padding-bottom: 0px;
+                                                                                                                padding-top: 9px;
+                                                                                                                padding-right: 0px;
+                                                                                                                background-color: #f8f5f0;
+                                                                                                                display: none;" disabled>
+                                                                        <img referrerpolicy="origin"
+                                                                            src="/images/ccAVvenue.png"
+                                                                            style="width: 350px;"
+                                                                            alt="Razorpay | Payment Gateway | Neobank"></button>
+
+
+                                                                    <button id="rzp-button2" type="button" class=""
+                                                                        style="border: none;
+                                                                                                                padding-left: 0px;
+                                                                                                                padding-bottom: 0px;
+                                                                                                                padding-top: 9px;
+                                                                                                                padding-right: 0px;
+                                                                                                                background-color: #f8f5f0;
+                                                                                                                display: none;"
+                                                                        disabled>
+                                                                        <img referrerpolicy="origin"
+                                                                            src="https://codeskventure.in/wp-content/uploads/Razorpay-Payment-Options-1024x263.png"
+                                                                            style="width: 440px;"
+                                                                            alt="Razorpay | Payment Gateway | Neobank"></button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <%} else { %>
+                                                        <p class="form-row form-row-first">
+                                                            <label for="txtEmailID" class="screen-reader-text">Email
+                                                                ID:</label>
+                                                            <input type="text" name="txtEmailID" class="input-text"
+                                                                placeholder="Enter Email ID" id="txtEmailID" value="">
+                                                        </p>
+                                                        <p>
+                                                            <input type="checkbox" name="chkConfirmation"
+                                                                id="chkConfirmation">
+                                                            Email me with news
+                                                            and offers
+                                                        </p>
+                                                        <div class="col2-set" id="customer_details">
+                                                            <!-- <div class="col-12"> -->
+                                                            <div class="">
+                                                                <div class="woocommerce-billing-fields">
+                                                                    <h3>Shipping
+                                                                        details
+                                                                    </h3>
+                                                                    <div
+                                                                        class="woocommerce-billing-fields__field-wrapper">
+                                                                        <p class="form-row form-row-first validate-required"
+                                                                            id="txtFirstName_field" tabindex="1">
+                                                                            <label for="txtFirstName" class="">First
+                                                                                Name&nbsp;<abbr class="required"
+                                                                                    title="required">*</abbr></label><span
+                                                                                class="woocommerce-input-wrapper">
+                                                                                <input type="text" class="input-text"
+                                                                                    name="txtFirstName"
+                                                                                    id="txtFirstName" placeholder=""
+                                                                                    value=""
+                                                                                    autocomplete="given-name"></span>
+                                                                        </p>
+
+                                                                        <p class="form-row form-row-last validate-required"
+                                                                            id="txtMiddleName_field" tabindex="2">
+                                                                            <label for="txtMiddleName" class="">Middle
+                                                                                Name</label><span
+                                                                                class="woocommerce-input-wrapper"><input
+                                                                                    type="text" class="input-text "
+                                                                                    name="txtMiddleName"
+                                                                                    id="txtMiddleName" placeholder=""
+                                                                                    value=""
+                                                                                    autocomplete="family-name"></span>
+                                                                        </p>
+
+                                                                        <p class="form-row form-row-last validate-required"
+                                                                            id="txtLastName_field" tabindex="3">
+                                                                            <label for="txtLastName" class="">Last
+                                                                                Name&nbsp;<abbr class="required"
+                                                                                    title="required">*</abbr></label><span
+                                                                                class="woocommerce-input-wrapper"><input
+                                                                                    type="text" class="input-text "
+                                                                                    name="txtLastName" id="txtLastName"
+                                                                                    placeholder="" value=""
+                                                                                    autocomplete="family-name"></span>
+                                                                        </p>
+                                                                        <p class="form-row form-row-wide"
+                                                                            id="txtCompanyName_field" tabindex="4">
+                                                                            <label for="txtCompanyName" class="">Company
+                                                                                Name&nbsp;<span
+                                                                                    class="optional"></span></label><span
+                                                                                class="woocommerce-input-wrapper"><input
+                                                                                    type="text" class="input-text "
+                                                                                    name="txtCompanyName"
+                                                                                    id="txtCompanyName" placeholder=""
+                                                                                    value=""
+                                                                                    autocomplete="organization"></span>
+                                                                        </p>
+
+                                                                        <p class="form-row form-row-wide address-field validate-required"
+                                                                            id="txtAddress1_field" tabindex="5">
+                                                                            <label for="txtAddress1"
+                                                                                class="">Address&nbsp;<abbr
+                                                                                    class="required"
+                                                                                    title="required">*</abbr></label><span
+                                                                                class="woocommerce-input-wrapper"><input
+                                                                                    type="text" class="input-text "
+                                                                                    name="txtAddress1" id="txtAddress1"
+                                                                                    placeholder="House number and street name"
+                                                                                    value=""
+                                                                                    autocomplete="address-line1"></span>
+                                                                        </p>
+                                                                        <p class="form-row form-row-wide address-field"
+                                                                            id="txtAddress2_field" tabindex="6">
+                                                                            <label for="txtAddress2"
+                                                                                class="screen-reader-text">Apartment,
+                                                                                suite,
+                                                                                unit,
+                                                                                etc.&nbsp;<span
+                                                                                    class="optional"></span></label><span
+                                                                                class="woocommerce-input-wrapper"><input
+                                                                                    type="text" class="input-text "
+                                                                                    name="txtAddress2" id="txtAddress2"
+                                                                                    placeholder="Apartment, suite, unit, etc."
+                                                                                    value=""
+                                                                                    autocomplete="address-line2"></span>
+                                                                        </p>
+                                                                        <p class="form-row form-row-wide address-field update_totals_on_change validate-required"
+                                                                            id="txtCountryName_field" tabindex="7">
+                                                                            <label for="txtCountryName"
+                                                                                class="">Country&nbsp;<abbr
+                                                                                    class="required"
+                                                                                    title="required">*</abbr></label>
+                                                                            <span class="woocommerce-input-wrapper">
+                                                                                <input type="text" class="input-text"
+                                                                                    name="txtCountryName"
+                                                                                    id="txtCountryName"
+                                                                                    placeholder="Country" value="India"
+                                                                                    readonly="readonly"
+                                                                                    autocomplete="address-line2">
+                                                                            </span>
+                                                                        </p>
+                                                                        <p class="form-row form-row-wide address-field validate-required"
+                                                                            id="ddlState_field" tabindex="8">
+                                                                            <label for="ddlState"
+                                                                                class="">State&nbsp;<abbr
+                                                                                    class="required"
+                                                                                    title="required">*</abbr></label><span
+                                                                                class="woocommerce-input-wrapper">
+                                                                                <select
+                                                                                    class="input-text select2 select2dropdown dropdowncss"
+                                                                                    id="ddlState" name="ddlState"
+                                                                                    onchange="bindCity(this)">
+                                                                                    <option value="">
+                                                                                        --Select
+                                                                                        State--
+                                                                                    </option>
+                                                                                    <%for(var i=0; i < StateData.length;
+                                                                                        i++){%>
+                                                                                        <option
+                                                                                            value="<%= StateData[i].name %>">
+                                                                                            <%= StateData[i].name %>
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                </select>
+                                                                        </p>
+                                                                        <p class="form-row form-row-wide address-field validate-required validate-state"
+                                                                            id="ddlCity_field" tabindex="9">
+                                                                            <label for="ddlCity"
+                                                                                class="">City&nbsp;<abbr
+                                                                                    class="required"
+                                                                                    title="required">*</abbr></label>
+                                                                            <select
+                                                                                class="input-text select2 select2dropdown dropdowncss"
+                                                                                id="ddlCity" name="ddlCity">
+                                                                                <option value="">
+                                                                                    --Select
+                                                                                    City--
+                                                                                </option>
+                                                                            </select>
+                                                                        </p>
+                                                                        <p class="form-row form-row-wide address-field validate-required validate-postcode"
+                                                                            id="txtPinCode_field" tabindex="10">
+                                                                        </p>
+                                                                        <label for="txtPinCode"
+                                                                            class="">PinCode&nbsp;<abbr class="required"
+                                                                                title="required">*</abbr></label><span
+                                                                            class="woocommerce-input-wrapper"><input
+                                                                                type="text"
+                                                                                class="input-text AllowNumberKey"
+                                                                                name="txtPinCode" id="txtPinCode"
+                                                                                placeholder="" value="" maxlength="6"
+                                                                                autocomplete="postal-code"></span>
+                                                                        </p>
+                                                                        <p class="form-row form-row-wide validate-required validate-phone"
+                                                                            id="txtMobileNo_field" tabindex="11">
+                                                                            <label for="txtMobileNo" class="">Mobile
+                                                                                No&nbsp;<abbr class="required"
+                                                                                    title="required">*</abbr></label><span
+                                                                                class="woocommerce-input-wrapper"><input
+                                                                                    type="tel"
+                                                                                    class="input-text AllowNumberKey"
+                                                                                    name="txtMobileNo" id="txtMobileNo"
+                                                                                    placeholder="" value=""
+                                                                                    maxlength="10"
+                                                                                    autocomplete="tel"></span>
+                                                                        </p>
+                                                                        <p class="form-row form-row-wide validate-required validate-phone"
+                                                                            id="txtPaymentMode_field" tabindex="11">
+                                                                            <label for="txtPaymentMode" class="">Payment
+                                                                                Mode
+                                                                                &nbsp;<abbr class="required"
+                                                                                    title="required">*</abbr></label><br>
+                                                                            <span class="woocommerce-input-wrapper">
+                                                                                <label for="COD">
+                                                                                    <input type="radio" id="COD"
+                                                                                        name="PaymentMode" value="COD">
+                                                                                    COD</label>
+                                                                                <label for="Online">
+                                                                                    <input type="radio" id="Online"
+                                                                                        name="PaymentMode"
+                                                                                        value="Online">
+                                                                                    Online</label>
+
+                                                                            </span>
+                                                                        </p>
+                                                                        <p style="padding: 10px;">
+                                                                            <input type="checkbox"
+                                                                                name="chkAddressConfirmation"
+                                                                                id="chkAddressConfirmation">
+                                                                            Save
+                                                                            this
+                                                                            information
+                                                                            for
+                                                                            next
+                                                                            time
+                                                                        </p>
+                                                                        <!-- <button type="submit" class="button alt"
+                                                                        id="btnplaceorder" value="Place order"
+                                                                        data-value="Place order">Place
+                                                                        order</button> -->
+
+                                                                        <!-- <button id="rzp-button1"
+                                                                        class="btn btn-outline-dark btn-lg"
+                                                                        target="_blank"><i
+                                                                            class="fas fa-money-bill"></i>
+                                                                        Pay amount</button> -->
+
+                                                                        <button type="submit" class="button alt"
+                                                                            id="btnplaceorder" value="Place order"
+                                                                            data-value="Place order"
+                                                                            formaction="/setPlaceOrder2"
+                                                                            formmethod="post">Place
+                                                                            order</button>
+
+
+
+                                                                        <button id="rzp-button1" type="submit"
+                                                                            class="button alt" value="Place order"
+                                                                            data-value="Place order"
+                                                                            style="display:none">
+                                                                            Place
+                                                                            order</button>
+
+                                                                        <button id="ccav-btn" type="submit"
+                                                                            class="button alt" value="Checkout"
+                                                                            data-value="Place order"
+                                                                            style="display:none">
+                                                                            Place Order</button>
+
+                                                                        <button id="ccav-btn2" type="button" class=""
+                                                                            style="border: none;
+                                                                                                                padding-left: 0px;
+                                                                                                                padding-bottom: 0px;
+                                                                                                                padding-top: 9px;
+                                                                                                                padding-right: 0px;
+                                                                                                                background-color: #f8f5f0;
+                                                                                                                display: none;"
+                                                                            disabled>
+                                                                            <img referrerpolicy="origin"
+                                                                                src="/images/ccAVvenue.png"
+                                                                                style="width: 350px;"
+                                                                                alt="Razorpay | Payment Gateway | Neobank"></button>
+
+
+
+
+                                                                        <button id="rzp-button2" type="button" class=""
+                                                                            style="border: none;
+                                                                                                                    padding-left: 0px;
+                                                                                                                    padding-bottom: 0px;
+                                                                                                                    padding-top: 9px;
+                                                                                                                    padding-right: 0px;
+                                                                                                                    background-color: #f8f5f0;
+                                                                                                                    display: none;"
+                                                                            disabled>
+                                                                            <img referrerpolicy="origin"
+                                                                                src="https://codeskventure.in/wp-content/uploads/Razorpay-Payment-Options-1024x263.png"
+                                                                                style="width: 440px;"
+                                                                                alt="Razorpay | Payment Gateway | Neobank"></button>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <%}%>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%- include('../partial/footer.ejs') %>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    <script type='text/javascript'
+                        src='https://lacomete.qodeinteractive.com/wp-content/plugins/woocommerce/assets/js/select2/select2.full.min.js?ver=4.0.3-wc.7.0.0'
+                        id='select2-js'></script>
+                    <script>
+                        $(".select2dropdown").each(function () {
+                            $(this).select2();
+                            $(".select2dropdown").select2();
+                        });
+                    </script>
+                    <script src="../../javascripts/jquery.validate.js"></script>
+                    <script src="../../javascripts/inputvalidation.js"></script>
+                    <script>
+                        function bindCity(stateDetail) {
+                            let stateName = $("#ddlState").val();
+                            $.ajax({
+                                async: false,
+                                url: '/bindCityData/' + stateName, success: function (res) {
+                                    if (res.CityData.length > 0) {
+                                        $("#ddlCity").empty();
+                                        $("#ddlCity").append($("<option></option>").val("").html('--Select City--'));
+                                        $.each(res.CityData, function (data, value) {
+                                            $("#ddlCity").append($("<option></option>").val(value).html(value));
+                                        });
+
+                                        //$('#ddlCity').trigger("change");
+                                        //$('#divDesignation').css("display", "block");
+                                    } else {
+                                        $("#ddlCity").empty();
+                                        $("#ddlCity").append($("<option></option>").val("").html('--Select City--'));
+                                    }
+                                }
+                            });
+                        }
+
+                        function success() {
+                            if (document.getElementById("coupon_code").value === "") {
+                                document.getElementById('btnapplycoupon').disabled = true;
+                                document.getElementById('btnplaceorder').disabled = false;
+
+                                $("#lblerrormsg").css("display", "none");
+                                $("#warningpopup").css("display", "none");
+
+                            } else {
+                                document.getElementById('btnapplycoupon').disabled = false;
+                                document.getElementById('btnplaceorder').disabled = true;
+                            }
+                        }
+
+                        function checkCouponCodeData(couponCodeDetail) {
+                            debugger;
+                            var data = JSON.stringify({
+                                coupon_code: $("#coupon_code").val(),
+                                txtEmailID: $("#txtEmailID").val()
+                            });
+
+                            $.ajax({
+                                url: 'checkCouponCode2',
+                                type: 'POST',
+                                contentType: 'application/json',
+                                data: data,
+                                success: function (res) {
+                                    document.getElementById('btnapplycoupon').disabled = true;
+                                    if (res.status == 0) {
+                                        debugger;
+                                        $("#trUserCouponCode").css("display", "none");
+                                        $("#txtUserCouponCode").val();
+                                        $("#txtUserCouponCodeID").val();
+                                        $("#txtFinalActualAmount").val();
+                                        $("#lblerrormsg").text(res.Message);
+                                        $("#lblerrormsg").css("display", "block");
+                                        $("#warningpopup").css("display", "none");
+
+                                        document.getElementById('btnplaceorder').disabled = true;
+                                    } else {
+                                        $("#lblerrormsg").css("display", "none");
+                                        if (res.Message == "false") {
+                                            $("#trUserCouponCode").css("display", "none");
+                                            $("#txtUserCouponCode").val();
+                                            $("#txtUserCouponCodeID").val();
+                                            $("#txtFinalActualAmount").val();
+                                            $("#lblerrormsg").css("display", "none");
+                                            $("#warningpopup").css("display", "block");
+                                            $("#lblwarningmsg").text(res.data + " discount code isn’t valid for the items in your cart");
+
+                                            document.getElementById('btnplaceorder').disabled = true;
+                                        } else if (res.Message == "AlreadyApplyCouponCode") {
+                                            $("#trUserCouponCode").css("display", "none");
+                                            $("#txtUserCouponCode").val();
+                                            $("#txtUserCouponCodeID").val();
+                                            $("#txtFinalActualAmount").val();
+                                            $("#lblerrormsg").css("display", "none");
+                                            $("#warningpopup").css("display", "block");
+                                            $("#lblwarningmsg").text("Coupon Code already used");
+
+                                            document.getElementById('btnplaceorder').disabled = true;
+                                        } else if (res.Message == "true") {
+                                            $("#trUserCouponCode").css("display", "none");
+                                            $("#txtUserCouponCode").val();
+                                            $("#txtUserCouponCodeID").val();
+                                            $("#txtFinalActualAmount").val();
+                                            document.getElementById('btnplaceorder').disabled = false;
+
+                                            $("#lblerrormsg").css("display", "none");
+                                            $("#warningpopup").css("display", "none");
+
+                                            $('#tbodyItemDetail').html('');
+                                            let finalAmt = 0;
+
+                                            res.data.forEach(function (ItemData) {
+                                                finalAmt += parseFloat(ItemData.FinalPrice);
+
+                                                if (ItemData.DiscountPrice) {
+                                                    $('#tbodyItemDetail').append(`
+
+                                                <tr class="cart_item">
+                                                <input type="hidden" id="lblItemID" name="lblItemID" value="${ItemData.ItemID}">
+                                                <input type="hidden" id="lblItemName" name="lblItemName" value="${ItemData.ItemName}">
+                                                <input type="hidden" id="lblQuantity" name="lblQuantity" value="${ItemData.Quantity}">
+                                                <input type="hidden" id="lblDiscountID" name="lblDiscountID" value="${ItemData.DiscountID}">
+                                                <input type="hidden" id="lblDiscountName" name="lblDiscountName" value="${ItemData.DiscountName}">
+                                                <input type="hidden" id="lblDiscountPrice" name="lblDiscountPrice" value="${ItemData.DiscountPrice}">
+                                                <input type="hidden" id="lblAmount" name="lblAmount" value="${ItemData.Amount}">
+                                                <input type="hidden" id="lblFinalPrice" name="lblFinalPrice" value="${ItemData.FinalPrice}">
+                                                <input type="hidden" id="lblItemSize" name="lblItemSize" value="${ItemData.ItemSize}">
+                                                <input type="hidden" id="lblItemImage" name="lblItemImage" value="${ItemData.ItemImage}">
+                                                <input type="hidden" id="lblItemDescription" name="lblItemDescription" value="${ItemData.Description}">
+                                                
+                                                         <td class="product-name">
+                                                             ${ItemData.ItemName}
+                                                                 &nbsp;
+                                                                 <strong
+                                                                     class="product-quantity">×&nbsp;
+                                                                     ${ItemData.Quantity}
+                                                                 </strong>
+                                                                 <div>
+                                                                     <span class="i8os0m2"><span
+                                                                             class="a8x1wu2 _1fragem30 _1fragemz _1fragem9e _1fragem9d a8x1wu5 _1fragem14 a8x1wui">
+                                                                             <svg style="height: 20px;"
+                                                                                 xmlns="http://www.w3.org/2000/svg"
+                                                                                 viewBox="0 0 18 18"
+                                                                                 role="img"
+                                                                                 class="_1fragem14 _1fragem30 _1fragem9e _1fragem9d"
+                                                                                 focusable="false"
+                                                                                 aria-hidden="true">
+                                                                                 <path
+                                                                                     d="M17.78 3.09A1.995 1.995 0 0 0 16 2h-5.165c-.535 0-1.046.214-1.422.593l-6.82 6.89c0 .002 0 .003-.002.003a2.035 2.035 0 0 0-.5.874L.74 8.055a2 2 0 0 1 .712-2.737L9.823.425A1.99 1.99 0 0 1 11.35.22l4.99 1.337a2 2 0 0 1 1.44 1.533z"
+                                                                                     fill-opacity="0.55">
+                                                                                 </path>
+                                                                                 <path
+                                                                                 d="M10.835 2H16a2 2 0 0 1 2 2v5.172c0 .53-.21 1.04-.586 1.414l-6.818 6.818a2 2 0 0 1-2.82.01l-5.166-5.1a2.001 2.001 0 0 1-.02-2.828c.002 0 .003 0 .003-.002l6.82-6.89A2 2 0 0 1 10.835 2zM13.5 8a1.5 1.5 0 1 0-.001-3.001A1.5 1.5 0 0 0 13.5 8z">
+                                                                                 </path>
+                                                                             </svg></span></span>
+                                                                             <span>
+                                                                                 ${ItemData.DiscountName}&nbsp;( -Rs.</span>${ItemData.DiscountPrice})</span></div></td>
+                                                        <td class="product-total">
+                                                            <span
+                                                                class="woocommerce-Price-amount amount">
+                                                                <bdi
+                                                                    style="text-decoration: line-through;">
+                                                                    <span
+                                                                        class="woocommerce-Price-currencySymbol">RS.</span>
+                                                                    ${ItemData.Amount}
+                                                                </bdi>
+                                                                <br>
+                                                                <bdi>
+                                                                    <span
+                                                                        class="woocommerce-Price-currencySymbol">RS.</span>
+                                                                    ${ItemData.FinalPrice}
+                                                                </bdi>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                `);
+                                                } else {
+                                                    $('#tbodyItemDetail').append(`
+
+                                                <tr class="cart_item">
+                                                <input type="hidden" id="lblItemID" name="lblItemID" value="${ItemData.ItemID}">
+                                                <input type="hidden" id="lblItemName" name="lblItemName" value="${ItemData.ItemName}">
+                                                <input type="hidden" id="lblQuantity" name="lblQuantity" value="${ItemData.Quantity}">
+                                                <input type="hidden" id="lblDiscountID" name="lblDiscountID" value="${ItemData.DiscountID}">
+                                                <input type="hidden" id="lblDiscountName" name="lblDiscountName" value="${ItemData.DiscountName}">
+                                                <input type="hidden" id="lblDiscountPrice" name="lblDiscountPrice" value="${ItemData.DiscountPrice}">
+                                                <input type="hidden" id="lblAmount" name="lblAmount" value="${ItemData.Amount}">
+                                                <input type="hidden" id="lblFinalPrice" name="lblFinalPrice" value="${ItemData.FinalPrice}">
+                                                <input type="hidden" id="lblItemSize" name="lblItemSize" value="${ItemData.ItemSize}">
+                                                <input type="hidden" id="lblItemImage" name="lblItemImage" value="${ItemData.ItemImage}">
+                                                <input type="hidden" id="lblItemDescription" name="lblItemDescription" value="${ItemData.Description}">
+
+                                                    <td class="product-name">
+                                                        ${ItemData.ItemName}
+                                                            &nbsp;
+                                                            <strong
+                                                                class="product-quantity">×&nbsp;
+                                                                ${ItemData.Quantity}
+                                                            </strong>
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <span
+                                                            class="woocommerce-Price-amount amount">
+                                                            <bdi>
+                                                                <span
+                                                                    class="woocommerce-Price-currencySymbol">RS.</span>
+                                                                ${ItemData.FinalPrice}
+                                                            </bdi>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                `);
+                                                }
+                                            });
+
+                                            $("#txtOverallFinalTotal").val(finalAmt);
+                                            $("#WithoutShippingAmount").text(finalAmt);
+                                            $("#OverallFinalTotal").text(finalAmt);
+                                        } else {
+                                            $("#trUserCouponCode").css("display", "table-row");
+                                            $("#txtUserCouponCode").val();
+                                            $("#txtUserCouponCodeID").val();
+                                            $("#txtFinalActualAmount").val();
+
+                                            $("#lblerrormsg").css("display", "none");
+                                            $("#warningpopup").css("display", "none");
+
+                                            document.getElementById('btnplaceorder').disabled = false;
+
+                                            var fetchOverallAmt = $("#txtOverallFinalTotal").val();
+                                            finalUserDiscount = (fetchOverallAmt * res.data.Discount / 100);
+                                            actualFinalValue = (fetchOverallAmt - finalUserDiscount).toFixed(2);
+
+                                            $("#txtOverallFinalTotal").val(actualFinalValue);
+                                            $("#WithoutShippingAmount").text(actualFinalValue);
+                                            $("#OverallFinalTotal").text(actualFinalValue);
+                                            $("#lblUserCouponCode").text(finalUserDiscount);
+                                            $("#txtUserCouponCode").val(finalUserDiscount);
+                                            $("#txtUserCouponCodeID").val(res.data.DiscountID);
+                                            $("#txtFinalActualAmount").val(fetchOverallAmt);
+                                        }
+                                    }
+                                },
+                                error: function (xhr, status, error) {
+                                    // console.log("error=====>", error);
+                                    return false;
+                                }
+                            });
+                        }
+
+                        function hidePopup() {
+                            var popup = document.getElementById("warningpopup");
+                            popup.style.display = "none";
+                        }
+
+                        // function placeOrder() {
+                        // $("#btnplaceorder").click(function () {
+                        //     $("#frmCheckOut").removeData('validator');
+
+                        $("#btnplaceorder").click(function () {
+                            $("#frmCheckOut").validate({
+                                //$(this).validate({
+                                debug: false,
+                                errorElement: 'span',
+                                invalidHandler: function (event, validator) {
+                                    //debugger;
+                                    if (validator.numberOfInvalids() > 0) {
+                                        event.preventDefault();
+                                    }
+                                },
+                                onkeyup: false,
+                                messages: {
+                                    txtEmailID: {
+                                        required: "Please Enter Email ID"
+                                    },
+                                    txtFirstName: {
+                                        required: "Please Enter First Name"
+                                    },
+                                    // txtMiddleName: {
+                                    //     required: "Please Enter Middle Name"
+                                    // },
+                                    txtLastName: {
+                                        required: "Please Enter Last Name"
+                                    },
+                                    txtAddress1: {
+                                        required: "Please Enter Address"
+                                    },
+                                    txtCountryName: {
+                                        required: "Please Select Country"
+                                    },
+                                    ddlState: {
+                                        required: "Please Select State"
+                                    },
+                                    ddlCity: {
+                                        required: "Please Select City"
+                                    },
+                                    txtPinCode: {
+                                        required: "Please Enter PinCode"
+                                    },
+                                    txtMobileNo: {
+                                        required: "Please Enter Mobile No"
+                                    },
+                                    PaymentMode: {
+                                        required: "Please Select Payment Mode"
+                                    }
+                                },
+                                rules: {
+                                    txtEmailID: {
+                                        required: true,
+                                        email: true,
+                                    },
+                                    txtFirstName: {
+                                        required: true
+                                    },
+                                    // txtMiddleName: {
+                                    //     required: true
+                                    // },
+                                    txtLastName: {
+                                        required: true
+                                    },
+                                    txtAddress1: {
+                                        required: true
+                                    },
+                                    txtCountryName: {
+                                        required: true
+                                    },
+                                    ddlState: {
+                                        required: true
+                                    },
+                                    ddlCity: {
+                                        required: true
+                                    },
+                                    txtPinCode: {
+                                        required: true,
+                                        minlength: 6,
+                                        maxlength: 6,
+                                        number: true
+                                    },
+                                    txtMobileNo: {
+                                        required: true,
+                                        minlength: 10,
+                                        maxlength: 10,
+                                        number: true
+                                    },
+                                    PaymentMode: {
+                                        required: true
+                                    }
+                                },
+                                errorPlacement: function (error, element) {
+                                    if (element.attr("type") === "radio") {
+                                        error.insertAfter(element.parent().next());
+                                        error.attr("style", "display:block");
+                                    }
+                                    else if (element.parent('.input-group').length) {
+                                        error.insertAfter(element.parent());
+                                    } else if (element.hasClass('select2')) {
+                                        error.insertAfter(element.next('span'));
+                                    } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                                        error.insertAfter($(element).parent());
+                                    }
+
+                                    else {
+                                        error.insertAfter(element);
+                                    }
+                                },
+                                submitHandler: function (form, event) {
+                                    event.preventDefault();
+                                }
+                            });
+                        });
+
+                        $(document).ready(function () {
+                            $("input[name=PaymentMode]").change(function () {
+                                if ($("#Online").is(':checked')) {
+                                    $("#rzp-button1").hide();
+                                    $("#rzp-button2").hide();
+                                    $("#ccav-btn").show();
+                                    $("#ccav-btn2").show();
+                                    $("#btnplaceorder").hide();
+                                } else {
+                                    $("#rzp-button1").hide();
+                                    $("#rzp-button2").hide();
+                                    $("#btnplaceorder").show();
+                                    $("#ccav-btn").hide();
+                                    $("#ccav-btn2").hide();
+                                }
+                            });
+                        });
+                    </script>
+                    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                    <script>
+                        debugger;
+                        // document.getElementById('rzp-button1').onclick = function () {
+                        $('#rzp-button1').click(function () {
+                            debugger;
+                            $("#frmCheckOut").validate({
+                                //$(this).validate({
+                                debug: false,
+                                errorElement: 'span',
+                                invalidHandler: function (event, validator) {
+                                    debugger;
+                                    if (validator.numberOfInvalids() > 0) {
+                                        event.preventDefault();
+                                    }
+                                },
+                                onkeyup: false,
+                                messages: {
+                                    txtEmailID: {
+                                        required: "Please Enter Email ID"
+                                    },
+                                    txtFirstName: {
+                                        required: "Please Enter First Name"
+                                    },
+                                    // txtMiddleName: {
+                                    //     required: "Please Enter Middle Name"
+                                    // },
+                                    txtLastName: {
+                                        required: "Please Enter Last Name"
+                                    },
+                                    txtAddress1: {
+                                        required: "Please Enter Address"
+                                    },
+                                    txtCountryName: {
+                                        required: "Please Select Country"
+                                    },
+                                    ddlState: {
+                                        required: "Please Select State"
+                                    },
+                                    ddlCity: {
+                                        required: "Please Select City"
+                                    },
+                                    txtPinCode: {
+                                        required: "Please Enter PinCode"
+                                    },
+                                    txtMobileNo: {
+                                        required: "Please Enter Mobile No"
+                                    },
+                                    PaymentMode: {
+                                        required: "Please Select Payment Mode"
+                                    }
+                                },
+                                rules: {
+                                    txtEmailID: {
+                                        required: true,
+                                        email: true,
+                                    },
+                                    txtFirstName: {
+                                        required: true
+                                    },
+                                    txtMiddleName: {
+                                        required: true
+                                    },
+                                    txtLastName: {
+                                        required: true
+                                    },
+                                    txtAddress1: {
+                                        required: true
+                                    },
+                                    txtCountryName: {
+                                        required: true
+                                    },
+                                    ddlState: {
+                                        required: true
+                                    },
+                                    ddlCity: {
+                                        required: true
+                                    },
+                                    txtPinCode: {
+                                        required: true,
+                                        minlength: 6,
+                                        maxlength: 6,
+                                        number: true
+                                    },
+                                    txtMobileNo: {
+                                        required: true,
+                                        minlength: 10,
+                                        maxlength: 10,
+                                        number: true
+                                    },
+                                    PaymentMode: {
+                                        required: true
+                                    }
+                                },
+                                errorPlacement: function (error, element) {
+                                    if (element.attr("type") === "radio") {
+                                        error.insertAfter(element.parent().next());
+                                        error.attr("style", "display:block");
+                                    }
+                                    else if (element.parent('.input-group').length) {
+                                        error.insertAfter(element.parent());
+                                    } else if (element.hasClass('select2')) {
+                                        error.insertAfter(element.next('span'));
+                                    } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                                        error.insertAfter($(element).parent());
+                                    }
+
+                                    else {
+                                        error.insertAfter(element);
+                                    }
+                                },
+                                submitHandler: function (form, event) {
+                                    debugger;
+                                    SaveUserDetail();
+                                    // event.preventDefault();
+                                }
+                            });
+                            // rzp1.open();
+                            // event.preventDefault();
+                        });
+                        function SaveUserDetail() {
+                            debugger;
+                            var data = JSON.stringify({
+                                'lblItemID': $("#lblItemID").val(),
+                                'lblItemName': $("#lblItemName").val(),
+                                'lblQuantity': $("#lblQuantity").val(),
+                                'lblDiscountID': $("#lblDiscountID").val(),
+                                'lblDiscountPrice': $("#lblDiscountPrice").val(),
+                                'lblAmount': $("#lblAmount").val(),
+                                'lblFinalPrice': $("#lblFinalPrice").val(),
+                                'lblItemSize': $("#lblItemSize").val(),
+                                'lblItemImage': $("#lblItemImage").val(),
+                                'lblItemDescription': $("#lblItemDescription").val(),
+                                'coupon_code': $("#coupon_code").val(),
+                                'txtUserCouponCode': $("#txtUserCouponCode").val(),
+                                'txtUserCouponCodeID': $("#txtUserCouponCodeID").val(),
+                                'txtFinalActualAmount': $("#txtFinalActualAmount").val(),
+                                'txtOverallFinalTotal': $("#txtOverallFinalTotal").val(),
+                                'txtEmailID': $("#txtEmailID").val(),
+                                'txtFirstName': $("#txtFirstName").val(),
+                                'txtMiddleName': $("#txtMiddleName").val(),
+                                'txtLastName': $("#txtLastName").val(),
+                                'txtCompanyName': $("#txtCompanyName").val(),
+                                'txtAddress1': $("#txtAddress1").val(),
+                                'txtAddress2': $("#txtAddress2").val(),
+                                'txtCountryName': $("#txtCountryName").val(),
+                                'ddlState': $("#ddlState").val(),
+                                'ddlCity': $("#ddlCity").val(),
+                                'txtPinCode': $("#txtPinCode").val(),
+                                'txtMobileNo': $("#txtMobileNo").val(),
+                                'PaymentMode': $('input[name="PaymentMode"]:checked').val()
+                            });
+                            $.ajax({
+                                async: false,
+                                url: '/setOnlinePayment',
+                                contentType: 'application/json',
+                                type: 'POST',
+                                data: data,
+                                success: function (res) {
+                                    debugger;
+                                    if (res.message == 'Success') {
+                                        var FinalAmount;
+                                        var txtOverallFinalTotal = $("#txtOverallFinalTotal").val()
+                                        var lblItemID = $("#lblItemID").val()
+                                        var txtEmailID = $("#txtEmailID").val()
+                                        var txtMobileNo = $("#txtMobileNo").val()
+                                        var txtPaymentMode = $('input[name="PaymentMode"]:checked').val();
+                                        var options = {
+                                            // "key": "rzp_test_V8kawouxpXqfAU", // Enter the Key ID generated from the Dashboard
+                                            "key": "rzp_live_sZ4oOYzrw1mQPG",
+                                            "amount": Number(txtOverallFinalTotal) * 100,
+                                            "currency": "INR",
+                                            "title": "Payment",
+                                            "description": "Acme Corp",
+                                            "image": "https://asaga.in/images/Logo.png",
+                                            "prefill":
+                                            {
+                                                "email": txtEmailID,
+                                                "contact": txtMobileNo,
+                                            },
+                                            notify: {
+                                                sms: true,
+                                                email: true
+                                            },
+                                            config: {
+                                                display: {
+                                                    blocks: {
+                                                        utib: { //name for Axis block
+                                                            name: "Pay using All Cards",
+                                                            instruments: [
+                                                                {
+                                                                    method: "card",
+                                                                    issuers: [""]
+                                                                },
+                                                            ]
+                                                        },
+                                                        other: { //  name for other block
+                                                            name: "Other Payment modes",
+                                                            instruments: [
+                                                                {
+                                                                    method: 'netbanking',
+                                                                }
+                                                            ]
+                                                        },
+                                                        upi: { //  name for other block
+                                                            name: "Pay Using UPI",
+                                                            instruments: [
+                                                                {
+                                                                    method: "upi",
+                                                                }
+                                                            ]
+                                                        },
+                                                        wallet: { //  name for other block
+                                                            name: "Pay Using Wallet",
+                                                            instruments: [
+
+                                                                {
+                                                                    method: 'wallet',
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    hide: [
+                                                        {
+
+                                                        }
+                                                    ],
+                                                    sequence: ["block.upi", "block.utib", "block.wallet", "block.other"],
+                                                    preferences: {
+                                                        show_default_blocks: false // Should Checkout show its default blocks?
+                                                    }
+                                                }
+                                            },
+                                            "handler": function (response) {
+                                                debugger;
+                                                var fetchdata = ({
+                                                    'id': response.razorpay_payment_id,
+                                                });
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: '/setUserTransaction',
+                                                    data: fetchdata,
+                                                    success: function (res) {
+                                                        debugger;
+                                                        if (res.message == 'Success') {
+                                                            // alert('Success!');
+                                                            window.location.replace(window.location.origin + '/OrderSuccess/' + res.data)
+                                                        } else {
+                                                            alert('Something Went Wrong');
+                                                            window.location.replace(window.location.origin + '/CheckOut2')
+                                                        }
+                                                    },
+                                                })
+                                            },
+                                            "modal": {
+                                                "ondismiss": function () {
+                                                    if (confirm("Are you sure, you want to close the form?")) {
+                                                        txt = "You pressed OK!";
+                                                        console.log("Checkout form closed by the user");
+                                                        window.location.replace(window.location.origin + '/CheckOut2')
+                                                    } else {
+                                                        txt = "You pressed Cancel!";
+                                                        console.log("Complete the Payment")
+                                                        window.location.replace(window.location.origin + '/CheckOut2')
+                                                    }
+                                                }
+                                            }
+                                        };
+                                        var rzp1 = new Razorpay(options);
+                                        rzp1.open();
+                                    } else {
+                                        alert('Something Went Wrong');
+                                    }
+                                },
+                            })
+                        }
+                    </script>
+
+                    <script>
+
+                        var BindItemData;
+                        BindItemData = JSON.parse(`<%- JSON.stringify(LocalStorageCartData).replace(/[\n\r\t]/g, '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'") %>`)
+                        //BindItemData = JSON.parse(`<%- JSON.stringify(LocalStorageCartData) %>`)
+                        console.log("====BindItemData=====", BindItemData)
+
+
+                        $('#ccav-btn').click(function () {
+                            debugger;
+                            $("#frmCheckOut").validate({
+                                //$(this).validate({
+                                debug: false,
+                                errorElement: 'span',
+                                invalidHandler: function (event, validator) {
+                                    debugger;
+                                    if (validator.numberOfInvalids() > 0) {
+                                        event.preventDefault();
+                                    }
+                                },
+                                onkeyup: false,
+                                messages: {
+                                    txtEmailID: {
+                                        required: "Please Enter Email ID"
+                                    },
+                                    txtFirstName: {
+                                        required: "Please Enter First Name"
+                                    },
+                                    // txtMiddleName: {
+                                    //     required: "Please Enter Middle Name"
+                                    // },
+                                    txtLastName: {
+                                        required: "Please Enter Last Name"
+                                    },
+                                    txtAddress1: {
+                                        required: "Please Enter Address"
+                                    },
+                                    txtCountryName: {
+                                        required: "Please Select Country"
+                                    },
+                                    ddlState: {
+                                        required: "Please Select State"
+                                    },
+                                    ddlCity: {
+                                        required: "Please Select City"
+                                    },
+                                    txtPinCode: {
+                                        required: "Please Enter PinCode"
+                                    },
+                                    txtMobileNo: {
+                                        required: "Please Enter Mobile No"
+                                    },
+                                    PaymentMode: {
+                                        required: "Please Select Payment Mode"
+                                    }
+                                },
+                                rules: {
+                                    txtEmailID: {
+                                        required: true,
+                                        email: true,
+                                    },
+                                    txtFirstName: {
+                                        required: true
+                                    },
+                                    // txtMiddleName: {
+                                    //     required: true
+                                    // },
+                                    txtLastName: {
+                                        required: true
+                                    },
+                                    txtAddress1: {
+                                        required: true
+                                    },
+                                    txtCountryName: {
+                                        required: true
+                                    },
+                                    ddlState: {
+                                        required: true
+                                    },
+                                    ddlCity: {
+                                        required: true
+                                    },
+                                    txtPinCode: {
+                                        required: true,
+                                        minlength: 6,
+                                        maxlength: 6,
+                                        number: true
+                                    },
+                                    txtMobileNo: {
+                                        required: true,
+                                        minlength: 10,
+                                        maxlength: 10,
+                                        number: true
+                                    },
+                                    PaymentMode: {
+                                        required: true
+                                    }
+                                },
+                                errorPlacement: function (error, element) {
+                                    if (element.attr("type") === "radio") {
+                                        error.insertAfter(element.parent().next());
+                                        error.attr("style", "display:block");
+                                    }
+                                    else if (element.parent('.input-group').length) {
+                                        error.insertAfter(element.parent());
+                                    } else if (element.hasClass('select2')) {
+                                        error.insertAfter(element.next('span'));
+                                    } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                                        error.insertAfter($(element).parent());
+                                    }
+
+                                    else {
+                                        error.insertAfter(element);
+                                    }
+                                },
+                                submitHandler: function (form, event) {
+                                    debugger;
+                                    BindOrderDetail();
+                                    // event.preventDefault();
+                                }
+                            });
+                        });
+
+                        function BindOrderDetail() {
+                            debugger;
+
+                            var itemdata = [];
+                            if (Array.isArray(BindItemData)) {
+                                for (let i = 0; i < BindItemData.length; i++) {
+                                    console.log("====BindItemData=====", BindItemData[i].ItemID)
+
+                                    itemdata.push({
+                                        'lblItemID': BindItemData[i].ItemID,
+                                        'lblItemName': BindItemData[i].ItemName,
+                                        'lblQuantity': BindItemData[i].Quantity,
+                                        'lblDiscountID': BindItemData[i].DiscountID,
+                                        'lblDiscountPrice': BindItemData[i].DiscountPrice,
+                                        'lblAmount': BindItemData[i].Amount,
+                                        'lblFinalPrice': BindItemData[i].FinalPrice,
+                                        'lblItemSize': BindItemData[i].ItemSize,
+                                        'lblItemImage': BindItemData[i].lblItemImage,
+                                        'lblItemDescription': BindItemData[i].lblItemDescription,
+                                    });
+                                }
+                            }
+
+                            var data = JSON.stringify({
+                                'ItemData': itemdata,
+                                'lblItemID': $("#lblItemID").val(),
+                                'lblItemName': $("#lblItemName").val(),
+                                'lblQuantity': $("#lblQuantity").val(),
+                                'lblDiscountID': $("#lblDiscountID").val(),
+                                'lblDiscountPrice': $("#lblDiscountPrice").val(),
+                                'lblAmount': $("#lblAmount").val(),
+                                'lblFinalPrice': $("#lblFinalPrice").val(),
+                                'lblItemSize': $("#lblItemSize").val(),
+                                'lblItemImage': $("#lblItemImage").val(),
+                                'lblItemDescription': $("#lblItemDescription").val(),
+                                'coupon_code': $("#coupon_code").val(),
+                                'txtUserCouponCode': $("#txtUserCouponCode").val(),
+                                'txtUserCouponCodeID': $("#txtUserCouponCodeID").val(),
+                                'txtFinalActualAmount': $("#txtFinalActualAmount").val(),
+                                'txtOverallFinalTotal': $("#txtOverallFinalTotal").val(),
+                                'txtEmailID': $("#txtEmailID").val(),
+                                'txtFirstName': $("#txtFirstName").val(),
+                                'txtMiddleName': $("#txtMiddleName").val(),
+                                'txtLastName': $("#txtLastName").val(),
+                                'txtCompanyName': $("#txtCompanyName").val(),
+                                'txtAddress1': $("#txtAddress1").val(),
+                                'txtAddress2': $("#txtAddress2").val(),
+                                'txtCountryName': $("#txtCountryName").val(),
+                                'ddlState': $("#ddlState").val(),
+                                'ddlCity': $("#ddlCity").val(),
+                                'txtPinCode': $("#txtPinCode").val(),
+                                'txtMobileNo': $("#txtMobileNo").val(),
+                                'PaymentMode': $('input[name="PaymentMode"]:checked').val()
+                            });
+                            $.ajax({
+                                async: false,
+                                url: '/setCCAVRequest',
+                                // url: '/setOnlinePayment',
+                                contentType: 'application/json',
+                                type: 'POST',
+                                data: data,
+                                success: function (res) {
+                                    debugger;
+                                    if (res.message == 'Success') {
+                                        window.location.href = 'https://asaga.in/pay?UniqueID=' + res.data;
+                                    } else {
+                                        alert('Something Went Wrong');
+                                    }
+                                },
+                            })
+                        }
+                    </script>

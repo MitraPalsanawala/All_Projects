@@ -1,0 +1,588 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divAddProduct" style="display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Add Product Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <% if(!FetchData){ %>
+                                                <form id="frmProduct" class="form" action="/SetProduct" method="post"
+                                                    autocomplete="off">
+                                                    <div class="card-body">
+                                                        <div id="divSearch" class="">
+                                                            <div class="row" style="margin-bottom: -28px;">
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Product Name : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <input type="text" id="product_name"
+                                                                            placeholder="Product Name"
+                                                                            autocomplete="off"
+                                                                            class="form-control AllowAlphabetSpaceKey"
+                                                                            name="product_name"
+                                                                            onchange="return ValidateProductName()"
+                                                                            maxlength="50">
+                                                                        <span id="spanProductNameAlreadyExist"
+                                                                            class="error" style="display:none;">Product
+                                                                            Name Already Exist</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>HSN Code : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <input type="text" id="hsn_code"
+                                                                            placeholder="HSN Code" autocomplete="off"
+                                                                            class="form-control" name="hsn_code"
+                                                                            value="" maxlength="15">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Base Price : </label>
+                                                                        <input type="text" id="base_price"
+                                                                            placeholder="Base Price" autocomplete="off"
+                                                                            class="form-control AllowNumberKey"
+                                                                            name="base_price" value="" maxlength="10">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>GST (%) : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <input type="text" id="gst" placeholder="GST"
+                                                                            autocomplete="off" class="form-control"
+                                                                            name="gst" value="" maxlength="2">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Product Description : </label>
+                                                                        <textarea class="form-control"
+                                                                            name="product_description"
+                                                                            placeholder="Product Description"
+                                                                            id="product_description" rows="3" cols="66"
+                                                                            wrap="virtual" tabindex="4" maxlength="100">
+                                                                    </textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="padding-top: 26px; margin-bottom: 20px">
+                                                                    <div class="form-group formgroupbuttoncss">
+                                                                        <button type="submit" id=""
+                                                                            class="btn btn-primary"
+                                                                            style="margin-bottom: 10px;"
+                                                                            onclick="return ValidateCustomData()">
+                                                                            <i class="la la-check-square-o"
+                                                                                style="color: white;"></i>
+                                                                            Submit</button>
+                                                                        <button type="reset" value="reset"
+                                                                            id="btnCancel" class="btn btn-danger"
+                                                                            style="margin-bottom: 10px;"
+                                                                            onclick="CancelFunction()">
+                                                                            <i
+                                                                                class="fa-window-close fas"></i>Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <% }else{ %>
+                                                    <form id="frmProduct" class="form" action="/UpdateProduct"
+                                                        method="post" autocomplete="off">
+                                                        <input type="text" id="id" name="id"
+                                                            value="<%= FetchData.data[0].id %>" style="display: none;">
+                                                        <div class="card-body">
+                                                            <div id="divSearch" class="">
+                                                                <div class="row" style="margin-bottom: -28px;">
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Product Name : </label>
+                                                                            <input type="text" id="product_name"
+                                                                                placeholder="Product Name"
+                                                                                autocomplete="off"
+                                                                                class="form-control AllowAlphabetSpaceKey"
+                                                                                name="product_name" maxlength="100"
+                                                                                value="<%= FetchData.data[0].product_name %>"
+                                                                                onchange="return ValidateProductName()">
+                                                                            <span id="spanProductNameAlreadyExist"
+                                                                                class="error"
+                                                                                style="display:none;">Product
+                                                                                Name Already Exist</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>HSN Code : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="hsn_code"
+                                                                                placeholder="HSN Code"
+                                                                                autocomplete="off"
+                                                                                class="form-control AllowAlphabetAndNumber"
+                                                                                name="hsn_code" maxlength="15"
+                                                                                value="<%= FetchData.data[0].hsn_code %>">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Base Price : </label>
+                                                                            <input type="text" id="base_price"
+                                                                                placeholder="Base Price"
+                                                                                autocomplete="off"
+                                                                                class="form-control AllowNumberKey"
+                                                                                name="base_price" maxlength="10"
+                                                                                value="<%= FetchData.data[0].base_price %>">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>GST (%) : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="gst"
+                                                                                placeholder="GST" autocomplete="off"
+                                                                                class="form-control AllowAlphabetAndNumber"
+                                                                                name="gst" maxlength="2"
+                                                                                value="<%= FetchData.data[0].gst %>">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Product Description : </label>
+                                                                            <textarea class="form-control"
+                                                                                name="product_description"
+                                                                                placeholder="Product Description"
+                                                                                id="product_description" rows="3"
+                                                                                maxlength="100" cols="66" wrap="virtual"
+                                                                                tabindex="4">
+                                                                                <%= FetchData.data[0].product_description %>
+                                                                    </textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="padding-top: 26px; margin-bottom: 20px">
+                                                                        <div class="form-group formgroupbuttoncss">
+                                                                            <button type="submit" id=""
+                                                                                class="btn btn-primary"
+                                                                                style="margin-bottom: 10px;"
+                                                                                onclick="return ValidateCustomData()">
+                                                                                <i class="la la-check-square-o"
+                                                                                    style="color: white;"></i>
+                                                                                Update</button>
+                                                                            <button type="reset" value="reset"
+                                                                                id="btnCancel" class="btn btn-danger"
+                                                                                style="margin-bottom: 10px;"
+                                                                                onclick="CancelFunction()">
+                                                                                <i
+                                                                                    class="fa-window-close fas"></i>Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divFilter" style="display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search Product Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <form id="frmCustUser" class="form" action="/Product" method="post"
+                                                autocomplete="off">
+                                                <div class="card-body">
+                                                    <div id="divFilter" class="">
+                                                        <div class="row" style="margin-bottom: -31px;">
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Product : </label>
+                                                                    <select id="productID"
+                                                                        class="form-control select2dropdown" name="id">
+                                                                        <option Value="">--Select Product--
+                                                                        </option>
+                                                                        <%if(ProductData && ProductData.data &&
+                                                                            ProductData.data.length> 0){%>
+                                                                            <%for(var i=0; i < ProductData.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= ProductData.data[i].id %>">
+                                                                                    <%= ProductData.data[i].product_name
+                                                                                        %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3"
+                                                                style="padding-top: 26px;margin-left: 54px; margin-bottom: 20px">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="" class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="divShowFilterDetail(this)">
+                                                                        <i class="fa fa-search"
+                                                                            style="color: white;"></i>
+                                                                        Search</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class=" card-custom example example-compact">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">View Product Detail
+                                            </div>
+                                            <div class="card-title">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divAddProductDetail(this)" style="margin: 5px;"
+                                                    onclick="">Add
+                                                    Product &nbsp;<i class="fa fa-plus"></i></button>
+                                                <div></div>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divhideShowFilterDetail(this)"
+                                                    style="margin: 5px;">&nbsp;<i class="fa fa-plus"></i>Filter &nbsp;<i
+                                                        class='fa fa-filter'></i></button>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <table class="table table-bordered" id="tblproduct">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="tdcss" width="5%">Sr. No.</th>
+                                                        <th class="tdcss" width="10%">Product Name</th>
+                                                        <th class="tdcss" width="5%">HSN Code</th>
+                                                        <th class="tdcss" width="5%">Base Price</th>
+                                                        <th class="tdcss" width="4%">GST(In %)</th>
+                                                        <th class="tdcss" width="15%">Product Description
+                                                        </th>
+                                                        <!-- <th class="tdcss" width="10%">CSIMID</th> -->
+                                                        <!-- <th class="tdcss" width="8%">Entry Date</th> -->
+                                                        <th class="tdcss" width="5%">Edit</th>
+                                                        <th class="tdcss" width="5%">Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblbody">
+                                                    <% if(ProductData && ProductData.data && ProductData.data.length>
+                                                        0 ) { %>
+                                                        <% for(var i=0; i < ProductData.data.length; i++) {%>
+                                                            <tr>
+                                                                <td class="tdcss">
+                                                                    <span class="tdfont">
+                                                                        <%= i+1 %>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <%- ProductData.data[i].product_name %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- ProductData.data[i].hsn_code %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- ProductData.data[i].base_price %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- ProductData.data[i].gst %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- ProductData.data[i].product_description %>
+                                                                </td>
+                                                                <!-- <td>
+                                                                    <%- ProductData.data[i].CSIMID %>
+                                                                </td> -->
+                                                                <td>
+                                                                    <a
+                                                                        href="/FindbyIDProductDetail/<%- ProductData.data[i].id %>"><i
+                                                                            class="la la-pencil-square-o"
+                                                                            style="font-size:24px;color: #03449e;"
+                                                                            onclick="divAddProductDetail(this)"></i></a>
+                                                                </td>
+                                                                <td>
+                                                                    <a
+                                                                        href="/deleteProduct/<%- ProductData.data[i].id %>"><i
+                                                                            class="la la-trash-o"
+                                                                            onclick="return confirm('Are you sure you want to Delete?')"
+                                                                            style="font-size:24px;color:#03449e;"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <%}%>
+                                                                <%}%>
+                                                </tbody>
+                                            </table>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end::Entry-->
+        </div>
+
+        <%- include('../partials/footer.ejs') %>
+
+            <script type="text/javascript">
+                $(".select2dropdown").select2();
+
+                $('document').ready(function () {
+                    $('textarea').each(function () {
+                        $(this).val($(this).val().trim());
+                    }
+                    );
+                });
+
+                function CancelFunction() {
+                    window.location.href = "/Product";
+                }
+
+                // var dropdown = document.getElementById('DropDownPlantID').value;
+
+                // $("#PlantID").val($("#DropDownPlantID").val());
+
+                $("#DropDownPlantID").change(function () {
+                    // alert($('option:selected', this).text());
+                    $("#PlantID").val($("#DropDownPlantID").val())
+                });
+
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divFilter").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divFilter").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+
+                function divAddProductDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divAddProduct").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divAddProduct").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                if (SearchData) {
+                    $("#productID").val(SearchData.id).change();
+                }
+                else {
+                    $("#productID").val();
+                }
+
+
+                var FilterData = JSON.parse('<%- JSON.stringify(FilterData) %>');
+                searchStatus = FilterData;
+                if (searchStatus == true) {
+                    $("#divFilter").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+
+                var FetchData = JSON.parse(`<%- JSON.stringify(FetchData).replace(/[\n\r\t]/g, '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'") %>`);
+                if (FetchData) {
+                    $("#divAddProduct").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+
+                $("#tblproduct").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+                $("#frmProduct").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        product_name: {
+                            required: "Please Enter Product Name"
+                        },
+                        gst: {
+                            required: "Please Enter GST"
+                        },
+                        hsn_code: {
+                            required: "Please Enter HSN Code"
+                        }
+                    },
+                    rules: {
+                        product_name: {
+                            required: true,
+                        },
+                        gst: {
+                            required: true,
+                        },
+                        hsn_code: {
+                            required: true
+                        }
+                    },
+
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+                function ValidateCustomData() {
+                    if (ValidateProductName()) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+
+                function ValidateProductName() {
+                    var data = JSON.stringify({
+                        'product_name': $("#product_name").val(),
+                        'id': $("#id").val(),
+                    });
+                    $.ajax({
+                        accepts: "application/json",
+                        async: false,
+                        type: "POST",
+                        contentType: 'application/json',
+                        url: "/CheckProductName",
+                        data: data,
+                        success: function (res) {
+                            if (res.Message == "true") {
+                                returndata = true;
+                                $("#spanProductNameAlreadyExist").css("display", "none");
+                            }
+                            else {
+                                returndata = false;
+                                $("#spanProductNameAlreadyExist").css("display", "block");
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            return false;
+                            $("#spanProductNameAlreadyExist").css("display", "block");
+                        }
+                    });
+
+                    return returndata;
+                }
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/Product') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/Product/' + ID)
+                        }
+                    });
+                }
+
+            </script>

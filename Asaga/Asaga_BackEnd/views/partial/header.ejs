@@ -1,0 +1,155 @@
+<body
+    class="home product-template-default single single-product woocommerce woocommerce-page page-template page-template-full-width page-template-full-width-php page page-id-17 postid-3629 theme-lacomete lacomete-core-1.1 woocommerce-no-js lacomete-ver-1.2 edgtf-grid-1300 edgtf-content-is-behind-header edgtf-wide-dropdown-menu-content-in-grid edgtf-show-popup edgtf-no-behavior edgtf-dropdown-animate-height edgtf-header-bottom edgtf-menu-area-shadow-disable edgtf-menu-area-in-grid-shadow-disable edgtf-menu-area-border-disable edgtf-menu-area-in-grid-border-disable edgtf-logo-area-border-disable edgtf-logo-area-in-grid-border-disable edgtf-header-vertical-shadow-disable edgtf-header-vertical-border-disable edgtf-side-menu-slide-from-right edgtf-woocommerce-columns-3 edgtf-woo-normal-space edgtf-woo-pl-info-below-image edgtf-woo-single-thumb-on-left-side woo-rating-stars-disabled edgtf-woo-single-has-zoom edgtf-woo-single-has-thumb-featured-switch edgtf-yith-clv-enabled edgtf-default-mobile-header edgtf-sticky-up-mobile-header edgtf-header-top-enabled edgtf-top-live-preview-search edgtf-search-fade wpb-js-composer js-comp-ver-6.10.0 vc_responsive edgtf-header-standard edgtf-side-menu-slide-from-right edgtf-woocommerce-page edgtf-woo-single-page edgtf-woocommerce-columns-4 woocommerce-checkout page-id-9 woocommerce-order-received"
+    itemscope itemtype="https://schema.org/WebPage">
+    <div class="edgtf-wrapper">
+        <div class="edgtf-wrapper-inner">
+            <header class="edgtf-mobile-header">
+                <div class="edgtf-mobile-header-inner">
+                    <div class="edgtf-mobile-header-holder">
+                        <div class="edgtf-grid">
+                            <div class="edgtf-vertical-align-containers">
+                                <div class="edgtf-position-left" style="height: auto;">
+                                    <div class="edgtf-position-left-inner">
+                                        <div class="edgtf-mobile-logo-wrapper">
+                                            <a itemprop="url" href="/Splash" style="height: 14px">
+                                                <img itemprop="image" src="/images/Logo.png" style="height: 46px;
+                                                    display: block;" alt="Mobile Logo" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="edgtf-position-right">
+                                    <div class="edgtf-position-right-inner">
+                                        
+                                        <div class="edgtf-simple-shopping-cart-holder" style="margin: 0 8px;">
+                                            <div class="edgtf-simple-shopping-cart-inner">
+                                                <a itemprop="url" class="edgtf-simple-cart edgtf-simple-cart-predefined"
+                                                    href="/ViewCart">
+                                                    <span class="edgtf-ssc-opener-icon"><span
+                                                            class="edgtf-cart-text">Cart</span></span>
+                                                    <span class="edgtf-ssc-opener-count">(<label
+                                                            id="BinCountInCartMobile"
+                                                            style="margin-bottom: 0;"></label>)</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="edgtf-simple-shopping-cart-holder" style="margin-right: 10px !important;
+                                        margin: 0;">
+                                            <div class="edgtf-simple-shopping-cart-inner">
+                                                <a class="edgtf-search-opener edgtf-icon-has-hover edgtf-search-opener-icon-pack"
+                                                    style="margin: 0;" href="/ItemName">
+                                                    <i class="fa fa-search" style="font-size: 14px;"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="edgtf-mobile-menu-opener edgtf-mobile-menu-opener-predefined">
+                                            <a class="amobilecart" href="javascript:void(0)">
+                                                <span class="edgtf-mobile-menu-icon">
+                                                    <span class="edgtf-hm-lines"><span
+                                                            class="edgtf-hm-line edgtf-line-1"></span><span
+                                                            class="edgtf-hm-line edgtf-line-2"></span><span
+                                                            class="edgtf-hm-line edgtf-line-3"></span></span> </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="edgtf-mobile-nav" role="navigation" aria-label="Mobile Menu">
+                        <div class="edgtf-grid">
+                            <ul id="menu-mobile-menu" class="">
+                                <% if(cookieData){ %>
+                                    <li id="mobile-menu-item-3333"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children">
+                                        <a href="javascript:void(0)" class="current edgtf-mobile-no-link">
+                                            <span style="font-weight: bold;">
+                                                Welcome, <%= cookieData[0].FirstName %>
+                                            </span></a>
+                                    </li>
+                                    <%}%>
+                                        <li id="mobile-menu-item-3333"
+                                            class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children <%= Menutitle === 'Home' ? 'edgtf-active-item' : ''%>">
+                                            <a href="/Splash" class="current edgtf-mobile-no-link"><span>Home</span></a>
+                                        </li>
+                                        <li id="mobile-menu-item-3333"
+                                            class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children <%= Menutitle === 'AboutUs' ? 'edgtf-active-item' : ''%>">
+                                            <a href="/AboutUs"
+                                                class="current edgtf-mobile-no-link"><span>About</span></a>
+                                        </li>
+                                        <% for(var i=0; i < CategoryData.length; i++) {%>
+                                            <% var categoryData=CategoryData[i].split('@') %>
+                                                <% var category=categoryData[0].split('$') %>
+                                                    <% var subCategoryData=categoryData[1].split('^') %>
+
+                                                        <li id="mobile-menu-item-3333"
+                                                            class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children has_sub <%= Menutitle === category[0] ? 'edgtf-active-item' : ''%>">
+                                                            <a href="javascript:void(0)"
+                                                                class="current edgtf-mobile-no-link"><span>
+                                                                    <%= category[0] %>
+                                                                </span></a><span class="mobile_arrow"><i
+                                                                    class="edgtf-sub-arrow lnr lnr-chevron-right"></i></span>
+                                                            <ul class="sub_menu">
+                                                                <% for(var k=0; k < subCategoryData.length; k++) {%>
+                                                                    <% var
+                                                                        spliSubCategoryData=subCategoryData[k].split('#')
+                                                                        %>
+                                                                        <li id="mobile-menu-item-3334"
+                                                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-17 current_page_item <%= title === spliSubCategoryData[0] ? 'current-menu-item' : '' %>">
+                                                                            <a href="/Items/<%= spliSubCategoryData[1] %>"
+                                                                                class=""><span>
+                                                                                    <%= spliSubCategoryData[0] %>
+                                                                                </span></a>
+                                                                        </li>
+                                                                        <%}%>
+                                                            </ul>
+                                                        </li>
+                                                        <%}%>
+                                                            <% if(cookieData){ %>
+                                                                <li id="mobile-menu-item-3333"
+                                                                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children <%= Menutitle === 'WishList' ? 'edgtf-active-item' : ''%>">
+                                                                    <a href="/WishList"
+                                                                        class="current edgtf-mobile-no-link"><span>WishList</span></a>
+                                                                </li>
+                                                                <li id="mobile-menu-item-3333"
+                                                                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children <%= Menutitle === 'OrderHistory' ? 'edgtf-active-item' : ''%>">
+                                                                    <a href="/OrderHistory"
+                                                                        class="current edgtf-mobile-no-link"><span>Order
+                                                                            History</span></a>
+                                                                </li>
+                                                                <li id="mobile-menu-item-3333"
+                                                                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children <%= Menutitle === 'UserProfile' ? 'edgtf-active-item' : ''%>">
+                                                                    <a href="/UserProfile"
+                                                                        class="current edgtf-mobile-no-link"><span>User
+                                                                            Profile</span></a>
+                                                                </li>
+                                                                <li id="mobile-menu-item-3333"
+                                                                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children <%= Menutitle === 'LogOut' ? 'edgtf-active-item' : ''%>">
+                                                                    <a href="/LogOut"
+                                                                        class="current edgtf-mobile-no-link"><span>LogOut</span></a>
+                                                                </li>
+                                                                <%}else{ %>
+                                                                    <li id="mobile-menu-item-3333"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children <%= Menutitle === 'UserLogIn' ? 'edgtf-active-item' : ''%>">
+                                                                        <a href="/UserLogIn"
+                                                                            class="current edgtf-mobile-no-link"><span>Login
+                                                                                / Registration</span></a>
+                                                                    </li>
+                                                                    <%}%>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+            <a id='edgtf-back-to-top' href='#'>
+                <span class="edgtf-back-to-top-icon-holder">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" width="22.937px" height="12.207px" viewBox="4.055 0 22.937 12.207"
+                            enable-background="new 4.055 0 22.937 12.207" xml:space="preserve">
+                            <polygon fill="currentColor"
+                                points="4.055,11.5 4.762,12.207 15.547,1.422 26.284,12.16 26.992,11.453 16.254,0.715 16.262,0.707   15.555,0 " />
+                        </svg>
+                    </span>
+                </span>
+            </a>

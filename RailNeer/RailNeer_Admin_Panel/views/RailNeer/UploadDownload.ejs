@@ -1,0 +1,287 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+
+        .formgroupcss {
+            height: 81px;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divAddUser" style="margin-top: 5px;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Add Plant User
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+
+                                            <form id="frmPlantUser" class="form" action="/DownloadUserExcel"
+                                                method="post" autocomplete="off">
+                                                <input type="text" id="PlantID" name="plant_id" value=""
+                                                    style="display: none;">
+                                                <div class="card-body">
+                                                    <div id="divSearch" class="">
+                                                        <div class="row" style="margin-bottom: -16px;">
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <span>Please Download User Detail Excel</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3" style="padding-top: 12px;">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <!-- <button type="submit" id="" class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="la la-check-square-o"
+                                                                            style="color: white;"></i>
+                                                                        Submit</button> -->
+                                                                    <button id="btnExcel" name="btnExcel" type="submit"
+                                                                        class="btn btn-success"
+                                                                        formaction="/PlantExportExcel" formmethod="post"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-file-excel"
+                                                                            style="color: white;"></i>Excel</button>
+                                                                    <!-- <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                            <form id="frmPlantUser" class="form" action="/" method="post"
+                                                autocomplete="off">
+                                                <input type="text" id="PlantID" name="plant_id" value=""
+                                                    style="display: none;">
+                                                <div class="card-body">
+                                                    <div id="divSearch" class="">
+                                                        <div class="row" style="margin-bottom: -16px;">
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Upload Excel File </label>
+                                                                    <input type="file" id="UploadFile" name=""
+                                                                        tabindex="" class="form-control" accept=".xlsx"
+                                                                        required>
+                                                                    <span class="error"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3" style="padding-top: 12px;">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="" class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="la la-check-square-o"
+                                                                            style="color: white;"></i>
+                                                                        Submit</button>
+                                                                    <!-- <button id="btnExcel" name="btnExcel" type="submit"
+                                                                        class="btn btn-success"
+                                                                        formaction="/PlantExportExcel" formmethod="post"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-file-excel"
+                                                                            style="color: white;"></i>Excel</button> -->
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+
+        <%- include('../partials/footer.ejs') %>
+            <script src="../../javascripts/togglejavascript.js"></script>
+            <script type="text/javascript">
+                $(".select2dropdown").select2();
+                $("#tblplant").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+                function CancelFunction() {
+                    window.location.href = "/UploadDownload";
+                }
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divFilter").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divFilter").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+                function divAddUserDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divAddUser").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divAddUser").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+
+
+                $("#DropDownPlantID").change(function () {
+                    // alert($('option:selected', this).text());
+                    $("#PlantID").val($("#DropDownPlantID").val())
+                });
+
+                // $('#user_id').prop('disabled', true);
+                // $('#user_id').attr("disabled", true);
+
+                jQuery('#tblplant').on('draw.dt', function () {
+                    jQuery('.toggle').each(function () {
+                        $(this).toggles({
+                            on: $(this).data('toggle-on')
+                        });
+                    });
+                });
+
+                $('#tblplant').on('click', '.toggle', function () {
+                    var value = $(this).data('toggle-on');
+                    var id = $(this).data('contact-id');
+
+                    console.log($(this).data('toggle-on'));
+                    if ($(this).data('toggle-on') == true) {
+                        $(this).data('toggle-on', false)
+                        console.log('Turning off ' + $(this).data('contact-id'));
+                    } else {
+                        $(this).data('toggle-on', true)
+                        console.log('Turning on ' + $(this).data('contact-id'));
+                    }
+
+                    $.ajax({
+                        url: '/UserStatus/' + value + '/' + id, success: function (res) {
+
+                        }
+                    });
+                });
+
+
+                $("#frmPlantUser").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        user_id: {
+                            required: "Please Select User"
+                        },
+                        // DropDownPlantID: {
+                        //     required: "Please Select Plant"
+                        // },
+
+                    },
+                    rules: {
+                        user_id: {
+                            required: true,
+                        },
+                        // DropDownPlantID: {
+                        //     required: true,
+
+                        // },
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/PlantUser') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/PlantUser/' + ID)
+                        }
+                    });
+                }
+
+            </script>

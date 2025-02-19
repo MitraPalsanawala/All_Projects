@@ -1,0 +1,197 @@
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #9ba5af !important;
+}
+
+.content {
+    padding-top: 5px !important;
+}
+
+.card-header {
+    padding-top: 0 !important;
+}
+
+.card.card-custom>.card-header {
+    min-height: 50px !important;
+}
+
+.cardbodycss {
+    padding: 0px 1rem !important;
+    padding-top: 1.2rem !important;
+    padding-bottom: 1.2rem !important;
+    border: 1px solid #ced5da !important;
+}
+
+.formgroupcss {
+    padding: 10px;
+    /*background: #f6f7f8;*/
+    background: #edf0f3;
+    /* height: 100px; */
+    margin-bottom: 0;
+}
+
+.hederformgroupcss{
+    width: 240px;
+    padding: 10px;
+    /*background: #f6f7f8;*/
+    background: #edf0f3;
+    /* height: 100px; */
+    margin-bottom: 0;
+}
+
+.formgroupbuttoncss {
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+.header .header-top {
+    background-color: #03449e;
+}
+
+.bg-primary {
+    background-color: #03449e !important;
+}
+
+.btn.btn-primary {
+    color: #FFFFFF;
+    background-color: #03449e;
+    border-color: #03449e;
+}
+
+.btn.btn-primary:hover:not(.btn-text):not(:disabled):not(.disabled),
+.btn.btn-primary:focus:not(.btn-text),
+.btn.btn-primary.focus:not(.btn-text) {
+    color: #FFFFFF;
+    background-color: #03449e;
+    border-color: #03449e;
+}
+
+.btn.btn-outline-primary {
+    color: #03449e;
+    background-color: transparent;
+    border-color: #03449e;
+}
+
+.btn.btn-outline-primary i {
+    color: #03449e;
+}
+
+.btn.btn-light-primary:hover:not(.btn-text):not(:disabled):not(.disabled),
+.btn.btn-light-primary:focus:not(.btn-text),
+.btn.btn-light-primary.focus:not(.btn-text) {
+    color: #FFFFFF;
+    background-color: #2e72d1;
+    border-color: transparent;
+}
+
+.btn.btn-outline-primary:hover:not(.btn-text):not(:disabled):not(.disabled),
+.btn.btn-outline-primary:focus:not(.btn-text),
+.btn.btn-outline-primary.focus:not(.btn-text) {
+    color: #FFFFFF;
+    background-color: #03449e;
+    border-color: #03449e;
+}
+
+.header-menu .menu-nav>.menu-item.menu-item-here>.menu-link .menu-text,
+.header-menu .menu-nav>.menu-item.menu-item-active>.menu-link .menu-text {
+    color: #03449e;
+}
+
+.header-menu .menu-nav>.menu-item:hover:not(.menu-item-here):not(.menu-item-active)>.menu-link .menu-text {
+    color: #03449e;
+}
+
+.header-menu .menu-nav>.menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active)>.menu-link .menu-text {
+    color: #03449e;
+}
+
+.header-menu .menu-nav>.menu-item .menu-submenu>.menu-subnav>.menu-item:hover:not(.menu-item-here):not(.menu-item-active)>.menu-link .menu-text {
+    color: #03449e;
+}
+
+.header-menu .menu-nav>.menu-item .menu-submenu>.menu-subnav>.menu-item.menu-item-active>.menu-link .menu-text {
+    color: #03449e;
+}
+
+.card-body {
+    padding: 1rem !important;
+}
+
+/* #divSearch {
+    padding: 0 !important;
+} */
+
+div.dataTables_wrapper div.dataTables_length label {
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
+}
+
+div.dataTables_wrapper div.dataTables_filter label {
+    font-weight: normal;
+    white-space: nowrap;
+    text-align: left;
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+    text-align: right;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 0.5em;
+    display: inline-block;
+    width: auto;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.tdcss {
+    text-align: center !important;
+}
+
+/* ------------------ Pages css --------------------- */
+.dataTables_wrapper .paginate_button.current {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 0 2px;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    display: none;
+}
+
+#tblVehicleCrimeDetail_paginate {
+    display: none;
+}
+
+.blur {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+.trbgcolor {
+    background-color: #EBEDF3;
+}
+
+.tdwidth1 {
+    width: 20%;
+}
+
+.tdwidth2 {
+    width: 30%;
+}
+
+.dataTables_wrapper .dataTable {
+    border-collapse: collapse !important;
+}
+
+.font-weight-bolder {
+    font-weight: bold !important;
+    color: black !important;
+}

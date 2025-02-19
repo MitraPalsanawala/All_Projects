@@ -1,0 +1,549 @@
+<%- include('../partials/head.ejs') %>
+    <%- include('../partials/header.ejs') %>
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card card-custom example example-compact" style="margin-top: 5px;">
+                                <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Add User Detail
+                                        </h3>
+                                    </div>
+                                </div>
+                                <% if(!FetchData){ %>
+                                    <form id="frmUser" class="form" action="/UserAdd" method="post" autocomplete="off">
+                                        <div class="card-body">
+                                            <input type="text" id="PlantID" name="plant_id" value=""
+                                                style="display: none;">
+                                            <div id="divSearch" class="container-fluid">
+                                                <div class="row" style="margin-left: 0">
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>Name : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <input type="text" id="name" placeholder="Name"
+                                                                autocomplete="off"
+                                                                class="form-control AllowAlphabetSpaceKey" name="name"
+                                                                maxlength="100" tabindex="1">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>MobileNo : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <input type="text" id="number" placeholder="MobileNo"
+                                                                maxlength="10" autocomplete="off"
+                                                                class="form-control AllowNumberKey" name="number"
+                                                                tabindex="2">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>GST_IN_Number : </label>
+                                                            <input type="text" id="gstinnumber"
+                                                                placeholder="GST_IN_Number" autocomplete="off"
+                                                                maxlength="20" class="form-control AllowNumberKey"
+                                                                name="gstinnumber" tabindex="3">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>State : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <select id="ddlState" name="ddlState"
+                                                                class="form-control select2dropdown select2"
+                                                                onchange="bindCity(this)" tabindex="4">
+                                                                <option Value="">--Select State--</option>
+                                                                <% if(StateData && StateData.data &&
+                                                                    StateData.data.length> 0){%>
+                                                                    <%for(var i=0; i < StateData.data.length; i++){%>
+                                                                        <option
+                                                                            value="<%= StateData.data[i].state_name %>">
+                                                                            <%= StateData.data[i].state_name %>
+                                                                        </option>
+                                                                        <%}%>
+                                                                            <%}%>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>City : </label>
+                                                            <input type="text" id="ddlCity" placeholder="City"
+                                                                maxlength="50" autocomplete="off"
+                                                                class="form-control AllowAlphabetSpaceKey"
+                                                                name="ddlCity" tabindex="5">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>Pincode : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <input type="text" id="pincode" placeholder="Pincode"
+                                                                maxlength="6" autocomplete="off"
+                                                                class="form-control AllowNumberKey" name="pincode"
+                                                                tabindex="6">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>User Name : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <input type="text" id="username" placeholder="User Name"
+                                                                autocomplete="off" class="form-control" name="username"
+                                                                onchange="return ValidateUserName()" maxlength="20"
+                                                                tabindex="7">
+                                                            <span id="spanUserNameAlreadyExist" class="error"
+                                                                style="display:none;">User Name Already Exist</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>Password : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <input type="password" id="password" placeholder="Password"
+                                                                autocomplete="off" class="form-control" name="password"
+                                                                maxlength="20" tabindex="8">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>Address : </label>
+                                                            <textarea class="form-control" name="address"
+                                                                placeholder="Address" id="address" rows="3" cols="66"
+                                                                wrap="virtual" tabindex="9" maxlength="100">
+                                                    </textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4" style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupbuttoncss" style="
+                                                            margin-top: 48px;">
+                                                            <button type="submit" id="" class="btn btn-primary"
+                                                                style="margin-bottom: 10px;"
+                                                                onclick="return ValidateCustomData()" tabindex="10">
+                                                                <i class="la la-check-square-o"
+                                                                    style="color: white;"></i>
+                                                                Submit</button>
+                                                            <button type="reset" value="reset" id="btnCancel"
+                                                                class="btn btn-danger" style="margin-bottom: 10px;"
+                                                                onclick="CancelFunction()" tabindex="11">
+                                                                <i class="fa-window-close fas"></i>Cancel</button>
+                                                            <button type="reset" value="reset" id="btnCancel"
+                                                                class="btn btn-success" style="margin-bottom: 10px;"
+                                                                onclick="ViewFunction()" tabindex="11">
+                                                                <i class="fa-eye fas"></i>View</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <% }else{ %>
+                                        <form id="frmUser" class="form" action="/UpdateUser" method="post"
+                                            autocomplete="off">
+                                            <input type="text" id="id" name="id" value="<%= FetchData.data[0].id %>"
+                                                style="display: none;">
+                                            <div class="card-body">
+                                                <div id="divSearch" class="container-fluid">
+                                                    <div class="row" style="margin-left: 0">
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Name : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="name" placeholder="Name"
+                                                                    autocomplete="off"
+                                                                    class="form-control AllowAlphabetSpaceKey"
+                                                                    name="name" maxlength="100"
+                                                                    value="<%= FetchData.data[0].UserDetail[0].name %>"
+                                                                    tabindex="1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>MobileNo : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="number" placeholder="MobileNo"
+                                                                    maxlength="10" autocomplete="off"
+                                                                    class="form-control AllowNumberKey" name="number"
+                                                                    value="<%= FetchData.data[0].UserDetail[0].number %>"
+                                                                    tabindex="2">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>GST_IN_Number : </label>
+                                                                <input type="text" id="gstinnumber"
+                                                                    placeholder="GST_IN_Number" autocomplete="off"
+                                                                    class="form-control" maxlength="20"
+                                                                    name="gstinnumber AllowNumberKey"
+                                                                    value="<%= FetchData.data[0].gstinnumber %>"
+                                                                    tabindex="3">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>State : <span class="text-danger ml-1">*</span>
+                                                                </label>
+                                                                <select id="ddlState" name="ddlState"
+                                                                    class="form-control select2dropdown" onchange=""
+                                                                    tabindex="4">
+                                                                    <% if(StateData && StateData.data &&
+                                                                        StateData.data.length> 0){ %>
+                                                                        <%for(var i=0; i < StateData.data.length;
+                                                                            i++){%>
+                                                                            <%if(StateData.data[i].state_name==FetchData.data[0].UserDetail[0].state){%>
+                                                                                <option
+                                                                                    value="<%= StateData.data[i].state_name %>"
+                                                                                    selected="selected">
+                                                                                    <%= StateData.data[i].state_name %>
+                                                                                </option>
+                                                                                <%} else {%>
+                                                                                    <option
+                                                                                        value="<%= StateData.data[i].state_name %>">
+                                                                                        <%= StateData.data[i].state_name
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>City : </label>
+                                                                <input type="text" id="ddlCity" placeholder="City"
+                                                                    autocomplete="off"
+                                                                    class="form-control AllowAlphabetSpaceKey"
+                                                                    name="ddlCity" maxlength="50"
+                                                                    value="<%= FetchData.data[0].UserDetail[0].city %>"
+                                                                    tabindex="5">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Pincode : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="pincode" placeholder="Pincode"
+                                                                    maxlength="6" autocomplete="off"
+                                                                    class="form-control AllowNumberKey" name="pincode"
+                                                                    value="<%= FetchData.data[0].UserDetail[0].pincode %>"
+                                                                    tabindex="6">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>User Name : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="username" placeholder="User Name"
+                                                                    autocomplete="off" class="form-control"
+                                                                    name="username" maxlength="15"
+                                                                    value="<%= FetchData.data[0].username %>"
+                                                                    onchange="return ValidateUserName()" tabindex="7">
+                                                                <span id="spanUserNameAlreadyExist" class="error"
+                                                                    style="display:none;">User Name Already Exist</span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px;display: none;">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Password : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="password" id="password"
+                                                                    placeholder="Password" autocomplete="off"
+                                                                    class="form-control" name="HDpassword" maxlength=""
+                                                                    value="<%= FetchData.data[0].password %>"
+                                                                    tabindex="8">
+                                                            </div>
+                                                        </div> -->
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Password : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="password" id="new_password"
+                                                                    placeholder="Password" autocomplete="off"
+                                                                    class="form-control" name="new_password"
+                                                                    maxlength=""
+                                                                    value="<%= FetchData.data[0].password %>"
+                                                                    tabindex="9">
+
+                                                                <input type="hidden" id="password" name="password"
+                                                                    value="<%= FetchData.data[0].password %>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Address : </label>
+                                                                <textarea class="form-control" name="address"
+                                                                    placeholder="Address" id="address" rows="3"
+                                                                    cols="66" wrap="virtual" tabindex="10"
+                                                                    maxlength="100"><%= FetchData.data[0].UserDetail[0].address %>
+                                                                </textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupbuttoncss" style="
+                                                            margin-top: 48px;">
+                                                                <button type="submit" id="" class="btn btn-primary"
+                                                                    style="margin-bottom: 10px;"
+                                                                    onclick="return ValidateCustomData()">
+                                                                    <i class="la la-check-square-o"
+                                                                        style="color: white;" tabindex="11"></i>
+                                                                    Update</button>
+                                                                <button type="reset" value="reset" id="btnCancel"
+                                                                    class="btn btn-danger" style="margin-bottom: 10px;"
+                                                                    onclick="CancelFunction()">
+                                                                    <i class="fa-window-close fas"
+                                                                        tabindex="12"></i>Cancel</button>
+                                                                <button type="reset" value="reset" id="btnCancel"
+                                                                    class="btn btn-success" style="margin-bottom: 10px;"
+                                                                    onclick="ViewFunction()" tabindex="11">
+                                                                    <i class="fa-eye fas"></i>View</button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <% } %>
+                            </div>
+                        </div>
+                        <!-- code table -->
+                    </div>
+                </div>
+
+            </div>
+            <!--end::Entry-->
+        </div>
+
+        <%- include('../partials/footer.ejs') %>
+
+            <script type="text/javascript">
+
+                $('document').ready(function () {
+                    $('textarea').each(function () {
+                        $(this).val($(this).val().trim());
+                    }
+                    );
+                });
+
+                function CancelFunction() {
+                    window.location.href = "/UserAdd";
+                }
+
+                function ViewFunction() {
+                    window.location.href = "/UserView";
+                }
+
+                $("#DropDownPlantID").change(function () {
+                    // alert($('option:selected', this).text());
+                    $("#PlantID").val($("#DropDownPlantID").val())
+                });
+
+                $(".select2dropdown").select2();
+
+                function bindCity(stateDetail) {
+                    let stateName = $("#ddlState").val();
+                    $.ajax({
+                        url: '/bindCityData/' + stateName, success: function (res) {
+                            if (res.CityData.length > 0) {
+                                $("#ddlCity").empty();
+                                $("#ddlCity").append($("<option></option>").val("").html('----------Select City----------'));
+                                $.each(res.CityData, function (data, value) {
+                                    $("#ddlCity").append($("<option></option>").val(value).html(value));
+                                });
+
+                                //$('#ddlCity').trigger("change");
+                                //$('#divDesignation').css("display", "block");
+                            } else {
+                                $("#ddlCity").empty();
+                                $("#ddlCity").append($("<option></option>").val("").html('----------Select City----------'));
+                            }
+                        }
+                    });
+                }
+
+                $("#frmUser").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        username: {
+                            required: "Please Enter User Name"
+                        },
+                        password: {
+                            required: "Please Enter Password"
+                        },
+                        name: {
+                            required: "Please Enter Name"
+                        },
+                        number: {
+                            required: "Please Enter MobileNo"
+                        },
+                        pincode: {
+                            required: "Please Enter Pincode"
+                        },
+                        ddlState: {
+                            required: "Please Select State"
+                        }
+                    },
+                    rules: {
+                        username: {
+                            required: true,
+                        },
+                        password: {
+                            required: true,
+                        },
+                        name: {
+                            required: true
+                        },
+                        number: {
+                            required: true,
+                            minlength: 10,
+                            maxlength: 10,
+                            number: true
+                        },
+                        pincode: {
+                            minlength: 6,
+                            maxlength: 6,
+                            number: true,
+                            required: true
+                        },
+                        ddlState: {
+                            required: true
+                        }
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+                function ValidateCustomData() {
+                    if (ValidateUserName()) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+
+                function ValidateUserName() {
+                    var data = JSON.stringify({
+                        'username': $("#username").val(),
+                        'id': $("#id").val(),
+                    });
+                    $.ajax({
+                        accepts: "application/json",
+                        async: false,
+                        type: "POST",
+                        contentType: 'application/json',
+                        url: "/CheckUserName",
+                        data: data,
+                        success: function (res) {
+                            if (res.Message == "true") {
+                                returndata = true;
+                                $("#spanUserNameAlreadyExist").css("display", "none");
+                            }
+                            else {
+                                returndata = false;
+                                $("#spanUserNameAlreadyExist").css("display", "block");
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            return false;
+                            $("#spanUserNameAlreadyExist").css("display", "block");
+                        }
+                    });
+
+                    return returndata;
+                }
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/UserView') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/UserAdd/' + ID)
+                        }
+                    });
+                }
+            </script>

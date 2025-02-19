@@ -1,0 +1,1103 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 600;
+            color: #181C32;
+        }
+
+        .toggle-slide {
+            overflow: hidden;
+            cursor: pointer;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            direction: ltr;
+        }
+
+        .toggle-slide .toggle-on,
+        .toggle-slide .toggle-off,
+        .toggle-slide .toggle-blob {
+            float: left;
+        }
+
+        .toggle-slide .toggle-blob {
+            position: relative;
+            z-index: 99;
+            cursor: hand;
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+        }
+
+        .toggle {
+            height: 25px !important;
+        }
+
+        .toggle-off {
+            background-color: #E4E6EF;
+            height: 25px !important;
+            line-height: 25px !important;
+        }
+
+        .toggle-on {
+            background-color: #03449e;
+            color: white;
+            height: 25px !important;
+            line-height: 25px !important;
+        }
+
+        .dataTables_wrapper .dataTable td,
+        .dataTables_wrapper .dataTable thead th {
+            white-space: nowrap !important;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divAddUser"
+                                style="margin-top: 5px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Add Customer User
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <% if(!FetchData){ %>
+                                                <form id="frmCustUser" class="form" action="/AddCustomerUser"
+                                                    method="post" autocomplete="off">
+                                                    <input type="text" id="PlantID" name="plant_id" value=""
+                                                        style="display: none;">
+                                                    <div class="card-body">
+                                                        <div id="divSearch" class="">
+                                                            <div class="row" style="margin-bottom: -23px;">
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>User : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <select ID="user_id"
+                                                                            class="form-control select2dropdown select2"
+                                                                            name="user_id" tabindex="1">
+                                                                            <option Value="">--Select User--
+                                                                            </option>
+                                                                            <% if(UserData && UserData.data &&
+                                                                                UserData.data.length> 0) {%>
+                                                                                <%for(var i=0; i < UserData.data.length;
+                                                                                    i++){%>
+                                                                                    <option
+                                                                                        value="<%= UserData.data[i].id %>">
+                                                                                        <%= UserData.data[i].username %>
+                                                                                            (<%= UserData.data[i].UserInformationDetail[0].name
+                                                                                                %>)
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Customer_Org : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <select ID="customer_org_id"
+                                                                            class="form-control select2dropdown select2"
+                                                                            name="customer_org_id"
+                                                                            onchange="bindCustomerType()" tabindex="2">
+                                                                            <option Value="">--Select Customer_Org--
+                                                                            </option>
+                                                                            <%if(CustOrgData && CustOrgData.data &&
+                                                                                CustOrgData.data.length> 0){ %>
+                                                                                <%for(var i=0; i <
+                                                                                    CustOrgData.data.length; i++){%>
+                                                                                    <option
+                                                                                        value="<%= CustOrgData.data[i].id %>">
+                                                                                        <%= CustOrgData.data[i].customer_name
+                                                                                            %>(<%=
+                                                                                                CustOrgData.data[i].customer_no
+                                                                                                %>)
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Station : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <select ID="station_id"
+                                                                            class="form-control select2dropdown select2"
+                                                                            name="station_id" tabindex="3">
+                                                                            <option Value="">--Select Station--
+                                                                            </option>
+                                                                            <%if(StationData && StationData.data &&
+                                                                                StationData.data.length> 0){ %>
+                                                                                <%for(var i=0; i <
+                                                                                    StationData.data.length; i++){%>
+                                                                                    <option
+                                                                                        value="<%= StationData.data[i].id %>">
+                                                                                        <%= StationData.data[i].station_name
+                                                                                            %> (<%= StationData.data[i].
+                                                                                                station_code %>)
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Train : </label>
+                                                                        <select ID="train_id"
+                                                                            class="form-control select2dropdown"
+                                                                            name="train_id" tabindex="4">
+                                                                            <option Value="">--Select Train--
+                                                                            </option>
+                                                                            <%if(TrainData && TrainData.data &&
+                                                                                TrainData.data.length> 0){ %>
+                                                                                <%for(var i=0; i <
+                                                                                    TrainData.data.length; i++){%>
+                                                                                    <option
+                                                                                        value="<%= TrainData.data[i].train_id %>">
+                                                                                        <%= TrainData.data[i].train_name
+                                                                                            %> (<%=
+                                                                                                TrainData.data[i].train_number
+                                                                                                %>)
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Target Quantity : </label>
+                                                                        <input type="text" id="default_quantity"
+                                                                            placeholder="Target Quantity"
+                                                                            autocomplete="off"
+                                                                            class="form-control AllowNumberKey"
+                                                                            name="default_quantity" value=""
+                                                                            tabindex="5" maxlength="4">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Location No : </label>
+                                                                        <input type="text" id="location_no"
+                                                                            placeholder="Location No" autocomplete="off"
+                                                                            class="form-control" name="location_no"
+                                                                            value="" tabindex="6" maxlength="20">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Expired Date : </label>
+                                                                        <input type="text" id="expiry_date"
+                                                                            name="expiry_date"
+                                                                            class="form-control pickDate"
+                                                                            data-date-format="dd-mm-yyyy"
+                                                                            placeholder="Expired Date" tabindex="7">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <span
+                                                                        style="font-weight: bold;color: #c15e5e;">Note:-
+                                                                        To create a Train User, select Train else user
+                                                                        will be considered as Stall User.</span>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px;padding-top: 15px">
+                                                                    <div class="form-group formgroupbuttoncss">
+                                                                        <button type="submit" id=""
+                                                                            class="btn btn-primary"
+                                                                            style="margin-bottom: 10px;" tabindex="8">
+                                                                            <i class="la la-check-square-o"
+                                                                                style="color: white;"></i>
+                                                                            Submit</button>
+                                                                        <button type="reset" value="reset"
+                                                                            id="btnCancel" class="btn btn-danger"
+                                                                            style="margin-bottom: 10px;"
+                                                                            onclick="CancelFunction()" tabindex="9">
+                                                                            <i
+                                                                                class="fa-window-close fas"></i>Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <% }else{ %>
+                                                    <form id="frmCustUser" class="form" action="/UpdateCustomerUser"
+                                                        method="post" autocomplete="off">
+                                                        <input type="text" id="id" name="user_role_mapping_id"
+                                                            value="<%= FetchData.data[0].user_role_mapping_id %>"
+                                                            style="display: none;">
+                                                        <input type="text" id="PlantID" name="plant_id" value=""
+                                                            style="display: none;">
+                                                        <div class="card-body">
+                                                            <div id="divSearch" class="">
+                                                                <div class="row" style="margin-bottom: -23px;">
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>User : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select class="form-control select2dropdown"
+                                                                                id="user_id" name="user_id"
+                                                                                value="<%= FetchData.data[0].user_id %>"
+                                                                                disabled="disabled" tabindex="1">
+                                                                                <option value="">--Select User--
+                                                                                </option>
+                                                                                <% if(UserData && UserData.data &&
+                                                                                    UserData.data.length> 0) {%>
+                                                                                    <%for(var i=0; i <
+                                                                                        UserData.data.length; i++){%>
+                                                                                        <%if(UserData.data[i].id==FetchData.data[0].user_id.toString()){%>
+                                                                                            <option
+                                                                                                value="<%= UserData.data[i].id %>"
+                                                                                                selected="selected">
+                                                                                                <%= UserData.data[i].username
+                                                                                                    %>
+                                                                                                    (<%= UserData.data[i].UserDetail
+                                                                                                        ?
+                                                                                                        UserData.data[i].UserDetail[0].name
+                                                                                                        : '' %>
+                                                                                                        )
+                                                                                            </option>
+                                                                                            <%} else {%>
+                                                                                                <option
+                                                                                                    value="<%= UserData.data[i].id %>">
+                                                                                                    <%= UserData.data[i].username
+                                                                                                        %>
+                                                                                                        (<%= UserData.data[i].UserDetail
+                                                                                                            ?
+                                                                                                            UserData.data[i].UserDetail[0].name
+                                                                                                            : '' %>
+                                                                                                            )
+
+                                                                                                </option>
+                                                                                                <%}%>
+                                                                                                    <%}%>
+                                                                                                        <%}%>
+                                                                            </select>
+                                                                            <input type="hidden" name="user_id"
+                                                                                value="<%= FetchData.data[0].user_id %>" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Customer_Org : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select id="customer_org_id"
+                                                                                class="form-control select2dropdown"
+                                                                                name="customer_org_id"
+                                                                                value="<%= FetchData.data[0].customer_org_id %>"
+                                                                                tabindex="2">
+                                                                                <option value="">--Select
+                                                                                    Customer_Org--
+                                                                                </option>
+                                                                                <%if(CustOrgData && CustOrgData.data &&
+                                                                                    CustOrgData.data.length> 0){ %>
+                                                                                    <%for(var i=0; i <
+                                                                                        CustOrgData.data.length; i++){%>
+                                                                                        <%if(CustOrgData.data[i].id.toString()==FetchData.data[0].customer_org_id.toString()){%>
+                                                                                            <option
+                                                                                                value="<%= CustOrgData.data[i].id %>"
+                                                                                                selected="selected">
+                                                                                                <%= CustOrgData.data[i].customer_name
+                                                                                                    %>
+                                                                                            </option>
+                                                                                            <%} else {%>
+                                                                                                <option
+                                                                                                    value="<%= CustOrgData.data[i].id %>">
+                                                                                                    <%= CustOrgData.data[i].customer_name
+                                                                                                        %>
+                                                                                                </option>
+                                                                                                <%}%>
+                                                                                                    <%}%>
+                                                                                                        <%}%>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Station : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select ID="station_id"
+                                                                                class="form-control select2dropdown"
+                                                                                name="station_id"
+                                                                                value="<%= FetchData.data[0].station_id %>"
+                                                                                tabindex="3">
+                                                                                <option value="">--Select Station--
+                                                                                </option>
+                                                                                <%if(StationData && StationData.data &&
+                                                                                    StationData.data.length> 0){ %>
+                                                                                    <%for(var i=0; i <
+                                                                                        StationData.data.length; i++){%>
+                                                                                        <% if(FetchData.data[0].station_id.toString()==StationData.data[i].id.toString()){
+                                                                                            %>
+                                                                                            <option selected="selected"
+                                                                                                value="<%= StationData.data[i].id %>">
+                                                                                                <%= StationData.data[i].station_name
+                                                                                                    %>
+                                                                                            </option>
+                                                                                            <% }else{ %>
+                                                                                                <option
+                                                                                                    value="<%= StationData.data[i].id %>">
+                                                                                                    <%= StationData.data[i].station_name
+                                                                                                        %>
+                                                                                                </option>
+                                                                                                <% } %>
+                                                                                                    <% } %>
+                                                                                                        <% } %>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style=" margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Train : </label>
+                                                                            <select ID="train_id"
+                                                                                class="form-control select2dropdown"
+                                                                                name="train_id"
+                                                                                value="<%= FetchData.data[0].train_id %>"
+                                                                                tabindex="4">
+                                                                                <option value="">--Select Train--
+                                                                                </option>
+                                                                                <%if(TrainData && TrainData.data &&
+                                                                                    TrainData.data.length> 0){ %>
+                                                                                    <%for(var i=0; i <
+                                                                                        TrainData.data.length; i++){%>
+                                                                                        <% if(FetchData.data[0].train_id==TrainData.data[i].train_id){
+                                                                                            %>
+                                                                                            <option selected="selected"
+                                                                                                value="<%= TrainData.data[i].train_id %>">
+                                                                                                <%= TrainData.data[i].train_name
+                                                                                                    %> |
+                                                                                                    <%= TrainData.data[i].train_number
+                                                                                                        %>
+                                                                                            </option>
+                                                                                            <% }else{ %>
+                                                                                                <option
+                                                                                                    value="<%= TrainData.data[i].train_id %>">
+                                                                                                    <%= TrainData.data[i].train_name
+                                                                                                        %> |
+                                                                                                        <%= TrainData.data[i].train_number
+                                                                                                            %>
+                                                                                                </option>
+                                                                                                <% } %>
+                                                                                                    <% } %>
+                                                                                                        <% } %>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Target Quantity : </label>
+                                                                            <input type="text" id="default_quantity"
+                                                                                placeholder="Target Quantity"
+                                                                                autocomplete="off"
+                                                                                class="form-control AllowNumberKey"
+                                                                                name="default_quantity"
+                                                                                value="<%= FetchData.data[0].default_quantity %>"
+                                                                                tabindex="5" maxlength="4">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Location No : </label>
+                                                                            <input type="text" id="location_no"
+                                                                                placeholder="Location No"
+                                                                                autocomplete="off" class="form-control"
+                                                                                name="location_no"
+                                                                                value="<%= FetchData.data[0].location_no %>"
+                                                                                tabindex="6" maxlength="20">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Expired Date : </label>
+                                                                            <input type="text" id="expiry_date"
+                                                                                name="expiry_date"
+                                                                                class="form-control pickDate"
+                                                                                data-date-format="dd-mm-yyyy"
+                                                                                placeholder="Expired Date"
+                                                                                value="<%= FetchData.data[0].expiry_date %>"
+                                                                                tabindex="7">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <span
+                                                                            style="font-weight: bold;color: #c15e5e;">Note:-
+                                                                            To create a Train User, select Train else
+                                                                            user will be considered as Stall
+                                                                            User.</span>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="padding-top: 26px; margin-bottom: 20px">
+                                                                        <div class="form-group formgroupbuttoncss">
+                                                                            <button type="submit" id=""
+                                                                                class="btn btn-primary"
+                                                                                style="margin-bottom: 10px;"
+                                                                                tabindex="8">
+                                                                                <i class="la la-check-square-o"
+                                                                                    style="color: white;"></i>
+                                                                                Update</button>
+                                                                            <button type="reset" value="reset"
+                                                                                id="btnCancel" class="btn btn-danger"
+                                                                                style="margin-bottom: 10px;"
+                                                                                onclick="CancelFunction()" tabindex="9">
+                                                                                <i
+                                                                                    class="fa-window-close fas"></i>Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divFilter"
+                                style="margin-top: 5px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search Customer User
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <form id="frmCustUser" class="form" action="/CustomerUser" method="post"
+                                                autocomplete="off">
+                                                <input type="text" id="PlantID" name="plant_id" value=""
+                                                    style="display: none;">
+                                                <div class="card-body">
+                                                    <div id="divFilter" class="">
+                                                        <div class="row" style="margin-bottom:-39px;">
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>User Type : </label>
+                                                                    <select id="userType"
+                                                                        class="form-control select2dropdown"
+                                                                        name="userType">
+                                                                        <option Value="">--Select User--
+                                                                        </option>
+                                                                        <option value="Mobile" selected="true">Mobile
+                                                                        </option>
+                                                                        <option value="Stall">Stall
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Customer_Org : </label>
+                                                                    <select id="customerorgid"
+                                                                        class="form-control select2dropdown"
+                                                                        name="customer_org_id">
+                                                                        <option Value="">--Select Customer_Org--
+                                                                        </option>
+                                                                        <%if(CustOrgData && CustOrgData.data &&
+                                                                            CustOrgData.data.length> 0){ %>
+                                                                            <%for(var i=0; i < CustOrgData.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= CustOrgData.data[i].id %>">
+                                                                                    <%= CustOrgData.data[i].customer_name
+                                                                                        %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Customer Type : </label>
+                                                                    <select id="customertypeid"
+                                                                        class="form-control select2dropdown"
+                                                                        name="customer_type_id">
+                                                                        <option Value="">--Select Customer Type--
+                                                                        </option>
+                                                                        <%if(CustomerType && CustomerType.data &&
+                                                                            CustomerType.data.length> 0){ %>
+                                                                            <%for(var i=0; i < CustomerType.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= CustomerType.data[i].customer_type_id %>">
+                                                                                    <%= CustomerType.data[i].customer_type
+                                                                                        %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Station : </label>
+                                                                    <select id="stationid"
+                                                                        class="form-control select2dropdown"
+                                                                        name="station_id">
+                                                                        <option Value="">--Select Station--
+                                                                        </option>
+                                                                        <%if(StationData && StationData.data &&
+                                                                            StationData.data.length> 0){ %>
+                                                                            <%for(var i=0; i < StationData.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= StationData.data[i].id %>">
+                                                                                    <%= StationData.data[i].station_name
+                                                                                        %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3" style=" margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Train : </label>
+                                                                    <select id="trainid"
+                                                                        class="form-control select2dropdown"
+                                                                        name="train_id">
+                                                                        <option Value="">--Select Train--
+                                                                        </option>
+                                                                        <%if(TrainData && TrainData.data &&
+                                                                            TrainData.data.length> 0){ %>
+                                                                            <%for(var i=0; i < TrainData.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= TrainData.data[i].train_id %>">
+                                                                                    <%= TrainData.data[i].train_name %>
+                                                                                        | <%=
+                                                                                            TrainData.data[i].train_number
+                                                                                            %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3" style=" margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>MobileNo : </label>
+                                                                    <input type="text" id="number"
+                                                                        placeholder="MobileNo" maxlength="10"
+                                                                        autocomplete="off"
+                                                                        class="form-control AllowNumberKey"
+                                                                        name="number">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Expired Date : </label>
+                                                                    <input type="text" id="expiry_date_filter"
+                                                                        name="expiry_date" class="form-control pickDate"
+                                                                        data-date-format="dd-mm-yyyy"
+                                                                        placeholder="Expired Date">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-lg-4"
+                                                                style="padding-top: 26px; margin-bottom: 20px">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="" class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="divShowFilterDetail(this)">
+                                                                        <i class="fa fa-search"
+                                                                            style="color: white;"></i>
+                                                                        Search</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                    <button id="btnExcel" name="btnExcel" type="submit"
+                                                                        class="btn btn-success"
+                                                                        formaction="/ViewCustomerUserExcel"
+                                                                        formmethod="post" style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-file-excel"
+                                                                            style="color: white;"></i>Excel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">View Customer User Detail
+                                            </div>
+                                            <div class="card-title">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divAddUserDetail(this)" style="margin: 5px;" onclick="">Add
+                                                    Customer User &nbsp;<i class="fa fa-plus"></i></button>
+                                                <div></div>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divhideShowFilterDetail(this)"
+                                                    style="margin: 5px;">&nbsp;<i class="fa fa-plus"></i>Filter &nbsp;<i
+                                                        class='fa fa-filter'></i></button>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <table class="table table-bordered" id="tblCustomerUser">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="tdcss" width="5%">Sr. No.</th>
+                                                        <th class="tdcss" width="10%">Name</th>
+                                                        <th class="tdcss" width="10%">User Name</th>
+                                                        <th class="tdcss" width="10%">Mobile No</th>
+                                                        <th class="tdcss" width="10%">Station Name</th>
+                                                        <th class="tdcss" width="6%">Customer Org</th>
+                                                        <th class="tdcss" width="6%">Customer Type</th>
+                                                        <th class="tdcss" width="10%">Train Name</th>
+                                                        <th class="tdcss" width="5%">Qty</th>
+                                                        <th class="tdcss" width="6%">Location No</th>
+                                                        <th class="tdcss" width="8%">Expired Date</th>
+                                                        <th class="tdcss" width="5%">User Login Status</th>
+                                                        <th class="tdcss" width="1%">Edit</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblbody">
+                                                    <% if(UserRoleMappingData && UserRoleMappingData.data &&
+                                                        UserRoleMappingData.data.length> 0){ %>
+
+                                                        <% for(var i=0; i < UserRoleMappingData.data.length; i++) {%>
+                                                            <tr>
+                                                                <td class="tdcss">
+                                                                    <span class="tdfont">
+                                                                        <%= i+1 %>
+                                                                    </span>
+                                                                </td>
+
+                                                                <td>
+                                                                    <% if(UserRoleMappingData.data[i].UserDetail){ %>
+                                                                        <%- UserRoleMappingData.data[i].UserDetail[0].name
+                                                                            %>
+                                                                            <% }else{ %>
+                                                                                -
+                                                                                <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(UserRoleMappingData.data[i].UserMainDetail){
+                                                                        %>
+                                                                        <%- UserRoleMappingData.data[i].UserMainDetail[0].username
+                                                                            %>
+                                                                            <% }else{ %>
+                                                                                -
+                                                                                <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(UserRoleMappingData.data[i].UserDetail){ %>
+                                                                        <%- UserRoleMappingData.data[i].UserDetail[0].number
+                                                                            %>
+                                                                            <% }else{ %>
+                                                                                -
+                                                                                <%}%>
+                                                                </td>
+
+                                                                <td>
+                                                                    <% if(UserRoleMappingData.data[i].StationDetail){ %>
+                                                                        <%- UserRoleMappingData.data[i].StationDetail[0].station_name
+                                                                            %>
+                                                                            <% }else{ %>
+                                                                                -
+                                                                                <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(UserRoleMappingData.data[i].CustomerOrganizationDetail){
+                                                                        %>
+                                                                        <%- UserRoleMappingData.data[i].CustomerOrganizationDetail[0].customer_name
+                                                                            %>
+                                                                            <% }else{ %>
+                                                                                -
+                                                                                <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <%
+                                                                        if(UserRoleMappingData.data[i].CustomerOrganizationDetail.length>
+                                                                        0){
+                                                                        %>
+
+                                                                        <%
+                                                                            if(UserRoleMappingData.data[i].CustomerOrganizationDetail[0].CustomerTypeDetails){%>
+                                                                            <%
+                                                                                if(UserRoleMappingData.data[i].CustomerOrganizationDetail[0].CustomerTypeDetails.length>
+                                                                                0){
+                                                                                %>
+                                                                                <%- UserRoleMappingData.data[i].CustomerOrganizationDetail[0].CustomerTypeDetails[0].customer_type
+                                                                                    %>
+                                                                                    <% }else{ %>
+                                                                                        -
+                                                                                        <%}%>
+                                                                                            <% }else{ %>
+                                                                                                -
+                                                                                                <%}%>
+                                                                                                    <% }else{ %>
+                                                                                                        -
+                                                                                                        <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(UserRoleMappingData.data[i].TrainDetail){ %>
+                                                                        <%- UserRoleMappingData.data[i].TrainDetail[0].train_name
+                                                                            %>
+                                                                            <% }else{ %>
+                                                                                -
+                                                                                <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <%- UserRoleMappingData.data[i].default_quantity %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- UserRoleMappingData.data[i].location_no %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- UserRoleMappingData.data[i].expiry_date %>
+                                                                </td>
+                                                                <td>
+                                                                    <div
+                                                                        class="control-label bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-on bootstrap-switch-animate">
+                                                                        <div class="toggle toggle-primary"
+                                                                            data-toggle-on="<%= UserRoleMappingData.data[i].UserMainDetail[0].status == 1 ? true : false %>"
+                                                                            data-contact-id="<%= UserRoleMappingData.data[i].UserMainDetail[0].id %>">
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+
+                                                                <td>
+                                                                    <a
+                                                                        href="/CustomerUserfindbyId/<%- UserRoleMappingData.data[i].user_role_mapping_id %>"><i
+                                                                            class="la la-pencil-square-o"
+                                                                            style="font-size:24px;color: #03449e;"
+                                                                            onclick="divAddUserDetail(this)"></i></a>
+                                                                </td>
+
+                                                            </tr>
+                                                            <%}%>
+                                                                <%}%>
+                                                </tbody>
+                                            </table>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+
+        <%- include('../partials/footer.ejs') %>
+            <script src="../../javascripts/togglejavascript.js"></script>
+            <script type="text/javascript">
+
+                let searchStatus;
+                $(".select2dropdown").select2();
+                function CancelFunction() {
+                    window.location.href = "/CustomerUser";
+                }
+                // function divhideShowFilterDetail() {
+                //     $("#divFilter").css("display", "block");
+                //     $(".select2dropdown").select2();
+                // }
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divFilter").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divFilter").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+
+                function divAddUserDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divAddUser").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divAddUser").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                if (SearchData) {
+                    $("#PlantID").val(SearchData.plant_id).change();
+                    $("#userid").val(SearchData.user_id).change();
+                    $("#customerorgid").val(SearchData.customer_org_id).change();
+                    $("#customertypeid").val(SearchData.customer_type_id).change();
+                    $("#stationid").val(SearchData.station_id).change();
+                    $("#trainid").val(SearchData.train_id).change();
+                    $("#number").val(SearchData.number).change();
+                    $("#expiry_date_filter").val(SearchData.expiry_date).change();
+
+                    if (SearchData.is_mobile_user_list == true) {
+                        $("#userType").val("Mobile")
+                    } else if (SearchData.is_stall_user_list == true) {
+                        $("#userType").val("Stall")
+                    } else {
+                        $("#userType").val("Mobile")
+                    }
+                }
+                else {
+                    $("#PlantID").val();
+                    $("#userid").val();
+                    $("#customerorgid").val();
+                    $("#customertypeid").val();
+                    $("#stationid").val();
+                    $("#trainid").val();
+                    $("#number").val();
+                    $("#expiry_date_filter").val();
+                }
+                var FilterData = JSON.parse('<%- JSON.stringify(FilterData) %>');
+                searchStatus = FilterData;
+                if (searchStatus == true) {
+                    $("#divFilter").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+
+
+                var FetchData = JSON.parse(`<%- JSON.stringify(FetchData).replace(/[\n\r\t]/g, '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'") %>`);
+                if (FetchData) {
+                    $("#divAddUser").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+
+                $("#DropDownPlantID").change(function () {
+                    // alert($('option:selected', this).text());
+                    $("#PlantID").val($("#DropDownPlantID").val())
+                    console.log("=====PlantID=====", $("#PlantID").val())
+                });
+
+                $("#tblblock").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+                jQuery('#tblUser').on('draw.dt', function () {
+                    jQuery('.toggle').each(function () {
+                        $(this).toggles({
+                            on: $(this).data('toggle-on')
+                        });
+                    });
+                });
+
+                $("#expiry_date").datepicker({
+                    clearBtn: true,
+                    orientation: 'bottom',
+                    todayHighlight: true
+                }).datepicker("setDate");
+
+                $("#expiry_date_filter").datepicker({
+                    clearBtn: true,
+                    orientation: 'bottom',
+                    todayHighlight: true
+                }).datepicker("setDate");
+
+                jQuery('#tblCustomerUser').on('draw.dt', function () {
+                    jQuery('.toggle').each(function () {
+                        $(this).toggles({
+                            on: $(this).data('toggle-on')
+                        });
+                    });
+                });
+
+                $('#tblCustomerUser').on('click', '.toggle', function () {
+                    var value = $(this).data('toggle-on');
+                    var id = $(this).data('contact-id');
+
+                    console.log($(this).data('toggle-on'));
+                    if ($(this).data('toggle-on') == true) {
+                        $(this).data('toggle-on', false)
+                        console.log('Turning off ' + $(this).data('contact-id'));
+                    } else {
+                        $(this).data('toggle-on', true)
+                        console.log('Turning on ' + $(this).data('contact-id'));
+                    }
+
+                    $.ajax({
+                        url: '/UserStatus/' + value + '/' + id, success: function (res) {
+                        }
+                    });
+                });
+
+                function bindCustomerType() {
+                    var cust_id = $("#customer_org_id").val();
+
+                    var data = JSON.stringify({
+                        "cust_id": cust_id
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        contentType: 'application/json',
+                        url: '/getCustomerType',
+                        data: data,
+                        success: function (res) {
+                            if (res.data) {
+                                if (res.data.data.length > 0) {
+                                    $("#customer_type_id").val(res.data.data[0].customer_type)
+                                    $(".select2dropdown").select2();
+                                } else {
+                                    $("#customer_type_id").val('');
+                                }
+                            }
+                        }
+                    });
+                }
+
+
+                $("#frmCustUser").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        user_id: {
+                            required: "Please Select User"
+                        },
+                        customer_type_id: {
+                            required: "Please Select Customer Type"
+                        },
+                        customer_org_id: {
+                            required: "Please Select Customer Org"
+                        },
+                        station_id: {
+                            required: "Please Select Station"
+                        },
+                    },
+                    rules: {
+                        user_id: {
+                            required: true,
+                        },
+                        customer_type_id: {
+                            required: true,
+                        },
+                        customer_org_id: {
+                            required: true,
+                        },
+                        station_id: {
+                            required: true,
+                        }
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/CustomerUser') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/CustomerUser/' + ID)
+                        }
+                    });
+                }
+
+                $("#tblCustomerUser").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+            </script>

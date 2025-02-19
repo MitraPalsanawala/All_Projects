@@ -1,0 +1,413 @@
+<%- include('../partials/head.ejs') %>
+
+    <%- include('../partials/header.ejs') %>
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card card-custom example example-compact"
+                                style="margin-top: 5px; border: 1px solid #ced5da;">
+                                <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Add Plant Detail
+                                        </h3>
+                                    </div>
+                                </div>
+                                <% if(!FetchData){ %>
+                                    <form id="frmPlant" class="form" action="/PlantAdd" method="post"
+                                        autocomplete="off">
+                                        <div class="card-body">
+                                            <div id="divSearch" class="container-fluid">
+                                                <div class="row" style="margin-left: 0">
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>Plant Name : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <input type="text" id="plant_name" placeholder="Plant Name"
+                                                                autocomplete="off"
+                                                                class="form-control AllowAlphabetSpaceKey"
+                                                                maxlength="50" name="plant_name"
+                                                                onchange="return ValidatePlantName()" tabindex="1">
+                                                            <span id="spanPlantNameAlreadyExist" class="error"
+                                                                style="display:none;">Plant Name Already Exist</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>Plant Code : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <input type="text" id="plant_code" placeholder="Plant Code"
+                                                                autocomplete="off" class="form-control AllowNumberKey"
+                                                                name="plant_code" maxlength="50" tabindex="2">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>Fassi_No : </label>
+                                                            <input type="text" id="FssaiNo" placeholder="Fassi_No"
+                                                                autocomplete="off" class="form-control AllowNumberKey"
+                                                                name="fssai_no" tabindex="3" maxlength="50">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>State : <span
+                                                                    class="text-danger ml-1">*</span></label>
+                                                            <select ID="state_id"
+                                                                class="form-control select2dropdown select2"
+                                                                name="state_id" tabindex="4">
+                                                                <option Value="">--Select State--</option>
+                                                                <%if(StateData && StateData.data &&
+                                                                    StateData.data.length> 0){%>
+                                                                    <%for(var i=0; i < StateData.data.length; i++){%>
+                                                                        <option
+                                                                            value="<%= StateData.data[i].state_id %>">
+                                                                            <%= StateData.data[i].state_name %>
+                                                                        </option>
+                                                                        <%}%>
+                                                                            <% }%>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>CSIMID :
+                                                            </label>
+                                                            <textarea class="form-control" name="CSIMID"
+                                                                placeholder="CSIMID" id="CSIMID" rows="3" cols="66"
+                                                                wrap="virtual" maxlength="150" tabindex="5">
+                                                                </textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-lg-3"
+                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                        <div class="form-group formgroupcss">
+                                                            <label>Address : </label>
+                                                            <textarea class="form-control" name="address"
+                                                                placeholder="Address" id="address" rows="3" cols="66"
+                                                                wrap="virtual" maxlength="100" tabindex="6">
+                                                        </textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-12" style="text-align: right;">
+                                                        <div class="form-group formgroupbuttoncss"
+                                                            style="margin-top: 0">
+                                                            <button type="submit" id="" class="btn btn-primary"
+                                                                style="margin-bottom: 10px;"
+                                                                onclick="return ValidateCustomData()" tabindex="7">
+                                                                <i class="la la-check-square-o"
+                                                                    style="color: white;"></i>
+                                                                Submit</button>
+                                                            <button type="reset" value="reset" id="btnCancel"
+                                                                class="btn btn-danger" style="margin-bottom: 10px;"
+                                                                onclick="CancelFunction()" tabindex="8">
+                                                                <i class="fa-window-close fas"></i>Cancel</button>
+                                                            <button type="reset" value="reset" id="btnCancel"
+                                                                class="btn btn-success" style="margin-bottom: 10px;"
+                                                                onclick="ViewFunction()" tabindex="11">
+                                                                <i class="fa-eye fas"></i>View</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <% }else{ %>
+                                        <form id="frmPlant" class="form" action="/PlantUpdate" method="post"
+                                            autocomplete="off">
+                                            <input type="text" id="plant_id" name="plant_id"
+                                                value="<%= FetchData.data[0].plant_id %>" style="display: none;">
+                                            <div class="card-body">
+                                                <div id="divSearch" class="container-fluid">
+                                                    <div class="row" style="margin-left: 0">
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Plant Name : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="plant_name"
+                                                                    placeholder="Plant Name" autocomplete="off"
+                                                                    class="form-control" name="plant_name"
+                                                                    value="<%= FetchData.data[0].plant_name %>"
+                                                                    onchange="return ValidatePlantName()" tabindex="1">
+                                                                <span id="spanPlantNameAlreadyExist" class="error"
+                                                                    style="display:none;">Plant Name Already
+                                                                    Exist</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Plant Code : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <input type="text" id="plant_code"
+                                                                    placeholder="Plant Code" autocomplete="off"
+                                                                    class="form-control AllowNumberKey"
+                                                                    name="plant_code"
+                                                                    value="<%= FetchData.data[0].plant_code %>"
+                                                                    tabindex="2">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Fassi_No : </label>
+                                                                <input type="text" id="FssaiNo" placeholder="Fassi_No"
+                                                                    autocomplete="off" class="form-control"
+                                                                    name="fssai_no"
+                                                                    value="<%= FetchData.data[0].fssai_no %>"
+                                                                    tabindex="3" maxlength="50">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>State : <span
+                                                                        class="text-danger ml-1">*</span></label>
+                                                                <select ID="state_id"
+                                                                    class="form-control select2dropdown" name="state_id"
+                                                                    value="<%=FetchData.data[0].state_id%>"
+                                                                    tabindex="4">
+                                                                    <option Value="">--Select State--</option>
+                                                                    <%if(StateData && StateData.data &&
+                                                                        StateData.data.length> 0){%>
+
+                                                                        <%for(var i=0; i < StateData.data.length;
+                                                                            i++){%>
+                                                                            <%if(StateData.data[i].state_id.toString()==FetchData.data[0].state_id.toString()){%>
+                                                                                <option
+                                                                                    value="<%= StateData.data[i].state_id %>"
+                                                                                    selected="selected">
+                                                                                    <%= StateData.data[i].state_name %>
+                                                                                </option>
+                                                                                <%} else {%>
+                                                                                    <option
+                                                                                        value="<%= StateData.data[i].state_id %>">
+                                                                                        <%= StateData.data[i].state_name
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>CSIMID : </label>
+                                                                <textarea class="form-control" name="CSIMID"
+                                                                    placeholder="CSIMID" id="CSIMID" rows="3" cols="66"
+                                                                    wrap="virtual" tabindex="5" maxlength="100"><%= FetchData.data[0].CSIMID %>
+                                                                </textarea>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-3 col-lg-3"
+                                                            style="padding-left: 0; margin-bottom: 10px">
+                                                            <div class="form-group formgroupcss">
+                                                                <label>Address : </label>
+                                                                <textarea class="form-control" name="address"
+                                                                    placeholder="Address" id="address" rows="3"
+                                                                    cols="66" wrap="virtual" tabindex="6"
+                                                                    maxlength="100"><%= FetchData.data[0].address %>
+                                                        </textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12 col-lg-12" style="text-align: right;">
+                                                            <div class="form-group formgroupbuttoncss"
+                                                                style="margin-top: 0">
+                                                                <button type="submit" id="" class="btn btn-primary"
+                                                                    style="margin-bottom: 10px;"
+                                                                    onclick="return ValidateCustomData()" tabindex="7">
+                                                                    <i class="la la-check-square-o"
+                                                                        style="color: white;"></i>
+                                                                    Update</button>
+                                                                <button type="reset" value="reset" id="btnCancel"
+                                                                    class="btn btn-danger" style="margin-bottom: 10px;"
+                                                                    onclick="CancelFunction()" tabindex="8">
+                                                                    <i class="fa-window-close fas"></i>Cancel</button>
+                                                                <button type="reset" value="reset" id="btnCancel"
+                                                                    class="btn btn-success" style="margin-bottom: 10px;"
+                                                                    onclick="ViewFunction()" tabindex="11">
+                                                                    <i class="fa-eye fas"></i>View</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Entry-->
+        </div>
+
+
+        <%- include('../partials/footer.ejs') %>
+            <script type="text/javascript">
+                $('document').ready(function () {
+                    $('textarea').each(function () {
+                        $(this).val($(this).val().trim());
+                    }
+                    );
+                });
+                function CancelFunction() {
+                    window.location.href = "/PlantAdd";
+                }
+
+                function ViewFunction() {
+                    window.location.href = "/PlantView";
+                }
+
+                $(".select2dropdown").select2();
+
+                $("#frmPlant").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        plant_name: {
+                            required: "Please Enter Plant Name"
+                        },
+                        plant_code: {
+                            required: "Please Enter Plant Code"
+                        },
+                        state_id: {
+                            required: "Please Select State"
+                        },
+                        // CSIMID: {
+                        //     required: "Please Enter CSIMID"
+                        // }
+
+                    },
+                    rules: {
+                        plant_name: {
+                            required: true,
+                        },
+                        plant_code: {
+                            required: true,
+                        },
+                        state_id: {
+                            required: true,
+                        },
+                        // CSIMID: {
+                        //     required: true,
+                        // }
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+                function ValidateCustomData() {
+                    if (ValidatePlantName()) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+
+                function ValidatePlantName() {
+                    var data = JSON.stringify({
+                        'plant_name': $("#plant_name").val(),
+                        'plant_id': $("#plant_id").val(),
+                    });
+                    $.ajax({
+                        accepts: "application/json",
+                        async: false,
+                        type: "POST",
+                        contentType: 'application/json',
+                        url: "/CheckPlantName",
+                        data: data,
+                        success: function (res) {
+                            if (res.Message == "true") {
+                                returndata = true;
+                                $("#spanPlantNameAlreadyExist").css("display", "none");
+                            }
+                            else {
+                                returndata = false;
+                                $("#spanPlantNameAlreadyExist").css("display", "block");
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            return false;
+                            $("#spanPlantNameAlreadyExist").css("display", "block");
+                        }
+                    });
+
+                    return returndata;
+                }
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/PlantView') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/PlantAdd/' + ID)
+                        }
+                    });
+                }
+            </script>

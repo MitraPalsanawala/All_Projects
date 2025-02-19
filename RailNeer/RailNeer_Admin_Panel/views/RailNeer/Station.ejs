@@ -1,0 +1,1084 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+
+        .dataTables_wrapper .dataTable td,
+        .dataTables_wrapper .dataTable thead th {
+            white-space: nowrap !important;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divAddStation"
+                                style="margin-top: 5px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Assign Station CFA Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <% if(!FetchData){ %>
+                                                <form id="frmAddStation" class="form form-horizontal" autocomplete="off"
+                                                    method="post" action="/AddStation">
+                                                    <div class="card-body">
+                                                        <div id="divSearch" class="">
+                                                            <div class="row" style="margin-bottom: -39px;">
+                                                                <div class="row mt-2" style="margin-left: 0">
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Station : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select id="station_master_name"
+                                                                                class="form-control select2 select2dropdown"
+                                                                                name="station_master_name"
+                                                                                onchange="BindStationCode()"
+                                                                                tabindex="1">
+                                                                                <option Value="">--Select Station--
+                                                                                </option>
+                                                                                <%if(stationMaster && stationMaster.data
+                                                                                    && stationMaster.data.length> 0){ %>
+                                                                                    <%for(var i=0; i <
+                                                                                        stationMaster.data.length;
+                                                                                        i++){%>
+                                                                                        <option
+                                                                                            value="<%=  stationMaster.data[i].id %>">
+                                                                                            <%= stationMaster.data[i].name
+                                                                                                %> (<%=
+                                                                                                    stationMaster.data[i].code
+                                                                                                    %>)
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <input type="hidden" name="station_master_id"
+                                                                        value="" id="station_master_id">
+
+                                                                    <input type="hidden" name="station_name" value=""
+                                                                        id="station_name">
+
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Station Code : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="station_code"
+                                                                                placeholder="Station Code"
+                                                                                autocomplete="off" class="form-control"
+                                                                                name="station_code" readonly="readonly"
+                                                                                tabindex="2" maxlength="50">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Target Quantity :</label>
+                                                                            <input type="text" id="target_qty"
+                                                                                placeholder="Target Quantity"
+                                                                                autocomplete="off"
+                                                                                class="form-control AllowNumberKey"
+                                                                                name="target_qty" tabindex="3"
+                                                                                maxlength="4">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Cost Category : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select id="cost_category_id"
+                                                                                class="form-control select2 select2dropdown"
+                                                                                name="cost_category_id" tabindex="4">
+                                                                                <option Value="">--Select Cost
+                                                                                    Category--</option>
+                                                                                <%if(costCategoryList &&
+                                                                                    costCategoryList.data &&
+                                                                                    costCategoryList.data.length> 0){ %>
+                                                                                    <%for(var i=0; i <
+                                                                                        costCategoryList.data.length;
+                                                                                        i++){%>
+                                                                                        <option
+                                                                                            value="<%= costCategoryList.data[i].cost_category_id %>">
+                                                                                            <%= costCategoryList.data[i].cost_category
+                                                                                                %>
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>State : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select id="state_id"
+                                                                                class="form-control select2 select2dropdown"
+                                                                                name="state_id" tabindex="5">
+                                                                                <option Value="">--Select State--
+                                                                                </option>
+                                                                                <%if(costCategoryList &&
+                                                                                    costCategoryList.data &&
+                                                                                    costCategoryList.data.length> 0){ %>
+                                                                                    <%for(var i=0; i <
+                                                                                        stateDetail.data.length; i++){%>
+                                                                                        <option
+                                                                                            value="<%= stateDetail.data[i].state_id %>">
+                                                                                            <%= stateDetail.data[i].state_name
+                                                                                                %>
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Depot Name : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select id="depot_id"
+                                                                                class="form-control select2 select2dropdown"
+                                                                                name="depot_id" tabindex="6"
+                                                                                onchange="bindCFADetail(this)">
+                                                                                <option Value="">--Select Depot--
+                                                                                </option>
+                                                                                <%if(depotList && depotList.data &&
+                                                                                    depotList.data.length> 0){ %>
+
+                                                                                    <%for(var i=0; i <
+                                                                                        depotList.data.length; i++){%>
+                                                                                        <option
+                                                                                            value="<%= depotList.data[i].id %>">
+                                                                                            <%= depotList.data[i].depot_name
+                                                                                                %>
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                            <%}%>
+
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mt-2" style="margin-left: 0">
+                                                                    <div class="col-md-12">
+                                                                        <div class="card-title">
+                                                                            <h5 class="card-label h3css">Assign CFA
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Controller : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select id="controller_id"
+                                                                                class="form-control select2 select2dropdown"
+                                                                                name="controller_id" tabindex="7">
+                                                                                <option Value="">--Select Controller--
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Supplier : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select id="supplier_id"
+                                                                                class="form-control select2 select2dropdown"
+                                                                                name="supplier_id" tabindex="8">
+                                                                                <option Value="">--Select Supplier--
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Collector : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select id="collector_id"
+                                                                                class="form-control select2 select2dropdown"
+                                                                                name="collector_id" tabindex="8">
+                                                                                <option Value="">--Select collector--
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="display: flex; align-items: center">
+                                                                        <div class="form-group formgroupbuttoncss"
+                                                                            style="margin-top: 0">
+                                                                            <button type="submit" id="btnSubmit"
+                                                                                class="btn btn-primary"
+                                                                                style="margin-bottom: 10px;"
+                                                                                tabindex="10">Submit</button>
+                                                                            <button type="reset" value="reset"
+                                                                                id="btnCancel" class="btn btn-danger"
+                                                                                style="margin-bottom: 10px;"
+                                                                                onclick="CancelFunction()"
+                                                                                tabindex="11">Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <% }else{ %>
+                                                    <form id="frmAddStation" class="form form-horizontal"
+                                                        autocomplete="off" method="post" action="/AddStation">
+
+                                                        <div class="row mt-2" style="margin-left: 0">
+                                                            <input type="hidden" id="station_id" name="station_id"
+                                                                value="<%= FetchData.data.length > 0 ? FetchData.data[0].id : '' %>">
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom:
+                                                            10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Station : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <select ID="station_master_name"
+                                                                        class="form-control select2dropdown"
+                                                                        name="station_master_name"
+                                                                        value="<%= FetchData.data[0].station_name %>"
+                                                                        onchange="BindStationCode()" tabindex="1">
+                                                                        <option value="">--Select Station--
+                                                                        </option>
+                                                                        <%if(stationMaster && stationMaster.data &&
+                                                                            stationMaster.data.length> 0){ %>
+
+                                                                            <%for(var i=0; i <
+                                                                                stationMaster.data.length; i++){%>
+                                                                                <% if(FetchData.data[0].station_name==stationMaster.data[i].name){
+                                                                                    %>
+                                                                                    <option selected="selected"
+                                                                                        value="<%= stationMaster.data[i].id %>">
+                                                                                        <%= stationMaster.data[i].name
+                                                                                            %>
+                                                                                            (
+                                                                                            <%= stationMaster.data[i].code
+                                                                                                %>
+                                                                                                )
+                                                                                    </option>
+                                                                                    <% }else{ %>
+                                                                                        <option
+                                                                                            value="<%= stationMaster.data[i].id %>">
+                                                                                            <%= stationMaster.data[i].name
+                                                                                                %>
+                                                                                                (
+                                                                                                <%= stationMaster.data[i].code
+                                                                                                    %>
+                                                                                                    )
+                                                                                        </option>
+                                                                                        <% } %>
+                                                                                            <% } %>
+                                                                                                <% } %>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <input type="hidden" name="station_master_id" value=""
+                                                                id="station_master_id">
+
+                                                            <input type="hidden" name="station_name" value=""
+                                                                id="station_name">
+
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Station Code : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <input type="text" id="station_code"
+                                                                        placeholder="Station Code" autocomplete="off"
+                                                                        class="form-control" name="station_code"
+                                                                        value="<%= FetchData.data.length > 0 ? FetchData.data[0].station_code : '' %>"
+                                                                        readonly="readonly" tabindex="2">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px;">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Target Quantity :</label>
+                                                                    <input type="text" id="target_qty"
+                                                                        placeholder="Target Quantity" autocomplete="off"
+                                                                        class="form-control AllowNumberKey"
+                                                                        name="target_qty"
+                                                                        value="<%=  FetchData.data[0].target_qty  %>"
+                                                                        tabindex="3" maxlength="4">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Cost Category : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <select id="cost_category_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="cost_category_id" tabindex="4">
+                                                                        <option Value="">--Select Cost Category--
+                                                                        </option>
+                                                                        <% if(costCategoryList && costCategoryList.data
+                                                                            && costCategoryList.data.length> 0){%>
+
+                                                                            <%for(var i=0; i <
+                                                                                costCategoryList.data.length; i++){%>
+                                                                                <%if(costCategoryList.data[i].cost_category_id.toString()==FetchData.data[0].cost_category.toString()){%>
+                                                                                    <option
+                                                                                        value="<%= costCategoryList.data[i].cost_category_id %>"
+                                                                                        selected="selected">
+                                                                                        <%= costCategoryList.data[i].cost_category
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}else{%>
+                                                                                        <option
+                                                                                            value="<%= costCategoryList.data[i].cost_category_id %>">
+                                                                                            <%= costCategoryList.data[i].cost_category
+                                                                                                %>
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                                                <%} else { %>
+                                                                                                    <%for(var i=0; i <
+                                                                                                        costCategoryList.data.length;
+                                                                                                        i++){%>
+                                                                                                        <option
+                                                                                                            value="<%= costCategoryList.data[i].cost_category_id %>">
+                                                                                                            <%= costCategoryList.data[i].cost_category
+                                                                                                                %>
+                                                                                                        </option>
+                                                                                                        <%}%>
+                                                                                                            <%}%>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>State : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <select id="state_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="state_id" tabindex="5">
+                                                                        <option Value="">--Select State--</option>
+                                                                        <% if(stateDetail && stateDetail.data &&
+                                                                            stateDetail.data.length> 0){%>
+
+                                                                            <%for(var i=0; i < stateDetail.data.length;
+                                                                                i++){%>
+                                                                                <%if(stateDetail.data[i].state_id.toString()==FetchData.data[0].state_id.toString()){%>
+                                                                                    <option
+                                                                                        value="<%= stateDetail.data[i].state_id %>"
+                                                                                        selected="selected">
+                                                                                        <%= stateDetail.data[i].state_name
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}else{%>
+                                                                                        <option
+                                                                                            value="<%= stateDetail.data[i].state_id %>">
+                                                                                            <%= stateDetail.data[i].state_name
+                                                                                                %>
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                                                <%} else { %>
+                                                                                                    <%for(var i=0; i <
+                                                                                                        stateDetail.data.length;
+                                                                                                        i++){%>
+                                                                                                        <option
+                                                                                                            value="<%= stateDetail.data[i].state_id %>">
+                                                                                                            <%= stateDetail.data[i].state_name
+                                                                                                                %>
+                                                                                                        </option>
+                                                                                                        <%}%>
+                                                                                                            <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Depot Name : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <select id="depot_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="depot_id" tabindex="6"
+                                                                        onchange="bindCFADetail(this)">
+                                                                        <option Value="">--Select Depot--</option>
+                                                                        <%if(depotList && depotList.data &&
+                                                                            depotList.data.length> 0){ %>
+
+                                                                            <%for(var i=0; i < depotList.data.length;
+                                                                                i++){%>
+                                                                                <%if(depotList.data[i].id.toString()==FetchData.data[0].depot_id.toString()){%>
+                                                                                    <option
+                                                                                        value="<%= depotList.data[i].id %>"
+                                                                                        selected="selected">
+                                                                                        <%= depotList.data[i].depot_name
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}else{%>
+                                                                                        <option
+                                                                                            value="<%= depotList.data[i].id %>">
+                                                                                            <%= depotList.data[i].depot_name
+                                                                                                %>
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                                                <%} else { %>
+                                                                                                    <%for(var i=0; i <
+                                                                                                        depotList.data.length;
+                                                                                                        i++){%>
+                                                                                                        <option
+                                                                                                            value="<%= depotList.data[i].id %>">
+                                                                                                            <%= depotList.data[i].depot_name
+                                                                                                                %>
+                                                                                                        </option>
+                                                                                                        <%}%>
+                                                                                                            <%}%>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-2" style="margin-left: 0">
+                                                            <div class="col-md-12">
+                                                                <div class="card-title">
+                                                                    <h5 class="card-label h3css">Assign CFA
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Controller : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <select id="controller_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="controller_id" tabindex="7">
+                                                                        <option Value="">--Select Controller--</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Supplier : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <select id="supplier_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="supplier_id" tabindex="8">
+                                                                        <option Value="">--Select Supplier--</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Collector : <span
+                                                                            class="text-danger ml-1">*</span></label>
+                                                                    <select id="collector_id"
+                                                                        class="form-control select2 select2dropdown"
+                                                                        name="collector_id" tabindex="8">
+                                                                        <option Value="">--Select collector--</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3"
+                                                                style="display: flex; align-items: center">
+                                                                <div class="form-group formgroupbuttoncss"
+                                                                    style="margin-top: 0">
+                                                                    <button type="submit" id="btnSubmit"
+                                                                        class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;"
+                                                                        tabindex="9">Update</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()"
+                                                                        tabindex="10">Cancel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divFilter"
+                                style="margin-top: 5px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search Assign Station CFA Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <form id="frmCustUser" class="form" action="/Block" method="post"
+                                                autocomplete="off">
+                                                <input type="text" id="PlantID" name="plant_id" value=""
+                                                    style="display: none;">
+                                                <div class="card-body">
+                                                    <div id="divFilter" class="">
+                                                        <div class="row" style="margin-bottom: -39px;">
+                                                            <div class="row mt-2" style="margin-left: 0">
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>State : </label>
+                                                                        <select id="filter_state_id"
+                                                                            class="form-control select2 select2dropdown"
+                                                                            name="filter_state_id" tabindex="1">
+                                                                            <option Value="">--Select State--</option>
+                                                                            <% if(stateDetail && stateDetail.data &&
+                                                                                stateDetail.data.length> 0){%>
+                                                                                <%for(var i=0; i <
+                                                                                    stateDetail.data.length; i++){%>
+                                                                                    <option
+                                                                                        value="<%= stateDetail.data[i].state_id %>">
+                                                                                        <%= stateDetail.data[i].state_name
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Depot : </label>
+                                                                        <select id="filter_depot_id"
+                                                                            class="form-control select2 select2dropdown"
+                                                                            name="filter_depot_id" tabindex="2">
+                                                                            <option Value="">--Select Depot--</option>
+                                                                            <% if(depotList && depotList.data &&
+                                                                                depotList.data.length> 0){ %>
+                                                                                <%for(var i=0; i <
+                                                                                    depotList.data.length; i++){%>
+                                                                                    <option
+                                                                                        value="<%= depotList.data[i].id %>">
+                                                                                        <%= depotList.data[i].depot_name
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Cost Category : </label>
+                                                                        <select id="filter_cost_category_id"
+                                                                            class="form-control select2 select2dropdown"
+                                                                            name="filter_cost_category_id" tabindex="3">
+                                                                            <option Value="">--Select Cost Category--
+                                                                            </option>
+                                                                            <%if(costCategoryList &&
+                                                                                costCategoryList.data &&
+                                                                                costCategoryList.data.length> 0){ %>
+                                                                                <%for(var i=0; i <
+                                                                                    costCategoryList.data.length;
+                                                                                    i++){%>
+                                                                                    <option
+                                                                                        value="<%= costCategoryList.data[i].cost_category_id %>">
+                                                                                        <%= costCategoryList.data[i].cost_category
+                                                                                            %>
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="display: flex; align-items: center">
+                                                                    <div class="form-group formgroupbuttoncss"
+                                                                        style="margin-top: 0">
+                                                                        <button type="submit" id="btnSearch"
+                                                                            class="btn btn-primary"
+                                                                            style="margin-bottom: 10px;">Search</button>
+                                                                        <button type="reset" value="reset"
+                                                                            id="btnCancel" class="btn btn-danger"
+                                                                            style="margin-bottom: 10px;"
+                                                                            onclick="CancelFunction()">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact">
+                                <!-- <div class="separator separator-dashed mt-8 mb-5"></div> -->
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">View Assign Station CFA Detail
+                                            </div>
+                                            <div class="card-title">
+                                                <button id="StationDetail" type="button" class="btn btn-primary"
+                                                    onclick="divAddStationDetail(this)" style="margin: 5px;"
+                                                    onclick="">Add Assign Station CFA&nbsp;<i
+                                                        class="fa fa-plus"></i></button>
+                                                <div></div>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divhideShowFilterDetail(this)"
+                                                    style="margin: 5px;">&nbsp;<i class="fa fa-plus"></i>Filter &nbsp;<i
+                                                        class='fa fa-filter'></i></button>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <table class="table table-bordered" id="tblStationDetail">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="tdcss" width="5%">
+                                                            Sr. No.</th>
+                                                        <th class="tdcss" width="10%">
+                                                            Station
+                                                        </th>
+                                                        <th class="tdcss" width="10%">
+                                                            Station Code
+                                                        </th>
+                                                        <th class="tdcss" width="10%">
+                                                            State
+                                                        </th>
+                                                        <th class="tdcss" width="10%">
+                                                            Depot
+                                                        </th>
+                                                        <th class="tdcss" width="10%">
+                                                            Cost Category
+                                                        </th>
+                                                        <th class="tdcss" width="10%">
+                                                            Target Quantity
+                                                        </th>
+                                                        <th class="tdcss" width="10%">
+                                                            Controller
+                                                        </th>
+                                                        <th class="tdcss" width="10%">
+                                                            Supplier
+                                                        </th>
+                                                        <th class="tdcss" width="10%">
+                                                            Collector
+                                                        </th>
+                                                        <th class="tdcss" width="5%">
+                                                            Edit</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblbody">
+                                                    <% if(stationDetail && stationDetail.data &&
+                                                        stationDetail.data.length>
+                                                        0 ){ %>
+                                                        <% for(var i=0; i < stationDetail.data.length; i++) {%>
+                                                            <tr>
+                                                                <td class="tdcss">
+                                                                    <span class="tdfont">
+                                                                        <%= i+1 %>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <%- stationDetail.data[i].station_name %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- stationDetail.data[i].station_code %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- stationDetail.data[i].state_name %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- stationDetail.data[i].depot_Detail.length>
+                                                                        0
+                                                                        ?
+                                                                        stationDetail.data[i].depot_Detail[0].depot_name
+                                                                        : '' %>
+                                                                </td>
+                                                                <td>
+                                                                    <%-
+                                                                        stationDetail.data[i].cost_category_Detail.length>
+                                                                        0 ?
+                                                                        stationDetail.data[i].cost_category_Detail[0].cost_category
+                                                                        : '' %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- stationDetail.data[i].target_qty %>
+                                                                </td>
+
+                                                                <td>
+                                                                    <%- (stationDetail.data[i].controller_Detail.length>
+                                                                        0) ?
+                                                                        stationDetail.data[i].controller_Detail[0].name
+                                                                        : ''
+                                                                        %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- (stationDetail.data[i].supplier_Detail.length>
+                                                                        0) ?
+                                                                        stationDetail.data[i].supplier_Detail[0].name :
+                                                                        ''
+                                                                        %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- (stationDetail.data[i].collector_Detail.length>
+                                                                        0) ?
+                                                                        stationDetail.data[i].collector_Detail[0].name :
+                                                                        ''
+                                                                        %>
+                                                                </td>
+
+                                                                <td>
+                                                                    <a href="/editStation/<%- stationDetail.data[i].id %>"
+                                                                        onclick="opendiv()">
+                                                                        <i class="la la-pencil-square-o"
+                                                                            style="font-size:24px;color: #03449e;"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <%}%>
+                                                                <%}%>
+                                                </tbody>
+                                            </table>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+
+        <%- include('../partials/footer.ejs') %>
+
+            <script>
+
+                $("#frmAddStation").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        station_master_name: {
+                            required: "Please Enter Station Name"
+                        },
+                        station_code: {
+                            required: "Please Enter Station Code"
+                        },
+                        cost_category_id: {
+                            required: "Please Select Cost Category"
+                        },
+                        state_id: {
+                            required: "Please Select State"
+                        },
+                        depot_id: {
+                            required: "Please Select Depot"
+                        },
+                        controller_id: {
+                            required: "Please Select Controller"
+                        },
+                        supplier_id: {
+                            required: "Please Select Supplier"
+                        },
+                        collector_id: {
+                            required: "Please Select Collector"
+                        }
+                    },
+                    rules: {
+                        station_master_name: {
+                            required: true,
+                        },
+                        station_code: {
+                            required: true,
+                        },
+                        cost_category_id: {
+                            required: true
+                        },
+                        state_id: {
+                            required: true
+                        },
+                        depot_id: {
+                            required: true
+                        },
+                        controller_id: {
+                            required: true
+                        },
+                        supplier_id: {
+                            required: true
+                        },
+                        collector_id: {
+                            required: true
+                        }
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+                var fetchData = JSON.parse('<%- JSON.stringify(FetchData) %>');
+
+                function bindCFADetail(depotDetail) {
+                    var data = JSON.stringify({
+                        "depot_id": depotDetail.options[depotDetail.selectedIndex].value
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        contentType: 'application/json',
+                        url: '/bindCFAUserOfDepot',
+                        data: data,
+                        success: function (res) {
+                            if (res.data.controller_user_result.data.length > 0) {
+                                $("#controller_id").empty();
+                                $("#controller_id").append($("<option></option>").val("").html('--Select Controller--'));
+                                $.each(res.data.controller_user_result.data, function (data, value) {
+                                    $("#controller_id").append($("<option></option>").val(value.user_id).html(value.user_information_detail.length > 0 ? value.user_information_detail[0].name : ''));
+
+                                    if (fetchData) {
+                                        if (fetchData.data.length > 0) {
+                                            if (fetchData.data[0].controller_id == value.user_id) {
+                                                document.getElementById("controller_id").value = value.user_id;
+                                            }
+                                        }
+                                    }
+                                });
+                            } else {
+                                $("#controller_id").empty();
+                                $("#controller_id").append($("<option></option>").val("").html('--Select Controller--'));
+                            }
+
+                            if (res.data.supplier_user_result.data.length > 0) {
+                                $("#supplier_id").empty();
+                                $("#supplier_id").append($("<option></option>").val("").html('--Select Supplier--'));
+                                $.each(res.data.supplier_user_result.data, function (data, value) {
+                                    $("#supplier_id").append($("<option></option>").val(value.user_id).html(value.user_information_detail.length > 0 ? value.user_information_detail[0].name : ''));
+
+                                    if (fetchData) {
+                                        if (fetchData.data.length > 0) {
+                                            if (fetchData.data[0].supplier_id == value.user_id) {
+                                                document.getElementById("supplier_id").value = value.user_id;
+                                            }
+                                        }
+                                    }
+
+                                });
+                            } else {
+                                $("#supplier_id").empty();
+                                $("#supplier_id").append($("<option></option>").val("").html('--Select Supplier--'));
+                            }
+
+                            if (res.data.collection_user_result.data.length > 0) {
+                                $("#collector_id").empty();
+                                $("#collector_id").append($("<option></option>").val("").html('--Select Collector--'));
+                                $.each(res.data.collection_user_result.data, function (data, value) {
+                                    $("#collector_id").append($("<option></option>").val(value.user_id).html(value.user_information_detail.length > 0 ? value.user_information_detail[0].name : ''));
+
+                                    if (fetchData) {
+                                        if (fetchData.data.length > 0) {
+                                            if (fetchData.data[0].collector_id == value.user_id) {
+                                                document.getElementById("collector_id").value = value.user_id;
+                                            }
+                                        }
+                                    }
+
+                                });
+                            } else {
+                                $("#collector_id").empty();
+                                $("#collector_id").append($("<option></option>").val("").html('--Select Collector--'));
+                            }
+                        }
+                    });
+                }
+
+                function BindStationCode() {
+                    var station_master_name =
+                        document.getElementById("station_master_name").options[document.getElementById("station_master_name").selectedIndex].text;
+                    const StationName = station_master_name.split('(')[0].trim();
+                    var station_master_id = $("#station_master_name").val();
+                    $.ajax({
+                        async: false,
+                        url: '/BindStationCode',
+                        type: 'POST',
+                        data: { station_master_name: StationName, station_master_id: station_master_id },
+                        success: function (res) {
+                            if (res.data) {
+                                if (res.data.data.length > 0) {
+                                    $("#station_code").val(res.data.data[0].code)
+                                    $("#station_master_id").val(res.data.data[0].id)
+                                    $("#station_name").val(res.data.data[0].name)
+                                } else {
+                                    $("#station_code").val('')
+                                    $("#station_master_id").val('')
+                                    $("#station_name").val('')
+                                }
+                            }
+                        },
+                    })
+                }
+
+                var ID = JSON.parse('<%- JSON.stringify(ID) %>');
+
+                function CancelFunction() {
+                    window.location.href = "/Station";
+                }
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divFilter").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divFilter").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+                function divAddStationDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divAddStation").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divAddStation").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+                if (fetchData) {
+                    bindCFADetail(document.getElementById("depot_id"))
+                    let div = document.getElementById("divAddStation");
+                    $("#divAddStation").css("display", "block");
+                    $(div).find('.fa-plus').addClass('fa-minus')
+                    $(div).find('.fa-plus').removeClass('fa-plus')
+                }
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                var SetSearchData = SearchData.split('~');
+
+                if (SetSearchData[0] != 'undefined' && SetSearchData[0] != '') {
+                    $("#filter_state_id").val(SetSearchData[0]);
+                }
+
+                if (SetSearchData[1] != 'undefined' && SetSearchData[1] != '') {
+                    $("#filter_depot_id").val(SetSearchData[1]);
+                }
+
+                if (SetSearchData[2] != 'undefined' && SetSearchData[2] != '') {
+                    $("#filter_cost_category_id").val(SetSearchData[2]);
+                }
+
+                searchStatus = SetSearchData[3];
+
+                if (searchStatus == 'true') {
+                    $("#divSearch").css("display", "block");
+                    $("#btnFilter").find('.fa-plus').addClass('fa-minus')
+                    $("#btnFilter").find('.fa-plus').removeClass('fa-plus')
+                }
+
+                $(".select2dropdown").select2();
+
+                $("#tblStationDetail").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                // var error1 = '<%- JSON.stringify(alertMessage) %>';
+                var error1 = JSON.parse(`<%- JSON.stringify(alertMessage).replace(/[\n\r\t]/g, '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'") %>`);
+
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        type: errortype,
+                        icon: icon,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        window.location.replace(window.location.origin + '/Station')
+                    });
+                } 
+            </script>

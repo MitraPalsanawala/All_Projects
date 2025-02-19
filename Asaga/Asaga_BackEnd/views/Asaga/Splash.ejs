@@ -1,0 +1,2557 @@
+<%- include('../partial/head.ejs') %>
+    <style id='lacomete-edge-woo-inline-css' type='text/css'>
+        /* .container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .container .btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: #555;
+            color: white;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .container .btn:hover {
+            background-color: black;
+        } */
+
+        .mob_btn_banner {
+            margin-top: 300px;
+        }
+
+        .panel-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: #967844 !important;
+            /* color: white; */
+            font-size: 16px;
+            padding: 0px;
+            /* border: none; */
+            cursor: pointer;
+            text-align: center;
+            margin-left: 180px;
+
+
+            border: 1px solid #967844;
+            background-color: transparent;
+            height: 50px;
+            width: 200px;
+            color: #ffffff;
+            /* font-size: 1.5em; */
+            /* box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6); */
+        }
+
+        .panel-button:hover {
+            /* background-color: black; */
+            background-color: transparent !important;
+            border: 1px solid #ffffff;
+        }
+
+
+
+
+
+
+        /* .mobview {
+            display: none;
+        } */
+
+        .mobhoverhide {
+            margin-bottom: 1% !important;
+            transition: transform .4s;
+        }
+
+        .edgtf-product-overview .edgtf-poi .edgtf-poi-title {
+            font-family: 'Cinzel';
+            font-weight: 500;
+        }
+
+        .displayboxhover:hover .mobhoverhide {
+            /* box-shadow: 0px 0px 1px 1px black;
+            padding: 5px;
+            padding-top: 0; */
+            /* background: white; */
+            /* color: #161619; */
+            box-shadow: 0px 0px 10px 0px #c1b7b7;
+            transform: translateY(-30px);
+            background: #f8f5f0;
+        }
+
+        /* box-shadow {
+            transition-duration: 0.4s;
+            transition-timing-function: ease;
+            transition-delay: 0s;
+            transition-property: box-shadow;
+        } */
+
+        .mb0 {
+            margin-bottom: 0 !important;
+        }
+
+        .parralxbmb30 {
+            margin-bottom: 30 !important;
+        }
+
+        #VC_CELEBRITYCLOSET {
+            padding-top: 60px;
+            padding-bottom: 8px;
+        }
+
+        .asagashop {
+            padding: 10px !important;
+        }
+
+        .asagacss {
+            padding-right: 30px !important;
+            padding-top: 30px !important;
+            padding-left: 30px !important;
+            padding-bottom: 30px !important;
+        }
+
+        .itemText2 {
+            font-size: 12px !important;
+        }
+
+        .page-id-17 .edgtf-top-bar {
+            background-image: none;
+        }
+
+        /* .edgtf-header-bottom .edgtf-content{
+            margin-bottom: 0 !important;
+        }
+        .edgtf-grid-col-2{
+            opacity: 1 !important;
+        } */
+        .page-id-17 .edgtf-content .edgtf-content-inner>.edgtf-container>.edgtf-container-inner,
+        .page-id-17 .edgtf-content .edgtf-content-inner>.edgtf-full-width>.edgtf-full-width-inner {
+            padding: 0px 0px;
+        }
+
+        .page-id-17 .edgtf-content .edgtf-content-inner>.edgtf-container>.edgtf-container-inner,
+        .page-id-17 .edgtf-content .edgtf-content-inner>.edgtf-full-width>.edgtf-full-width-inner {
+            padding: 0px 0px;
+        }
+
+        .page-id-17 .edgtf-page-header .edgtf-menu-area {
+            background-color: rgba(248, 245, 240, 1);
+            height: 127px !important;
+        }
+
+        .edgtf-pl-holder.edgtf-info-on-image-simple-predefined .edgtf-pli-inner .edgtf-pli-text .edgtf-pli-text-outer .edgtf-pli-text-inner .edgtf-pli-text-action .edgtf-pli-text-action-inner .button.yith-wcqv-button {
+            margin-right: 0 !important;
+        }
+
+        #vid::-webkit-media-controls {
+            display: none !important;
+        }
+
+        #vid::-webkit-media-controls-enclosure {
+            display: none !important;
+        }
+
+        #vid::-webkit-media-controls-overlay-play-button {
+            display: none !important;
+        }
+
+        #vid::-webkit-media-controls-start-playback-button {
+            display: none !important;
+        }
+
+        #vid::-webkit-media-controls-volume-slider-container {
+            display: none !important;
+        }
+
+        #VC_ASAGACOLLECTIONS {
+            padding-top: 40px !important;
+            padding-bottom: 30px !important;
+        }
+
+
+        @media only screen and (min-width: 1025px) {
+
+
+            .desk_section-wrapper {
+                display: none;
+            }
+
+            .mob_view {
+                display: none;
+            }
+
+            #divBestseller {
+                display: none !important;
+            }
+
+            #divCelebrity {
+                display: none !important;
+            }
+
+            .freshesttextcss {
+                display: none !important;
+            }
+
+            #VC_Video {
+                padding-top: 0 !important;
+            }
+
+
+            #VC_Freshest,
+            .subcategorynamewise {
+                padding: 0px 0px !important;
+            }
+
+
+
+            #VC_Freshest {
+                margin-top: 30px;
+                margin-bottom: 10px !important;
+            }
+
+            #VC_FreshesetDetail {
+                padding-bottom: 20px !important;
+            }
+
+            .vc_shop {
+                padding-bottom: 20px !important;
+            }
+
+            .vc_celebrity {
+                padding-bottom: 60px !important;
+            }
+
+            #vc_Celebrity {
+                padding-top: 50px !important;
+                padding-bottom: 40px !important;
+            }
+
+            #vc_brighten {
+                padding-top: 0 !important;
+                padding-bottom: 40px !important;
+            }
+
+            #vc_ourstore {
+                padding-top: 50px !important;
+            }
+
+            #vc_aboutus {
+                padding-top: 50px !important;
+                padding-bottom: 50px !important;
+            }
+
+            .colmdimage {
+                padding: 0px 0px 0px 15px !important;
+            }
+
+            .collectionProduct {
+                margin: 0 0 0px !important;
+                padding-right: 0px !important;
+            }
+
+            #vid {
+                width: 100% !important;
+            }
+
+            .shopByImage {
+                height: 500px !important;
+            }
+
+            .shopcss {
+                padding: 20px 20px 20px 20px !important;
+                margin: 0 !important;
+            }
+
+            .descriptionText {
+                height: 80px !important;
+            }
+
+            .edgtf-post-read-more-button {
+                margin: 10px 0 10px !important;
+            }
+
+            .freshestitem {
+                margin: 0 0 10px !important;
+            }
+
+            .product-contents {
+                padding: 0px 15px !important;
+            }
+
+            .product-contents .product {
+                /* padding: 0px 20px 0 0 !important; */
+                padding: 0px 0px 0px 15px !important;
+                margin: 0px !important
+            }
+
+            #img_bestseller {
+                /* object-fit: contain !important; */
+                object-fit: fill !important;
+                background-size: 100% 100%;
+                height: 100%;
+                left: 0;
+                right: 0;
+                position: absolute;
+            }
+
+            .itemImgcssweb {
+                /* height: 507px !important; */
+                height: 470px !important;
+            }
+
+            .rs-slides img {
+                /* background-image: url('images/Banner.jpg'); */
+                content: url('/images/Banner.jpg');
+            }
+        }
+
+        @media (min-width:399px) and (max-width:800px) {
+            /* .mobilesellerset {
+                margin-top: -27px !important;
+            } */
+
+            /* .mobilesellersetBest {
+                margin-top: -15px !important;
+            } */
+        }
+
+        @media only screen and (max-width: 680px) {
+
+            /* .panelview {
+                display: none !important;
+            } */
+
+            /* .panel-button {
+                display: none !important;
+            } */
+
+            .edgtf-position-right-inner {
+                font-size: 11px;
+            }
+
+
+            .owl-carousel {
+                position: relative;
+                z-index: 9999 !important;
+            }
+
+            .carousel {
+                max-width: 1200px;
+                margin: auto;
+                z-index: 9999 !important;
+                /* padding: 0 30px; */
+            }
+
+            .owl-dots {
+                text-align: center;
+                margin-top: 450px !important;
+                position: absolute;
+                top: 10px;
+                left: 25%;
+                right: 25%;
+            }
+
+            .owl-dot {
+                height: 9px;
+                width: 9px;
+                margin: 0 5px;
+                outline: none;
+                border-radius: 14px;
+                border: 1px solid #ffffff !important;
+                /* box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);/ transition: all 0.3s ease; */
+            }
+
+            .owl-dot.active,
+            .owl-dot:hover {
+                background: #ffffff !important;
+            }
+
+            .edgtf-video-button-holder .edgtf-video-button-image img {
+                display: block;
+                width: 100%;
+                object-position: left !important;
+                height: 215px !important;
+            }
+
+            .mobimageset {
+                height: 500px !important;
+            }
+
+            .mobimageset img {
+                object-fit: cover !important;
+                height: 500px !important;
+            }
+
+            .bannerbest {
+                height: 1000px !important;
+            }
+
+            .bannerbest img {
+                object-fit: cover !important;
+                height: 1000px !important;
+            }
+
+            /* .sectionSize {
+                width: 385px !important;
+            } */
+
+            .sectionCollectionSize {
+                width: 385px !important;
+            }
+
+            .freshestdiv {
+                width: 378px !important;
+            }
+
+            .setfontspace {
+                margin-top: -25px !important
+            }
+
+            .product-contents .edgtf-item-space {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .edgtf-pl-holder.edgtf-info-on-image-simple-predefined .edgtf-pli-inner .edgtf-pli-text {
+                padding: 5px 5px;
+            }
+
+            .productcss {
+                font-size: 11px !important;
+            }
+
+            .product-contents {
+                margin-bottom: 25px !important;
+                padding-top: 0px !important;
+            }
+
+            #divCelebrity {
+                display: block !important;
+                border: 1px solid !important;
+                padding: 15px 0px !important;
+            }
+
+            .edgtf-grid-list.edgtf-four-columns .edgtf-item-space {
+                width: 50%;
+            }
+
+            .edgtf-bli-content {
+                padding: 10px !important;
+            }
+
+            .mobbgwhite {
+                /* background: white !important; */
+                padding: 0px !important;
+                margin-top: 3% !important;
+            }
+
+            .mobScrollView
+
+            /* .edgtf-container-inner,
+            .edgtf-grid,
+            .edgtf-row-grid-section  */
+                {
+                /* width: 330px !important; */
+                width: 100% !important;
+            }
+
+            .desk_section_Collection {
+                display: none;
+            }
+
+            .mobBanner {
+                display: flex !important;
+                justify-content: flex-end !important;
+                align-items: center !important;
+                background-repeat: no-repeat !important;
+                background-size: contain !important;
+                flex-direction: column !important;
+            }
+
+            .VC_mob {
+                margin-right: 0px;
+                margin-left: 0px;
+            }
+
+
+            .mob_section_wrapper {
+                display: none;
+            }
+
+
+
+            .link_desk {
+                display: none;
+            }
+
+
+            .mob_celebrity.shopbycategorydiv {
+                margin-bottom: -80px;
+                background: #967844 !important;
+            }
+
+
+            .mob_celebrity.shopbycategorydiv:hover {
+
+                margin-bottom: -80px;
+                background: #cd7c08 !important;
+            }
+
+
+            .freshesttextcss {
+                position: absolute;
+                left: 10px;
+                right: 10px;
+                display: inline-block;
+                bottom: 10px;
+                background: white;
+                margin: auto;
+                text-align: center;
+            }
+
+            .freshestspancss {
+                background: white;
+                display: inline-block;
+                background-color: #f7f7f7;
+                -webkit-box-decoration-break: clone;
+                box-decoration-break: clone;
+                padding: 5px 11px;
+                color: #454545;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box !important;
+                -webkit-line-clamp: 1;
+                line-clamp: 1 !important;
+                -webkit-box-orient: vertical;
+            }
+
+            .freshestitem {
+                padding: 10px 10px 0px 10px !important;
+                margin-bottom: 0 !important;
+            }
+
+            #freshestimg {
+                height: 275px !important;
+            }
+
+            .subcategorynamewise {
+                padding-top: 50px !important;
+                /* padding-bottom: 50px !important; */
+                padding-bottom: 0 !important;
+            }
+
+            .celebrityttextcss {
+                left: 0px !important;
+            }
+
+            #VC_Video {
+                padding-top: 0 !important;
+            }
+
+            #imgShopbyCategory {
+                height: 275px !important;
+            }
+
+            .colmdimage:nth-child(odd) {
+                padding-right: 5px !important;
+                padding-left: 10px !important;
+            }
+
+            .colmdimage:nth-child(even) {
+                padding-right: 10px !important;
+                padding-left: 5px !important;
+            }
+
+            .collection-contents {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                /* padding: 1rem !important; */
+                padding: 0px 0px 20px 10px !important;
+                overflow-x: auto !important;
+            }
+
+            .collection-contents .collectionProduct {
+                text-align: center;
+                width: 10%;
+                /* min-width: 170px; */
+                /* min-width: 157px; */
+                min-width: 201px;
+            }
+
+            .collection-contents .collectionProduct:not(:last-child) {
+                margin-right: 15px;
+            }
+
+            .collection-contents .collectionProduct img {
+                max-width: 100%;
+            }
+
+            .collection-contents .edgtf-item-space {
+                padding: 0 !important;
+                margin: 0 !important;
+                padding-right: 15px !important;
+            }
+
+            .ourcollectioncss {
+                height: 231px !important;
+                margin: 0px !important;
+            }
+
+            .ourcollectionimg {
+                position: absolute !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                /* object-fit: none !important;
+            object-position: 50% 50%; */
+            }
+
+            .vc_celebrity,
+            .vc_shop {
+                padding-bottom: 0px !important;
+            }
+
+
+            #vc_Celebrity {
+                padding-top: 30px !important;
+            }
+
+            rs-fullwidth-wrap {
+                height: 487px !important;
+            }
+
+            #rev_slider_1_1_wrapper {
+                height: 487px !important;
+            }
+
+            rs-module {
+                object-fit: cover !important;
+            }
+
+            #vc_edtf_Video {
+                height: 420px !important;
+            }
+
+            #vid {
+                object-fit: cover !important;
+                object-position: 95% 100% !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
+
+            .brcss {
+                display: none !important;
+            }
+
+            .fontcss {
+                font-size: 24px !important;
+                line-height: 1.5 !important;
+            }
+
+            .txtcenter {
+                text-align: center !important;
+            }
+
+            .viewallcss {
+                margin: 11px 0 0 0 !important;
+                text-align: center !important;
+            }
+
+            .margincss {
+                margin: 15px 0px 0px 0px !important;
+            }
+
+            #VC_Bestseller,
+            #VC_Freshest,
+            #vc_brighten {
+                padding-top: 40px !important;
+                padding-bottom: 30px !important;
+            }
+
+            #VC_Shop_Category,
+            #vc_ourstore {
+                padding-top: 60px !important;
+                padding-bottom: 30px !important;
+            }
+
+            #vc_Celebrity {
+                padding-top: 50px !important;
+                padding-bottom: 30px !important;
+            }
+
+            .itemImgcss {
+                height: 260px !important;
+            }
+
+            .shopByImage {
+                height: 407px !important;
+            }
+
+
+
+            .homeAboutUsMobile {
+                padding: 0px !important;
+            }
+
+            rs-sbg {
+                width: auto !important;
+                height: auto !important;
+            }
+
+            .edgtf-parallax-row-holder {
+                /* min-height: 190px !important; */
+                min-height: 175px !important;
+            }
+
+            #img_bestseller {
+                object-fit: initial !important;
+            }
+
+            .vc_mobilecelebrity {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            .vc_mob_bestSeller {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            .vc_mob_ShopByCategory {
+                padding-left: 2px !important;
+                padding-right: 2px !important;
+            }
+
+
+            .vc_signature_mobileview {
+                padding-top: 0px !important;
+            }
+
+            /* .edgtf_mobilecelebrity {
+                width: 100% !important;
+            } */
+
+            .mobilecelebrity .owl-item {
+                /* width: 405px !important; */
+                margin-right: 20px !important;
+            }
+        }
+
+        .product-contents {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        .product-contents .product {
+            text-align: center;
+            width: 10%;
+            /* min-width: 157px; */
+            min-width: 201px;
+        }
+
+        /* .product-contents .product:not(:last-child) {
+        margin-right: 15px;
+    } */
+
+        .product-contents .product img {
+            max-width: 100%;
+        }
+
+        @media (min-width: 1920px) and (max-width: 2560px) {
+            .mobilenewcollection {
+                padding-bottom: 50px !important;
+            }
+
+            .bgscreenimage {
+                height: 850px !important;
+            }
+
+            .edgtf-pl-holder .edgtf-pli-inner .edgtf-pli-image img {
+                object-position: 100% 18% !important;
+            }
+
+            #VC_CELEBRITYCLOSET {
+                padding-top: 0 !important;
+            }
+
+            .parallaxbg {
+                background-size: 90%;
+            }
+
+            .itemImgcssweb {
+                height: 760px !important;
+            }
+
+            .edgtf-normal-space.edgtf-disable-bottom-space {
+                margin-bottom: 30px !important;
+            }
+
+            .edgtf-grid-1300 .edgtf-row-grid-section {
+                width: 90% !important;
+            }
+
+        }
+
+        @media only screen and (min-width: 2048px) {
+            .itemImgcssweb {
+                height: 560px !important;
+            }
+
+            .storedirections {
+                bottom: 5% !important;
+            }
+        }
+
+        @media screen and (max-width: 1366px) {
+            .itemImgcssweb {
+                height: 400px !important;
+            }
+        }
+
+        @media screen and (max-width: 1440px) {
+            .mobilecollectionbanner {
+                height: 630px !important;
+            }
+        }
+
+        @media screen and (max-width: 1366px) {
+            .mobilecollectionbanner {
+                height: 506px !important;
+            }
+        }
+
+        @media screen and (max-width: 1280px) {
+            .mobilecollectionbanner {
+                height: 560px !important;
+            }
+        }
+
+        @media (min-width:768px) and (max-width:1024px) {
+            .mobilecollectionbanner {
+                height: 450px !important;
+            }
+        }
+
+        @media only screen and (max-width: 320px) {
+            .mobBannercss {
+                margin-top: 10px !important;
+                height: 120px !important;
+                margin-bottom: 0px !important;
+                /* background-image: url(/images/bannernewasaga.jpg); */
+                display: flex !important;
+                justify-content: flex-end !important;
+                align-items: center !important;
+                background-repeat: no-repeat !important;
+                background-size: contain !important;
+                flex-direction: column !important;
+            }
+        }
+
+        @media screen and (min-width: 321px) and (max-width:375px) {
+            .mobBannercss {
+                margin-top: 10px !important;
+                height: 140px !important;
+                margin-bottom: 0px !important;
+                /* background-image: url(/images/bannernewasaga.jpg); */
+                display: flex !important;
+                justify-content: flex-end !important;
+                align-items: center !important;
+                background-repeat: no-repeat !important;
+                background-size: contain !important;
+                flex-direction: column !important;
+            }
+        }
+
+
+        @media screen and (min-width: 376px) and (max-width:425px) {
+            .mobBannercss {
+                margin-top: 10px !important;
+                height: 160px !important;
+                margin-bottom: 0px !important;
+                /* background-image: url(/images/bannernewasaga.jpg); */
+                display: flex !important;
+                justify-content: flex-end !important;
+                align-items: center !important;
+                background-repeat: no-repeat !important;
+                background-size: contain !important;
+                flex-direction: column !important;
+            }
+        }
+
+
+        @media only screen and (max-width: 767px) {
+
+            .mobBannercss {
+                margin-top: 10px !important;
+                height: 160px !important;
+                margin-bottom: 0px !important;
+                /* background-image: url(/images/bannernewasaga.jpg); */
+                display: flex !important;
+                justify-content: flex-end !important;
+                align-items: center !important;
+                background-repeat: no-repeat !important;
+                background-size: contain !important;
+                flex-direction: column !important;
+            }
+
+            .panel-button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: sticky;
+                transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                background-color: #967844 !important;
+                /* color: white; */
+                font-size: 10px;
+                padding: 0px;
+                /* border: none; */
+                cursor: pointer;
+                text-align: center;
+                margin-left: 80px;
+                border: 1px solid #967844;
+                background-color: transparent;
+                height: 28px;
+                width: 90px;
+                color: #ffffff;
+                /* font-size: 1.5em; */
+                /* box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6); */
+            }
+
+            .mob_btn_banner {
+                margin-top: 96px;
+            }
+
+            /* .newcollectiontitle{
+                height: 20px !important;
+            } */
+
+            /* .mobilesellerset {
+                margin-top: -20px !important;
+            } */
+
+            /* .mobilesellersetBest {
+                margin-top: -15px !important;
+            } */
+            /* .mobBannercss {
+                margin-top: 10px !important;
+                height: 156px !important;
+                margin-bottom: 0px !important;
+                background-image: url(/images/bannernewasaga.jpg);
+                display: flex !important;
+                justify-content: flex-end !important;
+                align-items: center !important;
+                background-repeat: no-repeat !important;
+                background-size: contain !important;
+                flex-direction: column !important;
+            } */
+
+            .itemText {
+                height: 13px !important;
+            }
+
+            .displayboxhover:hover .mobhoverhide {
+                transform: translateY(-40px) !important;
+                background: #f8f5f0;
+            }
+
+            .edgtf-pl-holder.edgtf-info-on-image-simple-predefined .edgtf-pli-inner .edgtf-pli-text {
+                height: 85%;
+            }
+
+            .doublecomma {
+                left: -5% !important;
+            }
+
+            .abtimg {
+                height: 400px !important;
+            }
+
+            .edgtf-owl-slider .owl-nav .owl-prev {
+                color: white !important;
+            }
+
+            .edgtf-owl-slider .owl-nav .owl-next {
+                color: white !important;
+            }
+
+            /* .celebimg{
+                height: 300px;
+                object-fit: contain;
+            } */
+            .aboutusmarleft {
+                margin-left: 0 !important;
+                font-size: 14px !important;
+            }
+
+            .aboutUstext {
+                -webkit-line-clamp: unset !important;
+            }
+
+            .h3ourstore {
+                margin-bottom: 14px !important;
+            }
+
+            .mobentry {
+                text-align: center !important;
+            }
+
+            .ourstorecss {
+                width: 50% !important;
+                left: 0 !important;
+                position: relative;
+            }
+
+            .edgtf-normal-space .edgtf-outer-space {
+                margin-right: 0;
+            }
+
+            .mobmr30 {
+                margin-left: 0 !important;
+                margin-right: 15px !important;
+            }
+
+            .text-center {
+                text-align: center !important;
+            }
+
+            .storedirections {
+                /* margin-bottom: 18px !important;
+                padding: 5px !important;
+                left: 32% !important;
+                font-size: 8px !important;
+                bottom: 15% !important; */
+
+                margin-bottom: 18px !important;
+                padding: 5px !important;
+                /* left: 37% !important; */
+                left: auto !important;
+                font-size: 8px !important;
+                bottom: 15% !important;
+            }
+
+            .pourstore {
+                font-size: 12px !important;
+            }
+
+            .ourstorecss {
+                padding: 10px !important;
+            }
+
+            .ourstoreimgcss {
+                height: 166px !important;
+                /* background-position: center !important; */
+                background-position: 0% 0% !important;
+                object-fit: cover !important;
+            }
+
+            .getdirectcss {
+                /* display: flex !important;
+                justify-content: center !important;
+                align-items: center !important; */
+                padding-left: 126px !important;
+            }
+
+            .centerdivcss {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+
+            .mobmartop {
+                margin-top: 10px !important;
+            }
+
+            .edgtf-eh-item-content.edgtf-eh-custom-6799 {
+                padding-bottom: 0 !important;
+            }
+
+            .huepadding {
+                padding-bottom: 0 !important;
+            }
+
+            .hueimage {
+                height: 300px !important;
+                object-fit: cover !important;
+            }
+
+            #VC_CELEBRITYCLOSET {
+                padding-top: 0px !important;
+            }
+
+
+            /* #VC_Bestseller {
+                padding-top: 12px !important;
+            } */
+
+
+
+            #VC_CELEBRITYCLOSET_SHOPNOW {
+                padding-top: 8px !important;
+            }
+
+            .subcategorynametextbutton {
+                font-size: 14px !important;
+            }
+
+            .asagacollectionshopnow {
+                padding: 5px !important;
+                font-size: 8px !important;
+            }
+
+            .asagacollectionouterspace {
+                margin-left: 30px !important;
+                margin-right: 30px !important;
+            }
+
+            .shopcss {
+                padding: 10px 10px 10px 10px !important;
+                margin: 0 !important;
+            }
+
+            .edgtf-pl-holder .edgtf-pli-inner .edgtf-pli-image img {
+                object-fit: cover !important;
+                object-position: center !important;
+            }
+
+            .shopByImage {
+                height: 300px !important;
+            }
+
+            .edgtf-grid-list.edgtf-two-columns .edgtf-item-space {
+                width: 50%;
+            }
+
+            .monsignaturedescription {
+                font-size: 12px !important;
+            }
+
+            .mobsignaturetitle {
+                font-size: 30px !important;
+                text-align: center !important;
+            }
+
+            .mobsignature {
+                width: 100% !important;
+                font-size: 20px !important;
+            }
+
+            .mobsignatureimage {
+                width: 100% !important;
+            }
+
+            .mobprodrow {
+                margin-top: 10px !important;
+            }
+
+            .mobilenewcollection {
+                margin-bottom: 10% !important;
+                font-size: 20px !important;
+            }
+
+            #divBestseller {
+                display: none !important;
+                border: 1px solid !important;
+                padding: 10px 0px !important;
+            }
+
+            .imgbestseller {
+                object-fit: contain !important;
+            }
+
+            .product-contents .edgtf-item-space {
+                /* padding-right: 15px !important; */
+                margin-right: 5px !important;
+            }
+
+            .product-contents .product {
+                min-width: 180px !important;
+            }
+
+            .imgbestseller {
+                height: 260px !important;
+            }
+
+            #VC_Bestseller {
+                padding: 0px 0px !important;
+                /* padding-top: 12px !important */
+            }
+
+            .mobilecollectionbanner {
+                height: 157px !important;
+                margin-top: 1%;
+            }
+
+            .mobilecollectionlogo {
+                height: 200px !important;
+            }
+
+            .mobileseller {
+                font-size: 19px;
+            }
+
+
+
+            .mobileshopnow {
+                font-size: 10px !important;
+            }
+
+            .product-all-contents {
+                overflow-x: auto;
+            }
+
+            .mobilecategory {
+                font-size: 19px !important;
+                margin-top: 15px !important;
+            }
+
+            .mobilecategoryspace {
+                letter-spacing: 3px !important;
+            }
+
+            .mobilecategorycart {
+                letter-spacing: 3px !important;
+            }
+
+            .mobiletocart {
+                font-size: 10px !important;
+            }
+
+            #VC_Shop_Category {
+                /* padding-top: 10px !important; */
+                padding-top: 0px !important;
+                padding-bottom: 10px !important;
+            }
+
+            .mobileasagacollections {
+                font-size: 19px !important;
+            }
+
+            .mobileasagacollectionsspace {
+                letter-spacing: 3px !important;
+            }
+
+            .mobileasagacollectionsshownow {
+                font-size: 10px !important;
+            }
+
+            .mobileasagacollectionsshownowspace {
+                letter-spacing: 3px !important;
+            }
+
+            .mobilecelebritycloset {
+                font-size: 19px !important;
+            }
+
+            .mobilecelebrityclosetspace {
+                letter-spacing: 3px !important;
+            }
+
+            .mobilecelebrityclosetshopnow {
+                font-size: 10px !important;
+            }
+
+            .mobilecelebrityclosetshopnowspace {
+                letter-spacing: 3px !important;
+            }
+
+            .subcategorynamewise {
+                padding-top: 0 !important;
+            }
+
+            #VC_ASAGACOLLECTIONS {
+                padding-top: 10px !important;
+                padding-bottom: 0px !important;
+            }
+
+            .celebrityttextcss {
+                left: 50% !important;
+            }
+
+            .mobcelebrityimg {
+                height: 260px !important;
+            }
+
+        }
+
+        .subcategorynametextcss {
+            position: absolute;
+            text-align: center;
+            display: block;
+            /* bottom: 150px; */
+            margin-bottom: 20px !important;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            color: white;
+        }
+
+        .subcategorynametextbutton {
+            text-transform: uppercase;
+            font-size: 23px;
+            letter-spacing: .2em;
+        }
+
+        .shopbtn {
+            background: #967844 !important;
+            border: none !important;
+            color: #fff !important;
+            /* background: transparent;
+            border: 2px solid #cd7b0b !important;
+            text-shadow: 1px 1px 1px black;
+            color: #fff !important; */
+        }
+
+        .shopbtn2 {
+            background: transparent;
+            border: 1px solid white !important;
+            /* text-shadow: 1px 1px 1px black; */
+            color: #fff !important;
+        }
+
+        .showbtn:hover {
+            background-color: #cd7b0b !important;
+        }
+
+        .celebrityttextcss:hover {
+            background-color: #cd7b0b !important;
+        }
+
+        .shopbycatgorytext:hover {
+            background-color: #cd7b0b !important;
+        }
+
+        .woocommerce-page .edgtf-content a.button:hover {
+            background-color: #cd7b0b !important;
+        }
+
+        .edgtf-blog-list-holder .edgtf-post-image:hover img {
+            -webkit-transform: scale(1.10);
+            -ms-transform: scale(1.10);
+            transform: scale(1.10);
+        }
+
+        .celebrityttextcss {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+            /* right: 10px; */
+            display: inline-block;
+            bottom: 10%;
+            background: transparent;
+            margin: auto;
+            text-align: center;
+        }
+
+        .celebritytspancss {
+            background: transparent;
+            display: inline-block;
+            background-color: transparent;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+            padding: 5px 11px;
+            color: white;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 1;
+            line-clamp: 1 !important;
+            -webkit-box-orient: vertical;
+            font-size: .8em;
+            letter-spacing: .2em;
+        }
+
+        .shopbycategorydiv {
+            position: absolute !important;
+            /* top: 85% !important; */
+            left: 50% !important;
+            /* left: auto !important; */
+            transform: translate(-50%, -50%) !important;
+            /* bottom: 44px !important; */
+            bottom: 10px !important;
+        }
+
+        .celebritycssdiv {
+            position: absolute !important;
+            /* top: 85% !important; */
+            /* left: 50% !important; */
+            left: auto !important;
+            transform: translate(-50%, -50%) !important;
+            /* bottom: 44px !important; */
+            bottom: 10px !important;
+        }
+
+
+        .mob_celebrity.celebritycssdiv {
+            margin-bottom: -80px;
+            background: #967844 !important;
+        }
+
+
+
+        .shopbycatgorytext {
+            background: transparent;
+            border: 1px solid white !important;
+            /* text-shadow: 1px 1px 1px black; */
+            display: inline-block;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+            padding: 5px 11px;
+            color: #fff !important;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 1;
+            line-clamp: 1 !important;
+            -webkit-box-orient: vertical;
+            text-transform: uppercase;
+            font-size: .8em;
+            letter-spacing: .2em;
+        }
+
+        .collectiondiv {
+            position: absolute !important;
+            /* top: 85% !important; */
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            /* bottom: 44px !important; */
+            bottom: 10px !important;
+        }
+
+        .collectiontextcss {
+            background: white;
+            display: inline-block;
+            background-color: #f7f7f7;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+            padding: 5px 11px;
+            color: #454545;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 1;
+            line-clamp: 1 !important;
+            -webkit-box-orient: vertical;
+        }
+
+        .ourstorecss {
+            position: absolute;
+            left: 30px;
+            top: 46%;
+            transform: translateY(-50%);
+            margin-top: 0;
+            width: 30%;
+            display: inline-block;
+            background-color: #f7f7f7;
+            padding: 30px;
+            margin: 10px;
+            z-index: 3;
+            text-align: left !important;
+        }
+
+        .text-spacing {
+            margin-top: 0;
+            margin-bottom: 24px;
+            line-height: 1.5 !important;
+        }
+
+        .edgtf-video-button-play {
+            position: relative !important;
+        }
+
+        .edgtf-btn.edgtf-btn-simple:hover:before {
+            width: 30px !important;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            // Select the image element by its class or ID
+            //var img = $(".rs-lazyload");
+
+            // Change the value of the data-lazyload attribute
+            //img.attr("data-lazyload", "/images/Banner.jpg");
+
+            if (window.matchMedia("(max-width: 767px)").matches) {
+                $('.rs-lazyload').attr('data-lazyload', '/images/Banner-Mobile.jpg');
+            } else {
+                $('.rs-lazyload').attr('data-lazyload', '/images/Banner.jpg');
+            }
+        });
+    </script>
+    <!-- Start Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2KXJ0J054"></script>
+    <script> window.dataLayer = window.dataLayer || []; function
+            gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config',
+                'G-P2KXJ0J054'); 
+    </script>
+    <!-- End Google tag (gtag.js) -->
+    <%- include('../partial/pagetracker.ejs') %>
+        <%- include('../partial/header.ejs') %>
+            <aside class="edgtf-vertical-menu-area edgtf-vertical-alignment-top">
+                <div class="edgtf-vertical-menu-area-inner">
+                    <div class="edgtf-vertical-menu-holder">
+                        <div class="edgtf-vertical-menu-nav-holder-outer">
+                            <div class="edgtf-vertical-menu-nav-holder">
+                                <div class="edgtf-vertical-menu-holder-nav-inner">
+                                    <nav class="edgtf-header-bottom-menu">
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edgtf-vertical-area-widget-holder">
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <div class="edgtf-content">
+                <div class="edgtf-content-inner">
+                    <%- include('../partial/pageheader.ejs') %>
+                        <div class="edgtf-full-width">
+                            <div class="edgtf-full-width-inner">
+                                <div class="edgtf-grid-row">
+                                    <div class="edgtf-page-content-holder edgtf-grid-col-12">
+                                        <section class="wpb-content-wrapper">
+                                            <div class="vc_row wpb_row vc_row-fluid vc_custom_1555488966025"
+                                                id="VC_Video">
+                                                <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                    <div class="vc_column-inner">
+                                                        <div class="wpb_wrapper">
+                                                            <div id="vc_edtf_Video" style="width: 100%;"
+                                                                class="edgtf-video-button-holder edgtf-vb-has-img">
+                                                                <video loop="true" autoplay="autoplay" controls="false"
+                                                                    id="vid" playsinline="" muted
+                                                                    style="pointer-events: none;width: 100%;">
+                                                                    <source type="video/mp4" src="/Video/VID1.mp4">
+                                                                    </source>
+                                                                </video>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mobprodrow mobBannercss panelview" style="margin-top: 2%;">
+                                                <div class="mobilecollectionbanner bgscreenimage"
+                                                    style="background-image: url(/images/bannernewasaga.jpg);height: 565px !important;width: 100% !important; display: flex;justify-content: center;align-items: center;background-repeat: no-repeat;background-size: contain;flex-direction: column;">
+                                                    <a class="mob_btn_banner"
+                                                        href="/Items/<%= AuroraBindData[0].SubCategoryID %>"
+                                                        style="color: #ffffff;"> <button class="panel-button">Explore
+                                                            Now</button></a>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="container">
+                                                <img src="img_snow.jpg" alt="Snow" style="width:100%">
+                                                <button class="btn">Button</button>
+                                            </div> -->
+
+                                            <!-- <div class="row mobprodrow mobBannercss mobview"
+                                                style="margin-top: 2%;display: none !important;">
+                                                <div class="mobilecollectionbanner bgscreenimage"
+                                                    style="background-image: url(/images/bannernewasaga.jpg);height: 594px;display: flex;justify-content: flex-end;align-items: center;background-repeat: no-repeat;background-size: contain;flex-direction: column;">
+                                                    <button class="image-button">Click Me</button>
+                                                </div>
+                                            </div> -->
+                                            <!-- <div class="edgtf-row-grid-section-wrapper">
+                                            <div class="edgtf-row-grid-section sectionSize">
+                                                <div class="vc_row wpb_row vc_row-fluid vc_custom_1555489320484"
+                                                    id="VC_Bestseller" style="padding: 40px 40px;">
+                                                    <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                        <div class="vc_column-inner">
+                                                            <div class="wpb_wrapper">
+                                                                <div class="edgtf-section-title-holder"
+                                                                    style="text-align: left">
+                                                                    <div class="edgtf-st-inner">
+                                                                        
+                                                                        <h3 class="mobileseller mobilesellerset"
+                                                                            style="text-align: center;margin-top: 0;margin-bottom: 0;">
+                                                                            <span
+                                                                                style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;font-size: 23px;">NEW
+                                                                                COLLECTION</span>
+                                                                        </h3>
+                                                                        <h5
+                                                                            style="text-align: center;margin-top: 10px;margin-bottom: 0;">
+                                                                            <span class="mobileshopnow"
+                                                                                style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;font-size: 14px;">SHOP
+                                                                                NOW</span>
+                                                                        </h5>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                            <div class="edgtf-row-grid-section-wrapper">
+                                                <div class="edgtf-row-grid-section sectionSize">
+                                                    <div class="vc_row wpb_row vc_row-fluid vc_custom_1555489320483"
+                                                        id="VC_ASAGACOLLECTIONS">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="edgtf-section-title-holder"
+                                                                        style="text-align: left">
+                                                                        <div class="edgtf-st-inner">
+                                                                            <h3 class="mobileasagacollections"
+                                                                                style="text-align: center;margin-top: 0;margin-bottom: 0;font-size: 23px;">
+                                                                                <span
+                                                                                    class="mobileasagacollectionsspace"
+                                                                                    style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">NEW
+                                                                                    COLLECTIONS</span>
+                                                                            </h3>
+                                                                            <h5 class="mobileasagacollectionsshownow"
+                                                                                style="text-align: center;margin-top: 10px;margin-bottom: 12px;font-size: 14px;">
+                                                                                <span
+                                                                                    class="mobileasagacollectionsshownowspace"
+                                                                                    style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">SHOP
+                                                                                    NOW</span>
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="edgtf-row-grid-section-wrapper">
+                                                <div class="edgtf-row-grid-section sectionCollectionSize">
+                                                    <div class="vc_row wpb_row vc_row-fluid">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div
+                                                                        class="edgtf-pl-holder edgtf-grid-list edgtf-disable-bottom-space edgtf-standard-layout edgtf-four-columns edgtf-normal-space edgtf-info-on-image-simple-predefined parralxbmb30">
+                                                                        <div
+                                                                            class="edgtf-pl-outer edgtf-outer-space  product-contents mobmr30">
+                                                                            <% for(var i=0; i < BestSellerData.length;
+                                                                                i++) {%>
+                                                                                <div
+                                                                                    class="edgtf-pli edgtf-item-space displayboxhover col-md-4 product">
+                                                                                    <div class="edgtf-pli-inner"
+                                                                                        style="width: 100%;">
+                                                                                        <div
+                                                                                            class="edgtf-pli-image itemImgcss itemImgcssweb imgbestseller">
+                                                                                            <!-- style="height: 510px;" -->
+                                                                                            <img id="img_bestseller"
+                                                                                                style="height: 100%;"
+                                                                                                src="<%= process.env.ItemImagePATH + BestSellerData[i].ItemImage %>"
+                                                                                                class="attachment-woocommerce_single size-woocommerce_single wp-post-image"
+                                                                                                alt="loading"
+                                                                                                srcset="<%= process.env.ItemImagePATH + BestSellerData[i].ItemImage %> 180w, <%= process.env.ItemImagePATH + BestSellerData[i].ItemImage %> 360w, <%= process.env.ItemImagePATH + BestSellerData[i].ItemImage %> 540w, <%= process.env.ItemImagePATH + BestSellerData[i].ItemImage %> 720w, <%= process.env.ItemImagePATH + BestSellerData[i].ItemImage %> 900w"
+                                                                                                sizes="(max-width: 600px) 100vw, 600px" />
+                                                                                        </div>
+                                                                                        <div class="edgtf-pli-text">
+                                                                                            <div
+                                                                                                class="edgtf-pli-text-outer">
+                                                                                                <div
+                                                                                                    class="edgtf-pli-text-inner">
+                                                                                                    <div
+                                                                                                        class="edgtf-pli-text-action">
+                                                                                                        <div
+                                                                                                            class="edgtf-pli-text-action-inner">
+                                                                                                            <a href="/ItemDetail/<%= BestSellerData[i].ItemID %>"
+                                                                                                                class="button"
+                                                                                                                data-product_id="110"
+                                                                                                                style="padding: 5px;
+                                                                                                            border: 0;background-color: initial;">
+                                                                                                                <i class="fa fa-eye"
+                                                                                                                    style="color: #727272;font-size: 15px;"></i>
+                                                                                                                <!-- <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                                x="0px"
+                                                                                                                y="0px"
+                                                                                                                width="23.66px"
+                                                                                                                height="12.409px"
+                                                                                                                viewBox="0.675 6.296 23.66 12.409"
+                                                                                                                enable-background="new 0.675 6.296 23.66 12.409"
+                                                                                                                xml:space="preserve">
+                                                                                                                <path
+                                                                                                                    fill="none"
+                                                                                                                    stroke="currentColor"
+                                                                                                                    stroke-miterlimit="10"
+                                                                                                                    d="M1.333,12.633c10.803,12.727,22.333-0.329,22.333-0.329l0,0 C12.5-0.279,1.333,12.633,1.333,12.633z" />
+                                                                                                                <circle
+                                                                                                                    fill="none"
+                                                                                                                    stroke="currentColor"
+                                                                                                                    stroke-miterlimit="10"
+                                                                                                                    cx="12.444"
+                                                                                                                    cy="12.433"
+                                                                                                                    r="3.547" />
+                                                                                                            </svg> -->
+                                                                                                            </a>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <a class="edgtf-pli-link"
+                                                                                            itemprop="url"
+                                                                                            href="/ItemDetail/<%= BestSellerData[i].ItemID %>"
+                                                                                            title="<%= BestSellerData[i].ItemName %>"></a>
+                                                                                    </div>
+                                                                                    <div class="edgtf-bli-content mobbgwhite mobhoverhide"
+                                                                                        style="text-align: center;">
+                                                                                        <div class="edgtf-bli-info">
+                                                                                            <div style="text-align: center;"
+                                                                                                itemprop="dateCreated"
+                                                                                                class="edgtf-post-info-date entry-date mobentry published updated">
+                                                                                                <h5 style="margin-top: 5px;margin-bottom: 5px;font-size: 12px;letter-spacing: .2em;font-weight: 500;"
+                                                                                                    itemprop="name"
+                                                                                                    class="entry-title edgtf-post-title newcollectiontitle">
+                                                                                                    <a itemprop="url"
+                                                                                                        class="itemText"
+                                                                                                        href="/ItemDetail/<%= BestSellerData[i].ItemID %>"
+                                                                                                        target="_self"
+                                                                                                        title="<%= BestSellerData[i].ItemName
+%>">
+                                                                                                        <%= BestSellerData[i].ItemName
+                                                                                                            %>
+                                                                                                    </a>
+                                                                                                </h5>
+                                                                                                <span class="itemText2">
+                                                                                                    <a class="smlfnt12"
+                                                                                                        itemprop="url"
+                                                                                                        href="/ItemDetail/<%= BestSellerData[i].ItemID %>">
+                                                                                                        <%= (BestSellerData[i].Description==null||BestSellerData[i].Description=='null'
+                                                                                                            ? ''
+                                                                                                            :BestSellerData[i].Description)
+                                                                                                            %>
+
+                                                                                                    </a>
+                                                                                                </span>
+                                                                                                <a class="aamount"
+                                                                                                    style="font-size: 12px;letter-spacing: .2em"
+                                                                                                    itemprop="url"
+                                                                                                    href="javascript:void(0)">
+                                                                                                    RS. <%=
+                                                                                                        BestSellerData[i].Amount
+                                                                                                        %>
+                                                                                                </a>
+                                                                                                <meta
+                                                                                                    itemprop="interactionCount"
+                                                                                                    content="UserComments: 0" />
+                                                                                            </div>
+                                                                                        </div>
+
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <%}%>
+
+                                                                                    <div class="edgtf-pli edgtf-item-space product"
+                                                                                        id="divBestseller">
+                                                                                        <div class="edgtf-pli-inner"
+                                                                                            style="width: 100%;font-family: 'Cinzel';font-size: 12px;">
+                                                                                            View All
+                                                                                            <a class="edgtf-pli-link"
+                                                                                                itemprop="url"
+                                                                                                target="_blank"
+                                                                                                href="/Items/<%= BestSellerData[0].SubCategoryID %>"
+                                                                                                title=""></a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div style="margin-top: 2%;" data-parallax-bg-image="/images/Site.webp"
+                                            data-parallax-bg-speed="2" data-parallax-bg-height="500px"
+                                            class="vc_row wpb_row vc_row-fluid edgtf-parallax-row-holder mobmartop parallaxbg"> -->
+
+                                            <div style="margin-top: 2%;"
+                                                data-parallax-bg-image="/images/scrollbanner.jpg"
+                                                data-parallax-bg-speed="2" data-parallax-bg-height="500px"
+                                                class="vc_row wpb_row vc_row-fluid edgtf-parallax-row-holder mobmartop parallaxbg mobBanner">
+
+
+                                                <div class="wpb_column vc_column_container vc_col-sm-12 parralxb0">
+                                                    <div class="vc_column-inner">
+                                                        <div class="wpb_wrapper"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="edgtf-row-grid-section-wrapper">
+                                                <div class="edgtf-row-grid-section sectionSize">
+                                                    <div class="vc_row wpb_row vc_row-fluid vc_custom_1555489320483"
+                                                        id="VC_Shop_Category">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="edgtf-section-title-holder"
+                                                                        style="text-align: left">
+                                                                        <div class="edgtf-st-inner">
+                                                                            <h3 class="mobilecategory mobilesellersetBest"
+                                                                                style="text-align: center;margin-top: 0;margin-bottom: 0;font-size: 23px;">
+                                                                                <span class="mobilecategoryspace"
+                                                                                    style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">BEST
+                                                                                    SELLERS</span>
+                                                                            </h3>
+                                                                            <h5 class="mobiletocart"
+                                                                                style="text-align: center;margin-top: 10px;margin-bottom: 0;font-size: 14px;">
+                                                                                <span class="mobilecategorycart"
+                                                                                    style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">ADD
+                                                                                    TO CART NOW</span>
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="edgtf-row-grid-section-wrapper ">
+                                                <div class="edgtf-row-grid-section">
+                                                    <div class="vc_row wpb_row vc_row-fluid vc_custom_1560433008036">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner vc_mob_bestSeller">
+                                                                <div class="wpb_wrapper">
+                                                                    <div
+                                                                        class="edgtf-plc-holder edgtf-standard-layout edgtf-small-space edgtf-plc-nav-default-skin edgtf-plc-pag-bellow-slider edgtf-plc-pag-default-skin">
+                                                                        <div class="edgtf-plc-outer edgtf-owl-slider"
+                                                                            data-number-of-items="4"
+                                                                            data-enable-loop="yes"
+                                                                            data-enable-autoplay="yes"
+                                                                            data-slider-speed="5000"
+                                                                            data-slider-speed-animation="600"
+                                                                            data-enable-navigation="yes"
+                                                                            data-enable-pagination="no">
+                                                                            <% if(ShopCategoryData.length> 0) { %>
+                                                                                <% for(var i=0; i <
+                                                                                    ShopCategoryData.length; i++) {%>
+                                                                                    <div class="edgtf-plc-item">
+                                                                                        <div
+                                                                                            class="edgtf-plc-image-outer">
+                                                                                            <div
+                                                                                                class="edgtf-plc-image">
+                                                                                                <img width="600"
+                                                                                                    height="795"
+                                                                                                    src="<%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %>"
+                                                                                                    class="attachment-woocommerce_single size-woocommerce_single wp-post-image"
+                                                                                                    alt="loading"
+                                                                                                    srcset="<%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %> 180w, <%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %> 360w, <%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %> 540w, <%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %> 720w, <%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %> 900w"
+                                                                                                    sizes="(max-width: 600px) 100vw, 600px" />
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="edgtf-plc-hover-image">
+                                                                                                <img width="800"
+                                                                                                    height="1060"
+                                                                                                    src="<%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %>"
+                                                                                                    alt="loading" />
+                                                                                            </div>
+                                                                                            <a class="edgtf-pli-link"
+                                                                                                itemprop="url"
+                                                                                                href="/Items/<%= ShopCategoryData[i].SubCategoryID %>">
+                                                                                                <div
+                                                                                                    class="shopbycategorydiv">
+                                                                                                    <span
+                                                                                                        class="shopbycatgorytext">
+                                                                                                        <%= ShopCategoryData[i].SubCategoryName
+                                                                                                            %>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="edgtf-row-grid-section-wrapper vc_signature_mobileview"
+                                                id="vc_signature" style="padding-top: 30px;">
+                                                <div class="edgtf-row-grid-section">
+                                                    <div class="vc_row wpb_row vc_row-fluid">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div
+                                                                        class="edgtf-elements-holder edgtf-two-columns  edgtf-responsive-mode-1024">
+                                                                        <div style="width: 30%;"
+                                                                            class="edgtf-eh-item mobsignature"
+                                                                            data-item-class="edgtf-eh-custom-1133"
+                                                                            data-1025-1366="0px 48px 2px 0px"
+                                                                            data-769-1024="136px 50px 0px 0px"
+                                                                            data-681-768="136px 50px 0px 0px"
+                                                                            data-680="0px 0px 0px 0px">
+                                                                            <div class="edgtf-eh-item-inner">
+                                                                                <div
+                                                                                    class="edgtf-eh-item-content edgtf-eh-custom-1133 homeAboutUsMobile">
+                                                                                    <div
+                                                                                        class="edgtf-section-title-holder">
+                                                                                        <div class="edgtf-st-inner">
+                                                                                            <h6 class="edgtf-st-tagline"
+                                                                                                style="margin: 0px !important;">
+
+                                                                                            </h6>
+                                                                                            <h1
+                                                                                                class="edgtf-st-title mobsignaturetitle">
+                                                                                                SIGNATURE <br><span
+                                                                                                    class="edgtf-st-italic">Hue's
+                                                                                                    Of Asaga</span>
+
+                                                                                            </h1>
+                                                                                            <p class="edgtf-st-text text-center aboutUstext monsignaturedescription"
+                                                                                                style="margin-top: 11px;font-family: 'Cinzel';font-weight: bold;padding-top: 5%;">
+                                                                                                Astory of modern
+                                                                                                designs
+                                                                                                and
+                                                                                                comfortable luxury
+                                                                                                silhouettes
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div style="width: 70%;"
+                                                                            class="edgtf-eh-item mobsignatureimage"
+                                                                            data-item-class="edgtf-eh-custom-6799"
+                                                                            data-1367-1600="0% 0% 0% 9%"
+                                                                            data-1025-1366="0% 0% 0% 12%"
+                                                                            data-769-1024="9% 0%"
+                                                                            data-681-768="11.5% 0%" data-680="0% 0%">
+                                                                            <!-- data-680="6% 0% 0% 0%"> -->
+                                                                            <div class="edgtf-eh-item-inner">
+                                                                                <div class="edgtf-eh-item-content huepadding"
+                                                                                    style="padding: 0% 0% 0% 0%">
+                                                                                    <div
+                                                                                        class="edgtf-single-image-holder">
+                                                                                        <div class="edgtf-si-inner">
+                                                                                            <img height="1135"
+                                                                                                src="images/asagahues.jpg"
+                                                                                                class="attachment-full size- hueimage"
+                                                                                                alt="loading"
+                                                                                                loading="lazy"
+                                                                                                srcset="images/asagahues.jpg 600w"
+                                                                                                sizes="(max-width: 800px) 100vw, 800px" />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="edgtf-row-grid-section-wrapper">
+                                                <div class="edgtf-row-grid-section sectionSize">
+                                                    <div class="vc_row wpb_row vc_row-fluid vc_custom_1555489320483"
+                                                        id="VC_Shop_Category">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="edgtf-section-title-holder"
+                                                                        style="text-align: left">
+                                                                        <div class="edgtf-st-inner">
+                                                                            <!-- <h6 class="edgtf-st-tagline">
+                                                                            New Arrival
+                                                                        </h6> 
+                                                                        <h1 class="edgtf-st-title fontcss txtcenter">
+                                                                            Shop by <span
+                                                                                class="edgtf-st-italic">Category</span>
+                                                                        </h1>-->
+
+                                                                            <h3 class="mobilecategory mobilesellersetBest"
+                                                                                style="text-align: center;margin-top: 0;margin-bottom: 0;font-size: 23px;">
+                                                                                <span class="mobilecategoryspace"
+                                                                                    style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">SHOP
+                                                                                    BY CATEGORY</span>
+                                                                            </h3>
+                                                                            <!-- <h5 class="mobiletocart"
+                                                                            style="text-align: center;margin-top: 10px;margin-bottom: 0;font-size: 14px;">
+                                                                            <span class="mobilecategorycart"
+                                                                                style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">ADD
+                                                                                TO CART NOW</span>
+                                                                        </h5> -->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="edgtf-row-grid-section-wrapper">
+                                                <div class="edgtf-row-grid-section">
+                                                    <div class="vc_row wpb_row vc_row-fluid vc_custom_1560433008036">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner vc_mob_ShopByCategory">
+                                                                <div class="wpb_wrapper">
+                                                                    <div
+                                                                        class="edgtf-plc-holder edgtf-standard-layout edgtf-small-space edgtf-plc-nav-default-skin edgtf-plc-pag-bellow-slider edgtf-plc-pag-default-skin">
+                                                                        <div class="edgtf-plc-outer edgtf-owl-slider"
+                                                                            data-number-of-items="4"
+                                                                            data-enable-loop="yes"
+                                                                            data-enable-autoplay="yes"
+                                                                            data-slider-speed="5000"
+                                                                            data-slider-speed-animation="600"
+                                                                            data-enable-navigation="yes"
+                                                                            data-enable-pagination="no">
+                                                                            <% if(ShopCategoryData.length> 0) { %>
+                                                                                <% for(var i=0; i <
+                                                                                    ShopCategoryData.length; i++) {%>
+                                                                                    <div class="edgtf-plc-item">
+                                                                                        <div
+                                                                                            class="edgtf-plc-image-outer">
+                                                                                            <div
+                                                                                                class="edgtf-plc-image">
+                                                                                                <img width="600"
+                                                                                                    height="795"
+                                                                                                    src="<%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %>"
+                                                                                                    class="attachment-woocommerce_single size-woocommerce_single wp-post-image"
+                                                                                                    alt="loading"
+                                                                                                    srcset="<%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %> 180w, <%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %> 360w, <%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %> 540w, <%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %> 720w, <%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %> 900w"
+                                                                                                    sizes="(max-width: 600px) 100vw, 600px" />
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="edgtf-plc-hover-image">
+                                                                                                <img width="800"
+                                                                                                    height="1060"
+                                                                                                    src="<%= process.env.SubCategoryImagePATH + ShopCategoryData[i].SubCategoryImage %>"
+                                                                                                    alt="loading" />
+                                                                                            </div>
+                                                                                            <a class="edgtf-pli-link"
+                                                                                                itemprop="url"
+                                                                                                href="/Items/<%= ShopCategoryData[i].SubCategoryID %>">
+                                                                                                <div
+                                                                                                    class="shopbycategorydiv">
+                                                                                                    <span
+                                                                                                        class="shopbycatgorytext">
+                                                                                                        <%= ShopCategoryData[i].SubCategoryName
+                                                                                                            %>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </a>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="edgtf-row-grid-section-wrapper mob_section_wrapper">
+                                                <div class="edgtf-row-grid-section sectionSize">
+                                                    <div class="vc_row wpb_row vc_row-fluid vc_custom_1555489320483"
+                                                        id="VC_ASAGACOLLECTIONS">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="edgtf-section-title-holder"
+                                                                        style="text-align: left">
+                                                                        <div class="edgtf-st-inner">
+                                                                            <h3 class="mobileasagacollections"
+                                                                                style="text-align: center;margin-top: 0;margin-bottom: 0;font-size: 23px;">
+                                                                                <span
+                                                                                    class="mobileasagacollectionsspace"
+                                                                                    style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">ASAGA
+                                                                                    COLLECTIONS</span>
+                                                                            </h3>
+                                                                            <h5 class="mobileasagacollectionsshownow"
+                                                                                style="text-align: center;margin-top: 10px;margin-bottom: 0;font-size: 14px;">
+                                                                                <span
+                                                                                    class="mobileasagacollectionsshownowspace"
+                                                                                    style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">SHOP
+                                                                                    NOW</span>
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="edgtf-row-grid-section-wrapper mob_section_wrapper">
+                                                <div class="edgtf-row-grid-section sectionSize">
+                                                    <div class="vc_row wpb_row vc_row-fluid subcategorynamewise">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner"
+                                                                style="padding-left: 0;padding-right: 0;">
+                                                                <div class="wpb_wrapper">
+                                                                    <div
+                                                                        class="edgtf-pl-holder edgtf-grid-list edgtf-disable-bottom-space edgtf-standard-layout edgtf-two-columns edgtf-normal-space edgtf-info-on-image-simple-predefined">
+                                                                        <div
+                                                                            class="edgtf-pl-outer edgtf-outer-space asagacollectionouterspace">
+
+                                                                            <% for(var i=0; i <
+                                                                                SubCategoryNameWiseData.length; i++) {%>
+                                                                                <div
+                                                                                    class="edgtf-pli edgtf-item-space col-md-6 shopcss asagacss">
+                                                                                    <div class="edgtf-pli-inner"
+                                                                                        style="width: 100%;">
+                                                                                        <div class="edgtf-pli-image">
+                                                                                            <!-- style="height: 510px;" -->
+                                                                                            <img class="shopByImage"
+                                                                                                src="<%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %>"
+                                                                                                class="attachment-woocommerce_single size-woocommerce_single wp-post-image"
+                                                                                                alt="loading"
+                                                                                                srcset="<%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %> 600w, <%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %> 226w, <%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %> 768w, <%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %> 773w, <%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %> 800w"
+                                                                                                sizes="(max-width: 600px) 100vw, 600px" />
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="subcategorynametextcss">
+                                                                                            <span
+                                                                                                class="subcategorynametextbutton">
+                                                                                                <%= SubCategoryNameWiseData[i].SubCategoryName
+                                                                                                    %>
+                                                                                                    <p><a href="/Items/<%= SubCategoryNameWiseData[i].SubCategoryID %>"
+                                                                                                            class="shopbtn2 button asagacollectionshopnow asagashop">Shop
+                                                                                                            Now</a>
+                                                                                                    </p>
+                                                                                            </span>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <%}%>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="edgtf-row-grid-section-wrapper mob_view"
+                                                style="padding-top: 32px;">
+                                                <div class="edgtf-row-grid-section edgtf_mobilecelebrity mobScrollView">
+                                                    <div
+                                                        class="vc_row wpb_row vc_row-fluid vc_custom_1560433008036 VC_mob">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner vc_mobilecelebrity">
+                                                                <div class="wpb_wrapper">
+                                                                    <div
+                                                                        class="carousel owl-carousel edgtf-plc-holder edgtf-standard-layout edgtf-small-space edgtf-plc-nav-default-skin edgtf-plc-pag-bellow-slider edgtf-plc-pag-default-skin mobilecelebrity">
+
+                                                                        <% if(CelebrityStyleData.length> 0) { %>
+                                                                            <% for(var i=0; i <
+                                                                                CelebrityStyleData.length; i++) {%>
+                                                                                <div class="edgtf-plc-item">
+                                                                                    <div class="edgtf-plc-image-outer">
+                                                                                        <div
+                                                                                            class="edgtf-plc-image mobimageset">
+                                                                                            <img width="600px"
+                                                                                                height="auto"
+                                                                                                src="<%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %>"
+                                                                                                class="attachment-woocommerce_single size-woocommerce_single wp-post-image celebimg"
+                                                                                                alt="loading"
+                                                                                                srcset="<%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %> 180w, 
+                                                                                                        <%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %> 360w, 
+                                                                                                        <%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %> 540w, 
+                                                                                                        <%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %> 720w, 
+                                                                                                    <%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %> 900w"
+                                                                                                sizes="(max-width: 600px) 100vw, 600px" />
+                                                                                        </div>
+                                                                                        <!-- <div
+                                                                                            class="edgtf-plc-hover-image">
+                                                                                            <img width="800px"
+                                                                                                height="auto"
+                                                                                                src="<%= process.env.SubCategoryImagePATH + SubCategoryNameWiseData[i].SubCategoryImage %>"
+                                                                                                alt="loading" />
+                                                                                        </div> -->
+                                                                                        <!-- <a class="edgtf-pli-link link_desk"
+                                                                                            itemprop="url" href="#">
+                                                                                            <div
+                                                                                                class="shopbycategorydiv">
+                                                                                                <span
+                                                                                                    class="shopbycatgorytext">
+                                                                                                    <%= SubCategoryNameWiseData[i].SubCategoryName
+                                                                                                        %>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </a> -->
+                                                                                        <div
+                                                                                            class="subcategorynametextcss">
+                                                                                            <span
+                                                                                                class="subcategorynametextbutton">
+                                                                                                <%= SubCategoryNameWiseData[i].SubCategoryName
+                                                                                                    %>
+                                                                                                    <p><a href="/Items/<%= SubCategoryNameWiseData[i].SubCategoryID %>"
+                                                                                                            class="shopbtn2 button asagacollectionshopnow asagashop">Shop
+                                                                                                            Now</a>
+                                                                                                    </p>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <%}%>
+                                                                                    <%}%>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="edgtf-row-grid-section-wrapper mob_section_wrapper">
+                                                <div class="edgtf-row-grid-section sectionSize">
+                                                    <div class="vc_row wpb_row vc_row-fluid vc_custom_1555489320486"
+                                                        id="VC_CELEBRITYCLOSET">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="edgtf-section-title-holder"
+                                                                        style="text-align: left">
+                                                                        <div class="edgtf-st-inner">
+                                                                            <h3 class="mobilecategory"
+                                                                                style="text-align: center;margin-top: 0;margin-bottom: 0;font-size: 23px;">
+                                                                                <span class="mobilecategoryspace"
+                                                                                    style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">CELEBRITY
+                                                                                    CLOSET</span>
+                                                                            </h3>
+                                                                            <h5 class="mobiletocart"
+                                                                                style="text-align: center;margin-top: 10px;margin-bottom: 0;font-size: 14px;">
+                                                                                <span class="mobilecategorycart"
+                                                                                    style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">SHOP
+                                                                                    NOW</span>
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- mobile view -->
+                                            <div class="edgtf-row-grid-section-wrapper desk_section-wrapper">
+                                                <div class="edgtf-row-grid-section sectionSize">
+                                                    <div class="vc_row wpb_row vc_row-fluid vc_custom_1555489320486"
+                                                        id="VC_CELEBRITYCLOSET">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="edgtf-section-title-holder"
+                                                                        style="text-align: left">
+                                                                        <div class="edgtf-st-inner">
+                                                                            <h3 class="mobilecategory"
+                                                                                style="text-align: center;margin-top: 0;margin-bottom: 0;font-size: 23px;">
+                                                                                <span class="mobilecategoryspace"
+                                                                                    style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">ASAGA
+                                                                                    COLLECTION</span>
+                                                                            </h3>
+                                                                            <h5 class="mobiletocart"
+                                                                                style="text-align: center;margin-top: 10px;margin-bottom: 0;font-size: 14px;">
+                                                                                <span class="mobilecategorycart"
+                                                                                    style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">SHOP
+                                                                                    NOW</span>
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="edgtf-row-grid-section-wrapper">
+                                                <div class="edgtf-row-grid-section edgtf_mobilecelebrity mobScrollView">
+                                                    <div
+                                                        class="vc_row wpb_row vc_row-fluid vc_custom_1560433008036 VC_mob">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner vc_mobilecelebrity">
+                                                                <div class="wpb_wrapper">
+                                                                    <div
+                                                                        class="edgtf-plc-holder edgtf-standard-layout edgtf-small-space edgtf-plc-nav-default-skin edgtf-plc-pag-bellow-slider edgtf-plc-pag-default-skin mobilecelebrity">
+                                                                        <div class="edgtf-plc-outer edgtf-owl-slider"
+                                                                            data-number-of-items="4"
+                                                                            data-enable-loop="yes"
+                                                                            data-enable-autoplay="yes"
+                                                                            data-slider-speed="5000"
+                                                                            data-slider-speed-animation="600"
+                                                                            data-enable-navigation="yes"
+                                                                            data-enable-pagination="no">
+                                                                            <% if(CelebrityStyleData.length> 0) { %>
+                                                                                <% for(var i=0; i <
+                                                                                    CelebrityStyleData.length; i++) {%>
+                                                                                    <div class="edgtf-plc-item">
+                                                                                        <div
+                                                                                            class="edgtf-plc-image-outer">
+                                                                                            <div
+                                                                                                class="edgtf-plc-image">
+                                                                                                <img width="600px"
+                                                                                                    height="auto"
+                                                                                                    src="<%= process.env.ItemImagePATH + CelebrityStyleData[i].ItemImage %>"
+                                                                                                    class="attachment-woocommerce_single size-woocommerce_single wp-post-image celebimg"
+                                                                                                    alt="loading"
+                                                                                                    srcset="<%= process.env.ItemImagePATH + CelebrityStyleData[i].ItemImage %> 180w, <%= process.env.ItemImagePATH + CelebrityStyleData[i].ItemImage %> 360w, <%= process.env.ItemImagePATH + CelebrityStyleData[i].ItemImage %> 540w, <%= process.env.ItemImagePATH + CelebrityStyleData[i].ItemImage %> 720w, <%= process.env.ItemImagePATH + CelebrityStyleData[i].ItemImage %> 900w"
+                                                                                                    sizes="(max-width: 600px) 100vw, 600px" />
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="edgtf-plc-hover-image">
+                                                                                                <img width="800px"
+                                                                                                    height="auto"
+                                                                                                    src="<%= process.env.ItemImagePATH + CelebrityStyleData[i].ItemImage %>"
+                                                                                                    alt="loading" />
+                                                                                            </div>
+                                                                                            <a class="edgtf-pli-link link_desk"
+                                                                                                itemprop="url" href="#">
+                                                                                                <div
+                                                                                                    class="shopbycategorydiv">
+                                                                                                    <span
+                                                                                                        class="shopbycatgorytext">
+                                                                                                        <%= CelebrityStyleData[i].ItemName
+                                                                                                            %>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </a>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="edgtf-row-grid-section-wrapper desk_section-wrapper">
+                                                <div class="edgtf-row-grid-section sectionSize">
+                                                    <div class="vc_row wpb_row vc_row-fluid vc_custom_1555489320486"
+                                                        id="VC_CELEBRITYCLOSET_SHOPNOW">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="edgtf-section-title-holder">
+                                                                        <div class="edgtf-st-inner centerdivcss">
+                                                                            <h3 class="mobilecategory"
+                                                                                style="text-align: center;margin-top: 0;margin-bottom: 0;font-size: 23px;">
+                                                                                <span class="mobilecategoryspace"
+                                                                                    style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">CELEBRITY
+                                                                                    PICKS</span>
+                                                                            </h3>
+                                                                            <!-- <h5 class="mobiletocart"
+                                                                            style="text-align: center;margin-top: 10px;margin-bottom: 0;font-size: 14px;">
+                                                                            <span class="mobilecategorycart"
+                                                                                style="font-family: 'Cinzel';font-weight: 600;letter-spacing: 3px;">SHOP
+                                                                                NOW</span>
+                                                                            
+                                                                        </h5> -->
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="centerdivcss">
+                                                                <a class="edgtf-pli-link" itemprop="url" href="">
+                                                                    <div class="mob_celebrity celebritycssdiv">
+                                                                        <span class="shopbycatgorytext">
+                                                                            SHOP NOW
+                                                                        </span>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="vc_row wpb_row vc_row-fluid vc_custom_1555488966025"
+                                                id="vc_ourstore">
+                                                <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                    <div class="vc_column-inner">
+                                                        <div class="wpb_wrapper">
+                                                            <div class="edgtf-video-button-holder  edgtf-vb-has-img"
+                                                                style="width: 100%;">
+                                                                <div class="edgtf-video-button-image">
+                                                                    <img width="2560" height="500"
+                                                                        style="height: 600px;object-fit: cover;object-position: top;"
+                                                                        src="/images/GET DIRECTIONS NEW _.jpg"
+                                                                        class="attachment-full size-full ourstoreimgcss"
+                                                                        alt="loading" loading="lazy" />
+
+                                                                    <div class="getdirectcss">
+                                                                        <a href="https://goo.gl/maps/XpBdhosydo1URQNA6"
+                                                                            target="_blank"
+                                                                            class="shopbtn button storedirections"
+                                                                            style="font-family: 'Cinzel';position: absolute;bottom: 15%;left: 29%;">Get
+                                                                            Directions</a>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="edgtf-row-grid-section-wrapper" id="vc_aboutus">
+                                                <div class="edgtf-row-grid-section">
+                                                    <div class="vc_row wpb_row vc_row-fluid">
+                                                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                            <div class="vc_column-inner">
+                                                                <div class="wpb_wrapper">
+                                                                    <div
+                                                                        class="edgtf-elements-holder edgtf-two-columns  edgtf-responsive-mode-1024">
+                                                                        <div class="edgtf-eh-item"
+                                                                            data-item-class="edgtf-eh-custom-1133"
+                                                                            data-1025-1366="0px 48px 2px 0px"
+                                                                            data-769-1024="136px 50px 0px 0px"
+                                                                            data-681-768="136px 50px 0px 0px"
+                                                                            data-680="0px 0px 0px 0px">
+                                                                            <div class="edgtf-eh-item-inner">
+                                                                                <div
+                                                                                    class="edgtf-eh-item-content edgtf-eh-custom-1133 homeAboutUsMobile">
+                                                                                    <div
+                                                                                        class="edgtf-section-title-holder">
+                                                                                        <div class="edgtf-st-inner">
+                                                                                            <h6 class="edgtf-st-tagline"
+                                                                                                style="margin: 0px !important;">
+                                                                                                <!-- our bi-monthly editorial -->
+                                                                                            </h6>
+                                                                                            <h1 style="text-align: center;text-transform: uppercase;letter-spacing: 10px;padding-left: 20px;"
+                                                                                                class="edgtf-st-title abtletspacing">
+                                                                                                About
+                                                                                            </h1>
+                                                                                            <h1 style="text-align: center;margin-bottom: 10%;"
+                                                                                                class="edgtf-st-title">
+                                                                                                <span
+                                                                                                    class="edgtf-st-italic">asaga</span>
+                                                                                                today
+                                                                                            </h1>
+                                                                                            <span class="doublecomma"
+                                                                                                style="font-size: 84px;position: absolute;color: black;">
+                                                                                                &ldquo;</span>
+                                                                                            <p class="edgtf-st-text text-justify aboutUstext aboutusmarleft"
+                                                                                                style="margin-top: 11px;margin-left: 5%;line-height: 32px;font-size: 16px;">
+
+                                                                                                <%= AboutUsData !=null ?
+                                                                                                    AboutUsData.length>
+                                                                                                    0 ?
+                                                                                                    AboutUsData[0].Description
+                                                                                                    : '' : '' %>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="edgtf-eh-item"
+                                                                            data-item-class="edgtf-eh-custom-6799"
+                                                                            data-1367-1600="0% 0% 0% 9%"
+                                                                            data-1025-1366="0% 0% 0% 12%"
+                                                                            data-769-1024="9% 0%"
+                                                                            data-681-768="11.5% 0%" data-680="6% 0%">
+                                                                            <!-- data-680="6% 0% 0% 0%"> -->
+                                                                            <div class="edgtf-eh-item-inner">
+                                                                                <div class="edgtf-eh-item-content edgtf-eh-custom-6799"
+                                                                                    style="padding: 0% 0% 0% 15%">
+                                                                                    <div
+                                                                                        class="edgtf-single-image-holder">
+                                                                                        <div class="edgtf-si-inner">
+                                                                                            <img style="height: 500px;object-fit: contain;"
+                                                                                                width="800"
+                                                                                                height="1135"
+                                                                                                src="<%= process.env.ABOUTUSImagePATH %><%= AboutUsData != null ? AboutUsData.length > 0 ? AboutUsData[0].AboutUsImage : '' : '' %>"
+                                                                                                class="attachment-full size-full abtimg"
+                                                                                                alt="loading"
+                                                                                                loading="lazy"
+                                                                                                srcset="<%= process.env.ABOUTUSImagePATH %> <%= AboutUsData != null ? AboutUsData.length > 0 ? AboutUsData[0].AboutUsImage : '' : '' %> 800w, <%= process.env.ABOUTUSImagePATH %> <%= AboutUsData != null ? AboutUsData.length > 0 ? AboutUsData[0].AboutUsImage : '' : '' %> 211w, <%= process.env.ABOUTUSImagePATH %> <%= AboutUsData != null ? AboutUsData.length > 0 ? AboutUsData[0].AboutUsImage : '' : '' %> 768w, <%= process.env.ABOUTUSImagePATH %> <%= AboutUsData != null ? AboutUsData.length > 0 ? AboutUsData[0].AboutUsImage : '' : '' %> 722w, <%= process.env.ABOUTUSImagePATH %> <%= AboutUsData != null ? AboutUsData.length > 0 ? AboutUsData[0].AboutUsImage : '' : '' %> 600w"
+                                                                                                sizes="(max-width: 800px) 100vw, 800px" />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <%- include('../partial/footer.ejs') %>
+                <script>
+                    $(".carousel").owlCarousel({
+                        margin: 20,
+                        loop: true,
+                        autoplay: true,
+                        autoplayTimeout: 5000,
+                        autoplayHoverPause: true,
+                        responsive: {
+                            0: {
+                                items: 1,
+                                nav: false
+                            },
+                            600: {
+                                items: 2,
+                                nav: false
+                            },
+                            1000: {
+                                items: 3,
+                                nav: false
+                            }
+                        }
+                    });
+                </script>

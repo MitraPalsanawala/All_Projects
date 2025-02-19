@@ -1,0 +1,1061 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divAddUser"
+                                style="margin-top: 5px; display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Add Train Station Mapping Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <% if(!FetchData){ %>
+                                                <form id="frmTrain" class="form" action="/AddTrain" method="post"
+                                                    autocomplete="off">
+                                                    <input type="text" id="PlantID" name="plant_id" value=""
+                                                        style="display: none;">
+                                                    <div class="card-body">
+                                                        <div id="divSearch" class="">
+                                                            <div class="row" style="margin-bottom: -26px;">
+                                                                <input type="hidden" id="lblfrequency"
+                                                                    name="lblfrequency" value="" style="display: none;">
+
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Train Name : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <select ID="train_master_name"
+                                                                            class="form-control select2 select2dropdown"
+                                                                            name="train_master_name"
+                                                                            onchange="BindTrainNumber()" tabindex="1">
+                                                                            <option Value="">--Select Train--
+                                                                            </option>
+
+                                                                            <% if(TrainMasterData &&
+                                                                                TrainMasterData.data &&
+                                                                                TrainMasterData.data.length> 0){ %>
+                                                                                <%for(var i=0; i <
+                                                                                    TrainMasterData.data.length; i++){%>
+                                                                                    <option
+                                                                                        value="<%= TrainMasterData.data[i].train_master_id %>">
+                                                                                        <%= TrainMasterData.data[i].train_master_name
+                                                                                            %> (<%=
+                                                                                                TrainMasterData.data[i].train_master_number
+                                                                                                %>)
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <% } %>
+
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <input type="hidden" name="train_master_id" value=""
+                                                                    id="train_master_id">
+
+                                                                <input type="hidden" name="train_name" value=""
+                                                                    id="train_name">
+
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Train number : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <input type="text" id="train_number"
+                                                                            placeholder="Train Number"
+                                                                            autocomplete="off" class="form-control"
+                                                                            name="train_number" readonly="readonly"
+                                                                            tabindex="2">
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Starting Station : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <select ID="default_station_id"
+                                                                            class="form-control select2 select2dropdown"
+                                                                            name="default_station_id"
+                                                                            onchange="ValidateTrainNumber()"
+                                                                            tabindex="3">
+                                                                            <option Value="">--Select Starting Station--
+                                                                            </option>
+                                                                            <% if(StationData && StationData.data &&
+                                                                                StationData.data.length> 0){ %>
+                                                                                <%for(var i=0; i <
+                                                                                    StationData.data.length; i++){%>
+                                                                                    <option
+                                                                                        value="<%= StationData.data[i].id %>">
+                                                                                        <%= StationData.data[i].station_name
+                                                                                            %>
+                                                                                            (<%= StationData.data[i].station_code
+                                                                                                %>)
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                        <%}%>
+
+                                                                        </select>
+                                                                        <span id="spanTrainNumberAlreadyExist"
+                                                                            class="error" style="display:none;">Train
+                                                                            Number Already
+                                                                            Exist</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Target Quantity : <span
+                                                                                class="text-danger ml-1">*</span></label>
+                                                                        <input type="text" id="target_qty"
+                                                                            placeholder="Target Quantity"
+                                                                            autocomplete="off" maxlength="4"
+                                                                            class="form-control AllowNumberKey"
+                                                                            name="target_qty" value="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Order Type : </label>
+                                                                        <select ID="order_type"
+                                                                            class="form-control select2dropdown"
+                                                                            name="order_type" onchange="">
+
+                                                                            <option value="1" selected>Order</option>
+                                                                            <option value="2">Challan</option>
+                                                                        </select>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-lg-6"
+                                                                    style="margin-bottom: 10px">
+                                                                    <div class="form-group formgroupcss">
+                                                                        <label>Train Frequency : <span
+                                                                                class="text-danger ml-1">*</span></label><br>
+                                                                        <input type="checkbox" id="frequency1"
+                                                                            name="frequency" value="1"
+                                                                            onclick="handleCheckbox(this)">
+                                                                        <label for="frequency1">Monday</label>
+
+                                                                        <input type="checkbox" id="frequency2"
+                                                                            name="frequency" value="1"
+                                                                            onclick="handleCheckbox(this)">
+                                                                        <label for=" frequency2">Tuesday</label>
+
+                                                                        <input type="checkbox" id="frequency3"
+                                                                            name="frequency" value="1"
+                                                                            onclick="handleCheckbox(this)">
+                                                                        <label for="frequency3">Wednesday</label>
+
+                                                                        <input type="checkbox" id="frequency4"
+                                                                            name="frequency" value="1"
+                                                                            onclick="handleCheckbox(this)">
+                                                                        <label for="frequency4">Thursday</label>
+
+                                                                        <input type="checkbox" id="frequency5"
+                                                                            name="frequency" value="1"
+                                                                            onclick="handleCheckbox(this)">
+                                                                        <label for="frequency5">Friday</label>
+
+                                                                        <input type="checkbox" id="frequency6"
+                                                                            name="frequency" value="1"
+                                                                            onclick="handleCheckbox(this)">
+                                                                        <label for="frequency6">Saturday</label>
+
+                                                                        <input type="checkbox" id="frequency7"
+                                                                            name="frequency" value="1"
+                                                                            onclick="handleCheckbox(this)">
+                                                                        <label for="frequency7">Sunday</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3"
+                                                                    style="padding-top: 6px;margin-bottom: 20px">
+                                                                    <div class="form-group formgroupbuttoncss">
+                                                                        <button type="submit" id=""
+                                                                            class="btn btn-primary"
+                                                                            style="margin-bottom: 10px;"
+                                                                            onclick="return ValidateCustomData()">
+                                                                            <i class="la la-check-square-o"
+                                                                                style="color: white;"></i>
+                                                                            Submit</button>
+                                                                        <button type="reset" value="reset"
+                                                                            id="btnCancel" class="btn btn-danger"
+                                                                            style="margin-bottom: 10px;"
+                                                                            onclick="CancelFunction()">
+                                                                            <i
+                                                                                class="fa-window-close fas"></i>Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <% }else{ %>
+                                                    <form id="frmTrain" class="form" action="/UpdateTrain" method="post"
+                                                        autocomplete="off">
+                                                        <input type="text" id="PlantID" name="plant_id" value=""
+                                                            style="display: none;">
+                                                        <input type="text" id="train_id" name="train_id"
+                                                            value="<%= FetchData.data[0].train_id %>"
+                                                            style="display: none;">
+                                                        <div class="card-body">
+                                                            <div id="divSearch" class="">
+                                                                <div class="row" style="margin-bottom: -26px;">
+                                                                    <input type="hidden" id="lblfrequency"
+                                                                        name="lblfrequency" value=""
+                                                                        style="display: none;">
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Train Name : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select ID="train_master_name"
+                                                                                class="form-control select2dropdown"
+                                                                                name="train_master_name"
+                                                                                value="<%= FetchData.data[0].train_name %>"
+                                                                                onchange="BindTrainNumber()">
+                                                                                <option value="">--Select Train--
+                                                                                </option>
+
+                                                                                <% if(TrainMasterData &&
+                                                                                    TrainMasterData.data &&
+                                                                                    TrainMasterData.data.length>
+                                                                                    0){ %>
+                                                                                    <%for(var i=0; i <
+                                                                                        TrainMasterData.data.length;
+                                                                                        i++){%>
+                                                                                        <% if(FetchData.data[0].train_name==TrainMasterData.data[i].train_master_name){
+                                                                                            %>
+                                                                                            <option selected="selected"
+                                                                                                value="<%= TrainMasterData.data[i].train_master_id %>">
+                                                                                                <%= TrainMasterData.data[i].train_master_name
+                                                                                                    %> (<%=
+                                                                                                        TrainMasterData.data[i].train_master_number
+                                                                                                        %>)
+                                                                                            </option>
+                                                                                            <% }else{ %>
+                                                                                                <option
+                                                                                                    value="<%= TrainMasterData.data[i].train_master_id %>">
+                                                                                                    <%= TrainMasterData.data[i].train_master_name
+                                                                                                        %> (<%=
+                                                                                                            TrainMasterData.data[i].train_master_number
+                                                                                                            %>)
+                                                                                                </option>
+                                                                                                <% } %>
+                                                                                                    <% } %>
+                                                                                                        <% } %>
+
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <input type="hidden" name="train_master_id" value=""
+                                                                        id="train_master_id">
+
+                                                                    <input type="hidden" name="train_name" value=""
+                                                                        id="train_name">
+
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Train number : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="train_number"
+                                                                                placeholder="Train Number"
+                                                                                autocomplete="off" class="form-control"
+                                                                                name="train_number"
+                                                                                value="<%= FetchData.data[0].train_number %>"
+                                                                                onchange="" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Starting Station : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <select ID="default_station_id"
+                                                                                class="form-control select2dropdown"
+                                                                                name="default_station_id"
+                                                                                value="<%= FetchData.data[0].default_station_id %>"
+                                                                                onchange="ValidateTrainNumber()">
+                                                                                <option value="">--Select Starting
+                                                                                    Station--
+                                                                                </option>
+                                                                                <% if(StationData && StationData.data &&
+                                                                                    StationData.data.length> 0 ){ %>
+                                                                                    <%for(var i=0; i <
+                                                                                        StationData.data.length; i++){%>
+                                                                                        <% if(FetchData.data[0].default_station_id.toString()==StationData.data[i].id.toString()){
+                                                                                            %>
+                                                                                            <option selected="selected"
+                                                                                                value="<%= StationData.data[i].id %>">
+                                                                                                <%= StationData.data[i].station_name
+                                                                                                    %> (<%=
+                                                                                                        StationData.data[i].station_code
+                                                                                                        %>)
+                                                                                            </option>
+                                                                                            <% }else{ %>
+                                                                                                <option
+                                                                                                    value="<%= StationData.data[i].id %>">
+                                                                                                    <%= StationData.data[i].station_name
+                                                                                                        %> (<%=
+                                                                                                            StationData.data[i].station_code
+                                                                                                            %>)
+                                                                                                </option>
+                                                                                                <% } %>
+                                                                                                    <% } %>
+                                                                                                        <%}%>
+
+                                                                            </select>
+                                                                            <span id="spanTrainNumberAlreadyExist"
+                                                                                class="error"
+                                                                                style="display:none;">Train
+                                                                                Number Already
+                                                                                Exist</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Target Quantity : <span
+                                                                                    class="text-danger ml-1">*</span></label>
+                                                                            <input type="text" id="target_qty"
+                                                                                placeholder="Target Quantity"
+                                                                                autocomplete="off"
+                                                                                class="form-control AllowNumberKey"
+                                                                                name="target_qty" maxlength="4"
+                                                                                value="<%= FetchData.data[0].target_qty %>">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Order Type : </label>
+                                                                            <select ID="order_type"
+                                                                                class="form-control select2dropdown"
+                                                                                name="order_type" onchange="">
+                                                                                <!-- <option Value="">--Select Order Type--
+                                                                                </option> -->
+                                                                                <% var
+                                                                                    selectedAttribute1=FetchData.data[0].order_type===1
+                                                                                    ? 'selected' : '' ; %>
+
+                                                                                    <% var
+                                                                                        selectedAttribute2=FetchData.data[0].order_type===2
+                                                                                        ? 'selected' : '' ; %>
+
+                                                                                        <option value="1"
+                                                                                            <%=selectedAttribute1 %>
+                                                                                            >Order
+                                                                                        </option>
+                                                                                        <option value="2"
+                                                                                            <%=selectedAttribute2 %>
+                                                                                            >Challan
+                                                                                        </option>
+                                                                            </select>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6 col-lg-6"
+                                                                        style="padding-left: 0; margin-bottom: 10px">
+                                                                        <div class="form-group formgroupcss">
+                                                                            <label>Train Frequency : <span
+                                                                                    class="text-danger ml-1">*</span></label><br>
+
+                                                                            <input type="checkbox" id="frequency1"
+                                                                                name="frequency1" value=""
+                                                                                onclick="handleCheckbox(this)"
+                                                                                <%=BindFrequency[0]=='1' ? 'checked' :''
+                                                                                %>>
+                                                                            <label for="frequency1">Monday</label>
+
+                                                                            <input type="checkbox" id="frequency2"
+                                                                                name="frequency2" value=""
+                                                                                onclick="handleCheckbox(this)"
+                                                                                <%=BindFrequency[1]=='1' ? 'checked' :''
+                                                                                %>>
+                                                                            <label for="frequency2">Tuesday</label>
+
+
+                                                                            <input type="checkbox" id="frequency3"
+                                                                                name="frequency3" value=""
+                                                                                onclick="handleCheckbox(this)"
+                                                                                <%=BindFrequency[2]=='1' ? 'checked' :''
+                                                                                %>>
+                                                                            <label for="frequency3">Wednesday</label>
+
+                                                                            <input type="checkbox" id="frequency4"
+                                                                                name="frequency4" value=""
+                                                                                onclick="handleCheckbox(this)"
+                                                                                <%=BindFrequency[3]=='1' ? 'checked' :''
+                                                                                %>>
+                                                                            <label for="frequency4">Thursday</label>
+
+                                                                            <input type="checkbox" id="frequency5"
+                                                                                name="frequency5" value=""
+                                                                                onclick="handleCheckbox(this)"
+                                                                                <%=BindFrequency[4]=='1' ? 'checked' :''
+                                                                                %>>
+                                                                            <label for="frequency5">Friday</label>
+
+
+                                                                            <input type="checkbox" id="frequency6"
+                                                                                name="frequency6" value=""
+                                                                                onclick="handleCheckbox(this)"
+                                                                                <%=BindFrequency[5]=='1' ? 'checked' :''
+                                                                                %>>
+                                                                            <label for="frequency6">Saturday</label>
+
+                                                                            <input type="checkbox" id="frequency7"
+                                                                                name="frequency7" value=""
+                                                                                onclick="handleCheckbox(this)"
+                                                                                <%=BindFrequency[6]=='1' ? 'checked' :''
+                                                                                %>>
+                                                                            <label for="frequency7">Sunday</label>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-lg-3"
+                                                                        style="padding-top: 6px;margin-bottom: 20px">
+                                                                        <div class="form-group formgroupbuttoncss">
+                                                                            <button type="submit" id=""
+                                                                                class="btn btn-primary"
+                                                                                style="margin-bottom: 10px;"
+                                                                                onclick="return ValidateCustomData()">
+                                                                                <i class="la la-check-square-o"
+                                                                                    style="color: white;"></i>
+                                                                                Update</button>
+                                                                            <button type="reset" value="reset"
+                                                                                id="btnCancel" class="btn btn-danger"
+                                                                                style="margin-bottom: 10px;"
+                                                                                onclick="CancelFunction()">
+                                                                                <i
+                                                                                    class="fa-window-close fas"></i>Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divFilter"
+                                style="margin-top: 5px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search Train Station Mapping Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <form id="frmCustUser" class="form" action="/Train" method="post"
+                                                autocomplete="off">
+                                                <input type="text" id="PlantID" name="plant_id" value=""
+                                                    style="display: none;">
+                                                <div class="card-body">
+                                                    <div id="divFilter" class="">
+                                                        <div class="row" style="margin-bottom: -31px;">
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Train : </label>
+                                                                    <select id="trainid"
+                                                                        class="form-control select2dropdown"
+                                                                        name="train_id">
+                                                                        <option Value="">--Select Train--
+                                                                        </option>
+                                                                        <% if(TrainDropDown && TrainDropDown.data &&
+                                                                            TrainDropDown.data.length> 0){ %>
+                                                                            <%for(var i=0; i <
+                                                                                TrainDropDown.data.length; i++){%>
+                                                                                <option
+                                                                                    value="<%= TrainDropDown.data[i].train_id %>">
+                                                                                    <%= TrainDropDown.data[i].train_name
+                                                                                        %> (
+                                                                                        <%= TrainDropDown.data[i].train_number
+                                                                                            %>
+                                                                                            )
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Starting Station : </label>
+                                                                    <select id="stationid"
+                                                                        class="form-control select2dropdown"
+                                                                        name="station_id">
+                                                                        <option Value="">--Select Starting Station--
+                                                                        </option>
+                                                                        <% if(StationData && StationData.data &&
+                                                                            StationData.data.length> 0){ %>
+                                                                            <%for(var i=0; i < StationData.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= StationData.data[i].id %>">
+                                                                                    <%= StationData.data[i].station_name
+                                                                                        %> (
+                                                                                        <%= StationData.data[i].station_code
+                                                                                            %>)
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <%}%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-bottom: 10px">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Order Type : </label>
+                                                                    <select ID="ordertype1"
+                                                                        class="form-control select2dropdown"
+                                                                        name="order_type" onchange="">
+                                                                        <option Value="">--Select Order Type--
+                                                                        </option>
+                                                                        <option value=1>Order</option>
+                                                                        <option value=2>Challan</option>
+                                                                    </select>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3"
+                                                                style="padding-top: 26px; margin-bottom: 20px">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="" class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="divShowFilterDetail(this)">
+                                                                        <i class="fa fa-search"
+                                                                            style="color: white;"></i>
+                                                                        Search</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact">
+                                <!-- <div class="separator separator-dashed mt-8 mb-5"></div> -->
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">View Train Station Mapping Detail
+                                            </div>
+                                            <div class="card-title">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divAddTrainDetail(this)" style="margin: 5px;"
+                                                    onclick="">Add
+                                                    Train Station Mapping &nbsp;<i class="fa fa-plus"></i></button>
+                                                <div></div>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divhideShowFilterDetail(this)"
+                                                    style="margin: 5px;">&nbsp;<i class="fa fa-plus"></i>Filter &nbsp;<i
+                                                        class='fa fa-filter'></i></button>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <table class="table table-bordered" id="tblblock">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="tdcss" width="1%">Sr. No.</th>
+                                                        <th class="tdcss" width="12%">Train Name</th>
+                                                        <th class="tdcss" width="3%">Train Number</th>
+                                                        <th class="tdcss" width="8%">Station Name</th>
+                                                        <th class="tdcss" width="3%">Target Quantiy</th>
+                                                        <th class="tdcss" width="6%">Order Type</th>
+                                                        <th class="tdcss" width="6%">Train Frequency</th>
+                                                        <th class="tdcss" width="1%">Edit</th>
+                                                        <th class="tdcss" width="1%">Delete</th>
+                                                        <th class="tdcss" width="1%">Add Station</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblbody">
+                                                    <% if(TrainData && TrainData.data && TrainData.data.length> 0) { %>
+
+                                                        <% for(var i=0; i < TrainData.data.length; i++) {%>
+                                                            <tr>
+                                                                <td class="tdcss">
+                                                                    <span class="tdfont">
+                                                                        <%= i+1 %>
+                                                                    </span>
+                                                                </td>
+
+                                                                <td>
+                                                                    <%- TrainData.data[i].train_name %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- TrainData.data[i].train_number %>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(TrainData.data[i].StationDetail){ %>
+                                                                        <%- TrainData.data[i].StationDetail[0].station_name
+                                                                            %>
+                                                                            <% }else{ %>
+                                                                                -
+                                                                                <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <%- TrainData.data[i].target_qty %>
+                                                                </td>
+                                                                <td>
+                                                                    <%if(TrainData.data[i].order_type=='1' ){%>
+                                                                        <span>Order</span>
+                                                                        <% }else{%>
+                                                                            <span>Challan</span>
+                                                                            <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <% var bindfrequency %>
+                                                                        <% var dayNamesForBinary=[]%>
+                                                                            <% var binddaysName %>
+                                                                                <% var binarySequenceString %>
+                                                                                    <% var binarySequence %>
+
+                                                                                        <% var dayname=['Monday'
+                                                                                            , 'Tuesday' , 'Wednesday'
+                                                                                            , 'Thursday' , 'Friday'
+                                                                                            , 'Saturday' ,'Sunday' ] %>
+                                                                                            <% bindfrequency=TrainData.data[i].frequency
+                                                                                                %>
+
+                                                                                                <% binarySequenceString=bindfrequency
+                                                                                                    %>
+
+                                                                                                    <% binarySequence=binarySequenceString.split(',').map(Number)
+                                                                                                        %>
+
+                                                                                                        <% function
+                                                                                                            getDayNamesForBinary(binaryArray)
+                                                                                                            { for (let
+                                                                                                            i=0; i <
+                                                                                                            binaryArray.length;
+                                                                                                            i++) { if
+                                                                                                            (binaryArray[i]===1)
+                                                                                                            {
+                                                                                                            dayNamesForBinary.push(dayname[i]);
+                                                                                                            } } return
+                                                                                                            dayNamesForBinary
+                                                                                                            } var
+                                                                                                            binddata=getDayNamesForBinary(binarySequence)
+                                                                                                            %>
+                                                                                                            <span>
+                                                                                                                <%= dayNamesForBinary.join(',')
+                                                                                                                    %>
+                                                                                                            </span>
+                                                                </td>
+                                                                <td>
+                                                                    <a
+                                                                        href="/TrainfindbyId/<%- TrainData.data[i].train_id %>"><i
+                                                                            class="la la-pencil-square-o"
+                                                                            style="font-size:24px;color: #03449e;"
+                                                                            onclick="divAddTrainDetail(this)"></i></a>
+                                                                </td>
+                                                                <td>
+                                                                    <a
+                                                                        href="/deleteTrain/<%- TrainData.data[i].train_id %>"><i
+                                                                            class="la la-trash-o"
+                                                                            onclick="return confirm('Are you sure you want to Delete?')"
+                                                                            style="font-size:24px;color:#03449e;">
+                                                                        </i></a>
+                                                                </td>
+
+                                                                <td>
+                                                                    <a
+                                                                        href="/TrainStationMappingView/<%- TrainData.data[i].train_id %>"><i
+                                                                            class="la la-train"
+                                                                            style="font-size:24px;color: #03449e;"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <%}%>
+                                                                <%}%>
+                                                </tbody>
+                                            </table>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+
+        <%- include('../partials/footer.ejs') %>
+
+            <script type="text/javascript">
+                $(".select2dropdown").select2();
+
+                function CancelFunction() {
+                    window.location.href = "/Train";
+                }
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divFilter").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divFilter").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+                function divAddTrainDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divAddUser").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divAddUser").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+
+                    $(".select2dropdown").select2();
+                }
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                if (SearchData) {
+                    $("#PlantID").val(SearchData.plant_id).change();
+                    $("#trainid").val(SearchData.train_id).change();
+                    $("#stationid").val(SearchData.station_id).change();
+                    $("#ordertype1").val(SearchData.order_type).change();
+                }
+                else {
+                    $("#PlantID").val();
+                    $("#trainid").val();
+                    $("#stationid").val();
+                    $("#ordertype1").val();
+                }
+                var FilterData = JSON.parse('<%- JSON.stringify(FilterData) %>');
+                searchStatus = FilterData;
+                if (searchStatus == true) {
+                    $("#divFilter").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+
+                var FetchData = JSON.parse(`<%- JSON.stringify(FetchData).replace(/[\n\r\t]/g, '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'") %>`);
+                if (FetchData) {
+                    $("#divAddUser").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+
+                $("#DropDownPlantID").change(function () {
+                    // alert($('option:selected', this).text());
+                    $("#PlantID").val($("#DropDownPlantID").val())
+                });
+
+                $("#tblblock").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+
+                var BindFrequency = JSON.parse('<%- JSON.stringify(BindFrequency) %>');
+                function handleCheckbox(chkboxDetail) {
+                    var data = '';
+                    if ($("#frequency1").prop('checked')) {
+                        data += '1,'
+                    }
+                    else {
+                        data += '0,'
+                    }
+
+                    if ($("#frequency2").prop('checked')) {
+                        data += '1,'
+                    }
+                    else {
+                        data += '0,'
+                    }
+
+                    if ($("#frequency3").prop('checked')) {
+                        data += '1,'
+                    }
+                    else {
+                        data += '0,'
+                    }
+                    if ($("#frequency4").prop('checked')) {
+                        data += '1,'
+                    }
+                    else {
+                        data += '0,'
+                    }
+                    if ($("#frequency5").prop('checked')) {
+                        data += '1,'
+                    }
+                    else {
+                        data += '0,'
+                    }
+                    if ($("#frequency6").prop('checked')) {
+                        data += '1,'
+                    }
+                    else {
+                        data += '0,'
+                    }
+                    if ($("#frequency7").prop('checked')) {
+                        data += '1'
+                    }
+                    else {
+                        data += '0'
+                    }
+
+                    // alert(data)
+                    var bind = $("#frequency1").prop('checked')
+                    $("#lblfrequency").val(data);
+                    // const checkbox = document.getElementById(chkboxDetail.id);
+                    // const value = checkbox.checked ? 1 : 0;
+                    // console.log(value);
+                }
+
+
+                jQuery('#tblUser').on('draw.dt', function () {
+                    jQuery('.toggle').each(function () {
+                        $(this).toggles({
+                            on: $(this).data('toggle-on')
+                        });
+                    });
+                });
+                $("#frmTrain").validate({
+                    debug: false,
+                    errorElement: 'span',
+                    invalidHandler: function (event, validator) {
+                        if (validator.numberOfInvalids() > 0) {
+                            event.preventDefault();
+                        }
+                    },
+                    onkeyup: false,
+                    messages: {
+                        train_master_name: {
+                            required: "Please Enter Train Name"
+                        },
+                        // train_number: {
+                        // required: "Please Enter Train Number"
+                        // },
+                        default_station_id: {
+                            required: "Please Select Station"
+                        },
+                        target_qty: {
+                            required: "Please Enter Quantity"
+                        },
+                        order_type: {
+                            required: "Please Select Order Type"
+                        },
+                        // frequency: {
+                        // required: "Please Select frequency"
+                        // }
+                    },
+                    rules: {
+                        train_master_name: {
+                            required: true,
+                        },
+                        // train_number: {
+                        // required: true,
+                        // },
+                        default_station_id: {
+                            required: true,
+                        },
+                        target_qty: {
+                            required: true
+                        },
+                        // frequency: {
+                        // required: true
+                        // }
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span'));
+                        } else if ($(element).parent().hasClass('multiselect-native-select')) {
+                            error.insertAfter($(element).parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    submitHandler: function (form, event) {
+                        event.preventDefault();
+                    }
+                });
+
+                function ValidateCustomData() {
+                    if (ValidateTrainNumber()) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+
+                function ValidateTrainName() {
+                    var data = JSON.stringify({
+                        'train_name': $("#train_name").val(),
+                        'train_id': $("#train_id").val(),
+                    });
+                    $.ajax({
+                        accepts: "application/json",
+                        async: false,
+                        type: "POST",
+                        contentType: 'application/json',
+                        url: "/CheckTrainName",
+                        data: data,
+                        success: function (res) {
+                            if (res.Message == "true") {
+                                returndata = true;
+                                $("#spanTrainNameAlreadyExist").css("display", "none");
+                            }
+                            else {
+                                returndata = false;
+                                $("#spanTrainNameAlreadyExist").css("display", "block");
+                            }
+                            // BindTrainNumber()
+                        },
+                        error: function (xhr, status, error) {
+                            return false;
+                            $("#spanTrainNameAlreadyExist").css("display", "block");
+                        }
+                    });
+                    return returndata;
+                }
+
+                function ValidateTrainNumber() {
+                    var data = JSON.stringify({
+                        'train_number': $("#train_number").val(),
+                        'train_id': $("#train_id").val(),
+                        'default_station_id': $("#default_station_id").val(),
+                    });
+                    $.ajax({
+                        accepts: "application/json",
+                        async: false,
+                        type: "POST",
+                        contentType: 'application/json',
+                        url: "/CheckTrainNumber",
+                        data: data,
+                        success: function (res) {
+                            if (res.Message == "true") {
+                                returndata = true;
+                                $("#spanTrainNumberAlreadyExist").css("display", "none");
+                            }
+                            else {
+                                returndata = false;
+                                $("#spanTrainNumberAlreadyExist").css("display", "block");
+                            }
+                            // BindTrainNumber()
+                        },
+                        error: function (xhr, status, error) {
+                            return false;
+                            $("#spanTrainNumberAlreadyExist").css("display", "block");
+                        }
+                    });
+                    return returndata;
+                }
+
+                function BindTrainNumber() {
+                    var train_master_name =
+                        document.getElementById("train_master_name").options[document.getElementById("train_master_name").selectedIndex].text;
+                    const trainName = train_master_name.split('(')[0].trim();
+                    var train_master_id = $("#train_master_name").val();
+                    $.ajax({
+                        async: false,
+                        url: '/BindTrainNumber',
+                        type: 'POST',
+                        data: { train_master_name: trainName, train_master_id: train_master_id },
+                        success: function (res) {
+                            if (res.data.data.length > 0) {
+                                $("#train_number").val(res.data.data[0].train_master_number)
+                                $("#train_master_id").val(res.data.data[0].train_master_id)
+                                $("#train_name").val(res.data.data[0].train_master_name)
+                            } else {
+                                $("#train_number").val('')
+                                $("#train_master_id").val('')
+                                $("#train_name").val('')
+                            }
+                        },
+                    })
+                }
+
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") {
+                            window.location.replace(window.location.origin + '/Train')
+                        }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/Train/' + ID)
+                        }
+                    });
+                }
+
+            </script>

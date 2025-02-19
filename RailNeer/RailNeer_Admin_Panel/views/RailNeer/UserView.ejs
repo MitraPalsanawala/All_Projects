@@ -1,0 +1,498 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        #tblUser_wrapper {
+            overflow: auto;
+        }
+
+        .greencolor {
+            color: green;
+            font-weight: bold;
+        }
+
+        .redcolor {
+            color: maroon;
+            font-weight: bold;
+        }
+
+        .toggle-slide {
+            overflow: hidden;
+            cursor: pointer;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            direction: ltr;
+        }
+
+        .toggle-slide .toggle-on,
+        .toggle-slide .toggle-off,
+        .toggle-slide .toggle-blob {
+            float: left;
+        }
+
+        .toggle-slide .toggle-blob {
+            position: relative;
+            z-index: 99;
+            cursor: hand;
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+        }
+
+        .toggle {
+            height: 25px !important;
+        }
+
+        .toggle-off {
+            background-color: #E4E6EF;
+            height: 25px !important;
+            line-height: 25px !important;
+        }
+
+        .toggle-on {
+            background-color: #03449e;
+            color: white;
+            height: 25px !important;
+            line-height: 25px !important;
+        }
+
+        .plusminusicss {
+            font-size: 24px;
+            color: #a22812 !important;
+            font-weight: bold;
+            cursor: default;
+        }
+
+
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+
+        .dataTables_wrapper .dataTable td,
+        .dataTables_wrapper .dataTable thead th {
+            white-space: nowrap !important;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="modal fade" id="modalpassword" data-backdrop="static" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">RailNeer</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group mb-1">
+                                            <label>PIN No</label>
+                                            <input type="text" id="PINNO" name="PINNO"
+                                                class="form-control AllowNumberKey" placeholder="Enter PIN NO"
+                                                maxlength="4" required="">
+                                            <label id="lblPINMessage" class="mt-5"
+                                                style="font-weight: bold; color: red; font-size: 16px; display: none;">Your
+                                                Password is
+                                                : </label>
+                                            <label id="lblDecryptedPassword" style="display: none;"></label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="btnShowPassword" class="btn btn-primary font-weight-bold"
+                                            onclick="CheckPIN()">Show
+                                            Password</button>
+                                        <button type="btnClosePasswordModel"
+                                            class="btn btn-light-primary font-weight-bold"
+                                            data-dismiss="modal">Close</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divSearch"
+                                style="margin-top: 5px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search User Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <form id="frmPlant" class="form" action="/UserView" method="post"
+                                                autocomplete="off">
+                                                <div class="card-body">
+                                                    <div id="divSearch" class="">
+                                                        <div class="row" style="margin-bottom: -14px;">
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>User Name : </label>
+                                                                    <input type="text" id="username"
+                                                                        placeholder="User Name" autocomplete="off"
+                                                                        class="form-control" name="username">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Name : </label>
+                                                                    <input type="text" id="name" placeholder="Name"
+                                                                        autocomplete="off" class="form-control"
+                                                                        name="name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>MobileNo : </label>
+                                                                    <input type="text" id="number"
+                                                                        placeholder="MobileNo" autocomplete="off"
+                                                                        class="form-control AllowNumberKey"
+                                                                        name="number">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3 col-lg-3" style="margin-top: 18px;">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="" class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-search"
+                                                                            style="color: white;"></i>
+                                                                        Search</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                    <button id="btnExcel" name="btnExcel" type="submit"
+                                                                        class="btn btn-success"
+                                                                        formaction="/ViewUserExcel" formmethod="post"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-file-excel"
+                                                                            style="color: white;"></i>Excel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact">
+                                <!-- <div class="separator separator-dashed mt-8 mb-5"></div> -->
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">View User Detail
+                                            </div>
+                                            <div class="card-title">
+                                                <button type="button" value="reset" id="btnCancel"
+                                                    class="btn btn-primary" style="margin: 5px;"
+                                                    onclick="ViewFunction()" tabindex="11">
+                                                    <i class="fa fa-plus"></i>Add User</button>
+
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="divhideShowFilterDetail(this)" style="margin: 5px;"
+                                                    onclick=""><i class='fa fa-filter'></i>Filter &nbsp;<i
+                                                        class="fa fa-plus"></i></button>
+                                                <div></div>
+                                            </div>
+                                        </div>
+
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <table class="table table-bordered" id="tblplant">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="tdcss" width="5%">Sr. No.</th>
+                                                        <th class="tdcss" width="5%">Status</th>
+                                                        <th class="tdcss" width="10%">User Name</th>
+                                                        <th class="tdcss" width="10%">Mobile No</th>
+                                                        <th class="tdcss" width="5%">Name</th>
+                                                        <th class="tdcss" width="10%">City</th>
+                                                        <th class="tdcss" width="10%">State</th>
+                                                        <th class="tdcss" width="20%">Address</th>
+                                                        <!-- <th class="tdcss" width="8%">Entry Date</th> -->
+                                                        <th class="tdcss" width="3%">Password</th>
+                                                        <th class="tdcss" width="5%">Edit</th>
+                                                        <th class="tdcss" width="5%">Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblbody">
+                                                    <% if(UserData && UserData.data && UserData.data.length> 0){ %>
+                                                        <% for(var i=0; i < UserData.data.length; i++) {%>
+                                                            <tr>
+                                                                <td class="tdcss">
+                                                                    <span class="tdfont">
+                                                                        <%= i+1 %>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <div
+                                                                        class="control-label bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-on bootstrap-switch-animate">
+                                                                        <div class="toggle toggle-primary"
+                                                                            data-toggle-on="<%= UserData.data[i].status == 1 ? true : false %>"
+                                                                            data-contact-id="<%= UserData.data[i].id %>">
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <%- UserData.data[i].username %>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(UserData.data[i].UserDetail){ %>
+                                                                        <%- UserData.data[i].UserDetail[0].number %>
+                                                                            <% } else{ %>
+                                                                                <span>-</span>
+                                                                                <% } %>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(UserData.data[i].UserDetail){ %>
+                                                                        <%- UserData.data[i].UserDetail[0].name %>
+                                                                            <% } else{ %>
+                                                                                <span>-</span>
+                                                                                <% } %>
+
+                                                                </td>
+                                                                <td>
+                                                                    <% if(UserData.data[i].UserDetail){ %>
+                                                                        <%- UserData.data[i].UserDetail[0].city %>
+                                                                            <% } else{ %>
+                                                                                <span>-</span>
+                                                                                <% } %>
+
+                                                                </td>
+                                                                <td>
+                                                                    <% if(UserData.data[i].UserDetail){ %>
+                                                                        <%- UserData.data[i].UserDetail[0].state %>
+                                                                            <% } else{ %>
+                                                                                <span>-</span>
+                                                                                <% } %>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(UserData.data[i].UserDetail){ %>
+                                                                        <%- UserData.data[i].UserDetail[0].address %>
+                                                                            <% } else{ %>
+                                                                                <span>-</span>
+                                                                                <% } %>
+                                                                </td>
+                                                                <td>
+                                                                    <span
+                                                                        onclick='OpenPasswordModal("<%= UserData.data[i].password %>")'
+                                                                        style='cursor: pointer'><i
+                                                                            class='la la-key'></i>&nbsp;<i
+                                                                            class='la la-eye'
+                                                                            style='font-size: 1.4em;'></i></span>
+                                                                </td>
+
+                                                                <td>
+                                                                    <a href="/UserfindbyId/<%- UserData.data[i].id %>"><i
+                                                                            class="la la-pencil-square-o"
+                                                                            style="font-size:24px;color: #03449e;"></i></a>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="/deleteUser/<%- UserData.data[i].id %>"><i
+                                                                            class="la la-trash-o"
+                                                                            onclick="return confirm('Are you sure you want to Delete?')"
+                                                                            style="font-size:24px;color:#03449e;"></i></a>
+                                                                </td>
+
+
+                                                            </tr>
+                                                            <%} %>
+                                                                <%} %>
+                                                </tbody>
+                                            </table>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+        <%- include('../partials/footer.ejs') %>
+            <script src="../../javascripts/togglejavascript.js"></script>
+            <script type="text/javascript">
+                $(".select2dropdown").select2();
+
+                function CancelFunction() {
+                    window.location.href = "/UserView";
+                }
+
+
+                function ViewFunction() {
+                    window.location.href = "/UserAdd";
+                }
+
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                if (SearchData) {
+                    $("#username").val(SearchData.username);
+                    $("#name").val(SearchData.name);
+                    $("#number").val(SearchData.number);
+                } else {
+                    $("#username").val();
+                    $("#name").val();
+                    $("#number").val();
+                }
+
+                var FilterData = JSON.parse('<%- JSON.stringify(FilterData) %>');
+                searchStatus = FilterData;
+                if (searchStatus == true) {
+                    $("#divSearch").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+                jQuery('#tblplant').on('draw.dt', function () {
+                    jQuery('.toggle').each(function () {
+                        $(this).toggles({
+                            on: $(this).data('toggle-on')
+                        });
+                    });
+                });
+
+                $('#tblplant').on('click', '.toggle', function () {
+                    var value = $(this).data('toggle-on');
+                    var id = $(this).data('contact-id');
+                    if ($(this).data('toggle-on') == true) {
+                        $(this).data('toggle-on', false)
+                    } else {
+                        $(this).data('toggle-on', true)
+                    }
+
+                    $.ajax({
+                        url: '/UserStatus/' + value + '/' + id, success: function (res) {
+                        }
+                    });
+                });
+
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divSearch").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divSearch").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+
+                function OpenPasswordModal(password) {
+                    $('#modalpassword').modal('show');
+                    $("#PINNO").focus();
+                    $("#PINNO").val("");
+                    // $("#lblDecryptedPassword").text(password);
+                    $("#lblDecryptedPassword").val(password);
+                    $("#lblPINMessage").css("display", "none");
+                }
+
+                function HidePasswordModal() {
+                    $('#modalpassword').modal('hide');
+                    $("#PINNO").val("");
+                    $("#lblDecryptedPassword").text("");
+                    $("#lblPINMessage").css("display", "none");
+                }
+
+
+
+                function CheckPIN() {
+                    if ($("#PINNO").val()) {
+                        var value = $("#lblDecryptedPassword").val()
+                        if ($("#PINNO").val() == '6713') {
+                            var data = JSON.stringify({
+                                "password": value
+                            });
+                            $.ajax({
+                                async: false,
+                                type: "POST",
+                                contentType: 'application/json',
+                                url: 'PasswordDecrypt',
+                                data: data,
+                                success: function (res) {
+                                    $("#lblPINMessage").text("Your Password is : " + res.data);
+                                    $("#lblPINMessage").css("display", "block");
+                                }
+                            });
+                        } else {
+                            $("#lblPINMessage").text("Please Enter Valid PIN");
+                            $("#lblPINMessage").css("display", "block");
+                        }
+                    }
+                    else {
+                        $("#lblPINMessage").text("Please Enter Valid PIN");
+                        $("#lblPINMessage").css("display", "block");
+                    }
+                }
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/UserView') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/UserView/' + ID)
+                        }
+                    });
+                }
+
+                $("#tblplant").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+            </script>

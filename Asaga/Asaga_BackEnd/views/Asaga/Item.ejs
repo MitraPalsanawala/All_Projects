@@ -1,0 +1,673 @@
+<%- include('../partial/head.ejs') %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style id='lacomete-edge-woo-inline-css' type='text/css'>
+        .edgtf-pl-holder .edgtf-pli-inner .edgtf-pli-image img {
+            object-fit: cover !important;
+            object-position: 56% 25%;
+        }
+
+        .edgtf-position-right-inner {
+            font-family: 'Source Serif Pro",serif';
+            font-weight: 400;
+        }
+
+        .edgtf-product-overview .edgtf-poi {
+            display: block;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            text-align: center;
+        }
+
+        .edgtf-product-overview .edgtf-poi>* {
+            font-family: 'Cinzel';
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .smlfnt12 {
+            font-size: 12px !important;
+        }
+
+        .edgtf-product-overview .edgtf-poi .edgtf-poi-title {
+            font-family: 'Cinzel';
+            font-weight: bold;
+        }
+
+        .edgtf-product-overview .edgtf-poi .edgtf-poi-title-holder {
+            width: 100%;
+        }
+
+        .edgtf-normal-space .edgtf-outer-space .edgtf-item-space {
+            margin: 0 0 10px;
+        }
+
+        #pagination-controls {
+            display: none !important;
+        }
+
+        .edgtf-container-inner {
+            padding-bottom: 0 !important;
+        }
+
+        @media only screen and (max-width: 1024px) {}
+
+        .postid-3629 .edgtf-top-bar {
+            background-image: none;
+        }
+
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-container>.edgtf-container-inner,
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-full-width>.edgtf-full-width-inner {
+            padding: 130px 0 122px 0;
+        }
+
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-container>.edgtf-container-inner,
+        .postid-3629 .edgtf-content .edgtf-content-inner>.edgtf-full-width>.edgtf-full-width-inner {
+            padding: 130px 0 122px 0;
+        }
+
+        /* @media only screen and (min-width: 769px) {
+            .edgtf-woo-single-page.edgtf-woo-single-thumb-on-left-side .edgtf-single-product-content .images.woocommerce-product-gallery--with-images .woocommerce-product-gallery__image:first-child {
+                height: 850px !important;
+            }
+        } */
+
+
+        @media only screen and (min-width: 1025px) {
+            .img_css {
+                height: 510px !important;
+            }
+
+        }
+
+        @media only screen and (max-width: 680px) {
+
+            .mobview {
+                display: none !important;
+            }
+
+
+            .edgtf-container {
+                padding-top: 18px !important;
+            }
+
+            .edgtf-title-holder:not(.edgtf-bg-responsive-disabled).edgtf-has-bg-image .edgtf-title-image {
+                display: none !important;
+            }
+
+            .col-md-4 {
+                width: 50% !important;
+                margin: 0px !important;
+                padding-left: 2px !important;
+
+            }
+
+            .edgtf-container-inner,
+            .edgtf-row-grid-section {
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .edgtf-pli-inner {
+                text-align: center !important;
+            }
+
+            .edgtf-poi {
+                display: block !important;
+            }
+
+            .itemText {
+                text-align: center !important;
+                width: 100% !important;
+            }
+
+            .img_css {
+                height: 308px !important;
+                display: inline-block !important;
+            }
+
+            .products {
+                margin: 0px !important;
+            }
+
+            h5,
+            .edgtf-product-overview .edgtf-poi .edgtf-poi-title {
+                font-size: 12px !important;
+            }
+
+            .edgtf-pl-holder.edgtf-info-on-image-simple-predefined .edgtf-pli-inner .edgtf-pli-text .edgtf-pli-text-outer {
+                text-align: center !important;
+            }
+
+            .edgtf-position-right-inner {
+                font-size: 10px;
+                font-family: 'Source Serif Pro",serif' !important;
+                font-weight: 400 !important;
+            }
+
+        }
+
+        @media only screen and (max-width: 767px) {
+            .edgtf-product-overview .edgtf-poi>* {
+                font-size: 12px !important;
+            }
+
+            h5,
+            .edgtf-product-overview .edgtf-poi .edgtf-poi-title {
+                font-size: 12px !important;
+            }
+
+            .edgtf-normal-space .edgtf-outer-space {
+                margin-left: 5px !important;
+                margin-right: 2px !important;
+            }
+
+            .col-md-4 {
+                padding-right: 5px !important;
+            }
+        }
+
+        @media only screen and (min-width: 769px) {
+
+            .edgtf-woo-single-page .edgtf-single-product-content .images {
+                width: 56% !important;
+            }
+        }
+
+        .edgtf-woo-single-page .edgtf-single-product-content .images figure a img.edgtf-fake-featured-image {
+            height: 100% !important;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            // Select the image element by its class or ID
+            //var img = $(".rs-lazyload");
+
+            // Change the value of the data-lazyload attribute
+            //img.attr("data-lazyload", "/images/Banner.jpg");jhilmil
+
+            if (window.matchMedia("(max-width: 767px)").matches) {
+                $('.Aurora').attr('style', 'height: 120px;background-image:url(/images/aurora_mob.jpg);background-size: cover;background-size: cover;background-repeat: no-repeat;height: 120px !important;min-height: fit-content !important;');
+            }
+            if (window.matchMedia("(max-width: 767px)").matches) {
+                $('.Ishqii').attr('style', 'height: 120px;background-image:url(/images/ISHQII_mob.jpg);background-size: cover;background-size: cover;background-repeat: no-repeat;height: 120px !important;min-height: fit-content !important;');
+            }
+            if (window.matchMedia("(max-width: 767px)").matches) {
+                $('.Falak.Numa').attr('style', 'height: 120px !important;background-image:url(/images/falaknuma_mob.jpg);background-size: cover;background-repeat: no-repeat;height: 120px !important;min-height: fit-content !important;');
+            }
+            // if (window.matchMedia("(max-width: 767px)").matches) {
+            //     $('.Jhilmil').attr('style', 'height: 120px;background-image:url(/images/jhilmil_mob.jpg);background-size: cover;background-size: cover;background-repeat: no-repeat;height: 120px !important;min-height: fit-content !important;');
+            // }
+            // if (window.matchMedia("(max-width: 767px)").matches) {
+            //     $('.Rushat').attr('style', 'height: 120px;background-image:url(/images/rushat_mob.jpg);background-size: cover;background-size: cover;background-repeat: no-repeat;height: 120px !important;min-height: fit-content !important;');
+            // }
+            if (window.matchMedia("(max-width: 767px)").matches) {
+                $('.Patchouli').attr('style', 'height: 120px;background-image:url(/images/patchouli_mob.jpg);background-size: cover;background-size: cover;background-repeat: no-repeat;height: 120px !important;min-height: fit-content !important;');
+            }
+            if (window.matchMedia("(max-width: 767px)").matches) {
+                $('.Mira').attr('style', 'height: 120px;background-image:url(/images/mira_mob.jpg);background-size: cover;background-size: cover;background-repeat: no-repeat;height: 120px !important;min-height: fit-content !important;');
+            }
+        });
+    </script>
+    <!-- Start Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2KXJ0J054"></script>
+    <script> window.dataLayer = window.dataLayer || []; function
+            gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config',
+                'G-P2KXJ0J054'); 
+    </script>
+    <!-- End Google tag (gtag.js) -->
+
+    <%- include('../partial/pagetracker.ejs') %>
+
+        <%- include('../partial/header.ejs') %>
+            <%- include('../partial/pageheader.ejs') %>
+                <div class="edgtf-content">
+                    <div class="edgtf-content-inner">
+                        <% if(ItemData.length> 0) {%>
+                            <% if(ItemData[0].SubCategoryName=='Aurora' ) {%>
+                                <div class="<%= ItemData[0].SubCategoryName %> bgtitlebanner edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image"
+                                    style="height: 200px;background-image:url(/images/AURORA_BANNER.jpg);background-size: contain;"
+                                    data-height="240">
+                                    <%} else if(ItemData[0].SubCategoryName=='Mira' ) {%>
+                                        <div class="<%= ItemData[0].SubCategoryName %> bgtitlebanner edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image"
+                                            style="height: 200px;background-image:url(/images/MIRA_BANNER.jpg);background-size: contain;"
+                                            data-height="240">
+                                            <%} else if(ItemData[0].SubCategoryName=='Falak Numa' ) {%>
+                                                <div class="<%= ItemData[0].SubCategoryName %> bgtitlebanner edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image"
+                                                    style="height: 200px;background-image:url(/images/FALAKNUMA_BANNER.jpg);background-size: contain;"
+                                                    data-height="240">
+                                                    <%} else if(ItemData[0].SubCategoryName=='Ishqii' ) {%>
+                                                        <div class="<%= ItemData[0].SubCategoryName %> bgtitlebanner edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image"
+                                                            style="height: 200px;background-image:url(/images/ISHQII_BANNER.jpg);background-size: contain;"
+                                                            data-height="240">
+                                                            <%} else if(ItemData[0].SubCategoryName=='Jhilmil' ) {%>
+                                                                <div class="<%= ItemData[0].SubCategoryName %> bgtitlebanner edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image mobview"
+                                                                    style="height: 200px;background-image:url(/images/JHILMIL_BANNER.jpg);background-size: contain;"
+                                                                    data-height="240">
+                                                                    <%} else if(ItemData[0].SubCategoryName=='Rushat' )
+                                                                        {%>
+                                                                        <div class="<%= ItemData[0].SubCategoryName %> bgtitlebanner edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image mobview"
+                                                                            style="height: 200px;background-image:url(/images/RUSHAT_BANNER.jpg);background-size: contain;"
+                                                                            data-height="240">
+                                                                            <%} else
+                                                                                if(ItemData[0].SubCategoryName=='Patchouli'
+                                                                                ) {%>
+                                                                                <div class="<%= ItemData[0].SubCategoryName %> bgtitlebanner edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image"
+                                                                                    style="height: 200px;background-image:url(/images/patchouli_banner.jpg);background-size: contain;"
+                                                                                    data-height="240">
+                                                                                    <%} else {%>
+                                                                                        <div class="bgtitlebanner edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image"
+                                                                                            style="display:none;height: 240px;background-image:url(../fRntTemplte/wp-content/uploads/2019/04/title-area-background-img.jpg);"
+                                                                                            data-height="240">
+                                                                                            <%}%>
+                                                                                                <%}%>
+                                                                                                    <div
+                                                                                                        class="edgtf-title-image">
+                                                                                                        <img itemprop="image"
+                                                                                                            src="../fRntTemplte/wp-content/uploads/2019/04/title-area-background-img.jpg"
+                                                                                                            alt="p" />
+                                                                                                    </div>
+                                                                                                    <div class="edgtf-title-wrapper"
+                                                                                                        style="height: 240px">
+                                                                                                        <div
+                                                                                                            class="edgtf-title-inner">
+                                                                                                            <div
+                                                                                                                class="edgtf-grid">
+                                                                                                                <h1
+                                                                                                                    class="edgtf-page-title entry-title">
+                                                                                                                    <%=
+                                                                                                                        ItemData.length>
+                                                                                                                        0
+                                                                                                                        ?
+                                                                                                                        ''
+                                                                                                                        :
+                                                                                                                        ''
+                                                                                                                        %>
+                                                                                                                        <input
+                                                                                                                            type="hidden"
+                                                                                                                            id="txtSubCategoryID"
+                                                                                                                            name="txtSubCategoryID"
+                                                                                                                            value="<%= ItemData.length> 0 ? ItemData[0].SubCategoryID : '' %>">
+                                                                                                                </h1>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                        </div>
+
+                                                                                        <% if(ItemData.length> 0) {%>
+                                                                                            <% if(ItemData[0].ItmDiscountDetail
+                                                                                                !=null) {%>
+                                                                                                <%
+                                                                                                    if(JSON.parse(ItemData[0].ItmDiscountDetail).length>
+                                                                                                    0) {%>
+                                                                                                    <div class="edgtf-top-bar discountcodecss"
+                                                                                                        style="background: #112a26;">
+                                                                                                        <div
+                                                                                                            class="edgtf-grid">
+                                                                                                            <div
+                                                                                                                class="edgtf-vertical-align-containers">
+                                                                                                                <div
+                                                                                                                    class="edgtf-position-left">
+                                                                                                                    <div
+                                                                                                                        class="edgtf-position-left-inner">
+                                                                                                                        <div id="text-3"
+                                                                                                                            class="widget widget_text edgtf-top-bar-widget">
+                                                                                                                            <div
+                                                                                                                                class="textwidget">
+                                                                                                                                <p>
+                                                                                                                                </p>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <div class="edgtf-position-right"
+                                                                                                                    style="float: none; text-align: center;color: white;">
+                                                                                                                    <div class="edgtf-position-right-inner"
+                                                                                                                        style="display: inline-flex;">
+                                                                                                                        ⚡
+                                                                                                                        NOW
+                                                                                                                        FLAT
+                                                                                                                        <%= JSON.parse(ItemData[0].ItmDiscountDetail)[0].Discount
+                                                                                                                            %>
+                                                                                                                            %
+                                                                                                                            OFF
+                                                                                                                            ON
+                                                                                                                            ALL
+                                                                                                                            <%= ItemData[0].SubCategoryName
+                                                                                                                                %>
+                                                                                                                                ⚡
+                                                                                                                                USE
+                                                                                                                                CODE
+                                                                                                                                :
+                                                                                                                                <%= JSON.parse(ItemData[0].ItmDiscountDetail)[0].DiscountName
+                                                                                                                                    %>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <%}%>
+                                                                                                        <%}%>
+                                                                                                            <%}%>
+                                                                                                                <div class="edgtf-container"
+                                                                                                                    style="padding-bottom: 50px;">
+                                                                                                                    <div class="edgtf-container-inner clearfix"
+                                                                                                                        style="padding-top: 50px;">
+                                                                                                                        <div class="row spacecss mobnopr"
+                                                                                                                            style=" padding: 0;float: left;position: relative;margin-left: 0px;letter-spacing: .1em;">
+                                                                                                                            <div
+                                                                                                                                class="form-group">
+                                                                                                                                <label
+                                                                                                                                    class=""
+                                                                                                                                    style="font-size: 15px;
+                                                                                                                                        font-weight: bold;
+                                                                                                                                        font-family: 'Cinzel'">
+                                                                                                                                    <%= ItemData[0].ItemCount
+                                                                                                                                        %>
+                                                                                                                                        &nbsp;Products
+                                                                                                                                </label>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <div class="row spacecss"
+                                                                                                                            style=" padding: 0;float: right;position: relative;margin-right: 0px;">
+                                                                                                                            <div
+                                                                                                                                class="">
+                                                                                                                                <div
+                                                                                                                                    class="form-group">
+                                                                                                                                    <select
+                                                                                                                                        name="orderby"
+                                                                                                                                        style="letter-spacing: .1em;"
+                                                                                                                                        class="form-control select2 select2dropdown"
+                                                                                                                                        aria-label="Shop order"
+                                                                                                                                        id="orderby"
+                                                                                                                                        onchange="BindFilter(1,'changes')">
+                                                                                                                                        <!-- <option value="">Sort</option> -->
+                                                                                                                                        <option
+                                                                                                                                            selecte="selected"
+                                                                                                                                            value="ItemASC">
+                                                                                                                                            Alphabetically,
+                                                                                                                                            A-Z
+                                                                                                                                        </option>
+                                                                                                                                        <option
+                                                                                                                                            value="ItemDESC">
+                                                                                                                                            Alphabetically,
+                                                                                                                                            Z-A
+                                                                                                                                        </option>
+                                                                                                                                        <option
+                                                                                                                                            value="AmountASC">
+                                                                                                                                            Amount,
+                                                                                                                                            low
+                                                                                                                                            to
+                                                                                                                                            high
+                                                                                                                                        </option>
+                                                                                                                                        <option
+                                                                                                                                            value="AmountDESC">
+                                                                                                                                            Amount,
+                                                                                                                                            high
+                                                                                                                                            to
+                                                                                                                                            low
+                                                                                                                                        </option>
+                                                                                                                                    </select>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <input
+                                                                                                                                type="hidden"
+                                                                                                                                name="SubCategoryID"
+                                                                                                                                id="SubCategoryID"
+                                                                                                                                value="<%= ItemData[0].SubCategoryID %>">
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                            class="woocommerce-notices-wrapper">
+                                                                                                                        </div>
+
+                                                                                                                        <div id="product-3629"
+                                                                                                                            class="product type-product post-3629 status-publish first instock product_cat-modern product_tag-black product_tag-silver product_tag-woman has-post-thumbnail downloadable shipping-taxable purchasable product-type-simple">
+                                                                                                                            <section
+                                                                                                                                class="related products">
+                                                                                                                                <div
+                                                                                                                                    class="edgtf-row-grid-section-wrapper">
+                                                                                                                                    <div
+                                                                                                                                        class="edgtf-row-grid-section">
+                                                                                                                                        <div
+                                                                                                                                            class="vc_row wpb_row vc_row-fluid">
+                                                                                                                                            <div
+                                                                                                                                                class="wpb_column vc_column_container vc_col-sm-12">
+                                                                                                                                                <div
+                                                                                                                                                    class="vc_column-inner">
+                                                                                                                                                    <div
+                                                                                                                                                        class="wpb_wrapper">
+                                                                                                                                                        <div
+                                                                                                                                                            class="edgtf-pl-holder edgtf-grid-list edgtf-disable-bottom-space edgtf-standard-layout edgtf-four-columns edgtf-normal-space edgtf-info-on-image-simple-predefined">
+                                                                                                                                                            <div class="edgtf-pl-outer edgtf-outer-space item-grid"
+                                                                                                                                                                id="item-grid">
+                                                                                                                                                            </div>
+                                                                                                                                                        </div>
+                                                                                                                                                    </div>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </section>
+                                                                                                                            <div
+                                                                                                                                id="data-container">
+                                                                                                                            </div>
+                                                                                                                            <div
+                                                                                                                                id="divBox">
+                                                                                                                            </div>
+                                                                                                                            <div id="pagination-controls"
+                                                                                                                                style="padding-top: 60px;
+                                                                                                                                    display: flex;
+                                                                                                                                    justify-content: center;">
+                                                                                                                                <button
+                                                                                                                                    id="prev-btn"
+                                                                                                                                    class="button5"><i
+                                                                                                                                        class="fa fa-arrow-left"></i></button>
+                                                                                                                                <span
+                                                                                                                                    id="page-num"
+                                                                                                                                    style="margin-left: 15px;margin-right: 15px;">
+                                                                                                                                    Page
+                                                                                                                                    1
+                                                                                                                                    of
+                                                                                                                                    1
+                                                                                                                                </span>
+                                                                                                                                <button
+                                                                                                                                    id="next-btn"
+                                                                                                                                    class="button5"><i
+                                                                                                                                        class="fa fa-arrow-right"></i></button>
+                                                                                                                            </div>
+                                                                                                                        </div>
+
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <%- include('../partial/footer.ejs') %>
+                                                                            <script
+                                                                                src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                                                            <script type="text/javascript">
+                                                                                var imgpath = '<%= process.env.ItemImagePATH %>';
+                                                                                var currentPage = 1;
+                                                                                var totalPages;
+                                                                                var pageSize;
+
+                                                                                BindFilter(currentPage, 'current');
+
+                                                                                function BindFilter(CurrentPage, types) {
+
+                                                                                    // debugger;
+                                                                                    var fetchdata = $("#orderby").val();
+                                                                                    let SubCategoryID = $("#SubCategoryID").val();
+                                                                                    $.ajax({
+                                                                                        type: "GET",
+                                                                                        url: '/FilterData1/' + SubCategoryID + '/' + fetchdata + '/' + CurrentPage,
+                                                                                        success: function (fetchdata) {
+                                                                                            currentPage = CurrentPage;
+                                                                                            totalPages = fetchdata.pages;
+                                                                                            pageSize = fetchdata.pageSize;
+                                                                                            // debugger;
+                                                                                            if (types == 'changes') {
+                                                                                                $('#item-grid').html('');
+                                                                                            }
+
+                                                                                            fetchdata.FetchFilter.forEach(function (itemData) {
+                                                                                                var detailImage = itemData.ItemDetailImage ? itemData.ItemDetailImage : itemData.ItemImage;
+                                                                                                $('#item-grid').append(`
+                        <div class="edgtf-pli edgtf-item-space col-md-4">
+                            <ul id="items">
+                                <h5>
+                    <div class="edgtf-pli-inner">
+                        <div class="edgtf-pli-image">
+                            <img class="img_css" style="width: 100%;"
+                                src="${imgpath + itemData.ItemImage}"
+                                class="attachment-woocommerce_single size-woocommerce_single wp-post-image"
+                                alt="loading"
+                                srcset="${imgpath + itemData.ItemImage} 600w, 
+                                        ${imgpath + itemData.ItemImage} 226w, 
+                                        ${imgpath + itemData.ItemImage} 768w, 
+                                        ${imgpath + itemData.ItemImage} 773w, 
+                                        ${imgpath + itemData.ItemImage} 800w"
+                                sizes="(max-width: 600px) 100vw, 600px" />
+                            <div class="edgtf-product-overview">
+                                <div class="edgtf-po-text">
+                                    <div
+                                        class="edgtf-po-text-inner">
+                                        <p class="edgtf-poi">
+                                            <span
+                                                class="edgtf-poi-title-holder itemText">
+                                                <a class="edgtf-poi-title"
+                                                    itemprop="url"
+                                                    href="/ItemDetail/${itemData.ItemID}">
+                                                    ${itemData.ItemName}
+                                                </a>
+                                            </span>
+                                            <span
+                                                class="itemText2">
+                                                <a class="smlfnt12"
+                                                    itemprop="url"
+                                                    href="/ItemDetail/${itemData.ItemID}">
+                                                    ${(itemData.Description == null || itemData.Description == 'null' ? '' : itemData.Description)}
+                                                </a>
+                                            </span>
+                                            <span
+                                            
+                                                class="edgtf-poi-price"><span
+                                                    class="woocommerce-Price-amount amount"><bdi><span
+                                                        class="woocommerce-Price-currencySymbol smlfnt12">Rs.</span>
+                                                        <span class="smlfnt12">${itemData.Amount}</span>
+                                                    </bdi></span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edgtf-pli-text"
+                            style="padding: 0;">
+                            <div class="edgtf-pli-text-outer"
+                                style="padding: 0;">
+                                
+                                <img class="img_css" style="width: 100%;"
+                                    src="${imgpath + detailImage}"
+                                    class="attachment-woocommerce_single size-woocommerce_single wp-post-image"
+                                    alt="loading"
+                                    srcset="${imgpath + detailImage} 600w, 
+                                            ${imgpath + detailImage} 226w, 
+                                            ${imgpath + detailImage} 768w, 
+                                            ${imgpath + detailImage} 773w, 
+                                            ${imgpath + detailImage} 800w"
+                                    sizes="(max-width: 600px) 100vw, 600px" />
+                                <div
+                                    class="edgtf-product-overview">
+                                    <div
+                                        class="edgtf-po-text">
+                                        <div
+                                            class="edgtf-po-text-inner">
+                                            <p
+                                                class="edgtf-poi">
+                                                <span
+                                                    class="edgtf-poi-title-holder itemText">
+                                                    <a class="edgtf-poi-title"
+                                                        itemprop="url"
+                                                        href="/ItemDetail/${itemData.ItemID}">
+                                                        ${itemData.ItemName}
+                                                    </a>
+                                                </span>
+                                                <span
+                                                class="itemText2">
+                                                <a class="smlfnt12"
+                                                    itemprop="url"
+                                                    href="/ItemDetail/${itemData.ItemID}">
+                                                    ${(itemData.Description == null || itemData.Description == 'null' ? '' : itemData.Description)}
+                                                </a>
+                                            </span>
+                                                <span
+                                                    class="edgtf-poi-price"><span
+                                                        class="woocommerce-Price-amount amount"><bdi><span
+                                                            class="woocommerce-Price-currencySymbol smlfnt12">Rs.</span>
+                                                            <span class="smlfnt12">${itemData.Amount}</span>
+                                                        </bdi></span>
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="edgtf-pli-link" itemprop="url"
+                            href="/ItemDetail/${itemData.ItemID}"></a>
+                    </div>
+                    </h5>
+                    </ul>
+                </div>`)
+
+                                                                                            });
+                                                                                            $('#item-grid').append('');
+                                                                                            $('#page-num').text(`Page ${currentPage} of ${totalPages}`);
+                                                                                        }
+                                                                                    })
+                                                                                }
+
+                                                                                $('#prev-btn').click(function () {
+                                                                                    if (currentPage > 1) {
+                                                                                        currentPage--;
+                                                                                        BindFilter(currentPage, 'current');
+                                                                                    }
+                                                                                });
+
+                                                                                $('#next-btn').click(function () {
+                                                                                    if (currentPage < totalPages) {
+                                                                                        currentPage++;
+                                                                                        BindFilter(currentPage, 'current');
+                                                                                    }
+                                                                                });
+                                                                                //var counter=0;
+                                                                                $(window).scroll(function () {
+
+                                                                                    // var abc=0;
+                                                                                    // if (counter==0) {
+                                                                                    //     abc=$(document).height();
+                                                                                    // }
+                                                                                    // else {
+                                                                                    //     abc=$(document).height();
+                                                                                    // }
+
+                                                                                    // if ($(window).scrollTop()==abc-$(window).height()) {
+                                                                                    if ($(window).scrollTop() >= ($(document).height() - $(window).height() - 1000)) {
+                                                                                        var abc = $(window).height();
+                                                                                        if (currentPage < totalPages) {
+                                                                                            currentPage++;
+                                                                                            // counter++;
+                                                                                            BindFilter(currentPage, 'current');
+                                                                                        }
+                                                                                    }
+                                                                                });
+
+                                                                            </script>
+                                                                            <script
+                                                                                src="../../javascripts/jquery.validate.js"></script>
+                                                                            <script
+                                                                                src="../../javascripts/inputvalidation.js"></script>
+                                                                            <script
+                                                                                src="../../javascripts/sweetalert/sweetalert2@11.js"></script>

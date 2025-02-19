@@ -1,0 +1,103 @@
+<%- include('../partials/head.ejs') %>
+    <%- include('../partials/header.ejs') %>
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card card-custom example example-compact"
+                                style="margin-top: 5px; border: 1px solid #ced5da;">
+                                <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Add Plant Detail
+                                        </h3>
+                                    </div>
+
+                                </div>
+                                <form id="frmVehicleCrimeDetail" class="form form-horizontal"
+                                    action="/VehicleCrimeReport" method="post" autocomplete="off">
+                                    <div class="card-body">
+                                        <div id="divSearch" class="container-fluid" style="">
+                                            <div class="row" style="margin-left: 0">
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>Plant Name : </label>
+                                                        <input type="text" id="Plant Name" placeholder="Plant Name"
+                                                            autocomplete="off" class="form-control" name="plant_name">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>Plant Code : </label>
+                                                        <input type="text" id="PlantCode" placeholder="Plant Code"
+                                                            autocomplete="off" class="form-control" name="plant_code">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>Fassi_No : </label>
+                                                        <input type="text" id="FssaiNo" placeholder="Fassi_No"
+                                                            autocomplete="off" class="form-control" name="fssai_no">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+                                                        <label>State : </label>
+                                                        <input type="text" id="Address" placeholder="State"
+                                                            autocomplete="off" class="form-control" name="Address">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-3 col-lg-3"
+                                                    style="padding-left: 0; margin-bottom: 10px">
+                                                    <div class="form-group formgroupcss">
+
+                                                        <label>Address : </label>
+                                                        <!-- <select ID="CheckPost" class="form-control select2dropdown"
+                                                            name="CheckPost">
+                                                        </select> -->
+                                                        <textarea class="form-control" name="Description"
+                                                            placeholder="Address" id="Description" rows="3" cols="66"
+                                                            wrap="virtual" tabindex="4" required>
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-12" style="text-align: right;">
+                                                    <div class="form-group formgroupbuttoncss" style="margin-top: 0">
+                                                        <button type="submit" id="" class="btn btn-primary"
+                                                            style="margin-bottom: 10px;">
+                                                            <i class="la la-check-square-o" style="color: white;"></i>
+                                                            Submit</button>
+                                                        <button type="reset" value="reset" id="btnCancel"
+                                                            class="btn btn-danger" style="margin-bottom: 10px;"
+                                                            onclick="CancelFunction()">
+                                                            <i class="fa-window-close fas"></i>Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end::Entry-->
+        </div>
+
+
+        <%- include('../partials/footer.ejs') %>

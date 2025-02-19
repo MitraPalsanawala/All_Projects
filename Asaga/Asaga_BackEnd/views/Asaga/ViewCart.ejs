@@ -1,0 +1,632 @@
+<%- include('../partial/head.ejs') %>
+  <style>
+    @media only screen and (max-width: 680px) {
+
+      .edgtf-container-inner,
+      .edgtf-grid,
+      .edgtf-row-grid-section {
+        width: 333px !important;
+      }
+
+      /* .edgtf-content {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+      } */
+
+
+      /* .edgtf-woocommerce-page .woocommerce-error,
+      .edgtf-woocommerce-page .woocommerce-info,
+      .edgtf-woocommerce-page .woocommerce-message {
+
+        margin: 2px 23px 40px !important;
+      } */
+
+      .setmrg {
+        margin-top: 35px !important;
+        margin-bottom: 8px !important;
+      }
+
+      .edgtf-woocommerce-page .cart-empty {
+        font-size: 18px;
+      }
+
+      .edgtf-position-right-inner {
+        font-size: 11px;
+      }
+
+      /* .edgtf-container-inner,
+      .edgtf-grid,
+      .edgtf-row-grid-section {
+        width: 380px !important;
+      } */
+
+      #tblCart,
+      .edgtf-woocommerce-page .return-to-shop {
+        margin: 0 !important;
+      }
+
+      .edgtf-woocommerce-page .woocommerce-cart-form table.cart tr.cart_item td.product-thumbnail img {
+        display: block !important;
+      }
+
+      img.attachment-woocommerce_thumbnail.size-woocommerce_thumbnail {
+        max-width: 70% !important;
+      }
+
+      .edgtf-woocommerce-page .woocommerce-cart-form table.cart tr.cart_item td {
+        max-width: 22px !important;
+      }
+
+      td.product-name {
+        font-size: 12px !important;
+      }
+
+      p.cartItemNamecss {
+        font-size: 12px;
+      }
+
+      td.product-price {
+        font-size: 12px;
+      }
+
+      td.product-subtotal {
+        font-size: 14px;
+      }
+
+      #tblCart,
+      .edgtf-woocommerce-page .return-to-shop {
+        margin: 0 !important;
+        /* width: 350px; */
+      }
+
+      @media screen and (min-width:320px) and (max-width:370px) {
+        .edgtf-woocommerce-page .cart_totals .wc-proceed-to-checkout .button {
+          width: 94%;
+          justify-content: center;
+          text-align: center;
+        }
+      }
+
+      @media screen and (min-width:370px) and (max-width:680px) {
+        .edgtf-woocommerce-page .cart_totals .wc-proceed-to-checkout .button {
+          width: 100%;
+          justify-content: center;
+          text-align: center;
+        }
+
+
+      }
+
+    }
+  </style>
+
+  <!-- Start Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2KXJ0J054"></script>
+  <script> window.dataLayer = window.dataLayer || []; function
+      gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config',
+        'G-P2KXJ0J054'); 
+  </script>
+  <!-- End Google tag (gtag.js) -->
+
+  <%- include('../partial/pagetracker.ejs') %>
+
+    <%- include('../partial/header.ejs') %>
+      <%- include('../partial/pageheader.ejs') %>
+        <div class="edgtf-content">
+          <div class="edgtf-content-inner">
+            <div class="edgtf-container edgtf-default-page-template">
+              <div class="edgtf-container-inner clearfix">
+                <div class="edgtf-grid-row ">
+                  <div class="edgtf-page-content-holder edgtf-grid-col-12">
+                    <div class="woocommerce setmrg">
+                      <div class="woocommerce-notices-wrapper"></div>
+
+                      <% if(UserCart.length> 0) {%>
+                        <%} else if (LocalStorageCart.length> 0) {%>
+                          <form class="woocommerce-cart-form" action="" method="post">
+
+                            <table id="tblCart" name="tblCart"
+                              class="shop_table shop_table_responsive cart woocommerce-cart-form__contents"
+                              cellspacing="0">
+                              <thead>
+                                <tr>
+                                  <th class="product-remove"><span class="screen-reader-text">Remove item</span></th>
+                                  <th class="product-thumbnail"><span class="screen-reader-text">Thumbnail image</span>
+                                  </th>
+                                  <th class="product-name">Product</th>
+                                  <th class="product-price">Price</th>
+                                  <th class="product-quantity">Quantity</th>
+                                  <th class="product-subtotal">Subtotal</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tbodyCart">
+                                <% let TotalPrice=0 %>
+                                  <% for(var i=0; i < LocalStorageCart.length; i++) {%>
+                                    <% TotalPrice +=LocalStorageCart[i].FinalPrice %>
+                                      <tr class="woocommerce-cart-form__cart-item cart_item">
+                                        <td class="product-remove">
+                                          <a href="javascript:void(0)" class="remove" aria-label="Remove this item"
+                                            onclick="return confirm('Are you sure you want to remove this from cart?')?removeItemFromCart('<%= LocalStorageCart[i].LocalStorageKey %>'):'';"
+                                            data-product_id="1233" data-product_sku="082">×</a>
+                                        </td>
+
+                                        <td class="product-thumbnail">
+                                          <a href="javascript:void(0)"><img width="300" height="400"
+                                              src="<%= process.env.ItemImagePATH + LocalStorageCart[i].ItemImage %>"
+                                              class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                              alt="b" loading="lazy"
+                                              srcset="<%= process.env.ItemImagePATH + LocalStorageCart[i].ItemImage %> 300w, <%= process.env.ItemImagePATH + LocalStorageCart[i].ItemImage %> 226w"
+                                              sizes="(max-width: 300px) 100vw, 300px"></a>
+
+                                          <input type="hidden" name="txtItemID" id="txtItemID"
+                                            value="<%= LocalStorageCart[i].ItemID %>">
+                                          <input type="hidden" name="txtSize" id="txtSize"
+                                            value="<%= LocalStorageCart[i].Size %>">
+                                        </td>
+
+                                        <td class="product-name" data-title="Product">
+                                          <a href="javascript:void(0)">
+                                            <p class="cartItemNamecss">
+                                              <%= LocalStorageCart[i].ItemName %>
+                                            </p>
+                                            <p><span>Size: </span>
+                                              <%= LocalStorageCart[i].Size %>
+                                            </p>
+                                          </a>
+                                        </td>
+
+                                        <td class="product-price" data-title="Price">
+                                          <span class="woocommerce-Price-amount amount"><bdi><span
+                                                class="woocommerce-Price-currencySymbol">Rs.</span>
+                                              <span id="ActualPrice" class="ActualPrice" name="ActualPrice">
+                                                <%= LocalStorageCart[i].Amount %>
+                                              </span>
+                                            </bdi></span>
+                                        </td>
+
+                                        <td class="product-quantity" data-title="Quantity">
+                                          <div class="edgtf-quantity-buttons quantity">
+                                            <label class="screen-reader-text" for="quantity_63f8629958a50"></label>
+                                            <span class="edgtf-quantity-label">Quantity</span>
+
+                                            <i id="iconplusquantity" class="fa fa-plus"
+                                              onclick="addQuantity(this, '<%= LocalStorageCart[i].LocalStorageKey %>', '<%= LocalStorageCart[i].ActualAmount %>', '<%= LocalStorageCart[i].DiscountAmt %>')"></i>
+                                            <input type="text" id="txtquantity" name="txtquantity"
+                                              class="input-text qty text edgtf-quantity-input" data-step="1"
+                                              data-min="1" data-max="1" value="<%= LocalStorageCart[i].Quantity %>"
+                                              title="Qty" size="4" placeholder="" inputmode="numeric">
+                                            <i id="iconminusquantity" class="fa fa-minus"
+                                              onclick="minusQuantity(this, '<%= LocalStorageCart[i].LocalStorageKey %>', '<%= LocalStorageCart[i].ActualAmount %>', '<%= LocalStorageCart[i].DiscountAmt %>')"></i>
+                                            <br>
+                                            <% if(LocalStorageCart[i].QtyStatus=="Out of Stock" ) {%>
+                                              <label id="lblOutOfStock" name="lblOutOfStock"
+                                                style="color: red; font-weight: bold;">Out of
+                                                stock</label>
+                                              <%}else{ %>
+                                                <label id="lblOutOfStock" name="lblOutOfStock"
+                                                  style="color: red; font-weight: bold; display: none;">Out of
+                                                  stock</label>
+                                                <% } %>
+                                          </div>
+                                        </td>
+
+                                        <% if(LocalStorageCart[i].DiscountPrice) {%>
+                                          <td class="product-subtotal" data-title="Subtotal">
+
+                                            <span class="woocommerce-Price-amount amount"><bdi><span
+                                                  class="woocommerce-Price-currencySymbol">Rs.</span>
+                                                <span style="text-decoration: line-through;" id="AmountWithQty"
+                                                  class="AmountWithQty" name="AmountWithQty">
+                                                  <%= LocalStorageCart[i].AmountWithQty %>
+                                                </span>
+                                              </bdi></span>
+                                            <br>
+
+                                            <span class="woocommerce-Price-amount amount"><bdi><span
+                                                  class="woocommerce-Price-currencySymbol">Rs.</span>
+                                                <span id="TotalPrice" class="TotalPrice" name="TotalPrice">
+                                                  <%= LocalStorageCart[i].FinalPrice.toFixed(2) %>
+                                                </span>
+                                              </bdi></span>
+                                            <br>
+
+                                            <span class="woocommerce-Price-amount amount"><bdi>
+                                                <span style="font-weight: bold;">
+                                                  <%= LocalStorageCart[i].DiscountName %>&nbsp;
+                                                </span>
+                                                <span class="woocommerce-Price-currencySymbol">Rs.</span>
+                                                ( -Rs.
+                                                <span id="DiscountPrice" class="DiscountPrice" name="DiscountPrice">
+                                                  <%= LocalStorageCart[i].DiscountPrice.toFixed(2) %>
+                                                </span>)
+                                            </span>
+                                            </bdi></span>
+
+                                          </td>
+                                          <%}else{%>
+                                            <td class="product-subtotal" data-title="Subtotal">
+                                              <span class="woocommerce-Price-amount amount"><bdi><span
+                                                    class="woocommerce-Price-currencySymbol">Rs.</span>
+                                                  <span id="TotalPrice" class="TotalPrice" name="TotalPrice">
+                                                    <%= LocalStorageCart[i].FinalPrice %>
+                                                  </span>
+                                                </bdi></span>
+                                            </td>
+                                            <%}%>
+
+                                      </tr>
+                                      <%}%>
+
+                                        <tr style="border-bottom: 0px;">
+                                          <td colspan="6" class="actions">
+
+
+                                            <!-- <div class="coupon">
+                                                <label for="coupon_code">Coupon:</label> <input type="text"
+                                                  name="coupon_code" class="input-text" id="coupon_code" value=""
+                                                  placeholder="Coupon code">
+                                                <button type="submit" class="button" name="apply_coupon"
+                                                  value="Apply coupon">Apply
+                                                  coupon</button>
+                                              </div> -->
+                                          </td>
+                                        </tr>
+
+                              </tbody>
+                            </table>
+                          </form>
+                          <div class="cart-collaterals">
+                            <div class="cart_totals ">
+                              <h2>Cart Total</h2>
+                              <table cellspacing="0" class="shop_table shop_table_responsive">
+                                <tbody>
+                                  <tr class="cart-subtotal">
+                                    <th class="cartthcss">Subtotal</th>
+                                    <td data-title="Subtotal"><span class="woocommerce-Price-amount amount"><bdi><span
+                                            class="woocommerce-Price-currencySymbol">Rs.</span>
+                                          <span id="FinalCartTotal" class="FinalCartTotal" name="FinalCartTotal">
+                                            <%= TotalPrice.toFixed(2) %>
+                                          </span>
+                                        </bdi></span></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <div class="wc-proceed-to-checkout">
+                                <!-- href="/CheckOut" -->
+                                <a onclick="checkCartData()" class="checkout-button button alt wc-forward">
+                                  Proceed to checkout</a>
+                              </div>
+                            </div>
+                          </div>
+                          <div style="text-align: center;">
+                            <a class="button wc-backward" href="/Splash">
+                              Return to shop
+                            </a>
+                          </div>
+                          <%}else{ %>
+                            <!-- <p class="cart-empty woocommerce-info">Your cart is currently empty.</p>
+                            <p class="return-to-shop">
+                              <a class="button wc-backward" href="/Splash">
+                                Return to shop
+                              </a>
+                            </p> -->
+
+                            <div class="edgtf-container edgtf-default-page-template">
+                              <div class="edgtf-container-inner clearfix">
+                                <div class="edgtf-grid-row">
+                                  <div class="edgtf-page-content-holder edgtf-grid-col-12">
+                                    <div class="woocommerce">
+                                      <div class="woocommerce-order">
+                                        <p class="cart-empty woocommerce-info fontempty">
+                                          Your cart is currently empty.
+                                        </p>
+                                        <p class="return-to-shop ">
+                                          <a class="button wc-backward" href="/Splash">
+                                            Return to shop
+                                          </a>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <%}%>
+
+                              <!-- <p class="return-to-shop">
+                              <a class="button wc-backward" href="/Splash">
+                                Return to shop
+                              </a>
+                            </p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%- include('../partial/footer.ejs') %>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+          <script>
+            $(document).ready(function () {
+              var QtyList = document.getElementsByClassName('edgtf-quantity-input');
+              for (var i = 0; i < QtyList.length; i++) {
+                if (QtyList[i].value <= 1) {
+                  $(QtyList[i]).prev().attr("style", " opacity: 0.5; pointer-events: none; text-decoration: line-through;")
+                }
+              }
+            });
+
+            function addQuantity(cartPlus, storageKey, ActualAmount, DiscountAmt) {
+              // debugger;
+              tablerows = document.getElementById('tbodyCart').rows;
+              var rowlength = document.getElementById('tbodyCart').rows.length;
+
+              var rowJavascript = cartPlus.parentNode.parentNode;
+              var rowjQuery = $(cartPlus).closest("tr");
+              //alert(rowjQuery[0].rowIndex);
+              //alert("JavaScript Row Index : " + (rowJavascript.rowIndex - 1) + "\njQuery Row Index : " + (rowjQuery[0].rowIndex - 1));
+
+              //$($(tablerows[rowjQuery[0].rowIndex - 1]).find('td')[4]).find('#lblOutOfStock')[0].style.display = 'block';
+              var lblOutOfStock = $($(tablerows[rowjQuery[0].rowIndex - 1]).find('td')[4]).find('#lblOutOfStock')[0];
+              var txtquantity = $($(tablerows[rowjQuery[0].rowIndex - 1]).find('td')[4]).find('#txtquantity')[0];
+
+              // var quantity = $(cartPlus).next().val();
+              var quantity = $(txtquantity).val();
+
+              $.ajax({
+                type: "GET",
+                contentType: 'application/json',
+                url: '/addLocalStorageQty/' + storageKey,
+                success: function (res) {
+                  // debugger;
+
+                  if (res.status == 1 && res.message == 'Success') {
+                    $(lblOutOfStock).css('display', 'none')
+                  }
+                  else if (res.status == 0 && res.message == 'Out of stock') {
+                    $(lblOutOfStock).css('display', 'block')
+                  }
+                  else {
+                    $(lblOutOfStock).css('display', 'block')
+                  }
+
+                  //$(cartPlus).next().val(parseInt(quantity) + 1);
+                  $(txtquantity).val(parseInt(quantity) + 1)
+
+                  if (DiscountAmt) {
+                    var actualAmt = res.quantity * ActualAmount;
+                    var discount = res.quantity * DiscountAmt;
+                    var findTotal = actualAmt - discount;
+                    $(cartPlus).parent().parent().next().find('.TotalPrice')[0].innerHTML = findTotal;
+                    $(cartPlus).parent().parent().next().find('.AmountWithQty')[0].innerHTML = actualAmt;
+                    $(cartPlus).parent().parent().next().find('.DiscountPrice')[0].innerHTML = discount;
+                  } else {
+                    var findTotal = res.quantity * ActualAmount;
+                    $(cartPlus).parent().parent().next().find('.TotalPrice')[0].innerHTML = findTotal;
+                  }
+                  // var chkQty = $(cartPlus).prev().val();
+                  // if (chkQty > 1) {
+                  //   $(cartPlus).prev().prev().attr("style", "opacity: 1; pointer-events: visible;")
+                  // }
+
+                  var arr = document.getElementsByClassName('TotalPrice');
+                  var tot = 0;
+                  for (var i = 0; i < arr.length; i++) {
+                    if (parseFloat(arr[i].innerHTML))
+                      tot += parseFloat(arr[i].innerHTML);
+                  }
+                  document.getElementsByClassName('FinalCartTotal')[0].innerHTML = tot;
+                },
+                error: function (data) {
+                  //alert(data);
+                }
+              });
+
+
+              // $("#txtquantity").val(quantity + 1);
+              //$(cartPlus).next().next().find('#txtquantity')[0].innerHTML = quantity + 1;
+              // $(cartPlus).next().find('#txtquantity').val(quantity + 1)
+            }
+
+            function minusQuantity(cartPlus, storageKey, ActualAmount, DiscountAmt) {
+              tablerows = document.getElementById('tbodyCart').rows;
+              var rowlength = document.getElementById('tbodyCart').rows.length;
+
+
+              var rowJavascript = cartPlus.parentNode.parentNode;
+              var rowjQuery = $(cartPlus).closest("tr");
+              //alert(rowjQuery[0].rowIndex);
+
+              var lblOutOfStock = $($(tablerows[rowjQuery[0].rowIndex - 1]).find('td')[4]).find('#lblOutOfStock')[0];
+              var txtquantity = $($(tablerows[rowjQuery[0].rowIndex - 1]).find('td')[4]).find('#txtquantity')[0];
+
+              //var quantity = $(cartPlus).prev().val();
+              var quantity = $(txtquantity).val();
+              if (quantity == 1) {
+
+              }
+              else {
+                $.ajax({
+                  type: "GET",
+                  contentType: 'application/json',
+                  url: '/removeLocalStorageQty/' + storageKey,
+                  success: function (res) {
+                    // debugger;
+
+                    if (res.status == 1 && res.message == 'Success') {
+                      $(lblOutOfStock).css('display', 'none')
+                    }
+                    else if (res.status == 0 && res.message == 'Out of stock') {
+                      $(lblOutOfStock).css('display', 'block')
+                    }
+                    else {
+                      $(lblOutOfStock).css('display', 'block')
+                    }
+
+                    //$(cartPlus).prev().val((parseInt(quantity) - 1))
+                    $(txtquantity).val((parseInt(quantity) - 1))
+
+
+                    if (DiscountAmt) {
+                      var actualAmt = res.quantity * ActualAmount;
+                      var discount = res.quantity * DiscountAmt;
+                      var findTotal = actualAmt - discount;
+                      $(cartPlus).parent().parent().next().find('.TotalPrice')[0].innerHTML = findTotal;
+                      $(cartPlus).parent().parent().next().find('.AmountWithQty')[0].innerHTML = actualAmt;
+                      $(cartPlus).parent().parent().next().find('.DiscountPrice')[0].innerHTML = discount;
+                    } else {
+                      var findTotal = res.quantity * ActualAmount;
+                      $(cartPlus).parent().parent().next().find('.TotalPrice')[0].innerHTML = findTotal;
+                    }
+
+                    // var chkQty = $(cartPlus).prev().val();
+                    // if (chkQty > 1) {
+                    //   $(cartPlus).prev().prev().attr("style", "opacity: 1; pointer-events: visible;")
+                    // }
+
+                    var arr = document.getElementsByClassName('TotalPrice');
+                    var tot = 0;
+                    for (var i = 0; i < arr.length; i++) {
+                      if (parseFloat(arr[i].innerHTML))
+                        tot += parseFloat(arr[i].innerHTML);
+                    }
+                    document.getElementsByClassName('FinalCartTotal')[0].innerHTML = tot;
+                  },
+                  error: function (data) {
+                    //alert(data);
+                  }
+                });
+              }
+            }
+
+            function checkCartData() {
+              // debugger;
+              tablerows = document.getElementById('tbodyCart').rows;
+              var rowlength = document.getElementById('tbodyCart').rows.length - 1;
+
+              var cartstatus = false;
+
+              for (let i = 0; i < rowlength; i++) {
+                var txtItemID = $($(tablerows[i]).find('td')[1]).find('#txtItemID')[0];
+                var txtSize = $($(tablerows[i]).find('td')[1]).find('#txtSize')[0];
+                var txtquantity = $($(tablerows[i]).find('td')[4]).find('#txtquantity')[0];
+                var lblOutOfStock = $($(tablerows[i]).find('td')[4]).find('#lblOutOfStock')[0];
+
+                var data = JSON.stringify({
+                  'ItemID': $(txtItemID).val(),
+                  'Size': $(txtSize).val(),
+                  'Quantity': $(txtquantity).val(),
+                });
+
+                $.ajax({
+                  type: "POST",
+                  async: false,
+                  contentType: 'application/json',
+                  url: '/CheckCartData',
+                  data: data,
+                  success: function (res) {
+                    // debugger;
+
+                    if (res.status == 1 && res.message == 'Success') {
+                      $(lblOutOfStock).css('display', 'none')
+                      cartstatus = true;
+                    }
+                    else if (res.status == 0 && res.message == 'Out of stock') {
+                      $(lblOutOfStock).css('display', 'block')
+                      cartstatus = false;
+                    }
+                    else {
+                      $(lblOutOfStock).css('display', 'block')
+                      cartstatus = false;
+                    }
+                  },
+                  error: function (data) {
+                    //alert(data);
+                  }
+                });
+
+                if (cartstatus == false) {
+                  break;
+                }
+              }
+
+              if (cartstatus == true) {
+                window.location.href = "/PlaceOrder";
+              }
+            }
+
+            function addQty(cartPlus, storageKey) {
+              // debugger;
+              $.ajax({
+                type: "GET",
+                contentType: 'application/json',
+                url: '/addLocalStorageQty/' + storageKey,
+                success: function (res) {
+                  var findTotal = $(cartPlus).prev().val() * $(cartPlus).parent().parent().prev().find('.ActualPrice')[0].innerHTML.replace(/\s/g, '');
+                  $(cartPlus).parent().parent().next().find('.TotalPrice')[0].innerHTML = findTotal;
+
+                  var chkQty = $(cartPlus).prev().val();
+                  if (chkQty > 1) {
+                    $(cartPlus).prev().prev().attr("style", "opacity: 1; pointer-events: visible;")
+                  }
+
+                  var arr = document.getElementsByClassName('TotalPrice');
+                  var tot = 0;
+                  for (var i = 0; i < arr.length; i++) {
+                    if (parseInt(arr[i].innerHTML))
+                      tot += parseInt(arr[i].innerHTML);
+                  }
+                  document.getElementsByClassName('FinalCartTotal')[0].innerHTML = tot;
+                },
+                error: function (data) {
+                  //alert(data);
+                }
+              });
+            }
+
+            function removeQty(cartMinus, storageKey) {
+
+              $.ajax({
+                type: "GET",
+                contentType: 'application/json',
+                url: '/removeLocalStorageQty/' + storageKey,
+                success: function (res) {
+                  var findTotal = $(cartMinus).next().val() * $(cartMinus).parent().parent().prev().find('.ActualPrice')[0].innerHTML.replace(/\s/g, '');
+                  $(cartMinus).parent().parent().next().find('.TotalPrice')[0].innerHTML = findTotal;
+
+                  var chkQty = $(cartMinus).next().val();
+                  if (chkQty <= 1) {
+                    $(cartMinus).attr("style", " opacity: 0.5; pointer-events: none; text-decoration: line-through;")
+                  }
+
+                  var arr = document.getElementsByClassName('TotalPrice');
+                  var tot = 0;
+                  for (var i = 0; i < arr.length; i++) {
+                    if (parseInt(arr[i].innerHTML))
+                      tot += parseInt(arr[i].innerHTML);
+                  }
+                  document.getElementsByClassName('FinalCartTotal')[0].innerHTML = tot;
+                },
+                error: function (data) {
+                  //alert(data);
+                }
+              });
+            }
+
+            function removeItemFromCart(localStorageKey) {
+              $.ajax({
+                type: "GET",
+                contentType: 'application/json',
+                url: '/RemoveDataFromLocalStorage/' + localStorageKey,
+                success: function (res) {
+                  if (res.message == 'Success') {
+                    window.location.href = '/ViewCart';
+                  }
+                },
+                error: function (data) {
+                  //alert(data);
+                }
+              });
+            }
+          </script>

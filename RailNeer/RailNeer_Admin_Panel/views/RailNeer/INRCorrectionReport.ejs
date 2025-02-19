@@ -1,0 +1,641 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+
+        /* .card.card-custom>.card-header {
+            min-height: 38px !important;
+        } */
+    </style>
+
+    <style>
+        #loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            text-align: center;
+            background: url('../../images/loader.gif') 50% 50% no-repeat rgba(0, 0, 0, 0.8);
+            vertical-align: middle;
+            color: #fff;
+        }
+
+        #loader:before {
+            content: attr(data-wordLoad);
+            color: #fff;
+            position: absolute;
+            top: calc(50% + 150px);
+            left: calc(50% - 90px);
+            width: 180px;
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 1.5rem;
+        }
+    </style>
+
+    <%- include('../partials/header.ejs') %>
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <!-- <div
+                            style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; opacity: 0.7;">
+                            <input type="image" src="../../images/loader.gif" title="Loading ..."
+                                style="padding: 10px; position: absolute; top: 35% !important; left: 45% !important; height: 150px;">
+                        </div> -->
+
+                        <div id="loader" data-wordLoad="Please Waiting" style="display: none;"></div>
+
+                        <div class="modal fade" id="modelINRCorrectionError" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalSizeLg" aria-hidden="true" data-backdrop="static">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">RailNeer</h5>
+                                        <button type="button" class="close">
+                                            <i aria-hidden="true" class="ki ki-close"
+                                                onclick="HideINRCorrectionErrorModal();"
+                                                style="font-size: 14px; border: 1px solid; padding: 5px;"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group mb-1">
+                                            <table id="tblErrorList" class="table table-bordered">
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="modal-footer">
+                                        <button type="btnCloseINRCorrectionError"
+                                            class="btn btn-light-primary font-weight-bold" data-dismiss="modal"
+                                            onclick="HideINRCorrectionErrorModal();">Close</button>
+
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="modelGenerateIRN" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalSizeLg" aria-hidden="true" data-backdrop="static">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">RailNeer</h5>
+                                        <button type="button" class="close">
+                                            <i aria-hidden="true" class="ki ki-close" onclick="HideGenerateIRNModal();"
+                                                style="font-size: 14px; border: 1px solid; padding: 5px;"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group mb-1">
+                                            <input type="hidden" id="isINRGererated" name="isINRGererated">
+                                            <input type="hidden" id="trRowID" name="trRowID">
+                                            <table id="tblGenerateIRN" class="table table-bordered">
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divFilter"
+                                style="margin-top: 0px;display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search IRN Correction Report Details
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <form id="frmINRCorrectionReport" class="form" action="/INRCorrectionReport"
+                                                method="post" autocomplete="off">
+                                                <div class="card-body">
+                                                    <div id="divFilter" class="">
+                                                        <div class="row" style="margin-bottom: -22px;">
+                                                            <div class="col-md-2 col-lg-2">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Order No : </label>
+                                                                    <input type="text" id="order_no" name="order_no"
+                                                                        autocomplete="off" class="form-control"
+                                                                        placeholder="Order No">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 col-lg-2">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Start Date : </label>
+                                                                    <input type="text" id="start_date" name="start_date"
+                                                                        class="form-control pickDate"
+                                                                        data-date-format="dd-mm-yyyy"
+                                                                        placeholder="Start Date" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 col-lg-2">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>End Date : </label>
+                                                                    <input type="text" id="end_date" name="end_date"
+                                                                        class="form-control pickDate"
+                                                                        data-date-format="dd-mm-yyyy"
+                                                                        placeholder="End Date" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-lg-4"
+                                                                style="padding-top: 12px; margin-bottom: 20px">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="btnSearchSubmit"
+                                                                        class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-search"
+                                                                            style="color: white;"></i>
+                                                                        Search</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                    <button id="btnExcel" name="btnExcel" type="submit"
+                                                                        class="btn btn-success"
+                                                                        formaction="/INRCorrectionReportExcel"
+                                                                        formmethod="post" style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-file-excel"
+                                                                            style="color: white;"></i>Excel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" style="margin-top: 0px;">
+                                <!-- <div class="separator separator-dashed mt-8 mb-5"></div> -->
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">IRN Correction Report List
+                                            </div>
+                                            <div class="card-title">
+                                                <button id="btnFilter" type="button" class="btn btn-primary"
+                                                    onclick="divhideShowFilterDetail(this)" style="margin: 5px;"
+                                                    onclick="">&nbsp;<i class="fa fa-plus"></i>Filter &nbsp;<i
+                                                        class='fa fa-filter'></i></button>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <table class="table table-bordered" id="tblINRCorrectionReport">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="5%">Sr. No.</th>
+                                                        <th width="8%">Order Date</th>
+                                                        <th width="8%">Order No</th>
+                                                        <th width="5%">Order Status</th>
+                                                        <th width="8%">Invoice No</th>
+                                                        <th width="18%">IRN No</th>
+                                                        <th width="10%">Customer Type</th>
+                                                        <th width="8%">Customer GSTIN</th>
+                                                        <th width="8%">Depot GSTIN</th>
+                                                        <th width="10%">Error Message</th>
+                                                        <th width="10%">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblbody">
+                                                    <%console.log("INRCorrectionReportData-----=====>",
+                                                        INRCorrectionReportData)%>
+                                                        <% if(INRCorrectionReportData && INRCorrectionReportData.data &&
+                                                            INRCorrectionReportData.data.length>
+                                                            0){
+                                                            %>
+                                                            <% for(var i=0; i < INRCorrectionReportData.data.length;
+                                                                i++) {%>
+                                                                <tr id="<%= INRCorrectionReportData.data[i].id %>">
+                                                                    <td>
+                                                                        <span>
+                                                                            <%= i+1 %>
+                                                                        </span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% var s=INRCorrectionReportData.data[i].ship_dt
+                                                                            %>
+                                                                            <%- moment(s).format('DD-MM-yyyy') %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%- INRCorrectionReportData.data[i].order_no %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% if(INRCorrectionReportData.data[i].constant_order_status
+                                                                            &&
+                                                                            INRCorrectionReportData.data[i].constant_order_status.length>
+                                                                            0){ %>
+                                                                            <%- INRCorrectionReportData.data[i].constant_order_status[0].status_name
+                                                                                %>
+                                                                                <%}%>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%- INRCorrectionReportData.data[i].order_no %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% if(INRCorrectionReportData.data[i].irn_details
+                                                                            &&
+                                                                            INRCorrectionReportData.data[i].irn_details.length>
+                                                                            0){ %>
+                                                                            <span style="overflow-wrap: anywhere;">
+                                                                                <%- INRCorrectionReportData.data[i].irn_details[0].Irn
+                                                                                    %>
+                                                                            </span>
+                                                                            <%}%>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% if(INRCorrectionReportData.data[i].cust_org_information
+                                                                            &&
+                                                                            INRCorrectionReportData.data[i].cust_org_information.length>
+                                                                            0){ %>
+
+                                                                            <% if(INRCorrectionReportData.data[i].cust_org_information[0].customer_type_information
+                                                                                &&
+                                                                                INRCorrectionReportData.data[i].cust_org_information[0].customer_type_information.length>
+                                                                                0){ %>
+
+                                                                                <%- INRCorrectionReportData.data[i].cust_org_information[0].customer_type_information[0].customer_type
+                                                                                    %>
+                                                                                    <%}%>
+                                                                                        <%}%>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% if(INRCorrectionReportData.data[i].cust_org_information
+                                                                            &&
+                                                                            INRCorrectionReportData.data[i].cust_org_information.length>
+                                                                            0){ %>
+                                                                            <%- INRCorrectionReportData.data[i].cust_org_information[0].gstno
+                                                                                %>
+                                                                                <%}%>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% if(INRCorrectionReportData.data[i].depot_information
+                                                                            &&
+                                                                            INRCorrectionReportData.data[i].depot_information.length>
+                                                                            0){ %>
+                                                                            <%- INRCorrectionReportData.data[i].depot_information[0].gstin
+                                                                                %>
+                                                                                <%}%>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a onclick='getINRCorrectionError("<%= INRCorrectionReportData.data[i].order_no %>")'
+                                                                            style="cursor: pointer; text-decoration: underline;">View
+                                                                            Errors</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a onclick='setGenerateINR("<%= INRCorrectionReportData.data[i].id %>","<%= INRCorrectionReportData.data[i].order_no %>")'
+                                                                            style="cursor: pointer; text-decoration: underline;">Generate
+                                                                            IRN</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <%}%>
+                                                                    <%}%>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+
+        <%- include('../partials/footer.ejs') %>
+            <script type="text/javascript">
+
+                $(".select2dropdown").select2();
+
+                function CancelFunction() {
+                    window.location.href = "/INRCorrectionReport";
+                }
+
+                $("#start_date").datepicker({
+                    clearBtn: true,
+                    todayHighlight: true,
+                    endDate: new Date(),
+                    orientation: "bottom"
+                }).datepicker("setDate", 'now').on('changeDate', function (e) {
+                    $(this).datepicker('hide');
+                    var selectedDate = new Date(e.date);
+                    $("#end_date").datepicker("setStartDate", selectedDate);
+                    $("#end_date").datepicker("setDate", selectedDate);
+                });
+
+                $("#end_date").datepicker({
+                    clearBtn: true,
+                    todayHighlight: true,
+                    startDate: new Date(),
+                    endDate: new Date(),
+                    orientation: "bottom"
+                }).datepicker("setDate", 'now').on('changeDate', function (e) {
+                    $(this).datepicker('hide');
+                });
+
+                $("#tblINRCorrectionReport").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [10, 20, 30],
+                });
+
+
+                $('#btnSearchSubmit').on('click', function () {
+                    var stdt = $("#start_date").val().toString().split('-');
+                    var endt = $("#end_date").val().toString().split('-');
+                    var startDate = new Date(stdt[2] + "-" + stdt[1] + "-" + stdt[0]);
+                    var endDate = new Date(endt[2] + "-" + endt[1] + "-" + endt[0]);
+                    var diff = new Date(endDate - startDate);
+
+                    var days = diff / 1000 / 60 / 60 / 24;
+
+                    if (days <= 31) {
+                        $('#btnSearchSubmit').submit();
+                    } else {
+                        Swal.fire({
+                            title: '',
+                            text: 'Difference between dates should be less than 31',
+                            type: 'error',
+                            icon: 'error',
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            iconColor: '#03449e',
+                            timer: 3000
+                        })
+                        return false;
+                    }
+                });
+
+
+                function OpenINRCorrectionErrorModal() {
+                    $('#modelINRCorrectionError').modal('show');
+                }
+
+                function HideINRCorrectionErrorModal() {
+                    $('#modelINRCorrectionError').modal('hide');
+                }
+
+                function OpenGenerateIRNModal() {
+                    $('#modelGenerateIRN').modal('show');
+                }
+
+                function HideGenerateIRNModal() {
+                    if ($("#isINRGererated").val() == "true") {
+                        // window.location.href = window.location.href;
+                        var trRowID = $("#trRowID").val();
+                        $("#" + trRowID).remove();
+                        $('#modelGenerateIRN').modal('hide');
+                    } else {
+                        $('#modelGenerateIRN').modal('hide');
+                    }
+                }
+
+                function getINRCorrectionError(order_no) {
+                    var data = JSON.stringify({
+                        'order_no': order_no,
+                    });
+                    if (order_no != '' && order_no != null && order_no != undefined) {
+                        $.ajax({
+                            accepts: "application/json",
+                            async: true,
+                            type: "POST",
+                            beforeSend: function () {
+                                showLoader();
+                            },
+                            complete: function () {
+                                hideLoader();
+                            },
+                            contentType: 'application/json',
+                            url: "/getErrorIRNList",
+                            data: data,
+                            success: function (res) {
+                                OpenINRCorrectionErrorModal();
+                                $("#tblErrorList").html('');
+                                $("#tblErrorList").append(`
+                                <thead>
+                                   <tr>
+                                      <th style="font-size: 14px; font-weight: bold;">
+                                        Message
+                                    </th>
+                                   </tr>
+                                </thead>
+                           `)
+
+                                if (res.status == 1) {
+                                    if (res.data && res.data.status == true) {
+                                        if (res.data.data && res.data.data.length > 0) {
+                                            //displat data list res.data.data
+                                            res.data.data.forEach(function (data1) {
+                                                $("#tblErrorList").append(`
+                                                <tr class="table-bordered">
+                                                   <td style="font-size: 14px;">
+                                                    ${moment.utc(data1.created_at).format('DD-MM-yyyy HH:mm:ss')} ==> 
+                                                      ${data1.ErrorMessage}
+                                                   </td>
+                                                </tr>
+                                            `)
+                                            });
+                                        } else {
+                                            //display static message
+                                            $("#tblErrorList").append(`
+                                            <tr class="table-bordered">
+                                               <td style="font-size: 14px;">
+                                                  Please Generate New IRN.
+                                               </td>
+                                            </tr>
+                                       `)
+                                        }
+                                    } else {
+                                        //display res.data.message
+                                        $("#tblErrorList").append(`
+                                        <tr class="table-bordered">
+                                           <td style="font-size: 14px;">
+                                              ${res.data.message}
+                                           </td>
+                                        </tr>
+                                    `)
+                                    }
+                                }
+                                else {
+                                    //displat res.message
+                                    $("#tblErrorList").append(`
+                                    <tr class="table-bordered">
+                                        <td style="font-size: 14px;">
+                                            ${res.message}
+                                        </td>
+                                    </tr>
+                               `)
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                alert(error);
+                                hideLoader();
+                            }
+                        });
+                    } else {
+                        alert('order_no not passed');
+                    }
+                }
+
+                function setGenerateINR(id, order_no) {
+                    $("#isINRGererated").val("");
+                    $("#trRowID").val(id);
+                    var data = JSON.stringify({
+                        'order_no': order_no,
+                    });
+                    if (order_no != '' && order_no != null && order_no != undefined) {
+                        $.ajax({
+                            accepts: "application/json",
+                            async: true,
+                            type: "POST",
+                            beforeSend: function () {
+                                showLoader();
+                            },
+                            complete: function () {
+                                hideLoader();
+                            },
+                            contentType: 'application/json',
+                            url: "/getIRNForOrder",
+                            data: data,
+                            success: function (res) {
+                                OpenGenerateIRNModal();
+                                $("#tblGenerateIRN").html('');
+                                $("#tblGenerateIRN").append(`
+                                    <thead>
+                                       <tr>
+                                          <th style="font-size: 14px; font-weight: bold;">
+                                            Message
+                                        </th>
+                                       </tr>
+                                    </thead>
+                               `)
+
+                                if (res.status == 1) {
+                                    if (res.data && res.data.status == true) {
+                                        if (res.data.data && res.data.data.length > 0) {
+                                            //displat data list res.data.data
+                                            if (res.data.data[0].Status == "1") {
+                                                $("#isINRGererated").val("true");
+                                                $("#tblGenerateIRN").append(`
+                                                    <tr class="table-bordered">
+                                                       <td style="font-size: 14px;">
+                                                          Your IRN No is ${res.data.data[0].Irn}
+                                                       </td>
+                                                    </tr>
+                                                `)
+                                            } else {
+                                                $("#tblGenerateIRN").append(`
+                                                    <tr class="table-bordered">
+                                                       <td style="font-size: 14px;">
+                                                          ${res.data.data[0].ErrorMessage}
+                                                       </td>
+                                                    </tr>
+                                                `)
+                                            }
+                                        } else {
+                                            //display static message
+                                            $("#tblGenerateIRN").append(`
+                                                <tr class="table-bordered">
+                                                   <td style="font-size: 14px;">
+                                                    Oops!,<br>
+                                                    We can not generate an 'IRN' number because the online 'IRN' service is not supported, for more information please get in touch with the admin..
+                                                   </td>
+                                                </tr>
+                                            `)
+                                        }
+                                    } else {
+                                        //display res.data.message
+                                        $("#tblGenerateIRN").append(`
+                                            <tr class="table-bordered">
+                                               <td style="font-size: 14px;">
+                                                  ${res.data.message}
+                                               </td>
+                                            </tr>
+                                        `)
+                                    }
+                                }
+                                else {
+                                    //displat res.message
+                                    $("#tblGenerateIRN").append(`
+                                        <tr class="table-bordered">
+                                            <td style="font-size: 14px;">
+                                                ${res.message}
+                                            </td>
+                                        </tr>
+                                    `)
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                alert(error);
+                                hideLoader();
+                            }
+                        });
+                    } else {
+                        alert('order_no not passed');
+                    }
+                }
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divFilter").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divFilter").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+                    $(".select2dropdown").select2();
+                }
+
+                function showLoader() {
+                    $("#loader").show();
+                }
+
+                function hideLoader() {
+                    $("#loader").hide();
+                }
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                if (SearchData) {
+                    $("#order_no").val(SearchData.order_no).change();
+                    $("#start_date").val(SearchData.start_date).change();
+                    $("#end_date").datepicker("setStartDate", SearchData.start_date);
+                    $("#end_date").val(SearchData.end_date).change();
+                } else {
+                    $("#order_no").val();
+                    $("#start_date").val();
+                    $("#end_date").val();
+                }
+
+                var FilterData = JSON.parse('<%- JSON.stringify(FilterData) %>');
+                searchStatus = FilterData;
+                if (searchStatus == true) {
+                    $("#divFilter").css("display", "block");
+                    $("#btnFilter").find('.fa-plus').addClass('fa-minus')
+                    $("#btnFilter").find('.fa-plus').removeClass('fa-plus')
+                    $(".select2dropdown").select2();
+                }
+
+            </script>

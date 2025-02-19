@@ -1,0 +1,101 @@
+.card.card-custom > .card-header .card-title,
+.card.card-custom > .card-header .card-title .card-label {
+  font-family: "Poppins";
+  font-weight: bold;
+}
+.css-2ulfj5-MuiTypography-root {
+  font-family: "Poppins" !important;
+  font-weight: bold !important;
+}
+
+.css-1mbunh-MuiPaper-root {
+  box-shadow: none !important;
+}
+.css-ig9rso-MuiToolbar-root {
+  padding-left: 0 !important;
+}
+.css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root {
+  font-family: "Poppins" !important;
+  font-size: 14px !important;
+}
+.css-1ex1afd-MuiTableCell-root {
+  font-family: "Poppins" !important;
+  /* font-weight: 500 !important; */
+  padding: 10px !important;
+  /* line-height: 0.6 !important; */
+  padding-top: 2% !important;
+  padding-bottom: 2% !important;
+}
+.css-pdct74-MuiTablePagination-selectLabel {
+  margin-bottom: 0 !important;
+}
+.css-levciy-MuiTablePagination-displayedRows {
+  margin-bottom: 0 !important;
+}
+.form-group label {
+  font-family: "Poppins";
+}
+.header-menu .menu-nav > .menu-item > .menu-link .menu-text {
+  font-family: "Poppins";
+}
+.css-1ex1afd-MuiTableCell-root:nth-child(2) {
+  text-align: center !important;
+}
+.css-1vweko9-MuiSvgIcon-root-MuiTableSortLabel-icon {
+  display: none !important;
+}
+.btn {
+  font-family: "Poppins";
+}
+.form-control {
+  font-family: "Poppins";
+}
+.swal2-container.swal2-center > .swal2-popup {
+  align-items: center !important;
+  display: flex !important;
+}
+
+.removeicon {
+  position: absolute;
+  top: -5%;
+  /* height: 50px; */
+  color: black;
+  /* text-align: right; */
+  float: right;
+  right: -15px;
+}
+
+
+[data-feedback].error {
+  color: red;
+  font-weight: bold;
+}
+
+.text-danger {
+  color: red !important;
+  font-weight: bold !important;
+}
+
+.header .header-top {
+  background-color: #6e2cd6
+}
+
+.bg-primary{
+  background-color: #6e2cd6 !important
+}
+
+a {
+color: #6e2cd6;
+}
+
+.btn.btn-primary{
+  color: #FFFFFF;
+  background-color: #6e2cd6;
+  border-color: #6e2cd6;
+}
+
+.btn.btn-primary:hover:not(.btn-text):not(:disabled):not(.disabled){
+  color: #FFFFFF;
+  background-color: #6e2cd6;
+  border-color: #6e2cd6;
+}

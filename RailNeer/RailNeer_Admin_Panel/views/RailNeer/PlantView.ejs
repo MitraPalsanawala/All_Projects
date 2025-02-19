@@ -1,0 +1,299 @@
+<%- include('../partials/head.ejs') %>
+    <style>
+        .dataTables_wrapper .dataTable tfoot th,
+        .dataTables_wrapper .dataTable thead th {
+            font-weight: 500;
+            color: #181C32;
+        }
+
+        .dataTables_wrapper .dataTable td,
+        .dataTables_wrapper .dataTable thead th {
+            white-space: nowrap !important;
+        }
+    </style>
+    <%- include('../partials/header.ejs') %>
+
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Entry-->
+            <div class="d-flex flex-column-fluid">
+                <div class="container-fluid">
+                    <div class="row" id="div1" runat="server">
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact" id="divSearch" style="display: none;">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact"
+                                        style="margin-bottom:0;">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">Search Plant Detail
+                                            </div>
+                                        </div>
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <form id="frmPlant" class="form" action="/PlantView" method="post"
+                                                autocomplete="off">
+                                                <div class="card-body">
+                                                    <div id="divSearch" class="">
+                                                        <div class="row" style="margin-bottom: -38px;">
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>Plant Name : </label>
+                                                                    <input type="text" id="plant_name"
+                                                                        placeholder="Plant Name" autocomplete="off"
+                                                                        class="form-control" name="plant_name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3">
+                                                                <div class="form-group formgroupcss">
+                                                                    <label>State : </label>
+                                                                    <select ID="state_id"
+                                                                        class="form-control select2dropdown"
+                                                                        name="state_id">
+                                                                        <option Value="">--Select State--</option>
+                                                                        <%if(StateData && StateData.data &&
+                                                                            StateData.data.length> 0){%>
+                                                                            <%for(var i=0; i < StateData.data.length;
+                                                                                i++){%>
+                                                                                <option
+                                                                                    value="<%= StateData.data[i].state_id %>">
+                                                                                    <%= StateData.data[i].state_name %>
+                                                                                </option>
+                                                                                <%}%>
+                                                                                    <% }%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-lg-3"
+                                                                style="padding-top: 26px;margin-left: 54px; margin-bottom: 20px">
+                                                                <div class="form-group formgroupbuttoncss">
+                                                                    <button type="submit" id="" class="btn btn-primary"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="la la-check-square-o"
+                                                                            style="color: white;"></i>
+                                                                        Search</button>
+                                                                    <button type="reset" value="reset" id="btnCancel"
+                                                                        class="btn btn-danger"
+                                                                        style="margin-bottom: 10px;"
+                                                                        onclick="CancelFunction()">
+                                                                        <i
+                                                                            class="fa-window-close fas"></i>Cancel</button>
+                                                                    <button id="btnExcel" name="btnExcel" type="submit"
+                                                                        class="btn btn-success"
+                                                                        formaction="/ViewPlantExcel" formmethod="post"
+                                                                        style="margin-bottom: 10px;">
+                                                                        <i class="fa fa-file-excel"
+                                                                            style="color: white;"></i>Excel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-custom example example-compact">
+                                <div class="card-body">
+                                    <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h3 class="card-label h3css">View Plant Detail
+                                            </div>
+                                            <div class="card-title">
+                                                <% if(cookieData[0].user_role_name==="admin" ) { %>
+                                                    <button type="button" value="reset" id="btnCancel"
+                                                        class="btn btn-primary" style="margin: 5px;"
+                                                        onclick="ViewFunction()" tabindex="11">
+                                                        <i class="fa fa-plus"></i>Add Plant</button>
+                                                    <%}%>
+                                                        <button type="button" class="btn btn-primary"
+                                                            onclick="divhideShowFilterDetail(this)" style="margin: 5px;"
+                                                            onclick=""><i class='fa fa-filter'></i>Filter &nbsp;<i
+                                                                class="fa fa-plus"></i></button>
+                                                        <div></div>
+                                            </div>
+                                        </div>
+
+                                        <div id="datatable-container" class="card-body cardbodycss"
+                                            style="overflow: auto;position:relative">
+                                            <!--begin: Datatable-->
+                                            <table class="table table-bordered" id="tblplant">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="tdcss" width="2%">Sr. No.</th>
+                                                        <th class="tdcss" width="5%">Plant Name</th>
+                                                        <th class="tdcss" width="5%">Plant Code</th>
+                                                        <th class="tdcss" width="5%">Fssai_No</th>
+                                                        <th class="tdcss" width="5%">State</th>
+                                                        <!-- <th class="tdcss" width="10%">CSIMID</th> -->
+                                                        <!-- <th class="tdcss" width="15%">Address</th> -->
+                                                        <th class="tdcss" width="1%">Edit</th>
+                                                        <!-- <th class="tdcss" width="1%">Delete</th> -->
+                                                        <th class="tdcss" width="1%">Product Detail</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblbody">
+                                                    <%if(PlantData && PlantData.data && PlantData.data.length> 0 ){%>
+                                                        <% for(var i=0; i < PlantData.data.length; i++) {%>
+                                                            <tr>
+                                                                <td class="tdcss">
+                                                                    <span class="tdfont">
+                                                                        <%= i+1 %>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <%- PlantData.data[i].plant_name %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- PlantData.data[i].plant_code %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- PlantData.data[i].fssai_no %>
+                                                                </td>
+                                                                <td>
+                                                                    <%- PlantData.data[i].StateDetail[0].state_name %>
+                                                                </td>
+                                                                <!-- <td>
+                                                                    <%- PlantData.data[i].CSIMID %>
+                                                                </td> -->
+                                                                <!-- <td>
+                                                                    <%- PlantData.data[i].address %>
+                                                                </td> -->
+
+                                                                <td>
+                                                                    <a
+                                                                        href="/PlantfindbyId/<%- PlantData.data[i].plant_id %>"><i
+                                                                            class="la la-pencil-square-o"
+                                                                            style="font-size:24px;color: #03449e;"></i></a>
+                                                                </td>
+                                                                <!-- <td>
+                                                                    <a
+                                                                        href="/deletePlant/<%- PlantData.data[i].plant_id %>"><i
+                                                                            class="la la-trash-o"
+                                                                            onclick="return confirm('Are you sure you want to Delete?')"
+                                                                            style="font-size:24px;color:#03449e;"></i></a>
+                                                                </td> -->
+                                                                <td>
+
+                                                                    <a
+                                                                        href="/ProductView/<%- PlantData.data[i].plant_id %>"><i
+                                                                            class="la la-cart-plus"
+                                                                            style="font-size:24px;color: #03449e;"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <%} %>
+                                                                <%} %>
+                                                </tbody>
+                                            </table>
+                                            <!--end: Datatable-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end::Entry-->
+        </div>
+        <!--end::Content-->
+        <%- include('../partials/footer.ejs') %>
+
+            <script type="text/javascript">
+                $(".select2dropdown").select2();
+
+                function CancelFunction() {
+                    window.location.href = "/PlantView";
+                }
+
+                function ViewFunction() {
+                    window.location.href = "/PlantAdd";
+                }
+
+                var SearchData = JSON.parse('<%- JSON.stringify(SearchData) %>');
+                if (SearchData) {
+                    $("#plant_name").val(SearchData.plant_name);
+                    $("#state_id").val(SearchData.state_id).change();
+                } else {
+                    $("#plant_name").val();
+                    $("#state_id").val();
+                }
+
+                var FilterData = JSON.parse('<%- JSON.stringify(FilterData) %>');
+                searchStatus = FilterData;
+                if (searchStatus == true) {
+                    debugger
+                    $("#divSearch").css("display", "block");
+                    $(".select2dropdown").select2();
+                }
+
+
+                // function divhideShowFilterDetail() {
+                //     $("#divSearch").css("display", "block");
+                //     $(".select2dropdown").select2();
+                // }
+
+                function divhideShowFilterDetail(data) {
+                    if ($(data).find('.fa-plus').length > 0) {
+                        $("#divSearch").css("display", "block");
+                        $(data).find('.fa-plus').addClass('fa-minus')
+                        $(data).find('.fa-plus').removeClass('fa-plus')
+                    }
+                    else {
+                        $("#divSearch").css("display", "none");
+                        $(data).find('.fa-minus').addClass('fa-plus')
+                        $(data).find('.fa-minus').removeClass('fa-minus')
+                    }
+
+                    $(".select2dropdown").select2();
+                }
+
+                var error = JSON.parse('<%- JSON.stringify(alertTitle) %>');
+                var error1 = JSON.parse('<%- JSON.stringify(alertMessage) %>');
+                var errortype;
+                var icon = "";
+                if (error) {
+                    if (error == "Invalid") {
+                        errortype = 'warning'
+                        icon = "error"
+                    } else if (error == "Success") {
+                        errortype = 'success'
+                        icon = "success"
+                    } else if (error == "Delete") {
+                        errortype = 'success'
+                        icon = "success"
+                    }
+                    Swal.fire({
+                        title: error,
+                        text: error1,
+                        //type: errortype,
+                        icon: errortype,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        iconColor: '#03449e',
+                        // toast: false,
+                        // modal: true,
+                        //position: 'relative',
+                        timer: 3000
+                    }).then(function () {
+                        if (error == "Success" || error == "Delete" || error == "Invalid") { window.location.replace(window.location.origin + '/PlantView') }
+                        else if (error == "Invalid" && ID != '') {
+                            window.location.replace(window.location.origin + '/PlantView/' + ID)
+                        }
+                    });
+                }
+
+                $("#tblplant").DataTable({
+                    "lengthChange": true,
+                    lengthMenu: [5, 10, 20],
+                });
+
+            </script>
